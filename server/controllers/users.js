@@ -24,3 +24,14 @@ export const createUser = async (req, res) => {
         res.status(409).json({ message: error });
     }
 }
+
+export const updateUser = async (req, res) => {
+    const { _id } = req.params;
+    const user = req.body
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
+
+    await UserMessage.findByIdAndUpdate(_id, {...user, _id}, { new: true });
+
+    res.json({ message: 'User updated successfully'});
+}
