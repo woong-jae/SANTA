@@ -7,3 +7,5 @@
 - mongoose
 - dotenv
 - cors
+- request
+- xml2js
