@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import LandingPage from "../LandingPage/LandingPage";
+import "./Sections/CardListPage.scss";
 
 class CardListPage extends Component {
   render() {
     return (
-      <div className="card-list">
-        <LandingPage />
-        <header></header>
+      <div className="cardList">
+        <header className="cardList-header"></header>
+        <section className="cardList-body"></section>
       </div>
     );
   }
