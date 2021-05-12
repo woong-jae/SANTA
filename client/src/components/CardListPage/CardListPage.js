@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import "./Sections/CardListPage.scss";
+import SelectDate from "../common/SelectDate";
 
 class CardListPage extends Component {
   render() {
     return (
-      <div className="card-list">
-        <header></header>
+      <div className="cardList">
+        <header className="cardList-header"></header>
+        <section className="cardList-section"></section>
       </div>
     );
   }
