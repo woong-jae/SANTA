@@ -1,12 +1,12 @@
 import express from 'express'
 import mongoose from 'mongoose';
 
-import UserMessage from '../models/userMessage.js';
+import User from '../models/user.js';
 
 export const getUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const userMessage = await UserMessage.find({ id: id });
+        const userMessage = await User.find({ id: id });
 
         res.status(200).json(userMessage);
     } catch (error) {
@@ -16,7 +16,7 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     const userInfo = req.body;
-    const newUser = new UserMessage(userInfo);
+    const newUser = new User(userInfo);
     try {
         await newUser.save();
         // res.status(201).json(newUser);
