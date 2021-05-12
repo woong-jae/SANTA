@@ -1,9 +1,9 @@
-.card-list {
+.cardList {
     .cardList-header {
-        background-color: aquamarine;
-        min-height: 100vh;
+        min-height: 12vh;
+        background-color: #02625a;
     }
-    .cardList-section {
-        background-color: beige;
+    .cardList-body {
+        min-height: 88vh;
     }
 }
