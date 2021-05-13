@@ -33,17 +33,15 @@
         min-height: 88vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        /*
-        display: flex;
-        justify-content: baseline;
-        flex-flow: row;
-        flex-wrap: wrap;
-        */
+        // display: flex;
+        // justify-content: baseline;
+        // flex-flow: row;
+        // flex-wrap: wrap;
         .cards {
             //Cards.js
-            width: 319px;
-            height: 295px;
-            margin: 50px 90px 30px 90px;
+            width: 70%;
+            height: 80%;
+            margin: 12% 15% 12% 15%;
             overflow-y: auto;
             .card-info {
                 font-size: 1.1em;
@@ -81,7 +79,6 @@
             color: white;
             background-color: #10b274;
             font-size: 1.2em;
-            border: thin solid black;
             &:hover {
                 background-color: #059960;
             }
