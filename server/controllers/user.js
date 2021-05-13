@@ -1,14 +1,19 @@
 import express from 'express'
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt'
 
 import User from '../models/user.js';
 
 export const getUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        const userMessage = await User.find({ id: id });
+        const { userid, passwd } = req.params;
 
-        res.status(200).json(userMessage);
+        const compare = bcrypt.compareSync(passwd, userMesage.passwd);
+
+        if (compare) {
+            const userMessage = await User.find({ userid: userid, passwd: passwd });
+            res.status(200).json(userMessage);
+        }
     } catch (error) {
         res.status(404).json({ message: error });
     }

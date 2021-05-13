@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import usersRoutes from './routes/users.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.json({limit: "30mb", extended: true}));
 app.use(express.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
-app.use('/users', usersRoutes);
+app.use('/user', userRoutes);
 
 app.use('/', (req, res) => {
     res.send("Server running...");
