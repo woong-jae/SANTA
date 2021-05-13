@@ -18,7 +18,7 @@ class CardListPage extends Component {
               label="산/지역명"
               className="header-input"
             ></TextField>
-            <SelectDate className="header-input"></SelectDate>
+            <SelectDate></SelectDate>
             <TextField
               required
               className="header-input"
