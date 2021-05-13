@@ -1,7 +1,8 @@
 .cardList {
     background-color: #81c784;
+    //Card-Header
     .cardList-header {
-        background-color: white;
+        background-color: #ffffff;
         min-height: 12vh;
         display: flex;
         align-items: center;
@@ -9,32 +10,40 @@
         a {
             text-decoration: none;
         }
-        .header-btn {
-            font-size: 1.2em;
-            color: white;
-            background-color: #81c784;
-            height: 50px;
-            margin-right: 10px;
-            margin-left: 10px;
-            &:hover {
-                background-color: #10b274;
+        .header-user {
+            display: flex;
+            .header-btn {
+                font-size: 1.2em;
+                color: white;
+                background-color: #81c784;
+                height: 50px;
+                margin-right: 20px;
+                margin-left: 20px;
+                &:hover {
+                    background-color: #10b274;
+                }
+            }
+            #myPage-btn {
+                font-size: 2em;
             }
         }
-        #myPage-btn {
-            font-size: 2em;
-        }
     }
+    //Card-Body
     .cardList-body {
         min-height: 88vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /*
         display: flex;
         justify-content: baseline;
         flex-flow: row;
         flex-wrap: wrap;
+        */
         .cards {
             //Cards.js
             width: 319px;
             height: 295px;
-            margin: 30px 30px 30px 30px;
+            margin: 50px 90px 30px 90px;
             overflow-y: auto;
             .card-info {
                 font-size: 1.1em;
@@ -58,6 +67,7 @@
             }
         }
     }
+    //Card-Footer
     .cardList-footer {
         height: 60px;
         margin-top: -50px;
@@ -71,6 +81,7 @@
             color: white;
             background-color: #10b274;
             font-size: 1.2em;
+            border: thin solid black;
             &:hover {
                 background-color: #059960;
             }

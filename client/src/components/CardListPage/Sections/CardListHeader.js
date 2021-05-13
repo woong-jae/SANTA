@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./CardListPage.scss";
+import LoginPage from "../../LoginPage/LoginPage";
 import Search from "../../common/Search";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
 
 class CardListHeader extends Component {
@@ -10,15 +11,13 @@ class CardListHeader extends Component {
     return (
       <header className="cardList-header">
         <Search />
-        <div>
+        <div className="header-user">
           <Link to="/myPage">
             <Button variant="contained" className="header-btn" id="myPage-btn">
               <AiOutlineUser className="btn-icon" />
             </Button>
           </Link>
-          <Button variant="contained" className="header-btn" id="signIn-btn">
-            sign in
-          </Button>
+          <LoginPage />
         </div>
       </header>
     );
