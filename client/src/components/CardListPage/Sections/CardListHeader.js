@@ -13,14 +13,9 @@ class CardListHeader extends Component {
     return (
       <header className="cardList-header">
         <form>
+          <TextField label="산/지역명" className="header-input"></TextField>
+          <SelectDate className="header-input"></SelectDate>
           <TextField
-            required
-            label="산/지역명"
-            className="header-input"
-          ></TextField>
-          <SelectDate></SelectDate>
-          <TextField
-            required
             className="header-input"
             label="동행 인원"
             type="number"
