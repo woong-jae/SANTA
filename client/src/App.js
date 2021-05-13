@@ -11,10 +11,26 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/list" component={CardListPage} />
-          <Route exact path="/myPage" component={MyPage} />
+          <Route
+            exact
+            path="/"
+            component={(props) => <LandingPage {...props} />}
+          />
+          <Route
+            exact
+            path="/login"
+            component={(props) => <LoginPage {...props} />}
+          />
+          <Route
+            exact
+            path="/list"
+            component={(props) => <CardListPage {...props} />}
+          />
+          <Route
+            exact
+            path="/myPage"
+            component={(props) => <MyPage {...props} />}
+          />
         </Switch>
       </Router>
     );

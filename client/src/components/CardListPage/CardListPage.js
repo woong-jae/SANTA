@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 import "./Sections/CardListPage.scss";
+import LoginPage from "../LoginPage/LoginPage";
+
+import { Button } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
 import SelectDate from "../common/SelectDate";
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 class CardListPage extends Component {
   render() {
+    const { handleOpen } = this.props;
     return (
       <div className="cardList">
         <header className="cardList-header">
@@ -45,15 +48,9 @@ class CardListPage extends Component {
                 <AiOutlineUser className="btn-icon" />
               </Button>
             </Link>
-            <Link to="/login">
-              <Button
-                variant="contained"
-                className="header-btn"
-                id="signIn-btn"
-              >
-                sign in
-              </Button>
-            </Link>
+            <Button variant="contained" className="header-btn" id="signIn-btn">
+              sign in
+            </Button>
           </div>
         </header>
         <section className="cardList-body"></section>
