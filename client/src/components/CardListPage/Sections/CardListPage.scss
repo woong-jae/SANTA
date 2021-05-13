@@ -1,9 +1,79 @@
 .cardList {
+    background-color: #81c784;
     .cardList-header {
+        background-color: white;
         min-height: 12vh;
-        background-color: #02625a;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        a {
+            text-decoration: none;
+        }
+        .header-btn {
+            font-size: 1.2em;
+            color: white;
+            background-color: #81c784;
+            height: 50px;
+            margin-right: 10px;
+            margin-left: 10px;
+            &:hover {
+                background-color: #10b274;
+            }
+        }
+        #myPage-btn {
+            font-size: 2em;
+        }
     }
     .cardList-body {
         min-height: 88vh;
+        display: flex;
+        justify-content: baseline;
+        flex-flow: row;
+        flex-wrap: wrap;
+        .cards {
+            //Cards.js
+            width: 319px;
+            height: 295px;
+            margin: 30px 30px 30px 30px;
+            overflow-y: auto;
+            .card-info {
+                font-size: 1.1em;
+                margin-bottom: 5px;
+            }
+            #card-title {
+                font-size: 1.3em;
+                margin-bottom: 10px;
+            }
+            .card-action {
+                display: block;
+                text-align: center;
+                .card-btn {
+                    font-size: 1em;
+                    color: white;
+                    background-color: #81c784;
+                    &:hover {
+                        background-color: #10b274;
+                    }
+                }
+            }
+        }
+    }
+    .cardList-footer {
+        height: 60px;
+        margin-top: -50px;
+        text-align: center;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        height: 60px;
+        width: 100%;
+        .footer-btn {
+            color: white;
+            background-color: #10b274;
+            font-size: 1.2em;
+            &:hover {
+                background-color: #059960;
+            }
+        }
     }
 }

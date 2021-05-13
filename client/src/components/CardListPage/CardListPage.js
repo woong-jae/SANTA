@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import "./Sections/CardListPage.scss";
+import CardListHeader from "./Sections/CardListHeader";
+import CardListBody from "./Sections/CardListBody";
+import CardListFooter from "./Sections/CardListFooter";
 
 class CardListPage extends Component {
   render() {
     return (
       <div className="cardList">
-        <header className="cardList-header"></header>
-        <section className="cardList-body"></section>
+        <CardListHeader />
+        <CardListBody />
+        <CardListFooter />
       </div>
     );
   }
