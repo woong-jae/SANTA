@@ -1,3 +1,27 @@
-Dialog {
-  background-color: red;
+.signinDialog {
+  .dialogTitle {
+    text-align: center;
+  }
+  .MuiFormLabel-root.Mui-focused {
+    color: #10b274;
+  }
+  .MuiInput-underline:after {
+    border-bottom-color: #10b274;
+  }
+  .MuiIconButton-colorSecondary:hover {
+    background-color: white;
+  }
+  .MuiCheckbox-colorSecondary.Mui-checked {
+    color: #10b274;
+    &:hover {
+      background-color: white;
+    }
+  }
+  .signin-btn {
+    background-color: #81c784;
+    color: white;
+    &:hover {
+      background-color: #10b274;
+    }
+  }
 }

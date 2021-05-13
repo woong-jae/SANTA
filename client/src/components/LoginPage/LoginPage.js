@@ -1,8 +1,14 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-// import { Form, Button } from "react-bootstrap";
-// import Modal from "@material-ui/core/Modal";
+import "./Sections/LoginPage.scss";
+import { DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
 import "./Sections/LoginPage.scss";
 
 export default function LoginModal() {
@@ -18,52 +24,57 @@ export default function LoginModal() {
       <button type="button" onClick={handleOpen}>
         login
       </button>
-      <Dialog open={open} onClose={handleClose}>
-        <form autoComplete="off">
-          <TextField id="outlined-basic" label="산/지역명"></TextField>
+      <Dialog open={open} onClose={handleClose} className="signinDialog">
+        <DialogTitle className="dialogTitle">
+          <Typography component="h1" variant="h5">
+            Sign In
+          </Typography>
+        </DialogTitle>
+        <DialogContent>
           <TextField
-            id="outlined-basic"
-            label="동행 인원"
-            type="number"
-            defaultValue="0"
-            inputProps={{ min: 0 }}
-            InputLabelProps={{ shrink: true }}
+            required
+            id="userId"
+            label="아이디"
+            margin="normal"
+            type="id"
+            fullWidth
           ></TextField>
+          <TextField
+            required
+            id="userPwd"
+            label="비밀번호"
+            margin="normal"
+            type="passward"
+            fullWidth
+          ></TextField>
+          <FormControlLabel
+            control={<Checkbox value="remember" className="remember-check" />}
+            label="Remember me"
+          />
           <br></br>
-        </form>
-        {/* <Form>
-          <Form.Group controlId="formId">
-            <Form.Label>아이디: </Form.Label>
-            <Form.Control type="userId" placeholder="Enter your ID" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-
-          <Form.Group controlId="formPwd">
-            <Form.Label>비밀번호: </Form.Label>
-            <Form.Control type="userPwd" placeholder="Enter your PWD" />
-          </Form.Group>
-
-          <Form.Group controlId="formAge">
-            <Form.Label>연령: </Form.Label>
-            <Form.Control type="userAge" placeholder="Enter your Age" />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="남성" />
-            <Form.Check type="checkbox" label="여성" />
-          </Form.Group>
-
-          <Form.Group controlId="formNick">
-            <Form.Label>닉네임: </Form.Label>
-            <Form.Control type="userNick" placeholder="Enter your Nickname" />
-          </Form.Group>
-
-          <Button variant="primary" type="submit">
-            가입하기
+        </DialogContent>
+        <DialogActions>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className="signin-btn"
+          >
+            Sign In
           </Button>
-        </Form> */}
+        </DialogActions>
+        <Grid container>
+          <Grid item xs>
+            <Link to="/" variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+          <Grid>
+            <Link to="/Signup" variant="body2">
+              Sign Up
+            </Link>
+          </Grid>
+        </Grid>
       </Dialog>
     </div>
   );

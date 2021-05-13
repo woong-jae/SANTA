@@ -7,6 +7,12 @@ body {
       border: 1px solid lightgray;
       border-radius: 50px;
     }
+    .MuiFormLabel-root.Mui-focused {
+      color: #10b274;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #10b274;
+    }
     form > * {
       margin: 1rem;
     }
