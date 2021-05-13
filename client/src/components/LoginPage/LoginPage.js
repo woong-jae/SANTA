@@ -9,9 +9,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
+import SearchIcon from "@material-ui/icons/Search";
 import "./Sections/LoginPage.scss";
 
-export default function LoginModal() {
+export default function LoginDialog() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -21,9 +22,12 @@ export default function LoginModal() {
   };
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        login
-      </button>
+      <Button
+        className="search-btn"
+        variant="contained"
+        startIcon={<SearchIcon />}
+        onClick={handleOpen}
+      ></Button>
       <Dialog open={open} onClose={handleClose} className="signinDialog">
         <DialogTitle className="dialogTitle">
           <Typography component="h1" variant="h5">
