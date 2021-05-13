@@ -27,11 +27,13 @@ class CardListPage extends Component {
               defaultValue="0"
               InputLabelProps={{ shrink: true }}
             ></TextField>
-            <Button
-              variant="contained"
-              startIcon={<SearchIcon />}
-              id="input-btn"
-            ></Button>
+            <Link to="/list">
+              <Button
+                variant="contained"
+                startIcon={<SearchIcon />}
+                id="input-btn"
+              ></Button>
+            </Link>
           </form>
           <div>
             <Link to="/myPage">
@@ -43,9 +45,15 @@ class CardListPage extends Component {
                 <AiOutlineUser className="btn-icon" />
               </Button>
             </Link>
-            <Button variant="contained" className="header-btn" id="signIn-btn">
-              sign in
-            </Button>
+            <Link to="/login">
+              <Button
+                variant="contained"
+                className="header-btn"
+                id="signIn-btn"
+              >
+                sign in
+              </Button>
+            </Link>
           </div>
         </header>
         <section className="cardList-body"></section>
