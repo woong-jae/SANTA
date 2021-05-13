@@ -9,7 +9,7 @@ export const getUser = async (req, res) => {
         const { userid, passwd } = req.params;
 
         const compare = bcrypt.compareSync(passwd, userMesage.passwd);
-
+        
         if (compare) {
             const userMessage = await User.find({ userid: userid, passwd: passwd });
             res.status(200).json(userMessage);
@@ -39,4 +39,14 @@ export const updateUser = async (req, res) => {
     await UserMessage.findByIdAndUpdate(_id, {...user, _id}, { new: true });
 
     res.json({ message: 'User updated successfully'});
+}
+
+export const deleteUser = async (req, res) => {
+    const { _id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that id");
+
+    await PostMessage.findByIdAndRemove(_id);
+
+    res.json({message: 'Post deleted successfully'});
 }
