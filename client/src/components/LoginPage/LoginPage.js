@@ -9,7 +9,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
-import SearchIcon from "@material-ui/icons/Search";
 import "./Sections/LoginPage.scss";
 
 export default function LoginDialog() {
@@ -23,11 +22,13 @@ export default function LoginDialog() {
   return (
     <div>
       <Button
-        className="search-btn"
         variant="contained"
-        startIcon={<SearchIcon />}
+        className="header-btn"
+        id="signIn-btn"
         onClick={handleOpen}
-      ></Button>
+      >
+        sign in
+      </Button>
       <Dialog open={open} onClose={handleClose} className="signinDialog">
         <DialogTitle className="dialogTitle">
           <Typography component="h1" variant="h5">
