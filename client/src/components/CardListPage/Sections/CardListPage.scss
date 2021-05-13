@@ -6,38 +6,6 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .header-input {
-                margin-right: 30px;
-                margin-left: 30px;
-                height: 40px;
-            }
-            .MuiFormLabel-root.Mui-focused {
-                color: #10b274;
-            }
-            .MuiInput-underline:after {
-                border-bottom-color: #10b274;
-            }
-            #search-btn {
-                background-color: #10b274;
-                margin-top: 10px;
-                margin-right: 30px;
-                .MuiButton-startIcon {
-                    margin-left: 0px;
-                    margin-right: 0px;
-                }
-                .MuiButton-iconSizeMedium>*:first-child {
-                    font-size: 2em;
-                    color: white;
-                }
-                &:hover {
-                    background-color: #059960;
-                }
-            }
-        }
         a {
             text-decoration: none;
         }
