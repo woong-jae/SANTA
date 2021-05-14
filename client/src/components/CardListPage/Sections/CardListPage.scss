@@ -13,7 +13,8 @@
         .header-user {
             display: flex;
             .header-btn {
-                font-size: 1.2em;
+                width: 70%;
+                font-size: 97%;
                 color: white;
                 background-color: #81c784;
                 height: 50px;
@@ -24,7 +25,7 @@
                 }
             }
             #myPage-btn {
-                font-size: 2em;
+                font-size: 200%;
             }
         }
     }
@@ -40,7 +41,7 @@
         .cards {
             //Cards.js
             width: 70%;
-            height: 80%;
+            height: 300px;
             margin: 12% 15% 12% 15%;
             overflow-y: auto;
             .card-info {

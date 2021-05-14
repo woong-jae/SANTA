@@ -6,16 +6,6 @@ const CardListBody = () => {
   return (
     <section className="cardList-body">
       <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
     </section>
   );
 };
