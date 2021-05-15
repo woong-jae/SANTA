@@ -13,7 +13,8 @@
         .header-user {
             display: flex;
             .header-btn {
-                font-size: 1.2em;
+                width: 70%;
+                font-size: 97%;
                 color: white;
                 background-color: #81c784;
                 height: 50px;
@@ -24,7 +25,7 @@
                 }
             }
             #myPage-btn {
-                font-size: 2em;
+                font-size: 200%;
             }
         }
     }
@@ -33,25 +34,24 @@
         min-height: 88vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        /*
-        display: flex;
-        justify-content: baseline;
-        flex-flow: row;
-        flex-wrap: wrap;
-        */
+        // display: flex;
+        // justify-content: baseline;
+        // flex-flow: row;
+        // flex-wrap: wrap;
         .cards {
             //Cards.js
-            width: 319px;
-            height: 295px;
-            margin: 50px 90px 30px 90px;
+            width: 70%;
+            height: 280px;
+            margin: 12% 15% 12% 15%;
             overflow-y: auto;
             .card-info {
-                font-size: 1.1em;
+                font-size: 1em;
                 margin-bottom: 5px;
             }
             #card-title {
-                font-size: 1.3em;
+                font-size: 1em;
                 margin-bottom: 10px;
+                margin-bottom: 20px;
             }
             .card-action {
                 display: block;
@@ -81,7 +81,6 @@
             color: white;
             background-color: #10b274;
             font-size: 1.2em;
-            border: thin solid black;
             &:hover {
                 background-color: #059960;
             }

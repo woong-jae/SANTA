@@ -11,10 +11,12 @@ const Cards = () => {
     <Card className="cards">
       <CardContent>
         <Typography className="card-info" id="card-title">
-          <strong>가나다라마바사아자차카타파하가나다라</strong>
+          <strong>
+            팔공산 함께 등반하실 분 구해요! 저녁도 같이 먹어요^^ (20대만!)
+          </strong>
         </Typography>
         <Typography className="card-info">
-          <strong>산</strong> : ...
+          <strong>산</strong> : 팔공산
         </Typography>
         <Typography className="card-info">
           <strong>현재 인원</strong> : 2

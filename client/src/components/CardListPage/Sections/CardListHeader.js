@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./CardListPage.scss";
 import LoginPage from "../../LoginPage/LoginPage";
 import Search from "../../common/Search";
-import { Button, Grid } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
 
 class CardListHeader extends Component {
