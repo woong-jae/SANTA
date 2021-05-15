@@ -7,10 +7,10 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
   Typography,
   Checkbox,
 } from "@material-ui/core";
+import LockIcon from "@material-ui/icons/Lock";
 import { Link } from "react-router-dom";
 import "./Sections/SigninPage.scss";
 
@@ -34,7 +34,8 @@ export default function SigninDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose} className="signinDialog">
         <DialogTitle className="dialogTitle">
-          <Typography component="h1" variant="h5">
+          <LockIcon />
+          <Typography component="h1" variant="h3" gutterBottom>
             Sign In
           </Typography>
         </DialogTitle>
@@ -52,13 +53,13 @@ export default function SigninDialog() {
             id="userPwd"
             label="비밀번호"
             margin="normal"
-            type="passward"
+            type="password"
             fullWidth
           ></TextField>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" className="remember-check" />}
             label="Remember me"
-          />
+          /> */}
           <br></br>
         </DialogContent>
         <DialogActions>
@@ -71,18 +72,9 @@ export default function SigninDialog() {
             Sign In
           </Button>
         </DialogActions>
-        <Grid container>
-          <Grid item xs>
-            <Link to="/" variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link to="/signup" variant="body2">
-              {"Don't have an account? Sign Up"}
-            </Link>
-          </Grid>
-        </Grid>
+        <Link to="/signup" variant="body2">
+          Sign Up
+        </Link>
       </Dialog>
     </div>
   );

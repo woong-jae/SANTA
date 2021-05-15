@@ -1,7 +1,5 @@
 .signinDialog {
-  .dialogTitle {
-    text-align: center;
-  }
+  text-align: center;
   .MuiFormLabel-root.Mui-focused {
     color: #10b274;
   }
@@ -20,8 +18,12 @@
   .signin-btn {
     background-color: #81c784;
     color: white;
+    margin: 50px;
     &:hover {
       background-color: #10b274;
     }
+  }
+  a {
+    text-decoration: none;
   }
 }
