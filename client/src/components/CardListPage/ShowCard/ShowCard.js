@@ -75,7 +75,7 @@ export default function ShowCard() {
                 <Typography>
                   <strong>문의</strong>
                 </Typography>
-                <div className="details-info">
+                <div className="details-info" style={{ textAlign: "left" }}>
                   <Typography>
                     카카오톡 오픈채팅: http://abcd123/efghi/
                   </Typography>

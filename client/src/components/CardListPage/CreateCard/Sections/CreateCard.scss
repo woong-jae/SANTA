@@ -1,4 +1,4 @@
-.modal-paper {
+.input-paper {
     position: absolute;
     border: 3px solid #10b274;
     top: 20%;
@@ -10,4 +10,17 @@
     padding: 16px 50px 24px;
     overflow-x: auto;
     overflow-y: auto;
+    .input-form {
+        display: block;
+        #input-title {
+            margin-top: 3%;
+        }
+        header {
+            display: flex;
+            justify-content: space-around;
+            .input-header {
+                width: 200px;
+            }
+        }
+    }
 }
