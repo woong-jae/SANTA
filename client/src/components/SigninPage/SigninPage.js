@@ -1,17 +1,20 @@
 import React from "react";
-import Dialog from "@material-ui/core/Dialog";
+import {
+  Dialog,
+  Button,
+  TextField,
+  FormControlLabel,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  Typography,
+  Checkbox,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import "./Sections/LoginPage.scss";
-import { DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Checkbox from "@material-ui/core/Checkbox";
-import "./Sections/LoginPage.scss";
+import "./Sections/SigninPage.scss";
 
-export default function LoginDialog() {
+export default function SigninDialog() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
