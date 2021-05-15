@@ -4,7 +4,7 @@ import { CssBaseline } from "@material-ui/core";
 
 import LandingPage from "./components/LandingPage/LandingPage";
 import CardListPage from "./components/CardListPage/CardListPage";
-import MyPage from "./components/MyPage/Mypage";
+import MyPage from "./components/MyPage/MyPage";
 import SignupPage from "./components/SignupPage/SignupPage";
 
 class App extends Component {
