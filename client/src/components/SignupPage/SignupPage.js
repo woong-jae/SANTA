@@ -1,9 +1,10 @@
 import React from "react";
+import CardListHeader from "../CardListPage/Sections/CardListHeader";
 
 export default function Signup() {
   return (
     <div>
-      <h1>hi</h1>
+      <CardListHeader></CardListHeader>
     </div>
   );
 }
