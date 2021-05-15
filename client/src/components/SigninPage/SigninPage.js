@@ -77,9 +77,9 @@ export default function SigninDialog() {
               Forgot password?
             </Link>
           </Grid>
-          <Grid>
-            <Link to="/Signup" variant="body2">
-              Sign Up
+          <Grid item>
+            <Link to="/signup" variant="body2">
+              {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
         </Grid>
