@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt'
 
 import User from '../models/user.js';
 
+const saltRounds = 10;
+
 export const getUser = async (req, res) => {
     try {
         const { userid, passwd } = req.params;
@@ -21,8 +23,10 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     const userInfo = req.body;
-    const newUser = new User(userInfo);
     try {
+        const hash = bcrypt.hashSync(userInfo.passwd, saltRounds);
+        const newUser = new User({ ...userInfo, passwd: hash });
+
         await newUser.save();
         // res.status(201).json(newUser);
     } catch (error) {
