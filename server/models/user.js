@@ -15,7 +15,10 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    age: Number,
+    birth: {
+        type: Date,
+        default: new Date()
+    },
     sex: String,
     nickname: String,
 });

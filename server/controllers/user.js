@@ -28,7 +28,7 @@ export const createUser = async (req, res) => {
         const newUser = new User({ ...userInfo, passwd: hash });
 
         await newUser.save();
-        // res.status(201).json(newUser);
+        res.status(201).json({ message: "New User Created"});
     } catch (error) {
         res.status(409).json({ message: error });
     }
