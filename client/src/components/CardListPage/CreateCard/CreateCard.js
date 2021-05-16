@@ -8,7 +8,7 @@ import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
 export default function CreateCard() {
@@ -39,25 +39,16 @@ export default function CreateCard() {
         aria-describedby="simple-modal-description"
       >
         <div className="input-paper">
-          <div style={{ width: "900px" }}>
+          <div style={{ width: "970px" }}>
             <form className="input-form">
-              <TextField
-                id="input-title"
-                style={{ margin: 8 }}
-                placeholder="title"
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
               <br />
+              <TextField id="input-title" label="제목" />
               <header>
                 <TextField
                   label="산/지역명"
                   id="input-mountain"
                   className="input-header"
-                ></TextField>
+                />
                 <TextField
                   id="input-peopleNum"
                   className="input-header"
@@ -67,20 +58,43 @@ export default function CreateCard() {
                   inputProps={{ min: 0 }}
                   InputLabelProps={{ shrink: true }}
                 ></TextField>
-                <Slider
-                  id="input-age"
-                  className="input-header"
-                  value={value}
-                  onChange={handleChange}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="range-slider"
-                  getAriaValueText={valuetext}
-                />
+                <div className="input-header" id="age-info">
+                  <Typography id="slider-label" gutterBottom>
+                    제한 연령
+                  </Typography>
+                  <Slider
+                    id="input-age"
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    aria-labelledby="range-slider"
+                    getAriaValueText={valuetext}
+                  />
+                </div>
                 <SelectDate
                   id="input-date"
                   className="input-header"
                 ></SelectDate>
               </header>
+              <br />
+              <section>
+                <textarea
+                  placeholder="내용을 입력하세요."
+                  className="input-detail"
+                  id="input-description"
+                ></textarea>
+                <textarea
+                  placeholder="연락망을 입력하세요.
+                   (ex. 연락처, 카카오톡 오픈채팅 등)"
+                  className="input-detail"
+                  id="input-contact"
+                ></textarea>
+              </section>
+              <footer>
+                <Button variant="contained" className="form-btn">
+                  모임 생성
+                </Button>
+              </footer>
             </form>
           </div>
         </div>
