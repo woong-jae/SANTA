@@ -8,13 +8,26 @@ const saltRounds = 10;
 
 export const getUser = async (req, res) => {
     try {
-        const { userid, passwd } = req.params;
+        const { _id } = req.params;
+        
+        const user = await User.findById(_id);
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
 
-        const compare = bcrypt.compareSync(passwd, userMesage.passwd);
+export const loginUser = async (req, res) => {
+    try {
+        const { userid, passwd } = req.params;
+        
+        const user = await User.find({ userid: userid });
+        const compare = bcrypt.compareSync(passwd, user.passwd);
         
         if (compare) {
-            const userMessage = await User.find({ userid: userid, passwd: passwd });
-            res.status(200).json(userMessage);
+            res.status(200).json({login: true});
+        } else {
+            res.status(404).json({login: false});
         }
     } catch (error) {
         res.status(404).json({ message: error });

@@ -23,6 +23,5 @@ const userSchema = mongoose.Schema({
     nickname: String,
 });
 
-const User = mongoose.model('UserMessage', userSchema);
-
+const User = mongoose.model('User', userSchema);
 export default User;
