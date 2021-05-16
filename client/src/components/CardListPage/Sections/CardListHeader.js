@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./CardListPage.scss";
-import LoginPage from "../../LoginPage/LoginPage";
+import SigninPage from "../../SigninPage/SigninPage";
 import Search from "../../common/Search";
 import { Button } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
@@ -17,7 +17,7 @@ class CardListHeader extends Component {
               <AiOutlineUser className="btn-icon" />
             </Button>
           </Link>
-          <LoginPage />
+          <SigninPage />
         </div>
       </header>
     );

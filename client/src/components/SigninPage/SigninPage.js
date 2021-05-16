@@ -1,17 +1,20 @@
 import React from "react";
-import Dialog from "@material-ui/core/Dialog";
+import {
+  Dialog,
+  Button,
+  TextField,
+  FormControlLabel,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Typography,
+  Checkbox,
+} from "@material-ui/core";
+import LockIcon from "@material-ui/icons/Lock";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import "./Sections/LoginPage.scss";
-import { DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Checkbox from "@material-ui/core/Checkbox";
-import "./Sections/LoginPage.scss";
+import "./Sections/SigninPage.scss";
 
-export default function LoginDialog() {
+export default function SigninDialog() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -31,7 +34,8 @@ export default function LoginDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose} className="signinDialog">
         <DialogTitle className="dialogTitle">
-          <Typography component="h1" variant="h5">
+          <LockIcon />
+          <Typography component="h1" variant="h3" gutterBottom>
             Sign In
           </Typography>
         </DialogTitle>
@@ -49,13 +53,13 @@ export default function LoginDialog() {
             id="userPwd"
             label="비밀번호"
             margin="normal"
-            type="passward"
+            type="password"
             fullWidth
           ></TextField>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" className="remember-check" />}
             label="Remember me"
-          />
+          /> */}
           <br></br>
         </DialogContent>
         <DialogActions>
@@ -68,18 +72,9 @@ export default function LoginDialog() {
             Sign In
           </Button>
         </DialogActions>
-        <Grid container>
-          <Grid item xs>
-            <Link to="/" variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid>
-            <Link to="/Signup" variant="body2">
-              Sign Up
-            </Link>
-          </Grid>
-        </Grid>
+        <Link to="/signup" variant="body2">
+          Sign Up
+        </Link>
       </Dialog>
     </div>
   );

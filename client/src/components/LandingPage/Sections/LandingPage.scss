@@ -1,21 +1,22 @@
-body {
+.landing_body {
+  background-color: #81c784;
+  min-height: 100vh;
   .userinput {
-    text-align: center;
-    min-height: 100vh;
-    background-color: #81c784;
     form {
+      margin: 30px;
+      min-width: 500px;
       background-color: white;
       border: 1px solid lightgray;
-      border-radius: 50px;
+      border-radius: 30px;
+      & > * {
+        margin: 1rem;
+      }
     }
     .MuiFormLabel-root.Mui-focused {
       color: #10b274;
     }
     .MuiInput-underline:after {
       border-bottom-color: #10b274;
-    }
-    form > * {
-      margin: 1rem;
     }
     .search-btn {
       background-color: #81c784;
