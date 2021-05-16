@@ -5,7 +5,7 @@ import { getUser, createUser, updateUser, deleteUser, loginUser } from '../contr
 const router = express.Router();
 
 router.get('/:_id', getUser);
-router.get('/login/:userid/:passwd', loginUser);
+router.post('/login', loginUser);
 router.post('/', createUser);
 router.patch('/:_id', updateUser);
 router.delete('/:_id', deleteUser);

@@ -4,8 +4,9 @@ const postSchema = mongoose.Schema({
     title: String,
     description: String,
     createdUser: String,
-    maxPeople: Number,
-    currentPeople: Number,
+    contact: String,
+    maxMember: Number,
+    currentMember: Number,
     minAge: Number,
     maxAge: Number,
     postDate: {

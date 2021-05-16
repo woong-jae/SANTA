@@ -19,11 +19,11 @@ export const getUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        const { userid, passwd } = req.params;
-        
-        const user = await User.find({ userid: userid });
+        const { userid, passwd } = req.body;
+
+        const user = await User.findOne({ userid: userid });
+
         const compare = bcrypt.compareSync(passwd, user.passwd);
-        
         if (compare) {
             res.status(200).json({login: true});
         } else {
@@ -49,7 +49,7 @@ export const createUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     const { _id } = req.params;
-    const user = req.body
+    const user = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
 

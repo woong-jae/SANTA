@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose';
 
-import Posts from '../models/posts.js';
+import Posts from '../models/post.js';
 
 export const createPost = async (req, res) => {
     const postInfo = req.body;
