@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sections/CreateCard.scss";
 import SelectDate from "../../common/SelectDate";
 import Modal from "@material-ui/core/Modal";
@@ -11,10 +11,19 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function CreateCard() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState([0, 100]);
+export default function CreateCard(props) {
+  const [open, setOpen] = useState(false);
+  const [age, setAge] = useState([0, 100]);
 
+  const [cardState, setCardState] = useState({
+    title: "",
+    moutain: "",
+    peopleNum: "",
+    age: "",
+    date: "",
+    description: "",
+    contact: "",
+  });
   const handleOpen = () => {
     setOpen(true);
   };
@@ -23,8 +32,53 @@ export default function CreateCard() {
     setOpen(false);
   };
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleSubmit = (event) => {
+    /*
+    alert(
+      cardState.title +
+        " " +
+        cardState.mountain +
+        " " +
+        cardState.peopleNum +
+        " " +
+        cardState.age +
+        " " +
+        cardState.date +
+        " " +
+        cardState.description +
+        " " +
+        cardState.contact
+    );
+    */
+    event.preventDefault();
+    props.getCardState(cardState);
+  };
+  const getDateValue = (value) => {
+    setCardState({
+      ...cardState,
+      date:
+        value.getFullYear() +
+        "/" +
+        Number(value.getMonth() + 1) +
+        "/" +
+        value.getDate(),
+    });
+  };
+  const handleAgeChange = (event, newAge) => {
+    setAge(newAge);
+    setCardState({
+      ...cardState,
+      age: newAge[0] + " ~ " + newAge[1],
+    });
+  };
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    setCardState({
+      ...cardState,
+      [name]: value,
+    });
   };
 
   return (
@@ -40,16 +94,25 @@ export default function CreateCard() {
       >
         <div className="input-paper">
           <div style={{ width: "970px" }}>
-            <form className="input-form">
+            <form onSubmit={handleSubmit} className="input-form">
               <br />
-              <TextField id="input-title" label="제목" />
+              <TextField
+                name="title"
+                id="input-title"
+                label="제목"
+                value={cardState.title}
+                onChange={handleChange}
+              />
               <header>
                 <TextField
+                  name="mountain"
                   label="산/지역명"
                   id="input-mountain"
                   className="input-header"
+                  onChange={handleChange}
                 />
                 <TextField
+                  name="peopleNum"
                   id="input-peopleNum"
                   className="input-header"
                   label="제한 인원"
@@ -57,41 +120,52 @@ export default function CreateCard() {
                   defaultValue="0"
                   inputProps={{ min: 0 }}
                   InputLabelProps={{ shrink: true }}
-                ></TextField>
+                  value={cardState.personNum}
+                  onChange={handleChange}
+                />
                 <div className="input-header" id="age-info">
                   <Typography id="slider-label" gutterBottom>
                     제한 연령
                   </Typography>
                   <Slider
+                    name="age"
                     id="input-age"
-                    value={value}
-                    onChange={handleChange}
+                    value={age}
+                    onChange={handleAgeChange}
                     valueLabelDisplay="auto"
                     aria-labelledby="range-slider"
                     getAriaValueText={valuetext}
                   />
                 </div>
                 <SelectDate
+                  name="date"
                   id="input-date"
                   className="input-header"
-                ></SelectDate>
+                  getDateValue={getDateValue}
+                />
               </header>
               <br />
               <section>
                 <textarea
+                  name="description"
                   placeholder="내용을 입력하세요."
                   className="input-detail"
                   id="input-description"
-                ></textarea>
+                  value={cardState.description}
+                  onChange={handleChange}
+                />
                 <textarea
+                  name="contact"
                   placeholder="연락망을 입력하세요.
                    (ex. 연락처, 카카오톡 오픈채팅 등)"
                   className="input-detail"
                   id="input-contact"
-                ></textarea>
+                  value={cardState.contact}
+                  onChange={handleChange}
+                />
               </section>
               <footer>
-                <Button variant="contained" className="form-btn">
+                <Button variant="contained" className="form-btn" type="submit">
                   모임 생성
                 </Button>
               </footer>

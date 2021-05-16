@@ -6,15 +6,16 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
-export default function MaterialUIPickers() {
+export default function MaterialUIPickers(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    props.getDateValue(date);
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils} zz>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
         disableToolbar
         variant="inline"
