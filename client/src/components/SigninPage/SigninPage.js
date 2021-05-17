@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   Button,
   TextField,
-  FormControlLabel,
   DialogActions,
   DialogContent,
   DialogTitle,
   Typography,
-  Checkbox,
 } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import { Link } from "react-router-dom";
 import "./Sections/SigninPage.scss";
+import * as userAPI from "../../api/user";
 
 export default function SigninDialog() {
   const [open, setOpen] = React.useState(false);
@@ -22,6 +21,24 @@ export default function SigninDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+  const [userID, setID] = useState("");
+  const [userPWD, setPWD] = useState("");
+
+  const handleClick = async () => {
+    try {
+      const user = {
+        userid: userID,
+        passwd: userPWD,
+      };
+      const { data } = await userAPI.loginUser(user);
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+      setID("");
+      setPWD("");
+    }
+  };
+
   return (
     <div>
       <Button
@@ -35,7 +52,7 @@ export default function SigninDialog() {
       <Dialog open={open} onClose={handleClose} className="signinDialog">
         <DialogTitle className="dialogTitle">
           <LockIcon />
-          <Typography component="h1" variant="h3" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             Sign In
           </Typography>
         </DialogTitle>
@@ -46,6 +63,8 @@ export default function SigninDialog() {
             label="아이디"
             margin="normal"
             type="id"
+            value={userID}
+            onChange={({ target: { value } }) => setID(value)}
             fullWidth
           ></TextField>
           <TextField
@@ -54,6 +73,8 @@ export default function SigninDialog() {
             label="비밀번호"
             margin="normal"
             type="password"
+            value={userPWD}
+            onChange={({ target: { value } }) => setPWD(value)}
             fullWidth
           ></TextField>
           {/* <FormControlLabel
@@ -68,6 +89,7 @@ export default function SigninDialog() {
             fullWidth
             variant="contained"
             className="signin-btn"
+            onClick={handleClick}
           >
             Sign In
           </Button>

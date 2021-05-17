@@ -1,2 +1,65 @@
-section {
+.signupform {
+  background-color: #81c784;
+  text-align: center;
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffffff;
+    min-height: 12vh;
+    .header-user {
+      display: flex;
+      @media (max-width: 700px) {
+        display: none;
+      }
+      .header-btn {
+        width: 70%;
+        font-size: 97%;
+        color: white;
+        background-color: #81c784;
+        height: 50px;
+        margin-right: 20px;
+        margin-left: 20px;
+        &:hover {
+          background-color: #10b274;
+        }
+      }
+      #myPage-btn {
+        font-size: 200%;
+      }
+    }
+  }
+  .Signup-body {
+    max-width: 40vw;
+    display: grid;
+    border: 1px solid grey;
+    background-color: white;
+    & > * {
+      margin: 1rem;
+    }
+    .MuiFormLabel-root.Mui-focused {
+      color: #10b274;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #10b274;
+    }
+    .MuiIconButton-colorSecondary:hover {
+      background-color: white;
+    }
+    .MuiCheckbox-colorSecondary.Mui-checked {
+      color: #10b274;
+      &:hover {
+        background-color: white;
+      }
+    }
+    .signin-btn {
+      color: white;
+      margin: 0;
+      width: 50%;
+      background-color: #81c784;
+      &:hover {
+        border-bottom-color: #10b274;
+      }
+    }
+  }
 }
