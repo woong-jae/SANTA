@@ -6,7 +6,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-const Cards = () => {
+const Cards = (props) => {
+  const { card } = props;
+
   return (
     <Card className="cards">
       <CardContent>
@@ -15,23 +17,23 @@ const Cards = () => {
         </Typography>
         <hr />
         <Typography className="card-info" id="card-title">
-          <strong>팔공산 함께 등반하실 분 구해요! 저녁도 같이 먹어요^^</strong>
+          <strong>{card.title}</strong>
         </Typography>
         <Typography className="card-info">
-          <strong>산</strong> : 팔공산
+          <strong>산</strong> : {card.mountain}
         </Typography>
         <Typography className="card-info">
-          <strong>현재 인원</strong> : 2 / 4
+          <strong>현재 인원</strong> : 2 / {card.peopleNum}
         </Typography>
         <Typography className="card-info">
-          <strong>제한 연령</strong> : 20 ~ 27
+          <strong>제한 연령</strong> : {card.age}
         </Typography>
         <Typography className="card-info">
-          <strong>날짜</strong> : 2021/05/15
+          <strong>날짜</strong> : {card.date}
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <ShowCard />
+        <ShowCard card={card} />
       </CardActions>
     </Card>
   );
