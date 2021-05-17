@@ -33,55 +33,62 @@
         }
     }
     //Card-Body
-    .cardList-body {
+    section {
         min-height: 88vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        @media (max-width: 1000px) {
-            grid-template-columns: 1fr 1fr;
-        }
-        @media (max-width: 600px) {
-            grid-template-columns: 1fr;
-        }
-        .cards {
-            //Cards.js
-            width: 70%;
-            height: 330px;
-            margin: 12% 15% 12% 15%;
-            overflow-y: auto;
-            .card-info {
-                font-size: 1em;
-                margin-bottom: 10px;
+        .cardList-body {
+            min-height: 79.7vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            @media (max-width: 1000px) {
+                grid-template-columns: 1fr 1fr;
             }
-            #card-writer {
-                text-align: center;
+            @media (max-width: 600px) {
+                grid-template-columns: 1fr;
             }
-            #card-title {
-                font-size: 1em;
-                margin-bottom: 10px;
-            }
-            .card-action {
-                display: block;
-                text-align: center;
-                .card-btn {
+            .cards {
+                //Cards.js
+                width: 70%;
+                height: 300px;
+                margin: 12% 15% 12% 15%;
+                overflow-y: auto;
+                .card-info {
                     font-size: 1em;
-                    color: white;
-                    background-color: #81c784;
-                    &:hover {
-                        background-color: #10b274;
+                    margin-bottom: 10px;
+                }
+                #card-writer {
+                    text-align: center;
+                }
+                #card-title {
+                    height: 20px;
+                    font-size: 1em;
+                    margin-bottom: 10px;
+                }
+                .card-action {
+                    display: block;
+                    text-align: center;
+                    .card-btn {
+                        font-size: 1em;
+                        color: white;
+                        background-color: #81c784;
+                        &:hover {
+                            background-color: #10b274;
+                        }
                     }
                 }
             }
         }
+        footer {
+            text-align: center;
+        }
     }
     //Card-Footer
     .cardList-footer {
-        height: 60px;
+        height: 50px;
         margin-top: -50px;
         text-align: center;
         position: fixed;
         left: 0px;
-        bottom: 0px;
+        bottom: 53px;
         width: 100%;
         .footer-btn {
             color: white;

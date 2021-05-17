@@ -12,18 +12,19 @@ function valuetext(value) {
 }
 
 export default function CreateCard(props) {
-  const [open, setOpen] = useState(false);
-  const [age, setAge] = useState([0, 100]);
-
-  const [cardState, setCardState] = useState({
+  const initialState = {
     title: "",
-    moutain: "",
+    mountain: "",
     peopleNum: "",
-    age: "",
+    age: "0 ~ 100",
     date: "",
     description: "",
     contact: "",
-  });
+  };
+  const [cardState, setCardState] = useState(initialState);
+  const [open, setOpen] = useState(false);
+  const [age, setAge] = useState([0, 100]);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -51,8 +52,26 @@ export default function CreateCard(props) {
     );
     */
     event.preventDefault();
-    props.getCardState(cardState);
+    if (cardState.title === "") {
+      event.target.querySelector("#input-title-label").style.color = "red";
+    } else if (cardState.mountain === "") {
+      event.target.querySelector("#input-mountain-label").style.color = "red";
+    } else if (cardState.peopleNum === "") {
+      event.target.querySelector("#input-peopleNum-label").style.color = "red";
+    } else if (cardState.date === "") {
+      event.target.querySelector("#input-date-label").style.color = "red";
+    } else if (cardState.description === "") {
+      event.target.querySelector("#input-description").style.borderColor =
+        "red";
+    } else if (cardState.contact === "") {
+      event.target.querySelector("#input-contact").style.borderColor = "red";
+    } else {
+      props.getCardState(cardState);
+      setCardState(initialState);
+      handleClose();
+    }
   };
+
   const getDateValue = (value) => {
     setCardState({
       ...cardState,
@@ -75,6 +94,10 @@ export default function CreateCard(props) {
     const target = event.target;
     const name = target.name;
     const value = target.value;
+    name !== "description" && name !== "contact"
+      ? (document.querySelector(`#input-${name}-label`).style.color =
+          "rgba(0, 0, 0, 0.54)")
+      : (document.querySelector(`#input-${name}`).style.borderColor = "black");
     setCardState({
       ...cardState,
       [name]: value,
@@ -100,7 +123,6 @@ export default function CreateCard(props) {
                 name="title"
                 id="input-title"
                 label="제목"
-                value={cardState.title}
                 onChange={handleChange}
               />
               <header>
@@ -120,7 +142,6 @@ export default function CreateCard(props) {
                   defaultValue="0"
                   inputProps={{ min: 0 }}
                   InputLabelProps={{ shrink: true }}
-                  value={cardState.personNum}
                   onChange={handleChange}
                 />
                 <div className="input-header" id="age-info">
@@ -151,7 +172,6 @@ export default function CreateCard(props) {
                   placeholder="내용을 입력하세요."
                   className="input-detail"
                   id="input-description"
-                  value={cardState.description}
                   onChange={handleChange}
                 />
                 <textarea
@@ -160,7 +180,6 @@ export default function CreateCard(props) {
                    (ex. 연락처, 카카오톡 오픈채팅 등)"
                   className="input-detail"
                   id="input-contact"
-                  value={cardState.contact}
                   onChange={handleChange}
                 />
               </section>

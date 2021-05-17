@@ -21,7 +21,7 @@ export default function MaterialUIPickers(props) {
         variant="inline"
         format="yyyy-MM-dd"
         margin="normal"
-        id="date-picker-inline"
+        id="input-date"
         label="가고 싶은 날짜"
         value={selectedDate}
         onChange={handleDateChange}
