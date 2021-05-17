@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import {
   TextField,
-  FormGroup,
   FormControlLabel,
-  FormLabel,
   Radio,
   RadioGroup,
   Typography,
   Button,
 } from "@material-ui/core";
-import { isEmail, isLength, isAlphanumeric } from "validator";
+import { isEmail } from "validator";
 
 export default function SignupForm() {
   const [userID, setID] = useState("");
@@ -19,6 +17,7 @@ export default function SignupForm() {
   const [userAGE, setAGE] = useState("");
   const [userSEX, setSEX] = useState("");
   const [userNICK, setNICK] = useState("");
+  const [pwd_msg, setMSG] = useState("");
 
   const handleClick = async () => {
     try {
@@ -31,6 +30,11 @@ export default function SignupForm() {
         sex: userSEX,
         nicknm: userNICK,
       };
+      if (user.passwd !== user.checkpwd) {
+        setMSG("비밀번호가 일치하지 않습니다.");
+      } else if (isEmail(user.email) === false) {
+        setMSG("잘못된 이메일 형식입니다.");
+      }
       console.log(user);
     } catch (e) {
       setID("");
@@ -39,6 +43,7 @@ export default function SignupForm() {
       setAGE("");
       setSEX("");
       setNICK("");
+      setMSG("");
     }
   };
   return (
@@ -107,6 +112,7 @@ export default function SignupForm() {
         value={userNICK}
         onChange={({ target: { value } }) => setNICK(value)}
       ></TextField>
+      <Typography variant="body2">{pwd_msg}</Typography>
       <Button
         type="submit"
         fullWidth
