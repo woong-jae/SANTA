@@ -59,6 +59,14 @@ export default function ShowCard(props) {
               </div>
               <div className="details-item">
                 <Typography>
+                  <strong>문의</strong>
+                </Typography>
+                <div className="details-info" style={{ textAlign: "left" }}>
+                  <Typography>{card.contact}</Typography>
+                </div>
+              </div>
+              <div className="details-item">
+                <Typography>
                   <strong>현재 인원:</strong> 2 / {card.peopleNum}
                 </Typography>
                 <div className="details-info">
@@ -66,14 +74,6 @@ export default function ShowCard(props) {
                     <span>★</span>팔공산엄홍길
                   </Typography>
                   <Typography>히말라야다람쥐</Typography>
-                </div>
-              </div>
-              <div className="details-item">
-                <Typography>
-                  <strong>문의</strong>
-                </Typography>
-                <div className="details-info" style={{ textAlign: "left" }}>
-                  <Typography>{card.contact}</Typography>
                 </div>
               </div>
             </section>

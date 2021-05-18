@@ -1,5 +1,5 @@
 .cardList {
-    background-color: #81c784;
+    background-color: #8ec991;
     //Card-Header
     .cardList-header {
         background-color: #ffffff;
@@ -48,7 +48,7 @@
             .cards {
                 //Cards.js
                 width: 70%;
-                height: 300px;
+                height: 336px;
                 margin: 12% 15% 12% 15%;
                 overflow-y: auto;
                 .card-info {
@@ -61,7 +61,7 @@
                 #card-title {
                     height: 20px;
                     font-size: 1em;
-                    margin-bottom: 10px;
+                    margin-bottom: 43px;
                 }
                 .card-action {
                     display: block;
@@ -93,7 +93,7 @@
         .footer-btn {
             color: white;
             background-color: #10b274;
-            font-size: 1.2em;
+            font-size: 1.3em;
             &:hover {
                 background-color: #059960;
             }

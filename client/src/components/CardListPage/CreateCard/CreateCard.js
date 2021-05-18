@@ -12,12 +12,18 @@ function valuetext(value) {
 }
 
 export default function CreateCard(props) {
+  const currentDate = new Date();
   const initialState = {
     title: "",
     mountain: "",
     peopleNum: "",
-    age: "0 ~ 100",
-    date: "",
+    age: "제한 없음",
+    date:
+      currentDate.getFullYear() +
+      "/" +
+      Number(currentDate.getMonth() + 1) +
+      "/" +
+      currentDate.getDate(),
     description: "",
     contact: "",
   };
@@ -34,42 +40,11 @@ export default function CreateCard(props) {
   };
 
   const handleSubmit = (event) => {
-    /*
-    alert(
-      cardState.title +
-        " " +
-        cardState.mountain +
-        " " +
-        cardState.peopleNum +
-        " " +
-        cardState.age +
-        " " +
-        cardState.date +
-        " " +
-        cardState.description +
-        " " +
-        cardState.contact
-    );
-    */
     event.preventDefault();
-    if (cardState.title === "") {
-      event.target.querySelector("#input-title-label").style.color = "red";
-    } else if (cardState.mountain === "") {
-      event.target.querySelector("#input-mountain-label").style.color = "red";
-    } else if (cardState.peopleNum === "") {
-      event.target.querySelector("#input-peopleNum-label").style.color = "red";
-    } else if (cardState.date === "") {
-      event.target.querySelector("#input-date-label").style.color = "red";
-    } else if (cardState.description === "") {
-      event.target.querySelector("#input-description").style.borderColor =
-        "red";
-    } else if (cardState.contact === "") {
-      event.target.querySelector("#input-contact").style.borderColor = "red";
-    } else {
-      props.getCardState(cardState);
-      setCardState(initialState);
-      handleClose();
-    }
+    props.getCardState(cardState);
+    setCardState(initialState);
+    setAge([0, 100]);
+    handleClose();
   };
 
   const getDateValue = (value) => {
@@ -85,19 +60,21 @@ export default function CreateCard(props) {
   };
   const handleAgeChange = (event, newAge) => {
     setAge(newAge);
-    setCardState({
-      ...cardState,
-      age: newAge[0] + " ~ " + newAge[1],
-    });
+    if (newAge[0] === 0 && newAge[1] === 100)
+      setCardState({
+        ...cardState,
+        age: "제한 없음",
+      });
+    else
+      setCardState({
+        ...cardState,
+        age: newAge[0] + " ~ " + newAge[1],
+      });
   };
   const handleChange = (event) => {
     const target = event.target;
     const name = target.name;
-    const value = target.value;
-    name !== "description" && name !== "contact"
-      ? (document.querySelector(`#input-${name}-label`).style.color =
-          "rgba(0, 0, 0, 0.54)")
-      : (document.querySelector(`#input-${name}`).style.borderColor = "black");
+    let value = target.value;
     setCardState({
       ...cardState,
       [name]: value,
@@ -107,7 +84,7 @@ export default function CreateCard(props) {
   return (
     <div>
       <Button variant="contained" className="footer-btn" onClick={handleOpen}>
-        모임 만들기
+        <strong>모임 만들기</strong>
       </Button>
       <Modal
         open={open}
@@ -120,13 +97,16 @@ export default function CreateCard(props) {
             <form onSubmit={handleSubmit} className="input-form">
               <br />
               <TextField
+                required
                 name="title"
                 id="input-title"
                 label="제목"
+                inputProps={{ maxLength: 46 }}
                 onChange={handleChange}
               />
               <header>
                 <TextField
+                  required
                   name="mountain"
                   label="산/지역명"
                   id="input-mountain"
@@ -134,12 +114,12 @@ export default function CreateCard(props) {
                   onChange={handleChange}
                 />
                 <TextField
+                  required
                   name="peopleNum"
                   id="input-peopleNum"
                   className="input-header"
                   label="제한 인원"
                   type="number"
-                  defaultValue="0"
                   inputProps={{ min: 0 }}
                   InputLabelProps={{ shrink: true }}
                   onChange={handleChange}
@@ -168,13 +148,15 @@ export default function CreateCard(props) {
               <br />
               <section>
                 <textarea
+                  required
                   name="description"
-                  placeholder="내용을 입력하세요."
+                  placeholder="내용을 입력하세요. *"
                   className="input-detail"
                   id="input-description"
                   onChange={handleChange}
                 />
                 <textarea
+                  required
                   name="contact"
                   placeholder="연락망을 입력하세요.
                    (ex. 연락처, 카카오톡 오픈채팅 등)"
