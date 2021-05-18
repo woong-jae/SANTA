@@ -16,7 +16,7 @@ export default function CreateCard(props) {
   const initialState = {
     title: "",
     mountain: "",
-    peopleNum: "",
+    peopleNum: 1,
     age: "제한 없음",
     date:
       currentDate.getFullYear() +
@@ -101,7 +101,7 @@ export default function CreateCard(props) {
                 name="title"
                 id="input-title"
                 label="제목"
-                inputProps={{ maxLength: 46 }}
+                inputProps={{ maxLength: 44 }}
                 onChange={handleChange}
               />
               <header>
@@ -120,7 +120,8 @@ export default function CreateCard(props) {
                   className="input-header"
                   label="제한 인원"
                   type="number"
-                  inputProps={{ min: 0 }}
+                  defaultValue="1"
+                  inputProps={{ min: 1 }}
                   InputLabelProps={{ shrink: true }}
                   onChange={handleChange}
                 />
@@ -158,7 +159,7 @@ export default function CreateCard(props) {
                 <textarea
                   required
                   name="contact"
-                  placeholder="연락망을 입력하세요.
+                  placeholder="연락망을 입력하세요. *
                    (ex. 연락처, 카카오톡 오픈채팅 등)"
                   className="input-detail"
                   id="input-contact"
