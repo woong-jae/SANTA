@@ -24,6 +24,7 @@ const LandingPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    document.location.pathname = "/list";
     setSearchState(initialState);
   };
 
