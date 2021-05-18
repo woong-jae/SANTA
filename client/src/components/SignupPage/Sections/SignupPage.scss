@@ -1,6 +1,7 @@
 .signupform {
   background-color: #81c784;
   text-align: center;
+  min-height: 100vh;
   header {
     display: flex;
     align-items: center;
@@ -30,12 +31,23 @@
     }
   }
   .Signup-body {
-    max-width: 40vw;
+    width: 30vw;
+    min-width: 400px;
+    margin-top: 3rem;
+    margin-bottom: auto;
     display: grid;
     border: 1px solid grey;
+    border-radius: 10%;
     background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+
     & > * {
-      margin: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1rem;
+      width: 300px;
     }
     .MuiFormLabel-root.Mui-focused {
       color: #10b274;
@@ -52,14 +64,17 @@
         background-color: white;
       }
     }
-    .signin-btn {
+    .reg-btn {
       color: white;
-      margin: 0;
+      margin-bottom: 1rem;
       width: 50%;
       background-color: #81c784;
       &:hover {
         border-bottom-color: #10b274;
       }
+    }
+    .err_msg {
+      color: red;
     }
   }
 }

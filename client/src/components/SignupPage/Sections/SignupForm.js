@@ -18,7 +18,6 @@ export default function SignupForm() {
   const [userSEX, setSEX] = useState("");
   const [userNICK, setNICK] = useState("");
   const [pwd_msg, setMSG] = useState("");
-
   const handleClick = async () => {
     try {
       const user = {
@@ -51,6 +50,7 @@ export default function SignupForm() {
       <Typography variant="h2">Sign up</Typography>
       <TextField
         required
+        id="userid"
         label="아이디"
         type="id"
         value={userID}
@@ -58,6 +58,7 @@ export default function SignupForm() {
       ></TextField>
       <TextField
         required
+        id="userpwd"
         label="비밀번호"
         type="password"
         value={userPWD}
@@ -65,6 +66,7 @@ export default function SignupForm() {
       ></TextField>
       <TextField
         required
+        id="usercpwd"
         label="비밀번호 확인"
         type="password"
         value={userCPWD}
@@ -72,6 +74,7 @@ export default function SignupForm() {
       ></TextField>
       <TextField
         required
+        id="useremail"
         label="이메일"
         type="email"
         value={userEMAIL}
@@ -79,6 +82,7 @@ export default function SignupForm() {
       ></TextField>
       <TextField
         required
+        id="userage"
         label="연령"
         type="number"
         inputProps={{ min: 0 }}
@@ -87,7 +91,7 @@ export default function SignupForm() {
       ></TextField>
       <RadioGroup
         aria-label="sex"
-        name="sex"
+        id="usersex"
         value={userSEX}
         onChange={({ target: { value } }) => setSEX(value)}
         row
@@ -107,17 +111,19 @@ export default function SignupForm() {
       </RadioGroup>
       <TextField
         required
-        id="userNickname"
+        id="usernname"
         label="닉네임"
         value={userNICK}
         onChange={({ target: { value } }) => setNICK(value)}
       ></TextField>
-      <Typography variant="body2">{pwd_msg}</Typography>
+      <Typography className="err_msg" variant="body2">
+        {pwd_msg}
+      </Typography>
       <Button
         type="submit"
         fullWidth
         variant="contained"
-        className="signin-btn"
+        className="reg-btn"
         onClick={handleClick}
       >
         REGISTER

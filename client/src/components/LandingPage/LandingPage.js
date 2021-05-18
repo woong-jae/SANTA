@@ -1,36 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TextField, Button, Grid, Typography } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+import "../common/Sections/Search.scss";
+import InputMountain from "../common/InputMountain";
+import InputPeople from "../common/InputPeople";
+import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
 import "./Sections/LandingPage.scss";
+import { Typography } from "@material-ui/core";
 
-export default function LandingPage() {
+const LandingPage = () => {
+  const currentDate = new Date();
+  const initialState = {
+    mountain: "",
+    date:
+      currentDate.getFullYear() +
+      "/" +
+      Number(currentDate.getMonth() + 1) +
+      "/" +
+      currentDate.getDate(),
+    peopleNum: 1,
+  };
+  const [searchState, setSearchState] = React.useState(initialState);
+
+  const getDateValue = (value) => {
+    setSearchState({
+      ...searchState,
+      date:
+        value.getFullYear() +
+        "/" +
+        Number(value.getMonth() + 1) +
+        "/" +
+        value.getDate(),
+    });
+  };
+
   return (
     <div className="landing_body">
-      <Typography variant="h1" align="center" gutterBottom>
+      <Typography variant="h1" align="center">
         Santa
       </Typography>
-      <Grid className="userinput" container justify="space-around">
-        <form noValidate>
-          <TextField label="산/지역명"></TextField>
-          <SelectDate></SelectDate>
-          <TextField
-            label="동행 인원"
-            type="number"
-            defaultValue="0"
-            inputProps={{ min: 0 }}
-            InputLabelProps={{ shrink: true }}
-          ></TextField>
+      <div className="userinput">
+        <form>
+          <InputMountain id="search-mountain" />
+          <SelectDate id="search-date" getDateValue={getDateValue} />
+          <InputPeople id="search-peopleNum" />
           <Link to="/list">
-            <Button
-              className="search-btn"
-              variant="contained"
-              startIcon={<SearchIcon />}
-            ></Button>
+            <SearchBtn type="submit" />
           </Link>
         </form>
-      </Grid>
+      </div>
     </div>
   );
-}
+};
+
+export default LandingPage;
