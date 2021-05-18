@@ -20,7 +20,7 @@ const CardListHeader = () => {
       Number(currentDate.getMonth() + 1) +
       "/" +
       currentDate.getDate(),
-    peopleNum: "",
+    peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
 

@@ -5,10 +5,10 @@ const InputPeople = () => {
   return (
     <TextField
       className="header-input"
-      label="동행 인원"
+      label="현재 인원"
       type="number"
-      defaultValue="0"
-      inputProps={{ min: 0 }}
+      defaultValue="1"
+      inputProps={{ min: 1 }}
       InputLabelProps={{ shrink: true }}
     ></TextField>
   );
