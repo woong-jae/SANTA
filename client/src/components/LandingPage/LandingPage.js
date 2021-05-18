@@ -24,13 +24,6 @@ const LandingPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(
-      searchState.mountain +
-        " " +
-        searchState.date +
-        " " +
-        searchState.peopleNum
-    );
     setSearchState(initialState);
   };
 
