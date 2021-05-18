@@ -24,6 +24,21 @@ const CardListHeader = () => {
   };
   const [searchState, setSearchState] = React.useState(initialState);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSearchState(initialState);
+  };
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    let value = target.value;
+    setSearchState({
+      ...searchState,
+      [name]: value,
+    });
+  };
+
   const getDateValue = (value) => {
     setSearchState({
       ...searchState,
@@ -38,12 +53,21 @@ const CardListHeader = () => {
 
   return (
     <header className="cardList-header">
-      <form className="header-search">
-        <InputMountain id="search-mountain" />
-        <SelectDate id="search-date" getDateValue={getDateValue} />
-        <InputPeople id="search-peopleNum" />
-        <SearchBtn type="submit" />
+      <form onSubmit={handleSubmit} className="header-search">
+        <InputMountain
+          id="search-mountain"
+          name="mountain"
+          handleChange={handleChange}
+        />
+        <SelectDate id="search-date" name="date" getDateValue={getDateValue} />
+        <InputPeople
+          id="search-peopleNum"
+          name="peopleNum"
+          handleChange={handleChange}
+        />
+        <SearchBtn />
       </form>
+
       <div className="header-user">
         <Link to="/myPage">
           <Button variant="contained" className="header-btn" id="myPage-btn">

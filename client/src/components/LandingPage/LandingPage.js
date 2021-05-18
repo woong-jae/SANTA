@@ -22,6 +22,28 @@ const LandingPage = () => {
   };
   const [searchState, setSearchState] = React.useState(initialState);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(
+      searchState.mountain +
+        " " +
+        searchState.date +
+        " " +
+        searchState.peopleNum
+    );
+    setSearchState(initialState);
+  };
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    let value = target.value;
+    setSearchState({
+      ...searchState,
+      [name]: value,
+    });
+  };
+
   const getDateValue = (value) => {
     setSearchState({
       ...searchState,
@@ -40,13 +62,11 @@ const LandingPage = () => {
         Santa
       </Typography>
       <div className="userinput">
-        <form>
-          <InputMountain id="search-mountain" />
+        <form onSubmit={handleSubmit}>
+          <InputMountain id="search-mountain" handleChange={handleChange} />
           <SelectDate id="search-date" getDateValue={getDateValue} />
-          <InputPeople id="search-peopleNum" />
-          <Link to="/list">
-            <SearchBtn type="submit" />
-          </Link>
+          <InputPeople id="search-peopleNum" handleChange={handleChange} />
+          <SearchBtn />
         </form>
       </div>
     </div>
