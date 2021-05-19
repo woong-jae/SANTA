@@ -62,9 +62,9 @@ export default function ShowCard(props) {
                   <Typography>
                     <span>
                       <ContactPhoneIcon id="contact-icon" />
-                      <strong> 연락망: </strong>
+                      <strong> 연락망</strong>
                     </span>
-                    {card.contact}
+                    <div>{card.contact}</div>
                   </Typography>
                 </div>
               </div>

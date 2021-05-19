@@ -31,11 +31,12 @@
                     margin-top: 3px;
                     padding: 10px;
                     height: auto;
+                    word-break: break-all;
                 }
             }
             #modal-description {
                 border: 2px dashed #10b274;
-                height: 100px;
+                height: auto;
             }
             #modal-contact {
                 span {
@@ -43,6 +44,7 @@
                     #contact-icon {
                         font-size: 2em;
                         color: #059960;
+                        margin-bottom: 4px;
                     }
                 }
             }
