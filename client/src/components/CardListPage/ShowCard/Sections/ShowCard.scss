@@ -3,7 +3,7 @@
     border: 3px solid #10b274;
     top: 20%;
     left: 18%;
-    height: 463px;
+    height: 430px;
     width: 65%;
     background-color: white;
     box-shadow: 5px 5px 5px 5px;
@@ -11,7 +11,6 @@
     overflow-x: auto;
     overflow-y: auto;
     .modal-screen {
-        width: "900px";
         #modal-title {
             text-align: center;
             margin-top: 3%;
@@ -20,45 +19,49 @@
             border-bottom-color: #10b274;
         }
         .modal-body {
-            display: inline-flex;
-            flex-direction: column;
-            width: 650px;
-            .details-item {
-                width: 100%;
-                margin-top: 10px;
-                display: inline-block;
-                .details-info {
-                    margin-top: 3px;
-                    padding: 10px;
-                    height: auto;
-                    word-break: break-all;
+            display: flex;
+            justify-content: space-around;
+            article {
+                display: inline-flex;
+                flex-direction: column;
+                width: 650px;
+                .details-item {
+                    width: 100%;
+                    display: inline-block;
+                    .details-info {
+                        margin-top: 3px;
+                        padding: 10px;
+                        height: auto;
+                        word-break: break-all;
+                    }
                 }
-            }
-            #modal-description {
-                border: 2px dashed #10b274;
-                height: auto;
-            }
-            #modal-contact {
-                span {
-                    margin-right: 15px;
-                    #contact-icon {
-                        font-size: 2em;
-                        color: #059960;
-                        margin-bottom: 4px;
+                #modal-description {
+                    border: 2px dashed #10b274;
+                    height: auto;
+                }
+                #modal-contact {
+                    span {
+                        margin-right: 15px;
+                        #contact-icon {
+                            font-size: 2em;
+                            color: #059960;
+                            margin-bottom: 4px;
+                        }
+                    }
+                    #contact-contents {
+                        display: block;
                     }
                 }
             }
-        }
-        aside {
-            float: right;
-            margin-right: 50px;
-            margin-top: 27px;
-            .modal-people {
-                text-align: center;
-                .people-info {
-                    margin-top: 3px;
-                    border: 2px solid #10b274;
-                    padding: 10px;
+            aside {
+                float: right;
+                .modal-people {
+                    text-align: center;
+                    .people-info {
+                        margin-top: 3px;
+                        border: 2px solid #10b274;
+                        padding: 10px;
+                    }
                 }
             }
         }

@@ -29,7 +29,7 @@ export default function ShowCard(props) {
         aria-describedby="simple-modal-description"
       >
         <div className="modal-paper">
-          <div className="modal-screen">
+          <div className="modal-screen" style={{ width: "933px" }}>
             <Typography variant="h6" id="modal-title">
               {card.title}
             </Typography>
@@ -52,36 +52,38 @@ export default function ShowCard(props) {
               </Typography>
             </header>
             <section className="modal-body">
-              <div className="details-item" id="modal-description">
-                <Typography className="details-info">
-                  <strong>{card.description}</strong>
-                </Typography>
-              </div>
-              <div className="details-item">
-                <div className="details-info" id="modal-contact">
-                  <Typography>
-                    <span>
-                      <ContactPhoneIcon id="contact-icon" />
-                      <strong> 연락망</strong>
-                    </span>
-                    <div>{card.contact}</div>
+              <article>
+                <div className="details-item" id="modal-description">
+                  <Typography className="details-info">
+                    <strong>{card.description}</strong>
                   </Typography>
                 </div>
-              </div>
+                <div className="details-item">
+                  <div className="details-info" id="modal-contact">
+                    <Typography>
+                      <span>
+                        <ContactPhoneIcon id="contact-icon" />
+                        <strong> 연락망</strong>
+                      </span>
+                      <span id="contact-contents">{card.contact}</span>
+                    </Typography>
+                  </div>
+                </div>
+              </article>
+              <aside>
+                <div className="modal-people">
+                  <Typography>
+                    <strong>현재 인원:</strong> 2 / {card.peopleNum}
+                  </Typography>
+                  <div className="people-info">
+                    <Typography>
+                      <span>★</span>팔공산엄홍길
+                    </Typography>
+                    <Typography>히말라야다람쥐</Typography>
+                  </div>
+                </div>
+              </aside>
             </section>
-            <aside>
-              <div className="modal-people">
-                <Typography>
-                  <strong>현재 인원:</strong> 2 / {card.peopleNum}
-                </Typography>
-                <div className="people-info">
-                  <Typography>
-                    <span>★</span>팔공산엄홍길
-                  </Typography>
-                  <Typography>히말라야다람쥐</Typography>
-                </div>
-              </div>
-            </aside>
             <footer className="modal-footer">
               <Button variant="contained" className="apply-btn">
                 참가 신청
