@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "../common/Sections/Search.scss";
 import InputMountain from "../common/InputMountain";
 import InputPeople from "../common/InputPeople";
