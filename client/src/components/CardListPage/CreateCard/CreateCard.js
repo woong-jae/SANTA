@@ -147,7 +147,7 @@ export default function CreateCard(props) {
                 />
               </header>
               <br />
-              <section>
+              <section className="input-body">
                 <textarea
                   required
                   name="description"
