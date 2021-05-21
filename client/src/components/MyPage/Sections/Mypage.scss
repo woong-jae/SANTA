@@ -1,6 +1,20 @@
 .mypage {
-  background-color: #8ec991;
-  .mypage-body {
-    min-height: 88vh;
-  }
+    background-color: white;
+    .mypage-main {
+        text-align: -webkit-center;
+        .mypage-body {
+            text-align: left;
+            min-height: 88vh;
+            margin-top: 20px;
+            @media(min-width: 1128px) {
+                max-width: 1080px;
+            }
+            @media(min-width:744px) {
+                max-width: 696px;
+            }
+            header {
+                margin: 40px 0px;
+            }
+        }
+    }
 }
