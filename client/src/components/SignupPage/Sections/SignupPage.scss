@@ -31,23 +31,27 @@
     }
   }
   .Signup-body {
-    width: 30vw;
-    min-width: 400px;
+    width: 400px;
     margin-top: 3rem;
-    margin-bottom: auto;
-    display: grid;
-    border: 1px solid grey;
-    border-radius: 10%;
-    background-color: white;
     margin-left: auto;
     margin-right: auto;
+    display: grid;
+    border: 1px solid grey;
+    border-radius: 15px;
+    background-color: white;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 40px 55px 45px 55px;
 
     & > * {
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 1rem;
       width: 300px;
+      padding: 0px;
+      height: 60px;
+    }
+    .MuiRadio-root {
+      color: #81c784;
+    }
+    .MuiTouchRipple-root.Mui-checked {
+      color: #10b274;
     }
     .MuiFormLabel-root.Mui-focused {
       color: #10b274;
@@ -66,14 +70,13 @@
     }
     .reg-btn {
       color: white;
-      margin-bottom: 1rem;
-      width: 50%;
       background-color: #81c784;
       &:hover {
-        border-bottom-color: #10b274;
+        background-color: #10b274;
       }
     }
     .err_msg {
+      height: 30px;
       color: red;
     }
   }

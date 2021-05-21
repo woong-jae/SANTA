@@ -47,7 +47,9 @@ export default function SignupForm() {
   };
   return (
     <section className="Signup-body">
-      <Typography variant="h2">Sign up</Typography>
+      <Typography component="h1" variant="h3">
+        Sign up
+      </Typography>
       <TextField
         required
         id="userid"
