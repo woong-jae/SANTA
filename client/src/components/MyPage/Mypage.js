@@ -2,7 +2,6 @@ import React from "react";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import "./Sections/Mypage.scss";
 import { Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 
 const MyPage = () => {
   return (
@@ -60,6 +59,7 @@ const MyPage = () => {
             <hr />
           </article>
         </section>
+        <footer></footer>
       </div>
     </div>
   );
