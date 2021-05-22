@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
     title: String,
     description: String,
-    createdUser: String,
+    mountain: String,
+    // createdUser: String,
     contact: String,
     maxMember: Number,
     currentMember: {
@@ -12,9 +13,9 @@ const postSchema = mongoose.Schema({
     },
     ageLimit: {
         type: [Number],
-        default: [0, 100]
+        default: [1, 100]
     },
-    postDate: {
+    date: {
         type: Date,
         default: new Date()
     },

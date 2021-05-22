@@ -1,13 +1,14 @@
-import React from "react";
-import "./Sections/ShowCard.scss";
+import React, { useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 
+import "./Sections/ShowCard.scss";
+
 export default function ShowCard(props) {
   const { card } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -36,7 +37,7 @@ export default function ShowCard(props) {
             <br />
             <header className="modal-header">
               <Typography>
-                <strong>팔공산엄홍길</strong> 님의 모임
+                <strong>Created User</strong> 님의 모임
               </Typography>
               <Typography>
                 <strong>산</strong> : {card.mountain}

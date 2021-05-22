@@ -1,38 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import "./CardListPage.scss";
 import Cards from "./Cards";
 import CreateCard from "../CreateCard/CreateCard";
 import Paging from "./Pagination";
 
 const CardListBody = (props) => {
-  const [cardState, setCardState] = useState({ cardId: 1, cardList: [] });
-
-  const getCardState = (newCard) => {
-    const list = [...cardState.cardList];
-    newCard.id = cardState.cardId;
-    list.push(newCard);
-    setCardState({
-      ...cardState,
-      cardId: cardState.cardId + 1,
-      cardList: list,
-    });
-  };
-
-  useEffect(() => {}, [cardState]);
-  const cardList = cardState.cardList.map((card) => (
-    <Cards key={card.id} card={card} />
-  ));
+  const posts = useSelector(state => state.post);
 
   return (
     <div>
       <section>
-        <div className="cardList-body">{cardList}</div>
+        <div className="cardList-body">
+          {posts.map((post) => (
+            <Cards key={post._id} card={post} />
+          ))}
+        </div>
         <footer>
           <Paging />
         </footer>
       </section>
       <footer className="cardList-footer">
-        <CreateCard getCardState={getCardState} />
+        <CreateCard/>
       </footer>
     </div>
   );

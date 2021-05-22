@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
-import { useDispatch, userSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createPost } from "../../../actions/post";
 
 import "./Sections/CreateCard.scss";
@@ -19,8 +19,8 @@ export default function CreateCard(props) {
   const initialState = {
     title: "",
     mountain: "",
-    peopleNum: 1,
-    age: [1, 100],
+    maxMember: 1,
+    ageLimit: [1, 100],
     date: new Date(),
     description: "",
     contact: "",
@@ -28,7 +28,7 @@ export default function CreateCard(props) {
 
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
-  const [age, setAge] = useState([0, 100]);
+  const [ageLimit, setAgeLimit] = useState([0, 100]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -41,10 +41,8 @@ export default function CreateCard(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createPost({ ...cardState })); // 새로운 post 생성 요청
-
-    // props.getCardState(cardState);
     setCardState(initialState);
-    setAge([0, 100]);
+    setAgeLimit([0, 100]);
     handleClose();
   };
 
@@ -55,7 +53,7 @@ export default function CreateCard(props) {
     });
   };
   const handleAgeChange = (event, newAge) => {
-    setAge(newAge);
+    setAgeLimit(newAge);
     /*
     if (newAge[0] === 0 && newAge[1] === 100)
       setCardState({
@@ -66,16 +64,13 @@ export default function CreateCard(props) {
     */
     setCardState({
       ...cardState,
-      age: newAge,
+      ageLimit: newAge,
     });
   };
   const handleChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    let value = target.value;
     setCardState({
       ...cardState,
-      [name]: value,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -113,7 +108,7 @@ export default function CreateCard(props) {
                 />
                 <TextField
                   required
-                  name="peopleNum"
+                  name="maxMember"
                   id="input-peopleNum"
                   className="input-header"
                   label="제한 인원"
@@ -128,9 +123,9 @@ export default function CreateCard(props) {
                     제한 연령
                   </Typography>
                   <Slider
-                    name="age"
+                    name="ageLimit"
                     id="input-age"
-                    value={age}
+                    value={ageLimit}
                     onChange={handleAgeChange}
                     valueLabelDisplay="auto"
                     aria-labelledby="range-slider"

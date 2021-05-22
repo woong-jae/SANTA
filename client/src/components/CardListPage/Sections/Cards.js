@@ -13,7 +13,7 @@ const Cards = (props) => {
     <Card className="cards">
       <CardContent>
         <Typography className="card-info" id="card-writer">
-          <strong>팔공산엄홍길</strong> 님의 게시물
+          <strong>Created User</strong> 님의 게시물
         </Typography>
         <hr />
         <Typography className="card-info" id="card-title">
