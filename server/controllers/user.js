@@ -1,6 +1,6 @@
-import express from 'express'
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken';
 
 import User from '../models/user.js';
 
@@ -19,31 +19,40 @@ export const getUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        const { userid, passwd } = req.body;
+        const { email, passwd } = req.body;
 
-        const user = await User.findOne({ userid: userid });
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({message: "User doesn't exist"});
 
-        const compare = bcrypt.compareSync(passwd, user.passwd);
-        if (compare) {
-            res.status(200).json({login: true});
-        } else {
-            res.status(404).json({login: false});
-        }
+        const compare = await bcrypt.compare(passwd, user.passwd);
+        if (!compare) res.status(404).json({message: "Invalid credentials"});
+
+        const token = jwt.sign({ email: user.email, id: user._id }, 'test', { expiresIn: "1h"});
+
+        res.status(200).json({ result: user, token });
     } catch (error) {
-        res.status(404).json({ message: error });
+        res.status(500).json({ message: "Something went wrong" });
+        console.log(error);
     }
 }
 
 export const createUser = async (req, res) => {
-    const userInfo = req.body;
-    try {
-        const hash = bcrypt.hashSync(userInfo.passwd, saltRounds);
-        const newUser = new User({ ...userInfo, passwd: hash });
+    const { email, passwd, birth, sex, nickname } = req.body;
 
-        await newUser.save();
-        res.status(201).json({ message: "New User Created"});
+    try {
+        const user = await User.findOne({ email });
+        if (user) return res.status(404).json({message: "User already exist"});
+
+        const hashedPasswd = await bcrypt.hash(passwd);
+        
+        const result = await User.create({ email, passwd: hashedPasswd, birth, sex, nickname });
+
+        const token = jwt.sign({ email: result.email, id: result._id }, 'test', { expiresIn: "1h"});
+
+        res.status(200).json({ result, token });
     } catch (error) {
-        res.status(409).json({ message: error });
+        res.status(500).json({ message: "Something went wrong" });
+        console.log(error);
     }
 }
 

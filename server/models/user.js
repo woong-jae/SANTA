@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
-    userid: {
+    email: {
         type: String,
         required: true,
         unique: true
@@ -9,11 +9,6 @@ const userSchema = mongoose.Schema({
     passwd: {
         type: String,
         required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
     },
     birth: {
         type: Date,
