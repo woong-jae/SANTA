@@ -40,7 +40,6 @@ export default function CreateCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(cardState.age[1] + " " + cardState.date);
     dispatch(createPost({ ...cardState })); // 새로운 post 생성 요청
 
     // props.getCardState(cardState);
