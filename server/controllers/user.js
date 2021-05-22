@@ -4,8 +4,6 @@ import jwt from 'jsonwebtoken';
 
 import User from '../models/user.js';
 
-const saltRounds = 10;
-
 export const getUser = async (req, res) => {
     try {
         const { _id } = req.params;

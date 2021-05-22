@@ -10,7 +10,6 @@ import {
 import { isEmail } from "validator";
 
 export default function SignupForm() {
-  const [userID, setID] = useState("");
   const [userPWD, setPWD] = useState("");
   const [userCPWD, setCPWD] = useState("");
   const [userEMAIL, setEMAIL] = useState("");
@@ -21,7 +20,6 @@ export default function SignupForm() {
   const handleClick = async () => {
     try {
       const user = {
-        userid: userID,
         passwd: userPWD,
         checkpwd: userCPWD,
         email: userEMAIL,
@@ -36,7 +34,6 @@ export default function SignupForm() {
       }
       console.log(user);
     } catch (e) {
-      setID("");
       setPWD("");
       setEMAIL("");
       setAGE("");
@@ -52,11 +49,11 @@ export default function SignupForm() {
       </Typography>
       <TextField
         required
-        id="userid"
-        label="아이디"
-        type="id"
-        value={userID}
-        onChange={({ target: { value } }) => setID(value)}
+        id="useremail"
+        label="이메일"
+        type="email"
+        value={userEMAIL}
+        onChange={({ target: { value } }) => setEMAIL(value)}
       ></TextField>
       <TextField
         required
@@ -73,14 +70,6 @@ export default function SignupForm() {
         type="password"
         value={userCPWD}
         onChange={({ target: { value } }) => setCPWD(value)}
-      ></TextField>
-      <TextField
-        required
-        id="useremail"
-        label="이메일"
-        type="email"
-        value={userEMAIL}
-        onChange={({ target: { value } }) => setEMAIL(value)}
       ></TextField>
       <TextField
         required

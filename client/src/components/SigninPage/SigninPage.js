@@ -11,7 +11,6 @@ import {
 import LockIcon from "@material-ui/icons/Lock";
 import { Link } from "react-router-dom";
 import "./Sections/SigninPage.scss";
-import * as userAPI from "../../api/user";
 
 export default function SigninDialog() {
   const [open, setOpen] = React.useState(false);
@@ -24,20 +23,9 @@ export default function SigninDialog() {
   const [userID, setID] = useState("");
   const [userPWD, setPWD] = useState("");
 
-  const handleClick = async () => {
-    try {
-      const user = {
-        userid: userID,
-        passwd: userPWD,
-      };
-      const { data } = await userAPI.loginUser(user);
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-      setID("");
-      setPWD("");
-    }
-  };
+  const handleClick = () => {
+    
+  }
 
   return (
     <div>
