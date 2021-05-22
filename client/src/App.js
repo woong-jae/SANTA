@@ -4,7 +4,7 @@ import { CssBaseline } from "@material-ui/core";
 
 import LandingPage from "./components/LandingPage/LandingPage";
 import CardListPage from "./components/CardListPage/CardListPage";
-import MyPage from "./components/MyPage/MyPage";
+import MyPage from "./components/MyPage/Mypage";
 import SignupPage from "./components/SignupPage/SignupPage";
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/myPage"
+              path="/mypage"
               component={(props) => <MyPage {...props} />}
             />
             <Route
