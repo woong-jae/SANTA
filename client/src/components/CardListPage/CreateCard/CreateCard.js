@@ -4,8 +4,8 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
-import { useDispatch, userSelector } from 'react-redux';
-import { createPost } from '../../../actions/post';
+import { useDispatch, userSelector } from "react-redux";
+import { createPost } from "../../../actions/post";
 
 import "./Sections/CreateCard.scss";
 import SelectDate from "../../common/SelectDate";
@@ -16,22 +16,16 @@ function valuetext(value) {
 
 export default function CreateCard(props) {
   const dispatch = useDispatch();
-  const currentDate = new Date();
   const initialState = {
     title: "",
     mountain: "",
     peopleNum: 1,
-    age: "제한 없음",
-    date:
-      currentDate.getFullYear() +
-      "/" +
-      Number(currentDate.getMonth() + 1) +
-      "/" +
-      currentDate.getDate(),
+    age: [1, 100],
+    date: new Date(),
     description: "",
     contact: "",
   };
-  
+
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [age, setAge] = useState([0, 100]);
@@ -46,8 +40,8 @@ export default function CreateCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createPost({...cardState})); // 새로운 post 생성 요청
-    
+    dispatch(createPost({ ...cardState })); // 새로운 post 생성 요청
+
     // props.getCardState(cardState);
     setCardState(initialState);
     setAge([0, 100]);
@@ -57,26 +51,23 @@ export default function CreateCard(props) {
   const getDateValue = (value) => {
     setCardState({
       ...cardState,
-      date:
-        value.getFullYear() +
-        "/" +
-        Number(value.getMonth() + 1) +
-        "/" +
-        value.getDate(),
+      date: value,
     });
   };
   const handleAgeChange = (event, newAge) => {
     setAge(newAge);
+    /*
     if (newAge[0] === 0 && newAge[1] === 100)
       setCardState({
         ...cardState,
         age: "제한 없음",
       });
     else
-      setCardState({
-        ...cardState,
-        age: newAge[0] + " ~ " + newAge[1],
-      });
+    */
+    setCardState({
+      ...cardState,
+      age: newAge,
+    });
   };
   const handleChange = (event) => {
     const target = event.target;
@@ -174,7 +165,12 @@ export default function CreateCard(props) {
                 />
               </section>
               <footer>
-                <Button variant="contained" className="form-btn" type="submit" onClick={handleSubmit}>
+                <Button
+                  variant="contained"
+                  className="form-btn"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
                   모임 생성
                 </Button>
               </footer>
