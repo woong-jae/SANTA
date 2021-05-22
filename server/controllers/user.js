@@ -72,5 +72,5 @@ export const deleteUser = async (req, res) => {
 
     await PostMessage.findByIdAndRemove(_id);
 
-    res.json({message: 'Post deleted successfully'});
+    res.json({message: 'User deleted successfully'});
 }

@@ -1,17 +1,21 @@
 import React, { useState } from "react";
-import "./Sections/CreateCard.scss";
-import SelectDate from "../../common/SelectDate";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import { useDispatch, userSelector } from 'react-redux';
+import { createPost } from '../../../actions/post';
+
+import "./Sections/CreateCard.scss";
+import SelectDate from "../../common/SelectDate";
 
 function valuetext(value) {
   return `${value}`;
 }
 
 export default function CreateCard(props) {
+  const dispatch = useDispatch();
   const currentDate = new Date();
   const initialState = {
     title: "",
@@ -27,6 +31,7 @@ export default function CreateCard(props) {
     description: "",
     contact: "",
   };
+  
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [age, setAge] = useState([0, 100]);
@@ -41,7 +46,9 @@ export default function CreateCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.getCardState(cardState);
+    dispatch(createPost({...cardState})); // 새로운 post 생성 요청
+    
+    // props.getCardState(cardState);
     setCardState(initialState);
     setAge([0, 100]);
     handleClose();
@@ -167,7 +174,7 @@ export default function CreateCard(props) {
                 />
               </section>
               <footer>
-                <Button variant="contained" className="form-btn" type="submit">
+                <Button variant="contained" className="form-btn" type="submit" onClick={handleSubmit}>
                   모임 생성
                 </Button>
               </footer>

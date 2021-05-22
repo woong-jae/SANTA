@@ -6,9 +6,14 @@ const postSchema = mongoose.Schema({
     createdUser: String,
     contact: String,
     maxMember: Number,
-    currentMember: Number,
-    minAge: Number,
-    maxAge: Number,
+    currentMember: {
+        type: [String],
+        default: []
+    },
+    ageLimit: {
+        type: [Number],
+        default: [0, 100]
+    },
     postDate: {
         type: Date,
         default: new Date()
