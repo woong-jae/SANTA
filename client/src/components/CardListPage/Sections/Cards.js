@@ -8,6 +8,12 @@ import Typography from "@material-ui/core/Typography";
 
 const Cards = (props) => {
   const { card } = props;
+  const date =
+    card.date.substring(0, 4) +
+    "/" +
+    card.date.substring(5, 7) +
+    "/" +
+    card.date.substring(8, 10);
 
   return (
     <Card className="cards">
@@ -29,11 +35,11 @@ const Cards = (props) => {
           <strong>제한 연령</strong> : {card.age}
         </Typography>
         <Typography className="card-info">
-          <strong>날짜</strong> : {card.date}
+          <strong>날짜</strong> : {date}
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <ShowCard card={card} />
+        <ShowCard card={card} date={date} />
       </CardActions>
     </Card>
   );
