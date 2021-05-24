@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
 
 import { signin } from "../../actions/auth";
-import "./Sections/SigninPage.scss";
+import "./Sections/SignPage.scss";
 
 export default function SigninDialog() {
   const dispatch = useDispatch();
