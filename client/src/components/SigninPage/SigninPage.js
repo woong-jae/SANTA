@@ -22,15 +22,13 @@ export default function SigninDialog() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
-  const [isSignin, setIsSignIn] = useState(false);
+  const [isSignin, setIsSignIn] = useState(true);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const [userEMAIL, setEMAIL] = useState("");
-  const [userPWD, setPWD] = useState("");
   const [inputs, setInputs] = useState({
     email: "",
     passwd: "",
@@ -50,7 +48,11 @@ export default function SigninDialog() {
   };
 
   const handleClick = () => {
-    // dispatch(signin({email: userID, passwd: userPWD}, history));
+    if (isSignin) {
+      dispatch(signin({email: inputs.userID, passwd: inputs.passwd}, history));
+    } else {
+
+    }
   };
 
   return (
@@ -73,22 +75,22 @@ export default function SigninDialog() {
         <DialogContent>
           <TextField
             required
-            id="userEmail"
+            name="email"
             label="이메일"
             margin="normal"
             type="email"
-            value={userEMAIL}
-            onChange={({ target: { value } }) => setEMAIL(value)}
+            value={inputs.email}
+            onChange={onChange}
             fullWidth
           ></TextField>
           <TextField
             required
-            id="userPwd"
+            name="passwd"
             label="비밀번호"
             margin="normal"
             type="password"
-            value={userPWD}
-            onChange={({ target: { value } }) => setPWD(value)}
+            value={inputs.passwd}
+            onChange={onChange}
             fullWidth
           ></TextField>
           {!isSignin && (
