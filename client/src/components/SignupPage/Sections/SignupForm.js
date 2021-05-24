@@ -9,82 +9,97 @@ import {
 } from "@material-ui/core";
 import { isEmail } from "validator";
 
+// const inital = { email, passwd, passwdConfirm, birth, sex, nickname };
+
 export default function SignupForm() {
-  const [userPWD, setPWD] = useState("");
-  const [userCPWD, setCPWD] = useState("");
-  const [userEMAIL, setEMAIL] = useState("");
-  const [userAGE, setAGE] = useState("");
-  const [userSEX, setSEX] = useState("");
-  const [userNICK, setNICK] = useState("");
-  const [pwd_msg, setMSG] = useState("");
-  const handleClick = async () => {
-    try {
-      const user = {
-        passwd: userPWD,
-        checkpwd: userCPWD,
-        email: userEMAIL,
-        age: userAGE,
-        sex: userSEX,
-        nicknm: userNICK,
-      };
-      if (user.passwd !== user.checkpwd) {
-        setMSG("비밀번호가 일치하지 않습니다.");
-      } else if (isEmail(user.email) === false) {
-        setMSG("잘못된 이메일 형식입니다.");
-      }
-      console.log(user);
-    } catch (e) {
-      setPWD("");
-      setEMAIL("");
-      setAGE("");
-      setSEX("");
-      setNICK("");
-      setMSG("");
-    }
+  const [isSignin, setIsSignIn] = useState(false);
+  const [inputs, setInputs] = useState({
+    email: "",
+    passwd: "",
+    passwdConfirm: "",
+    birth: "",
+    sex: "",
+    nickname: "",
+  });
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+  const handleClick = () => {
+    console.log(inputs);
+    //   try {
+    //     const user = {
+    //       email: userEMAIL,
+    //       passwd: userPWD,
+    //       checkpwd: userCPWD,
+    //       age: userAGE,
+    //       sex: userSEX,
+    //       nicknm: userNICK,
+    //     };
+    //     if (isEmail(user.email) === false) {
+    //       setMSG("잘못된 이메일 형식입니다.");
+    //     } else if (user.passwd !== user.checkpwd) {
+    //       setMSG("비밀번호가 일치하지 않습니다.");
+    //     }
+    //     console.log(user);
+    //   } catch (e) {
+    //     setEMAIL("");
+    //     setPWD("");
+    //     setCPWD("");
+    //     setAGE("");
+    //     setSEX("");
+    //     setNICK("");
+    //     setMSG("");
+    //   }
   };
   return (
     <section className="Signup-body">
       <Typography component="h1" variant="h3">
-        Sign up
+        {isSignin && "Sign in"}
       </Typography>
       <TextField
         required
-        id="useremail"
+        name="email"
         label="이메일"
         type="email"
-        value={userEMAIL}
-        onChange={({ target: { value } }) => setEMAIL(value)}
+        value={inputs.email}
+        onChange={onChange}
       ></TextField>
       <TextField
         required
-        id="userpwd"
+        name="passwd"
         label="비밀번호"
         type="password"
-        value={userPWD}
-        onChange={({ target: { value } }) => setPWD(value)}
+        value={inputs.passwd}
+        onChange={onChange}
       ></TextField>
       <TextField
         required
-        id="usercpwd"
+        name="passwdConfirm"
         label="비밀번호 확인"
         type="password"
-        value={userCPWD}
-        onChange={({ target: { value } }) => setCPWD(value)}
+        value={inputs.passwdConfirm}
+        onChange={onChange}
       ></TextField>
       <TextField
         required
-        id="userage"
+        name="birth"
         label="연령"
         type="number"
         inputProps={{ min: 0 }}
-        value={userAGE}
-        onChange={({ target: { value } }) => setAGE(value)}
+        value={inputs.birth}
+        onChange={onChange}
       ></TextField>
       <RadioGroup
         aria-label="sex"
-        id="usersex"
-        value={userSEX}
-        onChange={({ target: { value } }) => setSEX(value)}
+        name="sex"
+        value={inputs.sex}
+        onChange={onChange}
         row
       >
         <FormControlLabel
@@ -102,14 +117,14 @@ export default function SignupForm() {
       </RadioGroup>
       <TextField
         required
-        id="usernname"
+        name="nickname"
         label="닉네임"
-        value={userNICK}
-        onChange={({ target: { value } }) => setNICK(value)}
+        value={inputs.nickname}
+        onChange={onChange}
       ></TextField>
-      <Typography className="err_msg" variant="body2">
+      {/* <Typography className="err_msg" variant="body2">
         {pwd_msg}
-      </Typography>
+      </Typography> */}
       <Button
         type="submit"
         fullWidth
