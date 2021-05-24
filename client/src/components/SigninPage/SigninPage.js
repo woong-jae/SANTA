@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Dialog,
   Button,
@@ -22,7 +22,7 @@ export default function SigninDialog() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
-  const [isSignin, setIsSignIn] = useState(false);
+  const [isSignin, setIsSignIn] = useState(true);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -49,8 +49,13 @@ export default function SigninDialog() {
     });
   };
 
-  const handleClick = () => {
+  const signinClick = () => {
+    // 로그인을 원하는 사용자가 로그인 버튼 누를 경우와 아닌 경우
+    setIsSignIn(true);
     // dispatch(signin({email: userID, passwd: userPWD}, history));
+  };
+  const signupClick = () => {
+    setIsSignIn(false);
   };
 
   return (
@@ -63,7 +68,7 @@ export default function SigninDialog() {
       >
         sign in
       </Button>
-      <Dialog open={open} onClose={handleClose} className="signinDialog">
+      <Dialog open={open} onClose={handleClose} className="signDialog">
         <DialogTitle className="dialogTitle">
           <LockIcon />
           <Typography variant="h3" gutterBottom>
@@ -97,22 +102,29 @@ export default function SigninDialog() {
                 required
                 name="passwdConfirm"
                 label="비밀번호 확인"
+                margin="normal"
                 type="password"
+                fullWidth
                 value={inputs.passwdConfirm}
                 onChange={onChange}
               ></TextField>
               <TextField
-                required
                 name="birth"
-                label="연령"
-                type="number"
-                inputProps={{ min: 0 }}
+                label="생년월일"
+                margin="normal"
+                type="date"
                 value={inputs.birth}
+                defaultValue="1998-12-12"
                 onChange={onChange}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
               ></TextField>
               <RadioGroup
                 aria-label="sex"
                 name="sex"
+                margin="normal"
                 value={inputs.sex}
                 onChange={onChange}
                 row
@@ -134,28 +146,36 @@ export default function SigninDialog() {
                 required
                 name="nickname"
                 label="닉네임"
+                fullWidth
                 value={inputs.nickname}
                 onChange={onChange}
               ></TextField>
             </>
           )}
-
-          <br></br>
+          <Typography className="err" variant="body2">
+            {"error"}
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button
             type="submit"
-            fullWidth
             variant="contained"
-            className="signin-btn"
-            onClick={handleClick}
+            className="signbtn"
+            onClick={signinClick}
+            fullWidth
           >
             Sign In
           </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            className="signbtn"
+            onClick={signupClick}
+            fullWidth
+          >
+            Sign Up
+          </Button>
         </DialogActions>
-        <Link to="/signup" variant="body2">
-          Sign Up
-        </Link>
       </Dialog>
     </div>
   );
