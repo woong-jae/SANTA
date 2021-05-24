@@ -16,6 +16,12 @@
             width: 720px;
             display: block;
         }
+        #input-age {
+            // mark
+            .MuiSlider-mark {
+                width: 3px
+            }
+        }
         header {
             display: flex;
             justify-content: space-around;
@@ -36,10 +42,17 @@
                 #slider-label {
                     color: rgba(0, 0, 0, 0.54);
                     font-size: 0.8rem;
-                    margin-bottom: 1.1em;
+                    margin-bottom: 0px;
+                }
+                #show-age {
+                    margin-top: 2px;
+                    margin-bottom: 5px;
+                    font-size: 0.9rem;
                 }
                 #input-age {
-                    color: black
+                    color: black;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
                 }
                 &:active {
                     #slider-label {

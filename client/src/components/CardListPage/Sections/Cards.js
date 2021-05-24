@@ -14,6 +14,7 @@ const Cards = (props) => {
     card.date.substring(5, 7) +
     "/" +
     card.date.substring(8, 10);
+  const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
 
   return (
     <Card className="cards">
@@ -29,17 +30,17 @@ const Cards = (props) => {
           <strong>산</strong> : {card.mountain}
         </Typography>
         <Typography className="card-info">
-          <strong>현재 인원</strong> : 2 / {card.peopleNum}
+          <strong>현재 인원</strong> : 2 / {card.maxMember}
         </Typography>
         <Typography className="card-info">
-          <strong>제한 연령</strong> : {card.age}
+          <strong>제한 연령</strong> : {ageLimit}
         </Typography>
         <Typography className="card-info">
           <strong>날짜</strong> : {date}
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <ShowCard card={card} date={date} />
+        <ShowCard card={card} date={date} ageLimit={ageLimit} />
       </CardActions>
     </Card>
   );

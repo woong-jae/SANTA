@@ -20,7 +20,7 @@ export default function CreateCard(props) {
     title: "",
     mountain: "",
     maxMember: 1,
-    ageLimit: [1, 100],
+    ageLimit: [19, 70],
     date: new Date(),
     description: "",
     contact: "",
@@ -28,7 +28,7 @@ export default function CreateCard(props) {
 
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
-  const [ageLimit, setAgeLimit] = useState([0, 100]);
+  const [ageLimit, setAgeLimit] = useState([19, 70]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,7 +42,7 @@ export default function CreateCard(props) {
     event.preventDefault();
     dispatch(createPost({ ...cardState })); // 새로운 post 생성 요청
     setCardState(initialState);
-    setAgeLimit([0, 100]);
+    setAgeLimit([19, 70]);
     handleClose();
   };
 
@@ -66,6 +66,14 @@ export default function CreateCard(props) {
       [event.target.name]: event.target.value,
     });
   };
+
+  const marks = [
+    { value: 19 },
+    { value: 29 },
+    { value: 39 },
+    { value: 49 },
+    { value: 70 },
+  ];
 
   return (
     <div>
@@ -102,7 +110,7 @@ export default function CreateCard(props) {
                 <TextField
                   required
                   name="maxMember"
-                  id="input-peopleNum"
+                  id="input-maxMember"
                   className="input-header"
                   label="제한 인원"
                   type="number"
@@ -115,9 +123,15 @@ export default function CreateCard(props) {
                   <Typography id="slider-label" gutterBottom>
                     제한 연령
                   </Typography>
+                  <Typography id="show-age">
+                    {ageLimit[0] + "~" + ageLimit[1]}
+                  </Typography>
                   <Slider
                     name="ageLimit"
                     id="input-age"
+                    max={70}
+                    min={19}
+                    marks={marks}
                     value={ageLimit}
                     onChange={handleAgeChange}
                     valueLabelDisplay="auto"

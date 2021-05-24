@@ -7,7 +7,7 @@ import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import "./Sections/ShowCard.scss";
 
 export default function ShowCard(props) {
-  const { card, date } = props;
+  const { card, date, ageLimit } = props;
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -46,7 +46,7 @@ export default function ShowCard(props) {
                 <strong>현재 인원</strong> : 2 / {card.maxMember}
               </Typography>
               <Typography>
-                <strong>제한 연령</strong> : {card.ageLimit}
+                <strong>제한 연령</strong> : {ageLimit}
               </Typography>
               <Typography>
                 <strong>등반 날짜</strong> : {date}
