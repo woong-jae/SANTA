@@ -15,7 +15,10 @@ const userSchema = mongoose.Schema({
         default: new Date()
     },
     sex: String,
-    nickname: String,
+    nickname: {
+        type: String,
+        unique: true,
+    }
 });
 
 const User = mongoose.model('User', userSchema);

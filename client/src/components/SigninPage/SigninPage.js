@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import {
   Dialog,
   Button,
@@ -8,11 +9,15 @@ import {
   DialogTitle,
   Typography,
 } from "@material-ui/core";
+import { useDispatch } from 'react-redux';
 import LockIcon from "@material-ui/icons/Lock";
-import { Link } from "react-router-dom";
+
+import { signin } from '../../actions/auth';
 import "./Sections/SigninPage.scss";
 
 export default function SigninDialog() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -24,7 +29,7 @@ export default function SigninDialog() {
   const [userPWD, setPWD] = useState("");
 
   const handleClick = () => {
-    
+    dispatch(signin({email: userID, passwd: userPWD}, history));
   }
 
   return (
