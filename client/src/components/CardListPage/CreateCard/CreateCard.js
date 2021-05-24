@@ -54,14 +54,7 @@ export default function CreateCard(props) {
   };
   const handleAgeChange = (event, newAge) => {
     setAgeLimit(newAge);
-    /*
-    if (newAge[0] === 0 && newAge[1] === 100)
-      setCardState({
-        ...cardState,
-        age: "제한 없음",
-      });
-    else
-    */
+
     setCardState({
       ...cardState,
       ageLimit: newAge,
@@ -70,7 +63,7 @@ export default function CreateCard(props) {
   const handleChange = (event) => {
     setCardState({
       ...cardState,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
