@@ -1,6 +1,5 @@
 import axios from "axios";
 
-<<<<<<< HEAD
 const API = axios.create({ baseURL: 'http://localhost:4000' });
 
 API.interceptors.request.use((req) => {
@@ -9,9 +8,6 @@ API.interceptors.request.use((req) => {
     }
     return req;
 })
-=======
-const API = axios.create({ baseURL: "http://localhost:4000" });
->>>>>>> ec71639c8f8bf85e7e902c011d34b8120b09b2d2
 
 export const getUser = (_id) => API.get(`/user/${_id}`);
 export const loginUser = (formData) => API.post("/user/signin", formData);
