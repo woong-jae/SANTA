@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
+import { useDispatch } from 'react-redux';
 
 import SigninPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -12,6 +13,8 @@ import "./CardListPage.scss";
 import "../../common/Sections/Search.scss";
 
 const CardListHeader = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const currentDate = new Date();
   const initialState = {
     mountain: "",
@@ -24,6 +27,11 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
+
+  const handleSignOut = () => {
+    dispatch({ type: "LOGOUT" });
+    history.push('/list');
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -76,12 +84,15 @@ const CardListHeader = (props) => {
             <AiOutlineUser className="btn-icon" />
           </Button>
         </Link>}
-        {props.user ? <Button
-        variant="contained"
-        className="header-btn"
-      >
-        sign out
-      </Button> : <SigninPage />}
+        {props.user ? 
+        <Button
+          variant="contained"
+          className="header-btn"
+          onClick={handleSignOut}
+        >
+          sign out
+        </Button> : 
+        <SigninPage />}
       </div>
     </header>
   );
