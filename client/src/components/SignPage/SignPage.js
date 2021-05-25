@@ -26,20 +26,23 @@ export default function SigninDialog() {
   const [open, setOpen] = React.useState(false);
   const [isSignin, setIsSignIn] = useState(true);
   const handleOpen = () => {
+    setInputs(init);
     setOpen(true);
   };
   const handleClose = () => {
     setIsSignIn(true);
     setOpen(false);
   };
-  const [inputs, setInputs] = useState({
+  const init = {
     email: "",
     passwd: "",
     passwdConfirm: "",
-    birth: "",
+    birth: new Date(),
     sex: "",
     nickname: "",
-  });
+    error: "",
+  };
+  const [inputs, setInputs] = useState(init);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -51,13 +54,29 @@ export default function SigninDialog() {
   };
   const handleSubmit = () => {};
   const signinClick = () => {
+    setInputs(init);
     // dispatch(signin({email: userID, passwd: userPWD}, history));
-
-    // 로그인을 원하는 사용자가 로그인 버튼 누를 경우와 아닌 경우
     setIsSignIn(true);
   };
   const signupClick = () => {
+    setInputs(init);
+    if (inputs.passwd.length < 8) {
+      setInputs({ [inputs.error]: "" });
+    }
+    if (inputs.passwd !== inputs.passwdConfirm) {
+      setInputs({ [inputs.error]: "비밀번호가 일치하지 않습니다." });
+    }
     setIsSignIn(false);
+  };
+
+  const changetoSignup = () => {
+    setInputs(init);
+    setIsSignIn(false);
+  };
+
+  const changetoSignin = () => {
+    setInputs(init);
+    setIsSignIn(true);
   };
 
   return (
@@ -109,6 +128,7 @@ export default function SigninDialog() {
                   type="password"
                   fullWidth
                   value={inputs.passwdConfirm}
+                  helperText={inputs.error}
                   onChange={onChange}
                 ></TextField>
                 <TextField
@@ -171,7 +191,7 @@ export default function SigninDialog() {
                 <Button
                   type="button"
                   className="switch-text"
-                  onClick={signupClick}
+                  onClick={changetoSignup}
                 >
                   {"계정이 없으신가요?"}
                 </Button>
@@ -192,7 +212,7 @@ export default function SigninDialog() {
                 <Button
                   type="button"
                   className="switch-text"
-                  onClick={signinClick}
+                  onClick={changetoSignin}
                 >
                   {"이미 계정이 있나요?"}
                 </Button>

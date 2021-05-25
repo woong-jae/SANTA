@@ -19,7 +19,7 @@ export default function CreateCard(props) {
   const initialState = {
     title: "",
     mountain: "",
-    maxMember: 1,
+    maxMember: "",
     ageLimit: [19, 70],
     date: new Date(),
     description: "",
@@ -114,7 +114,7 @@ export default function CreateCard(props) {
                   className="input-header"
                   label="제한 인원"
                   type="number"
-                  defaultValue="1"
+                  defaultValue=""
                   inputProps={{ min: 1 }}
                   InputLabelProps={{ shrink: true }}
                   onChange={handleChange}

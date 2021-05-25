@@ -1,6 +1,6 @@
 import React from "react";
-import ShowCard from "../ShowCard/ShowCard";
 
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -15,7 +15,7 @@ const Cards = (props) => {
     "/" +
     card.date.substring(8, 10);
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
-
+ 
   return (
     <Card className="cards">
       <CardContent>
@@ -40,7 +40,13 @@ const Cards = (props) => {
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <ShowCard card={card} date={date} ageLimit={ageLimit} />
+        <Button
+          variant="contained"
+          className="card-btn"
+          onClick={() => props.handleShow(true, card, date, ageLimit)}
+        >
+          ➜
+        </Button>
       </CardActions>
     </Card>
   );
