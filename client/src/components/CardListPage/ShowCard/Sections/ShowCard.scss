@@ -1,86 +1,102 @@
-.modal-paper {
-    position: absolute;
-    border: 3px solid #10b274;
-    top: 20%;
-    left: 18%;
-    height: 430px;
-    width: 65%;
-    background-color: white;
-    box-shadow: 5px 5px 5px 5px;
-    padding: 16px 30px 24px;
-    overflow-x: auto;
-    overflow-y: auto;
-    .modal-screen {
-        #modal-title {
+.show {
+    min-height: 83vh;
+    text-align: -webkit-center;
+    .show-paper {
+        @media (min-width: 1128px) {
+            max-width: 1080px;
+        }
+        @media (min-width: 744px) {
+            max-width: 696px;
+        }
+        text-align: left;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 30px;
+        padding-bottom: 60px;
+        background-color: white;
+        .back-btn {
+            color: white;
+            background-color: #10b274;
+            font-size: 1em;
+            &:hover {
+                background-color: #059960;
+            }
+        }
+        #show-title,
+        #show-name {
             text-align: center;
-            margin-top: 3%;
+            margin-top: 5px;
         }
-        .modal-header {
-            border-bottom-color: #10b274;
+        #show-name {
+            margin-bottom: 50px;
         }
-        .modal-body {
+        .show-flex {
             display: flex;
-            justify-content: space-around;
-            article {
-                display: inline-flex;
-                flex-direction: column;
-                width: 650px;
-                .details-item {
-                    width: 100%;
+            justify-content: space-between;
+            .show-header {
+                border-bottom: 2px solid #10b274;
+                .header-detail {
                     display: inline-block;
-                    .details-info {
-                        margin-top: 3px;
-                        padding: 10px;
-                        height: auto;
-                        word-break: break-all;
-                    }
                 }
-                #modal-description {
-                    border: 2px dashed #10b274;
-                    height: auto;
-                }
-                #modal-contact {
-                    span {
-                        margin-right: 15px;
-                        #contact-icon {
-                            font-size: 2em;
-                            color: #059960;
-                            margin-bottom: 4px;
-                        }
-                    }
-                    #contact-contents {
-                        display: block;
-                    }
+                .header-info {
+                    margin-bottom: 15px;
                 }
             }
-            aside {
-                float: right;
-                .modal-people {
+            .show-body {
+                #show-description {
+                    display: inline-block;
+                    height: auto;
+                    word-break: break-all;
+                }
+            }
+            .side {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: fit-content;
+                .side-paper {
+                    width: 190px;
+                    margin-bottom: 30px;
+                }
+                #contact-paper {
+                    padding: 17px;
+                    padding-bottom: 0px;
                     text-align: center;
-                    .people-info {
+                    #contact-contents {
+                        display: block;
+                        word-break: break-all;
+                        text-align: left;
+                    }
+                    #contact-icon {
+                        color: #10b274;
+                        margin-bottom: 4px;
+                    }
+                }
+                #Member-paper {
+                    padding: 10px;
+                    text-align: center;
+                    .Member-info {
                         margin-top: 3px;
                         border: 2px solid #10b274;
                         padding: 10px;
                     }
                 }
-            }
-        }
-        .modal-footer {
-            display: block;
-            text-align: center;
-            padding-top: 0px;
-            .apply-btn {
-                margin-right: 40px;
-                color: white;
-                background-color: #10b274;
-                font-size: 1.4em;
-                width: auto;
-                height: 40px;
-                margin-top: 20px;
-                &:hover {
-                    background-color: #059960;
+                #btn-paper {
+                    width: 119px;
+                    .apply-btn {
+                        color: white;
+                        background-color: #10b274;
+                        font-size: 1.4em;
+                        &:hover {
+                            background-color: #059960;
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+footer {
+    height: 1vh;
 }

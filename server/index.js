@@ -19,14 +19,6 @@ app.use("/", (req, res) => {
   res.send("Server running...");
 });
 
-<<<<<<< HEAD
-const URL = "mongodb+srv://admin-woong:bf3qVT6hq0TNNMur@cluster0.dthag.mongodb.net/webProject?retryWrites=true&w=majority"
-const PORT = process.env.PORT || 4000;
-
-mongoose.connect(URL, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => app.listen(PORT, () => console.log(`Server running or port: ${PORT}`)))
-    .catch((error) => console.log(error));
-=======
 const URL =
   "mongodb+srv://admin-woong:bf3qVT6hq0TNNMur@cluster0.dthag.mongodb.net/webProject?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 4000;
@@ -37,6 +29,5 @@ mongoose
     app.listen(PORT, () => console.log(`Server running or port: ${PORT}`))
   )
   .catch((error) => console.log(error.message));
->>>>>>> ec71639c8f8bf85e7e902c011d34b8120b09b2d2
 
 mongoose.set("useFindAndModify", false);

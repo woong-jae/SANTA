@@ -46,6 +46,7 @@
 section {
     //min-height: 88vh;
     .cardList-body {
+        background-color: #81c784;
         min-height: 79.7vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -90,6 +91,7 @@ section {
     }
     footer {
         text-align: center;
+        background-color: #81c784;
     }
 }
 
@@ -100,7 +102,7 @@ section {
     text-align: center;
     position: fixed;
     left: 0px;
-    bottom: 53px;
+    bottom: 40px;
     width: 100%;
     .footer-btn {
         color: white;
