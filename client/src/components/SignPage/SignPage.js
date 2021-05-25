@@ -52,31 +52,24 @@ export default function SigninDialog() {
       [name]: value,
     });
   };
-  const handleSubmit = () => {};
-  const signinClick = () => {
-    setInputs(init);
-    // dispatch(signin({email: userID, passwd: userPWD}, history));
-    setIsSignIn(true);
-  };
-  const signupClick = () => {
-    setInputs(init);
-    if (inputs.passwd.length < 8) {
-      setInputs({ [inputs.error]: "" });
+  const handleSubmit = () => {
+    if (isSignin) {
+      // dispatch(signin({email: userID, passwd: userPWD}, history));
+    } else {
+      if (inputs.passwd.length < 8) {
+        setInputs({ [inputs.error]: "" });
+      }
+      if (inputs.passwd !== inputs.passwdConfirm) {
+        setInputs({ [inputs.error]: "비밀번호가 일치하지 않습니다." });
+      }
+      setIsSignIn(false);
     }
-    if (inputs.passwd !== inputs.passwdConfirm) {
-      setInputs({ [inputs.error]: "비밀번호가 일치하지 않습니다." });
-    }
-    setIsSignIn(false);
+    setInputs(init);
   };
 
-  const changetoSignup = () => {
+  const toggle = () => {
     setInputs(init);
-    setIsSignIn(false);
-  };
-
-  const changetoSignin = () => {
-    setInputs(init);
-    setIsSignIn(true);
+    setIsSignIn(prev => !prev);
   };
 
   return (
@@ -177,47 +170,21 @@ export default function SigninDialog() {
             )}
           </DialogContent>
           <DialogActions>
-            {isSignin && (
-              <>
-                <Button
+            <Button
                   type="submit"
                   variant="contained"
                   className="sign-btn"
-                  onClick={signinClick}
                   fullWidth
                 >
-                  Sign In
+                  {isSignin ? "Sign In" : "Sign Up"}
                 </Button>
                 <Button
                   type="button"
                   className="switch-text"
-                  onClick={changetoSignup}
+                  onClick={toggle}
                 >
-                  {"계정이 없으신가요?"}
-                </Button>
-              </>
-            )}
-
-            {!isSignin && (
-              <>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className="sign-btn"
-                  onClick={signupClick}
-                  fullWidth
-                >
-                  Sign Up
-                </Button>
-                <Button
-                  type="button"
-                  className="switch-text"
-                  onClick={changetoSignin}
-                >
-                  {"이미 계정이 있나요?"}
-                </Button>
-              </>
-            )}
+                  {isSignin? "계정이 없으신가요?" : "이미 계정이 있으신가요?"} 
+              </Button>
           </DialogActions>
         </form>
       </Dialog>
