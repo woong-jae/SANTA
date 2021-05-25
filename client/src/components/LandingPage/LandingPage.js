@@ -1,12 +1,13 @@
 import React from "react";
 //import { Link } from "react-router-dom";
-import "../common/Sections/Search.scss";
+import { Typography } from "@material-ui/core";
+
 import InputMountain from "../common/InputMountain";
 import InputPeople from "../common/InputPeople";
 import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
 import "./Sections/LandingPage.scss";
-import { Typography } from "@material-ui/core";
+import "../common/Sections/Search.scss";
 
 const LandingPage = () => {
   const currentDate = new Date();

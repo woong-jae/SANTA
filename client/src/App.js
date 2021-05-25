@@ -5,7 +5,6 @@ import { CssBaseline } from "@material-ui/core";
 import LandingPage from "./components/LandingPage/LandingPage";
 import CardListPage from "./components/CardListPage/CardListPage";
 import MyPage from "./components/MyPage/Mypage";
-import SignupPage from "./components/SignupPage/SignupPage";
 
 class App extends Component {
   render() {
@@ -28,11 +27,6 @@ class App extends Component {
               exact
               path="/mypage"
               component={(props) => <MyPage {...props} />}
-            />
-            <Route
-              exact
-              path="/signup"
-              component={(props) => <SignupPage {...props} />}
             />
           </Switch>
         </Router>

@@ -1,7 +1,8 @@
 import React from "react";
+import { Typography } from "@material-ui/core";
+
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import "./Sections/Mypage.scss";
-import { Typography } from "@material-ui/core";
 
 const MyPage = () => {
   return (
