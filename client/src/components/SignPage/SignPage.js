@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import {
   Dialog,
   Button,
@@ -11,7 +11,6 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
-  Grid,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
@@ -23,13 +22,13 @@ import "./Sections/SignPage.scss";
 export default function SigninDialog() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
   const handleOpen = () => {
-    setInputs(init);
     setOpen(true);
   };
   const handleClose = () => {
+    setInputs(init);
     setIsSignIn(true);
     setOpen(false);
   };
@@ -52,19 +51,26 @@ export default function SigninDialog() {
       [name]: value,
     });
   };
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (isSignin) {
-      // dispatch(signin({email: userID, passwd: userPWD}, history));
-    } else {
+      await dispatch(signin({email: inputs.email, passwd: inputs.passwd}));
+      const user = JSON.parse(localStorage.getItem('profile'));
+      if (user) {
+        handleClose();
+        history.push('/list');
+      } else {
+        setInputs({...init, email: "Invalid user"});
+      }
+    } else { // Sign up
       if (inputs.passwd.length < 8) {
         setInputs({ [inputs.error]: "" });
       }
       if (inputs.passwd !== inputs.passwdConfirm) {
         setInputs({ [inputs.error]: "비밀번호가 일치하지 않습니다." });
       }
-      setIsSignIn(false);
+      setInputs(init);
     }
-    setInputs(init);
   };
 
   const toggle = () => {

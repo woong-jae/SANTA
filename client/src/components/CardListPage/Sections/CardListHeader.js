@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
@@ -11,7 +11,7 @@ import SelectDate from "../../common/SelectDate";
 import "./CardListPage.scss";
 import "../../common/Sections/Search.scss";
 
-const CardListHeader = () => {
+const CardListHeader = (props) => {
   const currentDate = new Date();
   const initialState = {
     mountain: "",
@@ -23,7 +23,7 @@ const CardListHeader = () => {
       currentDate.getDate(),
     peopleNum: 1,
   };
-  const [searchState, setSearchState] = React.useState(initialState);
+  const [searchState, setSearchState] = useState(initialState);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -70,12 +70,13 @@ const CardListHeader = () => {
       </form>
 
       <div className="header-user">
+        {props.user && 
         <Link to="/myPage">
           <Button variant="contained" className="header-btn" id="myPage-btn">
             <AiOutlineUser className="btn-icon" />
           </Button>
-        </Link>
-        <SigninPage />
+        </Link>}
+        {!props.user && <SigninPage />}
       </div>
     </header>
   );

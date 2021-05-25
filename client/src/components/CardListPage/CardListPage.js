@@ -1,22 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { getPosts } from '../../actions/post';
+import { useLocation } from "react-router-dom";
+import decode from 'jwt-decode';
 
+import { getPosts } from '../../actions/post';
 import CardListHeader from "./Sections/CardListHeader";
 import CardListBody from "./Sections/CardListBody";
 import "./Sections/CardListPage.scss";
 
 const CardListPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    setUser(null);
+  }
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+    const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [dispatch, location]);
 
   return (
     <div className="cardList">
-      <CardListHeader />
-      <CardListBody />
+      <CardListHeader user={user}/>
+      <CardListBody user={user}/>
     </div>
   );
 };
