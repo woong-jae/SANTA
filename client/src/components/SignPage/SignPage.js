@@ -40,7 +40,7 @@ export default function SigninDialog() {
     birth: new Date(),
     sex: "",
     nickname: "",
-    error: "",
+    error: false,
   };
   const [inputs, setInputs] = useState(init);
 
@@ -63,12 +63,12 @@ export default function SigninDialog() {
       } else {
         setInputs({...init, email: "Invalid user"});
       }
-    }  else {
+    } else {
       // 1.이메일 중복 여부 2. 비밀번호 형식 여부
       // 3. 비밀번호 일치여부 4. 모든 항목 입력 여부
 
       if (!isPassword(inputs.passwd)) {
-        
+        setInputs({[inputs.error]: true})
       }
       if (inputs.passwd !== inputs.passwdConfirm) {
 
@@ -123,6 +123,7 @@ export default function SigninDialog() {
               helperText="최소 8자 이상 입력해주세요"
               onChange={onChange}
               fullWidth
+              error={inputs.error}
             ></TextField>
             {!isSignin && (
               <>
@@ -195,7 +196,7 @@ export default function SigninDialog() {
                   className="switch-text"
                   onClick={toggle}
                 >
-                  {isSignin? "계정이 없으신가요?" : "이미 계정이 있으신가요?"} 
+                  <strong>{isSignin? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}</strong>
               </Button>
           </DialogActions>
         </form>
