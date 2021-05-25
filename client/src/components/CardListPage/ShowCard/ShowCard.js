@@ -26,7 +26,7 @@ export default function ShowCard(props) {
             <strong>{card.title}</strong>
           </Typography>
           <Typography id="show-name">
-            <strong>Created User</strong> 님의 모임
+            <strong>{card.createdUser}</strong> 님의 모임
           </Typography>
           <div className="show-flex">
             <div style={{ width: "65%" }}>
@@ -36,7 +36,7 @@ export default function ShowCard(props) {
                     <strong>산</strong> : {card.mountain}
                   </Typography>
                   <Typography className="header-info">
-                    <strong>현재 인원</strong> : 2 / {card.maxMember}
+                    <strong>현재 인원</strong> : {card.currentMember.length}  / {card.maxMember}
                   </Typography>
                   <Typography className="header-info">
                     <strong>제한 연령</strong> : {ageLimit}
@@ -65,13 +65,12 @@ export default function ShowCard(props) {
               </div>
               <div id="Member-paper" className="side-paper">
                 <Typography>
-                  <strong>현재 인원:</strong> 2 / {card.maxMember}
+                  <strong>현재 인원:</strong> {card.currentMember.length} / {card.maxMember}
                 </Typography>
                 <div className="Member-info">
                   <Typography>
-                    <span>★</span>팔공산엄홍길
+                    <span>★</span>{card.createdUser}
                   </Typography>
-                  <Typography>히말라야다람쥐</Typography>
                 </div>
               </div>
               <div id="btn-paper" className="side-paper">

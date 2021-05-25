@@ -30,7 +30,7 @@ const Cards = (props) => {
           <strong>산</strong> : {card.mountain}
         </Typography>
         <Typography className="card-info">
-          <strong>현재 인원</strong> : 2 / {card.maxMember}
+          <strong>현재 인원</strong> : {card.currentMember.length} / {card.maxMember}
         </Typography>
         <Typography className="card-info">
           <strong>제한 연령</strong> : {ageLimit}
