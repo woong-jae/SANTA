@@ -20,7 +20,7 @@ const Cards = (props) => {
     <Card className="cards">
       <CardContent>
         <Typography className="card-info" id="card-writer">
-          <strong>Created User</strong> 님의 게시물
+          <strong>{card.createdUser}</strong> 님의 게시물
         </Typography>
         <hr />
         <Typography className="card-info" id="card-title">
