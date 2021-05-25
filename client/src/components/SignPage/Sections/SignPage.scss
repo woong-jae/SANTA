@@ -1,51 +1,56 @@
 .signDialog {
   text-align: center;
-  .MuiFormLabel-root.Mui-focused {
-    color: #10b274;
-  }
-  .MuiInput-underline:after {
-    border-bottom-color: #10b274;
-  }
-  .MuiIconButton-colorSecondary:hover {
-    background-color: white;
-  }
-  .MuiCheckbox-colorSecondary.Mui-checked {
-    color: #10b274;
-    &:hover {
+  .signform {
+    display: grid;
+    .MuiFormLabel-root.Mui-focused {
+      color: #10b274;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #10b274;
+    }
+    .MuiIconButton-colorSecondary:hover {
       background-color: white;
     }
-  }
-  .signbtn {
-    background-color: #81c784;
-    color: white;
-    margin: 50px;
-    &:hover {
-      background-color: #10b274;
+    .MuiCheckbox-colorSecondary.Mui-checked {
+      color: #10b274;
+      &:hover {
+        background-color: white;
+      }
     }
-  }
-  .MuiRadio-root {
-    color: #81c784;
-  }
-  .MuiTouchRipple-root.Mui-checked {
-    color: #10b274;
-  }
-  .MuiFormLabel-root.Mui-focused {
-    color: #10b274;
-  }
-  .MuiInput-underline:after {
-    border-bottom-color: #10b274;
-  }
-  .MuiIconButton-colorSecondary:hover {
-    background-color: white;
-  }
-  .MuiCheckbox-colorSecondary.Mui-checked {
-    color: #10b274;
-    &:hover {
+    .sign-btn {
+      background-color: #81c784;
+      color: white;
+      margin: 50px;
+      &:hover {
+        background-color: #10b274;
+      }
+    }
+    .MuiDialogActions-root {
+      flex-direction: column;
+    }
+    .switch-text {
+      color: blue;
+    }
+    .MuiRadio-root {
+      color: #81c784;
+    }
+    .MuiTouchRipple-root.Mui-checked {
+      color: #10b274;
+    }
+    .MuiFormLabel-root.Mui-focused {
+      color: #10b274;
+    }
+    .MuiInput-underline:after {
+      border-bottom-color: #10b274;
+    }
+    .MuiIconButton-colorSecondary:hover {
       background-color: white;
     }
-  }
-  .err_msg {
-    height: 30px;
-    color: red;
+    .MuiCheckbox-colorSecondary.Mui-checked {
+      color: #10b274;
+      &:hover {
+        background-color: white;
+      }
+    }
   }
 }
