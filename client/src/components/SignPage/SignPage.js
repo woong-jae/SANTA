@@ -17,6 +17,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import { isEmail } from "validator";
 
 import { signin } from "../../actions/auth";
+import {isPassword} from "../common/check";
 import "./Sections/SignPage.scss";
 
 export default function SigninDialog() {
@@ -62,13 +63,18 @@ export default function SigninDialog() {
       } else {
         setInputs({...init, email: "Invalid user"});
       }
-    } else { // Sign up
-      if (inputs.passwd.length < 8) {
-        setInputs({ [inputs.error]: "" });
+    }  else {
+      // 1.이메일 중복 여부 2. 비밀번호 형식 여부
+      // 3. 비밀번호 일치여부 4. 모든 항목 입력 여부
+
+      if (!isPassword(inputs.passwd)) {
+        
       }
       if (inputs.passwd !== inputs.passwdConfirm) {
-        setInputs({ [inputs.error]: "비밀번호가 일치하지 않습니다." });
+
       }
+      
+      setIsSignIn(false);
       setInputs(init);
     }
   };

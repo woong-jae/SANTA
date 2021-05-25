@@ -76,7 +76,12 @@ const CardListHeader = (props) => {
             <AiOutlineUser className="btn-icon" />
           </Button>
         </Link>}
-        {!props.user && <SigninPage />}
+        {props.user ? <Button
+        variant="contained"
+        className="header-btn"
+      >
+        sign out
+      </Button> : <SigninPage />}
       </div>
     </header>
   );
