@@ -24,8 +24,8 @@ export default function ShowCard(props) {
       dispatch(deletePost(card._id));
       props.handleShow(false)
       history.push("/list");
+      props.handleShow(false)
     }
-    props.handleShow(false)
   };
 
   return (
