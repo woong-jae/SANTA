@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { Typography } from "@material-ui/core";
+import decode from "jwt-decode";
 
+import { getPosts } from "../../actions/post";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import "./Sections/Mypage.scss";
 
 const MyPage = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    setUser(null);
+  }
+
+  useEffect(() => {
+    dispatch(getPosts());
+    const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+    setUser(JSON.parse(localStorage.getItem('profile')));
+  }, [dispatch, location]);
+
   return (
     <div className="mypage">
-      <CardListHeader />
+      <CardListHeader user={user}/>
       <div className="mypage-main">
         <section className="mypage-body">
           <header>
@@ -20,42 +45,28 @@ const MyPage = () => {
               <div>
                 <strong>닉네임</strong>
               </div>
-              <div id="nickname">팔공산엄홍길</div>
+              <div id="nickname">{user?.result?.nickname}</div>
             </Typography>
             <hr />
             <Typography>
               <div>
                 <strong>성별</strong>
               </div>
-              <div id="sex">남성</div>
+              <div id="sex">{user?.result?.sex}</div>
             </Typography>
             <hr />
             <Typography>
               <div>
                 <strong>생년월일</strong>
               </div>
-              <div id="birth">1998년 12월 25일</div>
+              <div id="birth">{user?.result?.birth}</div>
             </Typography>
             <hr />
             <Typography>
               <div>
-                <strong>이메일 주소</strong>
+                <strong>이메일</strong>
               </div>
-              <div id="email">tack123@knu.ac.kr</div>
-            </Typography>
-            <hr />
-            <Typography>
-              <div>
-                <strong>아이디</strong>
-              </div>
-              <div id="id">tack123</div>
-            </Typography>
-            <hr />
-            <Typography>
-              <div>
-                <strong>비밀번호</strong>
-              </div>
-              <div id="password">**********</div>
+              <div id="email">{user?.result?.email}</div>
             </Typography>
             <hr />
           </article>
