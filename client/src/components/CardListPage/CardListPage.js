@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from "react-router-dom";
 import decode from 'jwt-decode';
 
@@ -19,7 +19,7 @@ const CardListPage = () => {
   }
 
   useEffect(() => {
-    dispatch(getPosts());
+    dispatch(getPosts(location.state.mountain));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);

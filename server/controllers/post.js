@@ -17,7 +17,7 @@ export const createPost = async (req, res) => {
 
 export const getPosts = async (req, res) => {
     try {
-        const posts = await Posts.find();
+        const posts = await Posts.find({mountain: req.params.mountain});
 
         res.status(200).json(posts);
     } catch (error) {

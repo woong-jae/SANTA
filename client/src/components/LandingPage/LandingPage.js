@@ -8,6 +8,7 @@ import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
 import "./Sections/LandingPage.scss";
 import "../common/Sections/Search.scss";
+import { useHistory } from "react-router";
 
 const LandingPage = () => {
   const currentDate = new Date();
@@ -22,10 +23,15 @@ const LandingPage = () => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    document.location.pathname = "/list";
+    history.push({
+      pathname: '/list',
+      search: `?mountain=${searchState.mountain}`,
+      state: { mountain: searchState.mountain }
+    });
     setSearchState(initialState);
   };
 

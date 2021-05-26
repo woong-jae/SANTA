@@ -27,6 +27,7 @@ const InputMountain = ({ results, keyword, updateField }) => {
         className="header-input"
         value={keyword}
         onChange={e => updateField("keyword", e.target.value)}
+        autoComplete = "off"
       ></TextField>
       
       {results && results.length > 0 ? (
