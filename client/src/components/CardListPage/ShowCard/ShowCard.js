@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -9,19 +11,22 @@ import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import "./Sections/ShowCard.scss";
+import { deletePost } from "../../../actions/post";
 
 export default function ShowCard(props) {
   const { card, date, ageLimit, user } = props;
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   const updateCard = async () => {};
 
-  const deleteCard = async () => {
+  const deleteCard = () => {
     if (
       window.confirm(
         "해당 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다."
       )
     ) {
-      // deletePost
+      dispatch(deletePost(card._id));
+      history.push("/list");
     }
   };
 
@@ -104,7 +109,7 @@ export default function ShowCard(props) {
             </Paper>
           </div>
           <footer>
-            {user && (
+            {user?.result?.nickname === card.createdUser && (
               <div className="footer-btn">
                 <Button
                   variant="contained"
