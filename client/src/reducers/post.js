@@ -1,5 +1,5 @@
 
-import { CREATE, FETCH_ALL, DELETE } from '../constants/actionTypes';
+import { CREATE, FETCH_ALL, DELETE, UPDATE } from '../constants/actionTypes';
 
 const postReducer = (posts = [], action) => {
     switch (action.type) {
@@ -9,6 +9,8 @@ const postReducer = (posts = [], action) => {
             return [ ...posts, action.data ];
         case DELETE:
             return posts.filter(post => post._id !== action.data);
+        case UPDATE:
+            return posts.map((post) => post._id === action.data._id ? action.data : post);
         default:
             return posts;
     }
