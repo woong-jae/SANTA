@@ -7,13 +7,28 @@ import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import Paper from "@material-ui/core/Paper";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import "./Sections/ShowCard.scss";
 import { deletePost } from "../../../actions/post";
 
 export default function ShowCard(props) {
-  const { card, date, ageLimit } = props;
-  
+  const { card, date, ageLimit, user } = props;
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const updateCard = async () => {};
+
+  const deleteCard = () => {
+    if (
+      window.confirm(
+        "해당 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다."
+      )
+    ) {
+      dispatch(deletePost(card._id));
+      history.push("/list");
+    }
+  };
+
   return (
     <div>
       <div className="show">
@@ -83,6 +98,19 @@ export default function ShowCard(props) {
               </div>
             </Paper>
           </div>
+          <footer>
+            {user?.result?.nickname === card.createdUser && (
+              <div className="footer-btn">
+                <Button
+                  variant="contained"
+                  id="delete-btn"
+                  onClick={deleteCard}
+                >
+                  <HighlightOffIcon />
+                </Button>
+              </div>
+            )}
+          </footer>
         </Paper>
       </div>
       <footer style={{ height: "1vh" }}></footer>
