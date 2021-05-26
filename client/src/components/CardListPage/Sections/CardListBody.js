@@ -5,7 +5,7 @@ import "./CardListPage.scss";
 import Cards from "./Cards";
 import CreateCard from "../CreateCard/CreateCard";
 import ShowCard from "../ShowCard/ShowCard";
-import Paging from "./Pagination";
+//import Paging from "./Pagination";
 
 const CardListBody = (props) => {
   const posts = useSelector((state) => state.post);
@@ -18,6 +18,13 @@ const CardListBody = (props) => {
       card: card,
       date: date,
       ageLimit: ageLimit,
+    });
+  };
+
+  const handleUpdate = (updateCard) => {
+    setIsShowCard({
+      ...isShowCard,
+      card: updateCard,
     });
   };
 
@@ -35,7 +42,7 @@ const CardListBody = (props) => {
           <footer></footer>
         </section>
         <footer className="cardList-footer">
-          {props.user && <CreateCard user={props.user}/>}
+          {props.user && <CreateCard user={props.user} />}
         </footer>
       </div>
     );
@@ -45,9 +52,9 @@ const CardListBody = (props) => {
       card={isShowCard.card}
       date={isShowCard.date}
       ageLimit={isShowCard.ageLimit}
-      user= {props.user}
-      handleShow={handleShow}
       user={props.user}
+      handleShow={handleShow}
+      handleUpdate={handleUpdate}
     />
   );
 };

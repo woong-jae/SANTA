@@ -156,6 +156,7 @@ export default function ShowCard(props) {
                 <textarea
                   required
                   name="description"
+                  value={updateState.description}
                   placeholder="내용을 입력하세요. *"
                   id="update-description"
                   onChange={handleChange}
@@ -171,6 +172,7 @@ export default function ShowCard(props) {
                 <textarea
                   required
                   name="contact"
+                  value={updateState.contact}
                   placeholder="연락망을 입력하세요. *
                    (ex. 연락처, 카카오톡 오픈채팅 등)"
                   id="update-contact"
