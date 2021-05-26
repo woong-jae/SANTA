@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -87,7 +88,7 @@ export default function CreateCard(props) {
         aria-describedby="simple-modal-description"
       >
         <div className="input-paper">
-          <div style={{ width: "970px" }}>
+          <div style={{ width: "100%" }}>
             <form onSubmit={handleSubmit} className="input-form">
               <br />
               <TextField
@@ -171,7 +172,6 @@ export default function CreateCard(props) {
                   variant="contained"
                   className="form-btn"
                   type="submit"
-                  onClick={handleSubmit}
                 >
                   모임 생성
                 </Button>
