@@ -2,21 +2,6 @@
   text-align: center;
   .signform {
     display: grid;
-    .MuiFormLabel-root {
-      color: black;
-      &:required {
-        color: black;
-      }
-      .Mui-focused {
-        color: #10b274;
-      }
-    }
-    .MuiInput-underline {
-      border-bottom-color: black;
-      &:after {
-        border-bottom-color: #10b274;
-      }
-    }
     .MuiIconButton-colorSecondary:hover {
       background-color: white;
     }

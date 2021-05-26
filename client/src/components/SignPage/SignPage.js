@@ -49,39 +49,8 @@ export default function SigninDialog() {
       ...inputs,
       [name]: value,
     });
-
-    // if (isEmail(inputs.email)) {
-    //   setValid({ ...valid, isValidEmail: true });
-    //   if (isPassword(inputs.passwd)) {
-    //     setValid({ ...valid, isValidPasswd: true });
-    //     if (inputs.passwd === inputs.passwdConfirm) {
-    //       setValid({ ...valid, isConfirm: true });
-    //     }
-    //   } else {
-    //     setValid({ ...valid, isValidPasswd: false });
-    //     if (inputs.passwd === inputs.passwdConfirm) {
-    //       setValid({ ...valid, isConfirm: true });
-    //     } else {
-    //       setValid({ ...valid, isConfirm: false });
-    //     }
-    //   }
-    // } else {
-    //   setValid({ ...valid, isValidEmail: false });
-    //   if (isPassword(inputs.passwd)) {
-    //     setValid({ ...valid, isValidPasswd: true });
-    //     if (inputs.passwd === inputs.passwdConfirm) {
-    //       setValid({ ...valid, isConfirm: true });
-    //     }
-    //   } else {
-    //     setValid({ ...valid, isValidPasswd: false });
-    //     if (inputs.passwd === inputs.passwdConfirm) {
-    //       setValid({ ...valid, isConfirm: true });
-    //     } else {
-    //       setValid({ ...valid, isConfirm: false });
-    //     }
-    //   }
-    // }
   };
+
   useEffect(() => {
     console.log(inputs, valid);
     if (isEmail(inputs.email)) {
@@ -104,9 +73,8 @@ export default function SigninDialog() {
     setIsSignIn(true);
     setOpen(false);
   };
-  const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
-  const hasPwdError = (passwordEnter) =>
-    isPassword(inputs.passwd) ? false : true;
+  const hasEmailError = (emailEnter) => isEmail(inputs.email) ? false : true;
+  const hasPwdError = (passwordEnter) => isPassword(inputs.passwd) ? false : true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,10 +88,8 @@ export default function SigninDialog() {
         setInputs({ ...init, email: "Invalid user" });
       }
     } else {
-      // 1.이메일 중복 여부 2. 비밀번호 형식 여부
-      // 3. 비밀번호 일치여부 4. 모든 항목 입력 여부
       if (valid.isValidEmail && valid.isValidPasswd && valid.isConfirm) {
-        // 이메일과 비밀번호 형식에 맞고, 비밀번호 확인과 일치하는 경우
+        // 이메일과 비밀번호 형식에 맞고, 비밀번호 확인과 일치하는 경우 -> signup 진행
         console.log(inputs);
       }
       setIsSignIn(false);
@@ -164,7 +130,7 @@ export default function SigninDialog() {
               type="id"
               value={inputs.email}
               helperText="e.g. name@email.com"
-              error={hasEmailError("email")}
+              error={inputs.email !== "" ? hasEmailError("email") : false}
               onChange={onChange}
               autoFocus
               fullWidth
@@ -176,7 +142,7 @@ export default function SigninDialog() {
               type="password"
               value={inputs.passwd}
               helperText="영문 숫자 조합 8자 이상 입력해주세요"
-              error={hasPwdError("password")}
+              error={inputs.passwd !== ""? hasPwdError("password") : false}
               onChange={onChange}
               fullWidth
             ></TextField>
@@ -189,6 +155,7 @@ export default function SigninDialog() {
                   type="password"
                   value={inputs.passwdConfirm}
                   onChange={onChange}
+                  error={inputs.passwd !== inputs.passwdConfirm? true : false}
                   fullWidth
                 ></TextField>
                 <TextField
@@ -236,23 +203,6 @@ export default function SigninDialog() {
               </>
             )}
           </DialogContent>
-          {/* {isSignin ? (
-            <strong>
-              <Typography variant="body5" className="wrong-input">
-                {valid.isValidEmail && valid.isValidPasswd
-                  ? ""
-                  : "입력 형식을 확인해주세요"}
-              </Typography>
-            </strong>
-          ) : (
-            <strong>
-              <Typography variant="body5" className="wrong-input">
-                {valid.isValidEmail && valid.isValidPasswd && valid.isConfirm
-                  ? ""
-                  : "입력 형식을 확인해주세요"}
-              </Typography>
-            </strong>
-          )} */}
           <DialogActions>
             <Button
               type="submit"
