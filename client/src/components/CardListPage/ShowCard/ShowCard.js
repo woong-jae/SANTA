@@ -15,19 +15,18 @@ import UpdateCard from "./Sections/UpdateCard";
 import "./Sections/ShowCard.scss";
 
 export default function ShowCard(props) {
-  const { card, date, ageLimit, user, handleShow } = props;
+  const { card, date, ageLimit, user, handleShow, handleUpdate } = props;
   const [isUpdate, setIsUpdate] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // ageLimit, date 가공하기!
   const isUpdateCard = () => {
     setIsUpdate(true);
   };
 
   const updateCard = async (updateState) => {
-    // alert(updateState.date);
     dispatch(updatePost(card._id, updateState));
+    handleUpdate(updateState)
     setIsUpdate(false);
   };
 
