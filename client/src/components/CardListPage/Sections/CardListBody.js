@@ -46,6 +46,7 @@ const CardListBody = (props) => {
       date={isShowCard.date}
       ageLimit={isShowCard.ageLimit}
       handleShow={handleShow}
+      user={props.user}
     />
   );
 };
