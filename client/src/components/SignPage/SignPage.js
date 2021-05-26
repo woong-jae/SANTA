@@ -18,6 +18,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import { signin } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
+import { AiFillAlipaySquare } from "react-icons/ai";
 
 export default function SigninDialog() {
   const dispatch = useDispatch();
@@ -61,6 +62,8 @@ export default function SigninDialog() {
           setValid({ ...valid, isConfirm: true });
         }
       }
+    } else {
+      setValid({...valid, isValidEmail: false, isValidPasswd: false, isConfirm: false})
     }
   }, [inputs]);
 
