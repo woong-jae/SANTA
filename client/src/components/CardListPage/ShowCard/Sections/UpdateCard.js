@@ -2,25 +2,29 @@ import React, { useState } from "react";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import Paper from "@material-ui/core/Paper";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import TextField from "@material-ui/core/TextField";
 import Slider from "@material-ui/core/Slider";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
 
-import SelectDate from "../../../common/SelectDate";
 import "./ShowCard.scss";
-import "./UpdateCard.scss"
+import "./UpdateCard.scss";
 
 function valuetext(value) {
   return `${value}`;
 }
 
 export default function ShowCard(props) {
-  const { card, deleteCard, isUpdateCard } = props;
+  const { card, updateCard, deleteCard, handleShow } = props;
   const [updateState, setUpdateState] = useState(card);
+  const [selectedDate, setSelectedDate] = useState(card.date);
   const [age, setAge] = useState([
     updateState.ageLimit[0],
     updateState.ageLimit[1],
@@ -42,10 +46,11 @@ export default function ShowCard(props) {
     });
   };
 
-  const getDateValue = (value) => {
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
     setUpdateState({
       ...updateState,
-      date: value,
+      date: date,
     });
   };
 
@@ -64,7 +69,7 @@ export default function ShowCard(props) {
           <Button
             variant="contained"
             className="back-btn"
-            onClick={() => props.handleShow(false)}
+            onClick={() => handleShow(false)}
           >
             <ArrowBackIcon />
           </Button>
@@ -78,7 +83,10 @@ export default function ShowCard(props) {
               onChange={handleChange}
             />
           </div>
-          <Typography id="show-name">
+          <Typography
+            id="show-name"
+            style={{ marginTop: "5px", marginBottom: "10px" }}
+          >
             <strong>{card.createdUser}</strong> 님의 모임
           </Typography>
           <div className="show-flex">
@@ -124,26 +132,50 @@ export default function ShowCard(props) {
                     />
                   </div>
                   <div className="header-info-update" id="update-date">
-                    <SelectDate name="date" getDateValue={getDateValue} />
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <KeyboardDatePicker
+                        disableToolbar
+                        variant="inline"
+                        format="yyyy-MM-dd"
+                        margin="normal"
+                        minDate={new Date()}
+                        id="input-date"
+                        label="가고 싶은 날짜"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                          "aria-label": "change date",
+                        }}
+                      />
+                    </MuiPickersUtilsProvider>
                   </div>
                 </div>
               </header>
               <br />
-              <section className="show-body">
-                <Typography id="show-description">
-                  <strong>{card.description}</strong>
-                </Typography>
+              <section className="show-body" style={{ height: "150px" }}>
+                <textarea
+                  required
+                  name="description"
+                  placeholder="내용을 입력하세요. *"
+                  id="update-description"
+                  onChange={handleChange}
+                />
               </section>
             </div>
             <Paper className="side" elevation={5}>
-              <div id="contact-paper" className="side-paper">
-                <Typography>
-                  <span>
-                    <ContactPhoneIcon id="contact-icon" />
-                    <strong> 연락망</strong>
-                  </span>
-                  <span id="contact-contents">{card.contact}</span>
-                </Typography>
+              <div
+                id="contact-paper"
+                className="side-paper"
+                style={{ height: "160px" }}
+              >
+                <textarea
+                  required
+                  name="contact"
+                  placeholder="연락망을 입력하세요. *
+                   (ex. 연락처, 카카오톡 오픈채팅 등)"
+                  id="update-contact"
+                  onChange={handleChange}
+                />
               </div>
               <div id="Member-paper" className="side-paper">
                 <Typography>
@@ -161,7 +193,7 @@ export default function ShowCard(props) {
                 <Button
                   variant="contained"
                   id="update-btn"
-                  onClick={() => isUpdateCard(false)}
+                  onClick={() => updateCard(updateState)}
                 >
                   <CheckCircleIcon />
                 </Button>

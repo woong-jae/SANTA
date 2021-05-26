@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Dialog,
   Button,
@@ -14,10 +14,9 @@ import {
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
-import { isEmail } from "validator";
 
 import { signin } from "../../actions/auth";
-import {isPassword} from "../common/check";
+import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
 
 export default function SigninDialog() {
@@ -25,13 +24,10 @@ export default function SigninDialog() {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setInputs(init);
-    setIsSignIn(true);
-    setOpen(false);
+  const validator = {
+    isValidEmail: false,
+    isValidPasswd: false,
+    isConfirm: false,
   };
   const init = {
     email: "",
@@ -40,48 +36,106 @@ export default function SigninDialog() {
     birth: new Date(),
     sex: "",
     nickname: "",
-    error: false,
   };
+
+  const [valid, setValid] = useState(validator);
   const [inputs, setInputs] = useState(init);
+
   const onChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
 
     setInputs({
       ...inputs,
       [name]: value,
     });
+
+    // if (isEmail(inputs.email)) {
+    //   setValid({ ...valid, isValidEmail: true });
+    //   if (isPassword(inputs.passwd)) {
+    //     setValid({ ...valid, isValidPasswd: true });
+    //     if (inputs.passwd === inputs.passwdConfirm) {
+    //       setValid({ ...valid, isConfirm: true });
+    //     }
+    //   } else {
+    //     setValid({ ...valid, isValidPasswd: false });
+    //     if (inputs.passwd === inputs.passwdConfirm) {
+    //       setValid({ ...valid, isConfirm: true });
+    //     } else {
+    //       setValid({ ...valid, isConfirm: false });
+    //     }
+    //   }
+    // } else {
+    //   setValid({ ...valid, isValidEmail: false });
+    //   if (isPassword(inputs.passwd)) {
+    //     setValid({ ...valid, isValidPasswd: true });
+    //     if (inputs.passwd === inputs.passwdConfirm) {
+    //       setValid({ ...valid, isConfirm: true });
+    //     }
+    //   } else {
+    //     setValid({ ...valid, isValidPasswd: false });
+    //     if (inputs.passwd === inputs.passwdConfirm) {
+    //       setValid({ ...valid, isConfirm: true });
+    //     } else {
+    //       setValid({ ...valid, isConfirm: false });
+    //     }
+    //   }
+    // }
   };
+  useEffect(() => {
+    console.log(inputs, valid);
+    if (isEmail(inputs.email)) {
+      setValid({ ...valid, isValidEmail: true });
+      if (isPassword(inputs.passwd)) {
+        setValid({ ...valid, isValidPasswd: true });
+        if (inputs.passwd === inputs.passwdConfirm) {
+          setValid({ ...valid, isConfirm: true });
+        }
+      }
+    }
+  }, [inputs]);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setInputs(init);
+    setValid(validator);
+    setIsSignIn(true);
+    setOpen(false);
+  };
+  const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
+  const hasPwdError = (passwordEnter) =>
+    isPassword(inputs.passwd) ? false : true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSignin) {
-      await dispatch(signin({email: inputs.email, passwd: inputs.passwd}));
-      const user = JSON.parse(localStorage.getItem('profile'));
+      await dispatch(signin({ email: inputs.email, passwd: inputs.passwd }));
+      const user = JSON.parse(localStorage.getItem("profile"));
       if (user) {
         handleClose();
-        history.push('/list');
+        history.push("/list");
       } else {
-        setInputs({...init, email: "Invalid user"});
+        setInputs({ ...init, email: "Invalid user" });
       }
     } else {
       // 1.이메일 중복 여부 2. 비밀번호 형식 여부
       // 3. 비밀번호 일치여부 4. 모든 항목 입력 여부
-
-      if (!isPassword(inputs.passwd)) {
-        setInputs({[inputs.error]: true})
+      if (valid.isValidEmail && valid.isValidPasswd && valid.isConfirm) {
+        // 이메일과 비밀번호 형식에 맞고, 비밀번호 확인과 일치하는 경우
+        console.log(inputs);
       }
-      if (inputs.passwd !== inputs.passwdConfirm) {
-
-      }
-      
       setIsSignIn(false);
       setInputs(init);
     }
+    setValid(validator);
   };
 
   const toggle = () => {
     setInputs(init);
-    setIsSignIn(prev => !prev);
+    setValid(validator);
+    setIsSignIn((prev) => !prev);
   };
 
   return (
@@ -107,9 +161,10 @@ export default function SigninDialog() {
               required
               name="email"
               label="이메일"
-              type="email"
+              type="id"
               value={inputs.email}
               helperText="e.g. name@email.com"
+              error={hasEmailError("email")}
               onChange={onChange}
               autoFocus
               fullWidth
@@ -120,10 +175,10 @@ export default function SigninDialog() {
               label="비밀번호"
               type="password"
               value={inputs.passwd}
-              helperText="최소 8자 이상 입력해주세요"
+              helperText="영문 숫자 조합 8자 이상 입력해주세요"
+              error={hasPwdError("password")}
               onChange={onChange}
               fullWidth
-              error={inputs.error}
             ></TextField>
             {!isSignin && (
               <>
@@ -132,28 +187,27 @@ export default function SigninDialog() {
                   name="passwdConfirm"
                   label="비밀번호 확인"
                   type="password"
-                  fullWidth
                   value={inputs.passwdConfirm}
-                  helperText={inputs.error}
                   onChange={onChange}
+                  fullWidth
                 ></TextField>
                 <TextField
                   name="birth"
                   label="생년월일"
-                  margin="normal"
                   type="date"
                   value={inputs.birth}
-                  defaultValue="1998-12-12"
                   onChange={onChange}
-                  fullWidth
                   InputLabelProps={{
                     shrink: true,
+                    required: true,
                   }}
+                  fullWidth
+                  margin="normal"
                 ></TextField>
                 <RadioGroup
+                  required
                   aria-label="sex"
                   name="sex"
-                  margin="normal"
                   value={inputs.sex}
                   onChange={onChange}
                   row
@@ -175,29 +229,53 @@ export default function SigninDialog() {
                   required
                   name="nickname"
                   label="닉네임"
-                  fullWidth
                   value={inputs.nickname}
                   onChange={onChange}
+                  fullWidth
                 ></TextField>
               </>
             )}
           </DialogContent>
+          {/* {isSignin ? (
+            <strong>
+              <Typography variant="body5" className="wrong-input">
+                {valid.isValidEmail && valid.isValidPasswd
+                  ? ""
+                  : "입력 형식을 확인해주세요"}
+              </Typography>
+            </strong>
+          ) : (
+            <strong>
+              <Typography variant="body5" className="wrong-input">
+                {valid.isValidEmail && valid.isValidPasswd && valid.isConfirm
+                  ? ""
+                  : "입력 형식을 확인해주세요"}
+              </Typography>
+            </strong>
+          )} */}
           <DialogActions>
             <Button
-                  type="submit"
-                  variant="contained"
-                  className="sign-btn"
-                  fullWidth
-                >
-                  {isSignin ? "Sign In" : "Sign Up"}
-                </Button>
-                <Button
-                  type="button"
-                  className="switch-text"
-                  onClick={toggle}
-                >
-                  <strong>{isSignin? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}</strong>
-              </Button>
+              type="submit"
+              variant="contained"
+              className="sign-btn"
+              fullWidth
+              disabled={
+                isSignin
+                  ? valid.isValidEmail && valid.isValidPasswd && inputs !== ""
+                    ? false
+                    : true
+                  : valid.isValidEmail && valid.isValidPasswd && valid.isConfirm
+                  ? false
+                  : true
+              }
+            >
+              {isSignin ? "Sign In" : "Sign Up"}
+            </Button>
+            <Button type="button" className="switch-text" onClick={toggle}>
+              <strong>
+                {isSignin ? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}
+              </strong>
+            </Button>
           </DialogActions>
         </form>
       </Dialog>
