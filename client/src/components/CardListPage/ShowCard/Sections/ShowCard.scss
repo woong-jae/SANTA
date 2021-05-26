@@ -1,125 +1,102 @@
 .show {
-  text-align: -webkit-center;
-  min-height: 88vh;
-  .show-paper {
-    @media (min-width: 1128px) {
-      max-width: 1080px;
-    }
-    @media (min-width: 744px) {
-      max-width: 696px;
-    }
-    text-align: left;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    padding: 30px;
-    background-color: white;
-    .back-btn {
-      color: white;
-      background-color: #10b274;
-      font-size: 1em;
-      height: 30px;
-      border-radius: 20px;
-      &:hover {
-        background-color: #059960;
-      }
-    }
-    #show-title {
-      text-align: center;
-      margin-top: 50px;
-    }
-    #show-name {
-      text-align: center;
-      margin-top: 15px;
-      margin-bottom: 50px;
-    }
-    .show-flex {
-      display: flex;
-      justify-content: space-between;
-      .show-header {
-        border-bottom: 2px solid #10b274;
-        .header-detail {
-          display: inline-block;
+    min-height: 83vh;
+    text-align: -webkit-center;
+    .show-paper {
+        @media (min-width: 1128px) {
+            max-width: 1080px;
         }
-        .header-info {
-          margin-bottom: 15px;
+        @media (min-width: 744px) {
+            max-width: 696px;
         }
-      }
-      .show-body {
-        #show-description {
-          display: block;
-          word-break: break-all;
-        }
-      }
-      .side {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: fit-content;
-        .side-paper {
-          width: 190px;
-          margin-bottom: 30px;
-        }
-        #contact-paper {
-          padding: 17px;
-          padding-bottom: 0px;
-          text-align: center;
-          #contact-contents {
-            display: block;
-            word-break: break-all;
-            text-align: left;
-          }
-          #contact-icon {
-            color: #10b274;
-            margin-bottom: 4px;
-          }
-        }
-        #Member-paper {
-          padding: 10px;
-          text-align: center;
-          .Member-info {
-            margin-top: 3px;
-            border: 2px solid #10b274;
-            padding: 10px;
-          }
-        }
-        #btn-paper {
-          width: 119px;
-          text-align: center;
-          .apply-btn {
+        text-align: left;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 30px;
+        padding-bottom: 60px;
+        background-color: white;
+        .back-btn {
             color: white;
             background-color: #10b274;
-            font-size: 1.4em;
+            font-size: 1em;
             &:hover {
-              background-color: #059960;
+                background-color: #059960;
             }
-          }
-          #update-btn {
-            color: white;
-            background-color: #10b274;
-            font-size: 1.4em;
-            &:hover {
-              background-color: #059960;
+        }
+        #show-title,
+        #show-name {
+            text-align: center;
+            margin-top: 5px;
+        }
+        #show-name {
+            margin-bottom: 50px;
+        }
+        .show-flex {
+            display: flex;
+            justify-content: space-between;
+            .show-header {
+                border-bottom: 2px solid #10b274;
+                .header-detail {
+                    display: inline-block;
+                }
+                .header-info {
+                    margin-bottom: 15px;
+                }
             }
-          }
+            .show-body {
+                #show-description {
+                    display: inline-block;
+                    height: auto;
+                    word-break: break-all;
+                }
+            }
+            .side {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: fit-content;
+                .side-paper {
+                    width: 190px;
+                    margin-bottom: 30px;
+                }
+                #contact-paper {
+                    padding: 17px;
+                    padding-bottom: 0px;
+                    text-align: center;
+                    #contact-contents {
+                        display: block;
+                        word-break: break-all;
+                        text-align: left;
+                    }
+                    #contact-icon {
+                        color: #10b274;
+                        margin-bottom: 4px;
+                    }
+                }
+                #Member-paper {
+                    padding: 10px;
+                    text-align: center;
+                    .Member-info {
+                        margin-top: 3px;
+                        border: 2px solid #10b274;
+                        padding: 10px;
+                    }
+                }
+                #btn-paper {
+                    width: 119px;
+                    .apply-btn {
+                        color: white;
+                        background-color: #10b274;
+                        font-size: 1.4em;
+                        &:hover {
+                            background-color: #059960;
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-    footer {
-      .footer-btn {
-        text-align: center;
-        #delete-btn {
-          color: white;
-          background-color: rgb(247, 111, 111);
-          font-size: 1em;
-          &:hover {
-            background-color: rgb(247, 83, 83);
-          }
-        }
-      }
-    }
-  }
 }
 
-// footer {
-//     height: 1vh;
-// }
+footer {
+    height: 1vh;
+}

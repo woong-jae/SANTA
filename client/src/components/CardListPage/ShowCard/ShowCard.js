@@ -7,29 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import Paper from "@material-ui/core/Paper";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import CreateIcon from "@material-ui/icons/Create";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import "./Sections/ShowCard.scss";
 import { deletePost } from "../../../actions/post";
 
 export default function ShowCard(props) {
-  const { card, date, ageLimit, user } = props;
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const updateCard = async () => {};
-
-  const deleteCard = () => {
-    if (
-      window.confirm(
-        "해당 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다."
-      )
-    ) {
-      dispatch(deletePost(card._id));
-      history.push("/list");
-    }
-  };
-
+  const { card, date, ageLimit } = props;
+  
   return (
     <div>
       <div className="show">
@@ -41,7 +25,7 @@ export default function ShowCard(props) {
           >
             <ArrowBackIcon />
           </Button>
-          <Typography variant="h6" id="show-title">
+          <Typography variant="h5" id="show-title">
             <strong>{card.title}</strong>
           </Typography>
           <Typography id="show-name">
@@ -55,8 +39,7 @@ export default function ShowCard(props) {
                     <strong>산</strong> : {card.mountain}
                   </Typography>
                   <Typography className="header-info">
-                    <strong>현재 인원</strong> : {card.currentMember.length} /{" "}
-                    {card.maxMember}
+                    <strong>현재 인원</strong> : {card.currentMember.length}  / {card.maxMember}
                   </Typography>
                   <Typography className="header-info">
                     <strong>제한 연령</strong> : {ageLimit}
@@ -85,42 +68,21 @@ export default function ShowCard(props) {
               </div>
               <div id="Member-paper" className="side-paper">
                 <Typography>
-                  <strong>현재 인원:</strong> {card.currentMember.length} /{" "}
-                  {card.maxMember}
+                  <strong>현재 인원:</strong> {card.currentMember.length} / {card.maxMember}
                 </Typography>
                 <div className="Member-info">
                   <Typography>
-                    <span>★</span>
-                    {card.createdUser}
+                    <span>★</span>{card.createdUser}
                   </Typography>
                 </div>
               </div>
               <div id="btn-paper" className="side-paper">
-                {!user ? (
-                  <Button variant="contained" className="apply-btn">
-                    참가 신청
-                  </Button>
-                ) : (
-                  <Button variant="contained" id="update-btn">
-                    <CreateIcon />
-                  </Button>
-                )}
+                <Button variant="contained" className="apply-btn">
+                  참가 신청
+                </Button>
               </div>
             </Paper>
           </div>
-          <footer>
-            {user?.result?.nickname === card.createdUser && (
-              <div className="footer-btn">
-                <Button
-                  variant="contained"
-                  id="delete-btn"
-                  onClick={deleteCard}
-                >
-                  <HighlightOffIcon />
-                </Button>
-              </div>
-            )}
-          </footer>
         </Paper>
       </div>
       <footer style={{ height: "1vh" }}></footer>
