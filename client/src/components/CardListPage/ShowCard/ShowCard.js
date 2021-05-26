@@ -18,8 +18,8 @@ export default function ShowCard(props) {
   const deleteCard = async () => {
     if (window.confirm("해당 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다.")) {
       // deletePost
-      props.handleShow(false)
     }
+    props.handleShow(false)
   };
 
   return (
