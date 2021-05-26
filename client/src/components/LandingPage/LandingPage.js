@@ -57,6 +57,13 @@ const LandingPage = () => {
     });
   };
 
+  const getMountainValue = (value) => {
+    setSearchState({
+      ...searchState,
+      mountain: value,
+    });
+  };
+
   return (
     <div className="landing_body">
       <Typography variant="h1" align="center">
@@ -64,7 +71,7 @@ const LandingPage = () => {
       </Typography>
       <div className="userinput">
         <form onSubmit={handleSubmit}>
-          <SearchMountain id="search-mountain"  />
+          <SearchMountain id="search-mountain" getMountainValue={getMountainValue} />
           <SelectDate id="search-date" getDateValue={getDateValue} />
           <InputPeople id="search-peopleNum" handleChange={handleChange} />
           <SearchBtn />

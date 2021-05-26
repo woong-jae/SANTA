@@ -110,14 +110,15 @@ class SearchMountain extends Component {
         results: []
     };
     matchName = (name, keyword) => {
+        var splited = name.split(" ");
         var keyLen = keyword.length;
-        name = name.toLowerCase().substring(0, keyLen);
-        return name == keyword && keyLen != 0;
+        var result = splited.find(item => item.substring(0,keyLen) == keyword);
+        return result != undefined && keyLen != 0;
       };
 
     onSearch = async text => {
         let { data } = this.state;
-        var results = data.filter(item => true == this.matchName(item.name, text));
+        var results = data.filter(item => (true == this.matchName(item.name, text)) || (true == this.matchName(item.location, text)));
         this.setState({ results });
       };
     
@@ -132,6 +133,7 @@ class SearchMountain extends Component {
                 results={results}
                 keyword={keyword}
                 updateField={this.updateField}
+                getMountainValue={this.props.getMountainValue}
             />
           );
     }

@@ -1,10 +1,14 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 
-const InputMountain = ({ results, keyword, updateField }) => {
+const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
   var ClickHandler = text => {
     updateField("keyword", text, false);
     updateField("results", []);
+    getMountainValue(text);
+  }
+  var ChangeHandler = e => {
+    updateField("keyword", e.target.value)
   }
 
   var renderResults = results && results.map(( { name, location }, index) => {
@@ -26,7 +30,7 @@ const InputMountain = ({ results, keyword, updateField }) => {
         name="mountain"
         className="header-input"
         value={keyword}
-        onChange={e => updateField("keyword", e.target.value)}
+        onChange={ChangeHandler}
         autoComplete = "off"
       ></TextField>
       
