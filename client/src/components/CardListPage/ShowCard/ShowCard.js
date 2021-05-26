@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { deletePost } from "../../../actions/post";
+import { deletePost, updatePost } from "../../../actions/post";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
@@ -25,8 +25,9 @@ export default function ShowCard(props) {
     setIsUpdate(true);
   };
 
-  const updateCard = (updateState) => {
-    alert(updateState.date)
+  const updateCard = async (updateState) => {
+    // alert(updateState.date);
+    dispatch(updatePost(card._id, updateState));
     setIsUpdate(false);
   };
 
