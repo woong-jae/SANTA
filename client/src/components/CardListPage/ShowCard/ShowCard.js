@@ -15,13 +15,19 @@ import UpdateCard from "./Sections/UpdateCard";
 import "./Sections/ShowCard.scss";
 
 export default function ShowCard(props) {
-  const { card, date, ageLimit, user } = props;
+  const { card, date, ageLimit, user, handleShow } = props;
   const [isUpdate, setIsUpdate] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const isUpdateCard = (update) => {
-    setIsUpdate(update);
+  // ageLimit, date 가공하기!
+  const isUpdateCard = () => {
+    setIsUpdate(true);
+  };
+
+  const updateCard = (updateState) => {
+    alert(updateState.date)
+    setIsUpdate(false);
   };
 
   const deleteCard = () => {
@@ -31,9 +37,9 @@ export default function ShowCard(props) {
       )
     ) {
       dispatch(deletePost(card._id));
-      props.handleShow(false);
+      handleShow(false);
       history.push("/list");
-      props.handleShow(false);
+      handleShow(false);
     }
   };
 
@@ -45,7 +51,7 @@ export default function ShowCard(props) {
             <Button
               variant="contained"
               className="back-btn"
-              onClick={() => props.handleShow(false)}
+              onClick={() => handleShow(false)}
             >
               <ArrowBackIcon />
             </Button>
@@ -112,7 +118,7 @@ export default function ShowCard(props) {
                     <Button
                       variant="contained"
                       id="update-btn"
-                      onClick={() => isUpdateCard(true)}
+                      onClick={isUpdateCard}
                     >
                       <CreateIcon />
                     </Button>
@@ -142,8 +148,10 @@ export default function ShowCard(props) {
   return (
     <UpdateCard
       card={card}
+      updateCard={updateCard}
       deleteCard={deleteCard}
       isUpdateCard={isUpdateCard}
+      handleShow={handleShow}
     />
   );
 }
