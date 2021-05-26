@@ -21,7 +21,7 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function ShowCard(props) {
+export default function UpdateCard(props) {
   const { card, updateCard, deleteCard, handleShow } = props;
   const [updateState, setUpdateState] = useState(card);
   const [selectedDate, setSelectedDate] = useState(card.date);
