@@ -2,7 +2,7 @@ import React from "react";
 //import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 
-import InputMountain from "../common/InputMountain";
+import SearchMountain from "../../api/searchMountain";
 import InputPeople from "../common/InputPeople";
 import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
@@ -58,7 +58,7 @@ const LandingPage = () => {
       </Typography>
       <div className="userinput">
         <form onSubmit={handleSubmit}>
-          <InputMountain id="search-mountain" handleChange={handleChange} />
+          <SearchMountain id="search-mountain"  />
           <SelectDate id="search-date" getDateValue={getDateValue} />
           <InputPeople id="search-peopleNum" handleChange={handleChange} />
           <SearchBtn />
