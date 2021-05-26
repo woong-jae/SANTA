@@ -28,6 +28,7 @@ export const getPosts = async (req, res) => {
 export const updatePost = async (req, res) => {
     const { _id } = req.params;
     const post = req.body;
+
     if (!req.userId) return res.json({message: "Unathenticated"});
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that _id");
@@ -39,8 +40,9 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     const { _id } = req.params;
-    if (!req.userId) return res.json({message: "Unathenticated"});
     
+    if (!req.userId) return res.json({message: "Unathenticated"});
+
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that id");
 
     await Posts.findByIdAndRemove(_id);
