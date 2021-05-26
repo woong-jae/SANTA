@@ -43,7 +43,6 @@ export default function SigninDialog() {
     error: false,
   };
   const [inputs, setInputs] = useState(init);
-
   const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -52,6 +51,7 @@ export default function SigninDialog() {
       [name]: value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSignin) {

@@ -18,3 +18,4 @@ export const deleteUser = (_id) => API.delete(`/user/${_id}`);
 
 export const fetchPosts = () => API.get("/post");
 export const createPost = (post) => API.post("/post", post);
+export const deletePost = (_id) => API.post(`/post/${_id}`);
