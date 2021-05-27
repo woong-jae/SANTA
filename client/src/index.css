@@ -1,4 +1,5 @@
 @font-face { font-family: 'Pacifico'; src: url(./components//common/fonts/Pacifico-Regular.ttf) format('truetype'); }
+@font-face { font-family: 'PermanentMarker'; src: url(./components//common/fonts/PermanentMarker-Regular.ttf) format('truetype'); }
 body {
   margin: 0;
   height: 100%;

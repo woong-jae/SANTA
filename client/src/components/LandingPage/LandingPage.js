@@ -1,7 +1,7 @@
 import React from "react";
 //import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import SearchMountain from "../../api/searchMountain";
 import InputPeople from "../common/InputPeople";
@@ -11,13 +11,15 @@ import "./Sections/LandingPage.scss";
 import "../common/Sections/Search.scss";
 import { useHistory } from "react-router";
 
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: 'Pacifico',
-  },
-});
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontFamily: 'PermanentMarker',
+    fontSize: 200
+  }
+}));
 
 const LandingPage = () => {
+  const classes = useStyles();
   const currentDate = new Date();
   const initialState = {
     mountain: "",
@@ -79,22 +81,20 @@ const LandingPage = () => {
 
   return (
     <div className="landing_body">
-      <MuiThemeProvider theme={theme}>
-        <Typography variant="h1" align="center">
+        <Typography className={classes.title} variant="h1" align="center">
           Santa
         </Typography>
-      </MuiThemeProvider>
-      <div className="userinput">
-        <form onSubmit={handleSubmit}>
-          <SearchMountain 
-            id="search-mountain" 
-            getMountainValue={getMountainValue} 
-          />
-          <SelectDate id="search-date" getDateValue={getDateValue} />
-          <InputPeople id="search-peopleNum" handleChange={handleChange} />
-          <SearchBtn />
-        </form>
-      </div>
+        <div className="userinput">
+          <form onSubmit={handleSubmit}>
+            <SearchMountain 
+              id="search-mountain" 
+              getMountainValue={getMountainValue} 
+            />
+            <SelectDate id="search-date" getDateValue={getDateValue} />
+            <InputPeople id="search-peopleNum" handleChange={handleChange} />
+            <SearchBtn />
+          </form>
+        </div>
     </div>
   );
 };

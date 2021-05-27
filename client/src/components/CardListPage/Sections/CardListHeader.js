@@ -27,7 +27,7 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
-  const [nick, setNick] = useState(props.user.result.nickname);
+  const [nick, setNick] = useState(props.user?.result?.nickname);
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
