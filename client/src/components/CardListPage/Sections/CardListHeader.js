@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { debounce } from "lodash";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { Button, Typography } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
-import { Button } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 
 import SigninPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -30,6 +27,7 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
+  const [nick, setNick] = useState(props.user?.result?.nickname);
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
@@ -62,40 +60,20 @@ const CardListHeader = (props) => {
     });
   };
 
-  // const [windowSize, setWindowSize] = useState({
-  //   width: window.innerWidth,
-  //   height: window.innerHeight
-  // });
-
-  // const handleResize = debounce(() => {
-  //   setWindowSize({
-  //     width: window.innerWidth,
-  //     height: window.innerHeight
-  //   });
-  // }, 1000);
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  //   return () => { // cleanup 
-  //     window.removeEventListener('resize', handleResize);
-  //   }
-  // }, []);
-
   return (
     <header className="cardList-header">
-      <Typography variant="h3" align="center" id="header-logo">
-        Santa
-      </Typography>
-      <form onSubmit={handleSubmit} className="input-form">
-        <div id="search-mountain" className="search-item">
-          <InputMountain name="mountain" handleChange={handleChange} />
-        </div>
-        <div id="search-date" className="search-item">
-          <SelectDate name="date" getDateValue={getDateValue} />
-        </div>
-        <div id="search-peopleNum" className="search-item">
-          <InputPeople name="peopleNum" handleChange={handleChange} />
-        </div>
+      <form onSubmit={handleSubmit} className="header-search">
+        <InputMountain
+          id="search-mountain"
+          name="mountain"
+          handleChange={handleChange}
+        />
+        <SelectDate id="search-date" name="date" getDateValue={getDateValue} />
+        <InputPeople
+          id="search-peopleNum"
+          name="peopleNum"
+          handleChange={handleChange}
+        />
         <SearchBtn />
       </form>
 
@@ -108,7 +86,7 @@ const CardListHeader = (props) => {
                 className="header-btn"
                 id="myPage-btn"
               >
-                {props.user?.result?.nickname}
+                {nick}
                 {/* <AiOutlineUser className="btn-icon" /> */}
               </Button>
             </Link>
