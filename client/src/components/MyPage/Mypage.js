@@ -8,8 +8,8 @@ import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
-import { getPosts, updateUser } from "../../actions/post";
-import { deleteUser } from "../../actions/auth";
+import { getPosts } from "../../actions/post";
+import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import "./Sections/Mypage.scss";
