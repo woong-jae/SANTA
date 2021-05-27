@@ -87,7 +87,7 @@ export default function UpdateCard(props) {
             id="show-name"
             style={{ marginTop: "5px", marginBottom: "10px" }}
           >
-            <strong>{card.createdUser}</strong> 님의 모임
+            <strong>{card.createdUser?.nickname}</strong> 님의 모임
           </Typography>
           <div className="show-flex">
             <div style={{ width: "65%" }}>
@@ -187,7 +187,7 @@ export default function UpdateCard(props) {
                 <div className="Member-info">
                   <Typography>
                     <span>★</span>
-                    {card.createdUser}
+                    {card.createdUser?.nickname}
                   </Typography>
                 </div>
               </div>
