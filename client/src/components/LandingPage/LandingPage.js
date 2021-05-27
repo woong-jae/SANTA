@@ -80,22 +80,6 @@ const LandingPage = () => {
 
   return (
     <div className="landing_body">
-<<<<<<< HEAD
-      <Typography variant="h1" align="center">
-        Santa
-      </Typography>
-      <div className="userinput">
-        <form className="input-form" onSubmit={handleSubmit}>
-          <SearchMountain
-            id="search-mountain"
-            getMountainValue={getMountainValue}
-          />
-          <SelectDate id="search-date" getDateValue={getDateValue} />
-          <InputPeople id="search-peopleNum" handleChange={handleChange} />
-          <SearchBtn />
-        </form>
-      </div>
-=======
         <Typography className={classes.title} variant="h1" align="center">
           Santa
         </Typography>
@@ -110,7 +94,6 @@ const LandingPage = () => {
             <SearchBtn />
           </form>
         </div>
->>>>>>> 278df75692015073df863b8279958a52a7eb3d36
     </div>
   );
 };

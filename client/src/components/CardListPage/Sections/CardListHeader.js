@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
 import { Link, useHistory } from "react-router-dom";
-<<<<<<< HEAD
 import { useDispatch } from "react-redux";
 
 import { AiOutlineUser } from "react-icons/ai";
 import { Button } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-=======
-import { Button, Typography } from "@material-ui/core";
-import { AiOutlineUser } from "react-icons/ai";
-import { useDispatch } from "react-redux";
->>>>>>> 278df75692015073df863b8279958a52a7eb3d36
 
 import SigninPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -36,14 +30,9 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
-  const [nick, setNick] = useState(props.user?.result?.nickname);
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
-<<<<<<< HEAD
-    document.location.reload(true);
-=======
     document.location.replace("/");
->>>>>>> 278df75692015073df863b8279958a52a7eb3d36
   };
 
   const handleSubmit = (event) => {
@@ -111,23 +100,6 @@ const CardListHeader = (props) => {
       </form>
 
       <div className="header-user">
-<<<<<<< HEAD
-        {props.user && (
-          <Link to="/myPage">
-            <Button variant="contained" className="header-btn" id="myPage-btn">
-              <AiOutlineUser className="btn-icon" />
-            </Button>
-          </Link>
-        )}
-        {props.user ? (
-          <Button
-            variant="contained"
-            className="header-btn"
-            onClick={handleSignOut}
-          >
-            sign out
-          </Button>
-=======
         {props.user ? (
           <>
             <Link to="/myPage">
@@ -136,7 +108,7 @@ const CardListHeader = (props) => {
                 className="header-btn"
                 id="myPage-btn"
               >
-                {nick}
+                {props.user?.result?.nickname}
                 {/* <AiOutlineUser className="btn-icon" /> */}
               </Button>
             </Link>
@@ -148,7 +120,6 @@ const CardListHeader = (props) => {
               sign out
             </Button>
           </>
->>>>>>> 278df75692015073df863b8279958a52a7eb3d36
         ) : (
           <SigninPage />
         )}
