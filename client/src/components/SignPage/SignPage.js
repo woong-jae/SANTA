@@ -164,7 +164,9 @@ export default function SigninDialog() {
               label="비밀번호"
               type="password"
               value={inputs.passwd}
-              helperText={!isSignin && "영문 숫자 조합 8자 이상 입력해주세요"}
+              helperText={
+                !isSignin && "특수문자, 영문, 숫자 조합 8자 이상 입력해주세요"
+              }
               error={
                 !isSignin && inputs.passwd !== ""
                   ? hasPwdError("password")
