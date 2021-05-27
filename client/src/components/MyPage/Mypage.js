@@ -80,6 +80,13 @@ const MyPage = () => {
               <article>
                 <Typography>
                   <div>
+                    <strong>이메일</strong>
+                  </div>
+                  <div id="email">{user?.result?.email}</div>
+                </Typography>
+                <hr />
+                <Typography>
+                  <div>
                     <strong>닉네임</strong>
                   </div>
                   <div id="nickname">{user?.result?.nickname}</div>
@@ -99,13 +106,6 @@ const MyPage = () => {
                     <strong>생년월일</strong>
                   </div>
                   <div id="birth">{birth}</div>
-                </Typography>
-                <hr />
-                <Typography>
-                  <div>
-                    <strong>이메일</strong>
-                  </div>
-                  <div id="email">{user?.result?.email}</div>
                 </Typography>
                 <hr />
               </article>

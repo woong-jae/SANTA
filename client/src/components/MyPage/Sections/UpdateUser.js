@@ -56,6 +56,22 @@ const UpdateUser = (props) => {
           <article>
             <Typography>
               <div>
+                <strong>이메일</strong>
+              </div>
+              <TextField
+                id="update-email"
+                class="update-userInfo"
+                name="email"
+                type="id"
+                value={updateState.email}
+                onChange={handleChange}
+                autoFocus
+                fullWidth
+                disabled
+              ></TextField>
+            </Typography>
+            <Typography>
+              <div>
                 <strong>닉네임</strong>
               </div>
               <TextField
@@ -66,6 +82,10 @@ const UpdateUser = (props) => {
                 value={updateState.nickname}
                 onChange={handleChange}
                 fullWidth
+                error={updateState.nickname === "" ? true : false}
+                helperText={
+                  updateState.nickname < 4 ? "4 ~ 7자여야 합니다" : ""
+                }
               />
             </Typography>
             <Typography>
@@ -113,26 +133,6 @@ const UpdateUser = (props) => {
                 }}
                 fullWidth
                 margin="normal"
-              ></TextField>
-            </Typography>
-            <Typography>
-              <div>
-                <strong>이메일</strong>
-              </div>
-              <TextField
-                required
-                id="update-email"
-                class="update-userInfo"
-                name="email"
-                type="id"
-                value={updateState.email}
-                helperText="e.g. name@email.com"
-                error={
-                  updateState.email !== "" ? hasEmailError("email") : false
-                }
-                onChange={handleChange}
-                autoFocus
-                fullWidth
               ></TextField>
             </Typography>
           </article>
