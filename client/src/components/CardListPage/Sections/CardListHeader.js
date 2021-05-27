@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { AiOutlineUser } from "react-icons/ai";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 import SigninPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -27,11 +27,11 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
-
+  const [nick, setNick] = useState(props.user.result.nickname);
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -78,21 +78,29 @@ const CardListHeader = (props) => {
       </form>
 
       <div className="header-user">
-        {props.user && 
-        <Link to="/myPage">
-          <Button variant="contained" className="header-btn" id="myPage-btn">
-            <AiOutlineUser className="btn-icon" />
-          </Button>
-        </Link>}
-        {props.user ? 
-        <Button
-          variant="contained"
-          className="header-btn"
-          onClick={handleSignOut}
-        >
-          sign out
-        </Button> : 
-        <SigninPage />}
+        {props.user ? (
+          <>
+            <Link to="/myPage">
+              <Button
+                variant="contained"
+                className="header-btn"
+                id="myPage-btn"
+              >
+                {nick}
+                {/* <AiOutlineUser className="btn-icon" /> */}
+              </Button>
+            </Link>
+            <Button
+              variant="contained"
+              className="header-btn"
+              onClick={handleSignOut}
+            >
+              sign out
+            </Button>
+          </>
+        ) : (
+          <SigninPage />
+        )}
       </div>
     </header>
   );
