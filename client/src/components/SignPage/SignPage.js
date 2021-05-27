@@ -18,18 +18,14 @@ import LockIcon from "@material-ui/icons/Lock";
 import { signin } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
-import { AiFillAlipaySquare } from "react-icons/ai";
 
 export default function SigninDialog() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
-  const validator = {
-    isValidEmail: false,
-    isValidPasswd: false,
-    isConfirm: false,
-  };
+  const [valid, setValid] = useState(false);
+
   const init = {
     email: "",
     passwd: "",
@@ -39,7 +35,6 @@ export default function SigninDialog() {
     nickname: "",
   };
 
-  const [valid, setValid] = useState(validator);
   const [inputs, setInputs] = useState(init);
   const [birthState, setBirthState] = useState(new Date());
 
@@ -69,30 +64,29 @@ export default function SigninDialog() {
 
   useEffect(() => {
     if (isEmail(inputs.email)) {
-      setValid({ ...valid, isValidEmail: true });
       if (isPassword(inputs.passwd)) {
-        setValid({ ...valid, isValidPasswd: true });
         if (inputs.passwd === inputs.passwdConfirm) {
-          setValid({ ...valid, isConfirm: true });
+          setValid(true);
+        } else {
+          setValid(false);
         }
+      } else {
+        setValid(false);
       }
     } else {
-      setValid({
-        ...valid,
-        isValidEmail: false,
-        isValidPasswd: false,
-        isConfirm: false,
-      });
+      setValid(false);
     }
   }, [inputs]);
 
   const handleOpen = () => {
     setOpen(true);
     setIsSignIn(true);
+    setInputs(init);
+    setValid(false);
   };
   const handleClose = () => {
     setInputs(init);
-    setValid(validator);
+    setValid(false);
     setOpen(false);
   };
   const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
@@ -106,26 +100,25 @@ export default function SigninDialog() {
       const user = JSON.parse(localStorage.getItem("profile"));
       if (user) {
         handleClose();
-        history.push("/list");
+        document.location.reload(true);
       } else {
         setInputs({ ...init, email: "Invalid user" });
       }
     } else {
-      if (valid.isValidEmail && valid.isValidPasswd && valid.isConfirm) {
-        // 이메일과 비밀번호 형식에 맞고, 비밀번호 확인과 일치하는 경우 -> signup 진행
+      if (valid) {
         console.log(inputs);
         handleClose();
       } else {
         setIsSignIn(false);
       }
-      setInputs(init);
     }
-    setValid(validator);
+    setValid(false);
   };
 
   const toggle = () => {
     setInputs(init);
-    setValid(validator);
+    setValid(false);
+    setBirthState(new Date());
     setIsSignIn((prev) => !prev);
   };
 
@@ -205,7 +198,6 @@ export default function SigninDialog() {
                   }}
                   fullWidth
                   margin="normal"
-                  valueAsDate
                 ></TextField>
                 <RadioGroup
                   required
@@ -246,13 +238,7 @@ export default function SigninDialog() {
               variant="contained"
               className="sign-btn"
               fullWidth
-              disabled={
-                isSignin
-                  ? false
-                  : valid.isValidEmail && valid.isValidPasswd && valid.isConfirm
-                  ? false
-                  : true
-              }
+              disabled={isSignin ? false : valid ? false : true}
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>

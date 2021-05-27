@@ -13,9 +13,6 @@
         background-color: #10b274;
       }
     }
-    .wrong-input {
-      color: red;
-    }
     .MuiDialogActions-root {
       flex-direction: column;
     }
@@ -41,6 +38,9 @@
       &:hover {
         background-color: white;
       }
+    }
+    .sign-btn:disabled {
+      opacity: 0.5;
     }
   }
 }
