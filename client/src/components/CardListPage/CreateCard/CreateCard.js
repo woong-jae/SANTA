@@ -107,7 +107,7 @@ export default function CreateCard(props) {
                   name="title"
                   id="input-title"
                   label="제목"
-                  inputProps={{ maxLength: 44 }}
+                  inputProps={{ maxLength: 20 }}
                   onChange={handleChange}
                 />
               </div>

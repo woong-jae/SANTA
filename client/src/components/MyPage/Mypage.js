@@ -9,7 +9,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
 import { getPosts } from "../../actions/post";
-import { deleteUser, updateUser } from "../../actions/auth";
+import { deleteUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import "./Sections/Mypage.scss";
@@ -49,9 +49,7 @@ const MyPage = () => {
     setIsUpdate(true);
   };
 
-  const handleUpdateUser = (updateState) => {
-    dispatch(updateUser);
-    setUser(updateState);
+  const updateUser = (updateState) => {
     setIsUpdate(false);
   };
 
@@ -135,7 +133,7 @@ const MyPage = () => {
           </Paper>
         </div>
       ) : (
-        <UpdateUser user={user} updateUser={handleUpdateUser} />
+        <UpdateUser user={user} updateUser={updateUser} />
       )}
     </div>
   );

@@ -6,17 +6,27 @@
 
 //Card-Header
 .cardList-header {
+    @media (max-width: 900px) {
+        #search-mountain {
+            display: none !important;
+        }
+        #search-date {
+            display: none !important;
+        }
+        #search-peopleNum {
+            display: none !important;
+        }
+    }
     box-shadow: 5px 5px 5px -5px gray;
     background-color: #ffffff;
     min-height: 12vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    .header-search {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-basis: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    #header-logo {
+        margin-right: 30px;
     }
     a {
         text-decoration: none;
