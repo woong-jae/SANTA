@@ -41,6 +41,7 @@ export default function SigninDialog() {
 
   const [valid, setValid] = useState(validator);
   const [inputs, setInputs] = useState(init);
+    const [birthState, setBirthState] = useState(new Date());
 
   const onChange = (e) => {
     e.preventDefault();
@@ -51,6 +52,20 @@ export default function SigninDialog() {
       [name]: value,
     });
   };
+
+  const dateChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setBirthState(value);
+    setInputs({
+      ...inputs,
+      [name]: new Date(
+        value.substr(0, 4),
+        value.substr(5, 2) - 1,
+        value.substr(8, 2)
+      ),
+    });
+  }
 
   useEffect(() => {
     if (isEmail(inputs.email)) {
@@ -173,8 +188,8 @@ export default function SigninDialog() {
                   name="birth"
                   label="생년월일"
                   type="date"
-                  value={inputs.birth}
-                  onChange={onChange}
+                  value={birthState}
+                  onChange={dateChange}
                   InputLabelProps={{
                     shrink: true,
                   }}
