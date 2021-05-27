@@ -1,4 +1,4 @@
-import { AUTH } from '../constants/actionTypes';
+import { AUTH, LOGOUT } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const signin = (formData) => async (dispatch) => {
@@ -16,6 +16,16 @@ export const signup = (formData) => async (dispatch) => {
         const { data } = await api.createUser(formData);
 
         dispatch({ type: AUTH, data });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteUser = (_id) => async (dispatch) => {
+    try {
+        await api.deleteUser(_id);
+
+        dispatch({ type: LOGOUT });
     } catch (error) {
         console.error(error);
     }
