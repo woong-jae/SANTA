@@ -136,6 +136,9 @@ const MyPage = () => {
               </div>
             </footer>
           </Paper>
+          <Paper className="myinfo-paper" elevation={10}>
+            <section></section>
+          </Paper>
         </div>
       ) : (
         <UpdateUser user={user} updateUser={handleUpdateUser} />
