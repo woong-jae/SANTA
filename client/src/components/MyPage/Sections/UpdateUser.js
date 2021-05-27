@@ -152,7 +152,10 @@ const UpdateUser = (props) => {
           <Button
             variant="contained"
             id="update-btn"
-            onClick={() => props.updateUser(updateState)}
+            onClick={updateState.nickname.length >= 4 &&
+              updateState.nickname.length <= 7 ? () => props.updateUser(updateState) : ""}
+            disabled={updateState.nickname.length >= 4 &&
+              updateState.nickname.length <= 7 ? false : true}
           >
             <CheckCircleIcon />
           </Button>

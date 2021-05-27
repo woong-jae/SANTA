@@ -17,3 +17,8 @@
     border-bottom-color: #10b274;
   }
 }
+#update-btn {
+  &:disabled {
+    opacity: 0.5;
+  }
+}

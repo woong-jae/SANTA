@@ -5,29 +5,11 @@
     .MuiIconButton-colorSecondary:hover {
       background-color: white;
     }
-    .sign-btn {
-      background-color: #81c784;
-      color: white;
-      margin: 30px;
-      &:hover {
-        background-color: #10b274;
-      }
-    }
     .MuiDialogActions-root {
       flex-direction: column;
     }
-    .switch-text {
-      color: black;
-      border: none;
-      background-color: white;
-    }
-    #update-sex {
-      .MuiRadio-root:hover {
-        color: #10b274;
-      }
-      .MuiRadio-root.Mui-checked {
-        color: #10b274;
-      }
+    .MuiFormLabel-root.Mui-focused {
+      color: #10b274;
     }
     .MuiInput-underline:after {
       border-bottom-color: #10b274;
@@ -41,8 +23,30 @@
         background-color: white;
       }
     }
-    .sign-btn:disabled {
-      opacity: 0.5;
+    #update-sex {
+      .MuiRadio-root:hover {
+        color: #10b274;
+      }
+      .MuiRadio-root.Mui-checked {
+        color: #10b274;
+      }
+    }
+    .sign-btn {
+      background-color: #81c784;
+      color: white;
+      margin: 30px;
+      &:hover {
+        background-color: #10b274;
+      }
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+    .switch-text {
+      color: black;
+      border: none;
+      background-color: white;
     }
   }
+  
 }
