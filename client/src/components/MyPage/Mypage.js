@@ -8,8 +8,8 @@ import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
-import { getPosts, updateUser } from "../../actions/post";
-import { deleteUser } from "../../actions/auth";
+import { getPosts } from "../../actions/post";
+import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import "./Sections/Mypage.scss";
@@ -50,10 +50,10 @@ const MyPage = () => {
     setIsUpdate(true);
   };
 
-  const handleUpdateUser = async (updateState) => {
+  const handleUpdateUser = (updateState) => {
     console.log({ ...user?.result, ...updateState });
-    await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
-    history.push("/myPage");
+    dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
+    history.push('/myPage');
     setIsUpdate(false);
   };
 
@@ -133,9 +133,6 @@ const MyPage = () => {
                 </Button>
               </div>
             </footer>
-          </Paper>
-          <Paper className="myinfo-paper" elevation={10}>
-            <section></section>
           </Paper>
         </div>
       ) : (
