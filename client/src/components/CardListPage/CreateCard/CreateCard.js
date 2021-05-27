@@ -112,14 +112,13 @@ export default function CreateCard(props) {
                 />
               </div>
               <header>
-                <SearchMountain
-                  name="mountain"
-                  label="산/지역명"
-                  id="input-mountain"
-                  className="input-header"
-                  id="search-mountain"
-                  getMountainValue={getMountainValue}
-                />
+                <div id="input-mountain" className="input-header">
+                  <SearchMountain
+                    name="mountain"
+                    label="산/지역명"
+                    getMountainValue={getMountainValue}
+                  />
+                </div>
                 <TextField
                   required
                   name="maxMember"

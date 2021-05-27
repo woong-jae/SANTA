@@ -28,6 +28,7 @@ const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
   return (
     <div className="auto">
       <TextField
+        required
         label="산/지역명"
         name="mountain"
         className="header-input"
