@@ -11,9 +11,9 @@ export const getPosts = () => async (dispatch) => {
     }
 }
 
-export const getPostByMt = (mountain) => async (dispatch) => {
+export const getPostByMt = (mountain, date) => async (dispatch) => {
     try {
-        const { data } = await api.fetchPostByMt(mountain);
+        const { data } = await api.fetchPostByMt(mountain, date);
         
         dispatch({ type: FETCH_ALL, data });
     } catch (error) {
