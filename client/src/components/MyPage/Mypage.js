@@ -58,7 +58,7 @@ const MyPage = () => {
         "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
       )
     ) {
-      history.push("/list");
+      document.location.replace("/");
     }
   };
 

@@ -30,7 +30,7 @@ const CardListHeader = (props) => {
 
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
-    history.push('/list');
+    document.location.reload(true);
   }
 
   const handleSubmit = (event) => {

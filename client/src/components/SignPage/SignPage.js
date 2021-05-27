@@ -106,7 +106,7 @@ export default function SigninDialog() {
       const user = JSON.parse(localStorage.getItem("profile"));
       if (user) {
         handleClose();
-        history.push("/list");
+        document.location.reload(true);
       } else {
         setInputs({ ...init, email: "Invalid user" });
       }
