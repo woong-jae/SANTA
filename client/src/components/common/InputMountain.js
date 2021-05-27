@@ -46,7 +46,7 @@ const SearchPreview = ({ name, location, index, clickHandler }) => {
     <div onClick={ () => clickHandler(name, location)}
       className={`search-preview ${index == 0 ? "start" : ""}`}
     >
-      <div className="first">
+      <div className="search-element">
         <p className="mntnm">{name}</p>
         <p className="location">{location}</p>
       </div>

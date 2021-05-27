@@ -27,12 +27,13 @@ const LandingPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push({
-      pathname: '/list',
-      search: `?mountain=${searchState.mountain}`,
-      state: { mountain: searchState.mountain }
-    });
-    setSearchState(initialState);
+    if (searchState.mountain != "") {
+      history.push({
+        pathname: '/list',
+        search: `?mountain=${searchState.mountain}`,
+        state: { mountain: searchState.mountain }
+      });
+    }
   };
 
   const handleChange = (event) => {
