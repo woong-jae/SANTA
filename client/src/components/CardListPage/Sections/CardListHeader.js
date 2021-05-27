@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { makeStyles } from '@material-ui/core/styles';
 
 import { AiOutlineUser } from "react-icons/ai";
 import { Button } from "@material-ui/core";
@@ -15,9 +16,16 @@ import SelectDate from "../../common/SelectDate";
 import "./CardListPage.scss";
 import "../../common/Sections/Search.scss";
 
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontFamily: 'PermanentMarker',
+    fontSize: 50
+  }
+}));
+
 const CardListHeader = (props) => {
-  const history = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
   const currentDate = new Date();
   const initialState = {
     mountain: "",
@@ -83,7 +91,7 @@ const CardListHeader = (props) => {
 
   return (
     <header className="cardList-header">
-      <Typography variant="h3" align="center" id="header-logo">
+      <Typography className={classes.title} variant="h3" align="center" id="header-logo">
         Santa
       </Typography>
       <form onSubmit={handleSubmit} className="input-form">
