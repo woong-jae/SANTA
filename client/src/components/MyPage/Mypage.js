@@ -50,10 +50,12 @@ const MyPage = () => {
     setIsUpdate(true);
   };
 
-  const handleUpdateUser = (updateState) => {
+  const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
-    dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
-    history.push('/myPage');
+    await dispatch(
+      updateUser(user?.result?._id, { ...user?.result, ...updateState })
+    );
+    history.push("/myPage");
     setIsUpdate(false);
   };
 
