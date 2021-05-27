@@ -77,9 +77,15 @@ const LandingPage = () => {
       </Typography>
       <div className="userinput">
         <form onSubmit={handleSubmit}>
+<<<<<<< HEAD
           <SearchMountain 
             id="search-mountain" 
             getMountainValue={getMountainValue} 
+=======
+          <SearchMountain
+            id="search-mountain"
+            getMountainValue={getMountainValue}
+>>>>>>> cd6742d9da6207cccd29095e89af3f316f311107
           />
           <SelectDate id="search-date" getDateValue={getDateValue} />
           <InputPeople id="search-peopleNum" handleChange={handleChange} />
