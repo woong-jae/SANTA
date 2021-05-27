@@ -10,6 +10,7 @@ import { createPost } from "../../../actions/post";
 
 import "./Sections/CreateCard.scss";
 import SelectDate from "../../common/SelectDate";
+import SearchMountain from "../../../api/searchMountain";
 
 function valuetext(value) {
   return `${value}`;
@@ -41,17 +42,7 @@ export default function CreateCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-<<<<<<< HEAD
     dispatch(createPost({ ...cardState, createdUser: props.user?.result?._id})); // 새로운 post 생성 요청
-=======
-    dispatch(
-      createPost({
-        ...cardState,
-        createdUser: props.user?.result?.nickname,
-        currentMember: [props.user?.result?.nickname],
-      })
-    ); // 새로운 post 생성 요청
->>>>>>> 91988dfe68ba5dd3f333d88266bbd2db1cb5efe6
     setCardState(initialState);
     setAgeLimit([19, 70]);
     handleClose();
@@ -75,6 +66,12 @@ export default function CreateCard(props) {
     setCardState({
       ...cardState,
       [event.target.name]: event.target.value,
+    });
+  };
+  const getMountainValue = (value) => {
+    setCardState({
+      ...cardState,
+      mountain: value,
     });
   };
 
@@ -113,13 +110,13 @@ export default function CreateCard(props) {
                 />
               </div>
               <header>
-                <TextField
-                  required
+                <SearchMountain 
                   name="mountain"
                   label="산/지역명"
                   id="input-mountain"
                   className="input-header"
-                  onChange={handleChange}
+                  id="search-mountain" 
+                  getMountainValue={getMountainValue} 
                 />
                 <TextField
                   required
