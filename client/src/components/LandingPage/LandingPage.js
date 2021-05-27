@@ -1,6 +1,7 @@
 import React from "react";
 //import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 import SearchMountain from "../../api/searchMountain";
 import InputPeople from "../common/InputPeople";
@@ -10,7 +11,15 @@ import "./Sections/LandingPage.scss";
 import "../common/Sections/Search.scss";
 import { useHistory } from "react-router";
 
+const useStyles = makeStyles((theme) => ({
+  title: {
+    fontFamily: 'PermanentMarker',
+    fontSize: 200
+  }
+}));
+
 const LandingPage = () => {
+  const classes = useStyles();
   const currentDate = new Date();
   const initialState = {
     mountain: "",
@@ -71,6 +80,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing_body">
+<<<<<<< HEAD
       <Typography variant="h1" align="center">
         Santa
       </Typography>
@@ -85,6 +95,22 @@ const LandingPage = () => {
           <SearchBtn />
         </form>
       </div>
+=======
+        <Typography className={classes.title} variant="h1" align="center">
+          Santa
+        </Typography>
+        <div className="userinput">
+          <form onSubmit={handleSubmit}>
+            <SearchMountain 
+              id="search-mountain" 
+              getMountainValue={getMountainValue} 
+            />
+            <SelectDate id="search-date" getDateValue={getDateValue} />
+            <InputPeople id="search-peopleNum" handleChange={handleChange} />
+            <SearchBtn />
+          </form>
+        </div>
+>>>>>>> 278df75692015073df863b8279958a52a7eb3d36
     </div>
   );
 };

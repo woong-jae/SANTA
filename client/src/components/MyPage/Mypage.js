@@ -30,6 +30,7 @@ const MyPage = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
+    document.location.replace("/");
     setUser(null);
   };
 
@@ -49,7 +50,16 @@ const MyPage = () => {
     setIsUpdate(true);
   };
 
+<<<<<<< HEAD
   const updateUser = (updateState) => {
+=======
+  const handleUpdateUser = async (updateState) => {
+    console.log({ ...user?.result, ...updateState });
+    await dispatch(
+      updateUser(user?.result?._id, { ...user?.result, ...updateState })
+    );
+    history.push("/myPage");
+>>>>>>> 278df75692015073df863b8279958a52a7eb3d36
     setIsUpdate(false);
   };
 
@@ -61,7 +71,6 @@ const MyPage = () => {
     ) {
       dispatch(deleteUser(user?.result?._id));
       logout();
-      document.location.replace("/");
     }
   };
 
@@ -130,6 +139,9 @@ const MyPage = () => {
                 </Button>
               </div>
             </footer>
+          </Paper>
+          <Paper className="myinfo-paper" elevation={10}>
+            <section></section>
           </Paper>
         </div>
       ) : (

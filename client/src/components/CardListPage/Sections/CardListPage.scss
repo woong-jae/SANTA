@@ -1,11 +1,12 @@
 .cardList {
-    //background-color: #81c784;
-    background-image: url("../../../image/mountains_5.jpg");
-    background-size: 100% 100%;
+  //background-color: #81c784;
+  background-image: url("../../../image/mountains_5.jpg");
+  background-size: 100% 100%;
 }
 
 //Card-Header
 .cardList-header {
+<<<<<<< HEAD
     @media (max-width: 900px) {
         #search-mountain {
             display: none !important;
@@ -27,100 +28,113 @@
     padding-right: 30px;
     #header-logo {
         margin-right: 30px;
+=======
+  box-shadow: 5px 5px 5px -5px gray;
+  background-color: #ffffff;
+  min-height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .header-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: auto;
+  }
+  a {
+    text-decoration: none;
+  }
+  .header-user {
+    display: flex;
+    .header-btn {
+      width: 70%;
+      font-size: 97%;
+      color: white;
+      background-color: #81c784;
+      height: 50px;
+      margin-right: 20px;
+      margin-left: 20px;
+      &:hover {
+        background-color: #10b274;
+      }
+>>>>>>> 278df75692015073df863b8279958a52a7eb3d36
     }
-    a {
-        text-decoration: none;
+    #myPage-btn {
+      font-size: 100%;
     }
-    .header-user {
-        display: flex;
-        .header-btn {
-            width: 70%;
-            font-size: 97%;
-            color: white;
-            background-color: #81c784;
-            height: 50px;
-            margin-right: 20px;
-            margin-left: 20px;
-            &:hover {
-                background-color: #10b274;
-            }
-        }
-        #myPage-btn {
-            font-size: 200%;
-        }
-    }
+  }
 }
 
 //Card-Body
 section {
-    //min-height: 88vh;
-    .cardList-body {
-        //background-color: #81c784;
-        background-image: url("../../../image/mountains_5.jpg");
-        background-size: 100% 100%;
-        min-height: 88vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        @media (max-width: 1000px) {
-            grid-template-columns: 1fr 1fr;
-        }
-        @media (max-width: 600px) {
-            grid-template-columns: 1fr;
-        }
-        .cards {
-            //Cards.js
-            box-shadow: 5px 5px 5px -3px;
-            width: 70%;
-            height: 336px;
-            margin: 12% 15% 12% 15%;
-            overflow-y: auto;
-            .card-info {
-                font-size: 1em;
-                margin-bottom: 10px;
-            }
-            #card-writer {
-                text-align: center;
-            }
-            #card-title {
-                height: 20px;
-                font-size: 1em;
-                margin-bottom: 21px;
-            }
-            .card-action {
-                display: block;
-                text-align: center;
-                .card-btn {
-                    font-size: 1em;
-                    color: white;
-                    background-color: #81c784;
-                    &:hover {
-                        background-color: #10b274;
-                    }
-                }
-            }
-        }
+  //min-height: 88vh;
+  .cardList-body {
+    //background-color: #81c784;
+    background-image: url("../../../image/mountains_5.jpg");
+    background-size: 100% 100%;
+    min-height: 88vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr 1fr;
     }
-    footer {
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+    .cards {
+      //Cards.js
+      box-shadow: 5px 5px 5px -3px;
+      width: 70%;
+      height: 336px;
+      margin: 12% 15% 12% 15%;
+      overflow-y: auto;
+      .card-info {
+        font-size: 1em;
+        margin-bottom: 10px;
+      }
+      #card-writer {
         text-align: center;
-        background-color: #81c784;
+      }
+      #card-title {
+        height: 20px;
+        font-size: 1em;
+        margin-bottom: 21px;
+      }
+      .card-action {
+        display: block;
+        text-align: center;
+        .card-btn {
+          font-size: 1em;
+          color: white;
+          background-color: #81c784;
+          &:hover {
+            background-color: #10b274;
+          }
+        }
+      }
     }
+  }
+  footer {
+    text-align: center;
+    background-color: #81c784;
+  }
 }
 
 //Card-Footer
 .cardList-footer {
-    height: 50px;
-    margin-top: -50px;
-    text-align: center;
-    position: fixed;
-    left: 0px;
-    bottom: 40px;
-    width: 100%;
-    .footer-btn {
-        color: white;
-        background-color: #10b274;
-        font-size: 1.3em;
-        &:hover {
-            background-color: #059960;
-        }
+  height: 50px;
+  margin-top: -50px;
+  text-align: center;
+  position: fixed;
+  left: 0px;
+  bottom: 40px;
+  width: 100%;
+  .footer-btn {
+    color: white;
+    background-color: #10b274;
+    font-size: 1.3em;
+    &:hover {
+      background-color: #059960;
     }
+  }
 }
