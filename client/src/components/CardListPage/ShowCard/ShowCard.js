@@ -22,7 +22,6 @@ export default function ShowCard(props) {
   useEffect(() => {
     for (let index = 0; index < card?.currentMember?.length; index++) {
       if (card?.currentMember[index]._id === user?.result?._id) setApply(true);
-      console.log(card?.currentMember[index]._id);
     }
   }, [apply]);
 
@@ -33,9 +32,9 @@ export default function ShowCard(props) {
     updatedMember.push(user?.result?._id);
     updateCardMember.push(user?.result);
   
-    // dispatch(updatePost(card._id, { ...card, currentMember: updatedMember }));
+    dispatch(updatePost(card._id, { ...card, currentMember: updatedMember }));
     handleUpdate({...card, currentMember: updateCardMember});
-    setApply(false);
+    setApply(true);
   }
 
   const isUpdateCard = () => {
