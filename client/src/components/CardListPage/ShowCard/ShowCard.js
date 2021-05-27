@@ -26,7 +26,7 @@ export default function ShowCard(props) {
   }, [apply]);
 
   const handleApply = () => {
-    const updatedMember = card.currentMember.map((user) => user._id);;
+    const updatedMember = card.currentMember.map((user) => user._id);
     const updateCardMember = card.currentMember;
 
     updatedMember.push(user?.result?._id);
@@ -86,8 +86,8 @@ export default function ShowCard(props) {
                       <strong>산</strong> : {card.mountain}
                     </Typography>
                     <Typography className="header-info">
-                      <strong>현재 인원</strong> : {card.currentMember.length + 1} /{" "}
-                      {card.maxMember}
+                      <strong>현재 인원</strong> :{" "}
+                      {card.currentMember.length + 1} / {card.maxMember}
                     </Typography>
                     <Typography className="header-info">
                       <strong>제한 연령</strong> : {ageLimit}
@@ -116,30 +116,32 @@ export default function ShowCard(props) {
                 </div>
                 <div id="Member-paper" className="side-paper">
                   <Typography>
-                    <strong>현재 인원:</strong> {card.currentMember.length + 1} /{" "}
-                    {card.maxMember}
+                    <strong>현재 인원:</strong> {card.currentMember.length + 1}{" "}
+                    / {card.maxMember}
                   </Typography>
                   <div className="Member-info">
                     <Typography>
-                          <span>★</span>
-                          {card.createdUser?.nickname}
+                      <span>★</span>
+                      {card.createdUser?.nickname}
                     </Typography>
                     {card.currentMember?.map((member) => {
-                      return (
-                        <Typography>
-                          {member?.nickname}
-                        </Typography>
-                      )
+                      return <Typography>{member?.nickname}</Typography>;
                     })}
                   </div>
                 </div>
                 <div id="btn-paper" className="side-paper">
                   {}
                   {user?.result?._id !== card.createdUser?._id ? (
-                    !apply && user &&
-                    <Button variant="contained" className="apply-btn" onClick={handleApply}>
-                      참가 신청
-                    </Button>
+                    !apply &&
+                    user && (
+                      <Button
+                        variant="contained"
+                        className="apply-btn"
+                        onClick={handleApply}
+                      >
+                        참가 신청
+                      </Button>
+                    )
                   ) : (
                     <Button
                       variant="contained"
