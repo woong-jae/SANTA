@@ -70,7 +70,7 @@ const MyPage = () => {
           <Paper className="mypage-paper" elevation={10}>
             <section className="mypage-body">
               <header>
-                <Typography variant="h4" style={{textAlign: "center"}}>
+                <Typography variant="h4" style={{ textAlign: "center" }}>
                   <strong>My Page</strong>
                 </Typography>
               </header>
@@ -86,7 +86,9 @@ const MyPage = () => {
                   <div>
                     <strong>성별</strong>
                   </div>
-                  <div id="sex">{user?.result?.sex}</div>
+                  <div id="sex">
+                    {user?.result?.sex === "male" ? "남성" : "여성"}
+                  </div>
                 </Typography>
                 <hr />
                 <Typography>

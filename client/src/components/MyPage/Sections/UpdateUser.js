@@ -6,6 +6,7 @@ import { Button, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
+import { isEmail } from "../../common/check";
 import "./Mypage.scss";
 import "./UpdateUser.scss";
 
@@ -40,6 +41,9 @@ const UpdateUser = (props) => {
     });
   };
 
+  const hasEmailError = (emailEnter) =>
+    isEmail(updateState.email) ? false : true;
+
   return (
     <div className="mypage-main">
       <Paper className="mypage-paper" elevation={10}>
@@ -55,6 +59,7 @@ const UpdateUser = (props) => {
                 <strong>닉네임</strong>
               </div>
               <TextField
+                required
                 id="update-nickname"
                 class="update-userInfo"
                 name="nickname"
@@ -95,6 +100,7 @@ const UpdateUser = (props) => {
                 <strong>생년월일</strong>
               </div>
               <TextField
+                required
                 id="update-birth"
                 class="update-userInfo"
                 name="birth"
@@ -121,7 +127,9 @@ const UpdateUser = (props) => {
                 type="id"
                 value={updateState.email}
                 helperText="e.g. name@email.com"
-                //error={hasEmailError("email")}
+                error={
+                  updateState.email !== "" ? hasEmailError("email") : false
+                }
                 onChange={handleChange}
                 autoFocus
                 fullWidth
