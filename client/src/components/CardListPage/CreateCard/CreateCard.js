@@ -41,7 +41,17 @@ export default function CreateCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     dispatch(createPost({ ...cardState, createdUser: props.user?.result?._id})); // 새로운 post 생성 요청
+=======
+    dispatch(
+      createPost({
+        ...cardState,
+        createdUser: props.user?.result?.nickname,
+        currentMember: [props.user?.result?.nickname],
+      })
+    ); // 새로운 post 생성 요청
+>>>>>>> 91988dfe68ba5dd3f333d88266bbd2db1cb5efe6
     setCardState(initialState);
     setAgeLimit([19, 70]);
     handleClose();
@@ -86,19 +96,22 @@ export default function CreateCard(props) {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        class="modal-main"
       >
         <div className="input-paper">
           <div style={{ width: "100%" }}>
             <form onSubmit={handleSubmit} className="input-form">
               <br />
-              <TextField
-                required
-                name="title"
-                id="input-title"
-                label="제목"
-                inputProps={{ maxLength: 44 }}
-                onChange={handleChange}
-              />
+              <div class="title-box">
+                <TextField
+                  required
+                  name="title"
+                  id="input-title"
+                  label="제목"
+                  inputProps={{ maxLength: 44 }}
+                  onChange={handleChange}
+                />
+              </div>
               <header>
                 <TextField
                   required
@@ -168,11 +181,7 @@ export default function CreateCard(props) {
                 />
               </section>
               <footer>
-                <Button
-                  variant="contained"
-                  className="form-btn"
-                  type="submit"
-                >
+                <Button variant="contained" className="form-btn" type="submit">
                   모임 생성
                 </Button>
               </footer>
