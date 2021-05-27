@@ -15,7 +15,7 @@ import {
 import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
 
-import { signin } from "../../actions/auth";
+import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
 
@@ -106,7 +106,9 @@ export default function SigninDialog() {
       }
     } else {
       if (valid) {
-        console.log(inputs);
+        await dispatch(signup({ ...inputs }));
+        const user = JSON.parse(localStorage.getItem("profile"));
+        document.location.reload(true);
         handleClose();
       } else {
         setIsSignIn(false);

@@ -1,9 +1,19 @@
 import { FETCH_ALL, CREATE, DELETE, UPDATE } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
-export const getPosts = (mountain) => async (dispatch) => {
+export const getPosts = () => async (dispatch) => {
     try {
-        const { data } = await api.fetchPosts(mountain);
+        const { data } = await api.fetchPosts();
+        
+        dispatch({ type: FETCH_ALL, data });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const getPostByMt = (mountain) => async (dispatch) => {
+    try {
+        const { data } = await api.fetchPostByMt(mountain);
         
         dispatch({ type: FETCH_ALL, data });
     } catch (error) {

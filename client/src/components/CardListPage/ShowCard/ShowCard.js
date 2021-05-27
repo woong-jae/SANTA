@@ -38,7 +38,7 @@ export default function ShowCard(props) {
     ) {
       dispatch(deletePost(card._id));
       handleShow(false);
-      history.push("/list");
+      document.location.reload(true);
       handleShow(false);
     }
   };
@@ -117,7 +117,8 @@ export default function ShowCard(props) {
                   </div>
                 </div>
                 <div id="btn-paper" className="side-paper">
-                  {!user ? (
+                  {}
+                  {user?.result?._id !== card.createdUser?._id ? (
                     <Button variant="contained" className="apply-btn">
                       참가 신청
                     </Button>
