@@ -47,7 +47,7 @@ const MyPage = () => {
 
   const updateUser = (updateState) => {
     setIsUpdate(false);
-  }
+  };
 
   return (
     <div className="mypage">

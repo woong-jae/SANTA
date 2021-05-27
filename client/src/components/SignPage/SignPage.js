@@ -35,7 +35,7 @@ export default function SigninDialog() {
     passwd: "",
     passwdConfirm: "",
     birth: new Date(),
-    sex: "",
+    sex: "male",
     nickname: "",
   };
 
@@ -53,7 +53,6 @@ export default function SigninDialog() {
   };
 
   useEffect(() => {
-    console.log(inputs, valid);
     if (isEmail(inputs.email)) {
       setValid({ ...valid, isValidEmail: true });
       if (isPassword(inputs.passwd)) {
@@ -63,21 +62,27 @@ export default function SigninDialog() {
         }
       }
     } else {
-      setValid({...valid, isValidEmail: false, isValidPasswd: false, isConfirm: false})
+      setValid({
+        ...valid,
+        isValidEmail: false,
+        isValidPasswd: false,
+        isConfirm: false,
+      });
     }
   }, [inputs]);
 
   const handleOpen = () => {
     setOpen(true);
+    setIsSignIn(true);
   };
   const handleClose = () => {
     setInputs(init);
     setValid(validator);
-    setIsSignIn(true);
     setOpen(false);
   };
-  const hasEmailError = (emailEnter) => isEmail(inputs.email) ? false : true;
-  const hasPwdError = (passwordEnter) => isPassword(inputs.passwd) ? false : true;
+  const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
+  const hasPwdError = (passwordEnter) =>
+    isPassword(inputs.passwd) ? false : true;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,8 +99,10 @@ export default function SigninDialog() {
       if (valid.isValidEmail && valid.isValidPasswd && valid.isConfirm) {
         // 이메일과 비밀번호 형식에 맞고, 비밀번호 확인과 일치하는 경우 -> signup 진행
         console.log(inputs);
+        handleClose();
+      } else {
+        setIsSignIn(false);
       }
-      setIsSignIn(false);
       setInputs(init);
     }
     setValid(validator);
@@ -145,7 +152,7 @@ export default function SigninDialog() {
               type="password"
               value={inputs.passwd}
               helperText="영문 숫자 조합 8자 이상 입력해주세요"
-              error={inputs.passwd !== ""? hasPwdError("password") : false}
+              error={inputs.passwd !== "" ? hasPwdError("password") : false}
               onChange={onChange}
               fullWidth
             ></TextField>
@@ -158,10 +165,11 @@ export default function SigninDialog() {
                   type="password"
                   value={inputs.passwdConfirm}
                   onChange={onChange}
-                  error={inputs.passwd !== inputs.passwdConfirm? true : false}
+                  error={inputs.passwd !== inputs.passwdConfirm ? true : false}
                   fullWidth
                 ></TextField>
                 <TextField
+                  required
                   name="birth"
                   label="생년월일"
                   type="date"
@@ -169,10 +177,10 @@ export default function SigninDialog() {
                   onChange={onChange}
                   InputLabelProps={{
                     shrink: true,
-                    required: true,
                   }}
                   fullWidth
                   margin="normal"
+                  valueAsDate
                 ></TextField>
                 <RadioGroup
                   required
@@ -184,13 +192,13 @@ export default function SigninDialog() {
                 >
                   <FormControlLabel
                     value="male"
-                    control={<Radio color="default" />}
+                    control={<Radio />}
                     label="남성"
                     labelPlacement="start"
                   ></FormControlLabel>
                   <FormControlLabel
                     value="female"
-                    control={<Radio color="default" />}
+                    control={<Radio />}
                     label="여성"
                     labelPlacement="start"
                   ></FormControlLabel>
