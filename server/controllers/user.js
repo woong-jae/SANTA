@@ -58,11 +58,18 @@ export const updateUser = async (req, res) => {
     const { _id } = req.params;
     const user = req.body;
 
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
+    try {
+        if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
 
-    await User.findByIdAndUpdate(_id, {...user, _id}, { new: true });
+        const result = await User.findByIdAndUpdate(_id, {...user, _id}, { new: true });
 
-    res.json({ message: 'User updated successfully'});
+        const token = jwt.sign({ email: result.email, id: result._id }, 'test', { expiresIn: "1h"});
+
+        res.status(200).json({ result, token });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong" });
+        console.log(error);
+    }
 }
 
 export const deleteUser = async (req, res) => {
