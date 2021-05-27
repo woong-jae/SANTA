@@ -17,6 +17,16 @@ export const createPost = async (req, res) => {
 
 export const getPosts = async (req, res) => {
     try {
+        const posts = await Posts.find();
+
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
+
+export const getPostByMt = async (req, res) => {
+    try {
         const posts = await Posts.find({mountain: req.params.mountain});
 
         res.status(200).json(posts);

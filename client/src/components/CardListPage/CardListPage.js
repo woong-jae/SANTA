@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from "react-router-dom";
 import decode from 'jwt-decode';
 
-import { getPosts } from '../../actions/post';
+import { getPostByMt, getPosts } from '../../actions/post';
 import CardListHeader from "./Sections/CardListHeader";
 import CardListBody from "./Sections/CardListBody";
 import "./Sections/CardListPage.scss";
@@ -19,7 +19,10 @@ const CardListPage = () => {
   }
 
   useEffect(() => {
-    dispatch(getPosts(location.state.mountain));
+    if (location.state.mountain === "")
+      dispatch(getPosts());
+    else
+      dispatch(getPostByMt(location.state.mountain));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);

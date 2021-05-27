@@ -38,7 +38,7 @@ export default function ShowCard(props) {
     ) {
       dispatch(deletePost(card._id));
       handleShow(false);
-      history.push("/list");
+      document.location.reload(true);
       handleShow(false);
     }
   };
