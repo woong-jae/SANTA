@@ -60,7 +60,7 @@ export const updateUser = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
 
-    await UserMessage.findByIdAndUpdate(_id, {...user, _id}, { new: true });
+    await User.findByIdAndUpdate(_id, {...user, _id}, { new: true });
 
     res.json({ message: 'User updated successfully'});
 }
@@ -70,7 +70,7 @@ export const deleteUser = async (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that id");
 
-    await PostMessage.findByIdAndRemove(_id);
+    await User.findByIdAndRemove(_id);
 
     res.json({message: 'User deleted successfully'});
 }
