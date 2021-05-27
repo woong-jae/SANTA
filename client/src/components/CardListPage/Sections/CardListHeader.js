@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 
 import { AiOutlineUser } from "react-icons/ai";
-import { Button } from "@material-ui/core";
+import { Button, Divider } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 
 import SigninPage from "../../SignPage/SignPage";
@@ -84,7 +84,7 @@ const CardListHeader = (props) => {
 
   // useEffect(() => {
   //   window.addEventListener('resize', handleResize);
-  //   return () => { // cleanup 
+  //   return () => { // cleanup
   //     window.removeEventListener('resize', handleResize);
   //   }
   // }, []);
@@ -107,31 +107,27 @@ const CardListHeader = (props) => {
         <SearchBtn />
       </form>
 
-      <div className="header-user">
-        {props.user ? (
-          <>
-            <Link to="/myPage">
-              <Button
-                variant="contained"
-                className="header-btn"
-                id="myPage-btn"
-              >
-                {props.user?.result?.nickname}
-                {/* <AiOutlineUser className="btn-icon" /> */}
-              </Button>
-            </Link>
-            <Button
-              variant="contained"
-              className="header-btn"
-              onClick={handleSignOut}
-            >
-              sign out
+      {props.user ? (
+        <div className="header-user">
+          <Link to="/myPage">
+            <Button variant="contained" className="header-btn" id="myPage-btn">
+              {props.user?.result?.nickname}
+              {/* <AiOutlineUser className="btn-icon" /> */}
             </Button>
-          </>
-        ) : (
+          </Link>
+          <Button
+            variant="contained"
+            className="header-btn"
+            onClick={handleSignOut}
+          >
+            sign out
+          </Button>
+        </div>
+      ) : (
+        <div className="header-user">
           <SigninPage />
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };

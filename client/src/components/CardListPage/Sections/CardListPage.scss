@@ -28,8 +28,26 @@
     #header-logo {
         margin-right: 30px;
     }
-    #myPage-btn {
-        font-size: 100%;
+    a {
+        text-decoration: none;
+    }
+    .header-user {
+        display: flex;
+        .header-btn {
+            width: 70%;
+            font-size: 97%;
+            color: white;
+            background-color: #81c784;
+            height: 50px;
+            margin-right: 20px;
+            margin-left: 20px;
+            &:hover {
+                background-color: #10b274;
+            }
+        }
+        #myPage-btn {
+            font-size: 100%;
+        }
     }
 }
 

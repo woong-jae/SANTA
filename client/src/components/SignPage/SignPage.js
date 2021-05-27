@@ -249,11 +249,11 @@ export default function SigninDialog() {
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>
-            <Button type="button" className="switch-text" onClick={toggle}>
+            <button type="button" className="switch-text" onClick={toggle}>
               <strong>
                 {isSignin ? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}
               </strong>
-            </Button>
+            </button>
           </DialogActions>
         </form>
       </Dialog>
