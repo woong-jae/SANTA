@@ -4,5 +4,13 @@
 }
 
 #update-sex {
-    border-bottom: 1px solid #949494;
+    .MuiRadio-root:hover {
+        color: #10b274;
+    }
+}
+
+.update-userInfo {
+    .MuiInput-underline:after {
+        border-bottom-color: #10b274;
+    }
 }
