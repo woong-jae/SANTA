@@ -41,7 +41,7 @@ export default function SigninDialog() {
 
   const [valid, setValid] = useState(validator);
   const [inputs, setInputs] = useState(init);
-    const [birthState, setBirthState] = useState(new Date());
+  const [birthState, setBirthState] = useState(new Date());
 
   const onChange = (e) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ export default function SigninDialog() {
         value.substr(8, 2)
       ),
     });
-  }
+  };
 
   useEffect(() => {
     if (isEmail(inputs.email)) {
@@ -154,11 +154,16 @@ export default function SigninDialog() {
               label="이메일"
               type="id"
               value={inputs.email}
-              helperText="e.g. name@email.com"
-              error={inputs.email !== "" ? hasEmailError("email") : false}
+              helperText={!isSignin && "e.g. name@email.com"}
+              error={
+                !isSignin && inputs.email !== ""
+                  ? hasEmailError("email")
+                  : false
+              }
               onChange={onChange}
               autoFocus
               fullWidth
+              margin="normal"
             ></TextField>
             <TextField
               required
@@ -166,8 +171,12 @@ export default function SigninDialog() {
               label="비밀번호"
               type="password"
               value={inputs.passwd}
-              helperText="영문 숫자 조합 8자 이상 입력해주세요"
-              error={inputs.passwd !== "" ? hasPwdError("password") : false}
+              helperText={!isSignin && "영문 숫자 조합 8자 이상 입력해주세요"}
+              error={
+                !isSignin && inputs.passwd !== ""
+                  ? hasPwdError("password")
+                  : false
+              }
               onChange={onChange}
               fullWidth
             ></TextField>
@@ -182,6 +191,7 @@ export default function SigninDialog() {
                   onChange={onChange}
                   error={inputs.passwd !== inputs.passwdConfirm ? true : false}
                   fullWidth
+                  margin="normal"
                 ></TextField>
                 <TextField
                   required
@@ -237,9 +247,7 @@ export default function SigninDialog() {
               fullWidth
               disabled={
                 isSignin
-                  ? valid.isValidEmail && valid.isValidPasswd && inputs !== ""
-                    ? false
-                    : true
+                  ? false
                   : valid.isValidEmail && valid.isValidPasswd && valid.isConfirm
                   ? false
                   : true
