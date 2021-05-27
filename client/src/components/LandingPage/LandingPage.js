@@ -27,11 +27,11 @@ const LandingPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchState.mountain != "") {
+    if (searchState.mountain !== "") {
       history.push({
-        pathname: '/list',
+        pathname: "/list",
         search: `?mountain=${searchState.mountain}`,
-        state: { mountain: searchState.mountain }
+        state: { mountain: searchState.mountain },
       });
     }
   };
@@ -72,7 +72,10 @@ const LandingPage = () => {
       </Typography>
       <div className="userinput">
         <form onSubmit={handleSubmit}>
-          <SearchMountain id="search-mountain" getMountainValue={getMountainValue} />
+          <SearchMountain
+            id="search-mountain"
+            getMountainValue={getMountainValue}
+          />
           <SelectDate id="search-date" getDateValue={getDateValue} />
           <InputPeople id="search-peopleNum" handleChange={handleChange} />
           <SearchBtn />
