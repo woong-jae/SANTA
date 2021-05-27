@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Typography } from "@material-ui/core";
 import { Button, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
@@ -11,11 +11,31 @@ import "./UpdateUser.scss";
 const UpdateUser = (props) => {
   const { user } = props;
   const [updateState, setUpdateState] = useState(user?.result);
+  const [birthState, setBirthState] = useState(
+    user?.result?.birth.substring(0, 4) +
+      "-" +
+      user?.result?.birth.substring(5, 7) +
+      "-" +
+      user?.result?.birth.substring(8, 10)
+  );
 
   const handleChange = (event) => {
     setUpdateState({
       ...updateState,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const dateChange = (event) => {
+    const { name, value } = event.target;
+    setBirthState(value);
+    setUpdateState({
+      ...updateState,
+      [name]: new Date(
+        value.substr(0, 4),
+        value.substr(5, 2) - 1,
+        value.substr(8, 2)
+      ),
     });
   };
 
@@ -77,15 +97,15 @@ const UpdateUser = (props) => {
               class="update-userInfo"
               name="birth"
               type="date"
-              value={new Date(updateState.birth)}
-              onChange={handleChange}
+              value={birthState}
+              onChange={dateChange}
               InputLabelProps={{
                 shrink: true,
                 required: true,
               }}
               fullWidth
               margin="normal"
-            />
+            ></TextField>
           </Typography>
           <Typography>
             <div>
@@ -108,7 +128,11 @@ const UpdateUser = (props) => {
         </article>
       </section>
       <footer>
-        <Button variant="contained" id="update-btn">
+        <Button
+          variant="contained"
+          id="update-btn"
+          onClick={() => props.updateUser(updateState)}
+        >
           <CheckCircleIcon />
         </Button>
       </footer>

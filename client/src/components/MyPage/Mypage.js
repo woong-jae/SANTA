@@ -41,9 +41,13 @@ const MyPage = () => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [dispatch, location]);
 
-  const isUpdateCard = () => {
+  const isUpdateUser = () => {
     setIsUpdate(true);
   };
+
+  const updateUser = (updateState) => {
+    setIsUpdate(false);
+  }
 
   return (
     <div className="mypage">
@@ -88,13 +92,13 @@ const MyPage = () => {
             </article>
           </section>
           <footer>
-            <Button variant="contained" id="update-btn" onClick={isUpdateCard}>
+            <Button variant="contained" id="update-btn" onClick={isUpdateUser}>
               <CreateIcon />
             </Button>
           </footer>
         </div>
       ) : (
-        <UpdateUser user={user} />
+        <UpdateUser user={user} updateUser={updateUser} />
       )}
     </div>
   );
