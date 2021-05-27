@@ -36,7 +36,10 @@ const UpdateUser = (props) => {
       [name]: new Date(
         value.substr(0, 4),
         value.substr(5, 2) - 1,
-        value.substr(8, 2)
+        value.substr(8, 2),
+        17,
+        10,
+        10
       ),
     });
   };
@@ -82,9 +85,17 @@ const UpdateUser = (props) => {
                 value={updateState.nickname}
                 onChange={handleChange}
                 fullWidth
-                error={updateState.nickname === "" ? true : false}
+                error={
+                  updateState.nickname.length < 4 ||
+                  updateState.nickname.length > 7
+                    ? true
+                    : false
+                }
                 helperText={
-                  updateState.nickname < 4 ? "4 ~ 7자여야 합니다" : ""
+                  updateState.nickname.length < 4 ||
+                  updateState.nickname.length > 7
+                    ? "4 ~ 7자여야 합니다"
+                    : ""
                 }
               />
             </Typography>
