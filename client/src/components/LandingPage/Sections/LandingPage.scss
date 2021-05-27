@@ -1,20 +1,22 @@
 .landing_body {
-  background-color: #81c784;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .userinput {
-    text-align: center;
-    form {
-      display: inline-flex;
-      margin: 30px;
-      padding: 25px;
-      min-width: 620px;
-      background-color: white;
-      border: 1px solid lightgray;
-      border-radius: 70px;
-      box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    background-color: #81c784;
+    //background-image: url("./mountains_2.png");
+    background-size: 100% 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .userinput {
+        text-align: center;
+        form {
+            display: inline-flex;
+            margin: 30px;
+            padding: 25px;
+            min-width: 620px;
+            background-color: white;
+            border: 1px solid lightgray;
+            border-radius: 70px;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+        }
     }
-  }
 }

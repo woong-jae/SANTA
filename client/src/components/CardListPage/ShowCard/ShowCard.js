@@ -158,7 +158,6 @@ export default function ShowCard(props) {
       card={card}
       updateCard={updateCard}
       deleteCard={deleteCard}
-      isUpdateCard={isUpdateCard}
       handleShow={handleShow}
     />
   );
