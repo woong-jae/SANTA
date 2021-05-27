@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -17,6 +17,8 @@ const MyPage = () => {
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
+  const history = useHistory();
+
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -47,6 +49,16 @@ const MyPage = () => {
 
   const updateUser = (updateState) => {
     setIsUpdate(false);
+  };
+
+  const deleteUser = () => {
+    if (
+      window.confirm(
+        "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
+      )
+    ) {
+      history.push("/list");
+    }
   };
 
   return (
@@ -94,6 +106,9 @@ const MyPage = () => {
           <footer>
             <Button variant="contained" id="update-btn" onClick={isUpdateUser}>
               <CreateIcon />
+            </Button>
+            <Button variant="contained" id="delete-btn" onClick={deleteUser}>
+              회원 탈퇴
             </Button>
           </footer>
         </div>
