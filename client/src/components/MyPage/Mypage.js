@@ -9,6 +9,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
 import { getPosts } from "../../actions/post";
+import { deleteUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import "./Sections/Mypage.scss";
@@ -52,12 +53,14 @@ const MyPage = () => {
     setIsUpdate(false);
   };
 
-  const deleteUser = () => {
+  const handleDeleteUser = () => {
     if (
       window.confirm(
         "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
       )
     ) {
+      dispatch(deleteUser(user?.result?._id));
+      logout();
       document.location.replace("/");
     }
   };
@@ -121,7 +124,7 @@ const MyPage = () => {
                 <Button
                   variant="contained"
                   id="delete-btn"
-                  onClick={deleteUser}
+                  onClick={handleDeleteUser}
                 >
                   회원 탈퇴
                 </Button>

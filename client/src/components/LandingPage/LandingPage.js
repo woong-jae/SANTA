@@ -16,9 +16,9 @@ const LandingPage = () => {
     mountain: "",
     date:
       currentDate.getFullYear() +
-      "/" +
-      Number(currentDate.getMonth() + 1) +
-      "/" +
+      "-" +
+      ("00" + (currentDate.getMonth() + 1)).slice(-2) +
+      "-" +
       currentDate.getDate(),
     peopleNum: 1,
   };
@@ -30,14 +30,14 @@ const LandingPage = () => {
     if (searchState.mountain !== "") {
       history.push({
         pathname: "/list",
-        search: `?mountain=${searchState.mountain}`,
-        state: { mountain: searchState.mountain },
+        search: `?mountain=${searchState.mountain}&date=${searchState.date}`,
+        state: { mountain: searchState.mountain, date: searchState.date },
       });
     }
     else 
       history.push({
         pathname: '/list',
-        state: { mountain: searchState.mountain }
+        state: { mountain: searchState.mountain, date: searchState.date }
       });
   };
 
@@ -56,9 +56,9 @@ const LandingPage = () => {
       ...searchState,
       date:
         value.getFullYear() +
-        "/" +
-        Number(value.getMonth() + 1) +
-        "/" +
+        "-" +
+        ("00" + (value.getMonth() + 1)).slice(-2) +
+        "-" +
         value.getDate(),
     });
   };

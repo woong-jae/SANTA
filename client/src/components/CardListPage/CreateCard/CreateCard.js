@@ -10,6 +10,7 @@ import { createPost } from "../../../actions/post";
 
 import "./Sections/CreateCard.scss";
 import SelectDate from "../../common/SelectDate";
+import SearchMountain from "../../../api/searchMountain";
 
 function valuetext(value) {
   return `${value}`;
@@ -69,6 +70,12 @@ export default function CreateCard(props) {
       [event.target.name]: event.target.value,
     });
   };
+  const getMountainValue = (value) => {
+    setCardState({
+      ...cardState,
+      mountain: value,
+    });
+  };
 
   const marks = [
     { value: 19 },
@@ -105,13 +112,13 @@ export default function CreateCard(props) {
                 />
               </div>
               <header>
-                <TextField
-                  required
+                <SearchMountain
                   name="mountain"
                   label="산/지역명"
                   id="input-mountain"
                   className="input-header"
-                  onChange={handleChange}
+                  id="search-mountain"
+                  getMountainValue={getMountainValue}
                 />
                 <TextField
                   required

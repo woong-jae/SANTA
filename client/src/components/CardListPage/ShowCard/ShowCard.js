@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { deletePost, updatePost } from "../../../actions/post";
 import Button from "@material-ui/core/Button";
@@ -17,8 +16,27 @@ import "./Sections/ShowCard.scss";
 export default function ShowCard(props) {
   const { card, date, ageLimit, user, handleShow, handleUpdate } = props;
   const [isUpdate, setIsUpdate] = useState(false);
+  const [apply, setApply] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
+
+  useEffect(() => {
+    for (let index = 0; index < card?.currentMember?.length; index++) {
+      if (card?.currentMember[index]._id === user?.result?._id) setApply(true);
+      console.log(card?.currentMember[index]._id);
+    }
+  }, [apply]);
+
+  const handleApply = () => {
+    const updatedMember = card.currentMember.map((user) => user._id);;
+    const updateCardMember = card.currentMember;
+
+    updatedMember.push(user?.result?._id);
+    updateCardMember.push(user?.result);
+  
+    // dispatch(updatePost(card._id, { ...card, currentMember: updatedMember }));
+    handleUpdate({...card, currentMember: updateCardMember});
+    setApply(false);
+  }
 
   const isUpdateCard = () => {
     setIsUpdate(true);
@@ -26,7 +44,7 @@ export default function ShowCard(props) {
 
   const updateCard = async (updateState) => {
     dispatch(updatePost(card._id, updateState));
-    handleUpdate(updateState)
+    handleUpdate(updateState);
     setIsUpdate(false);
   };
 
@@ -69,7 +87,7 @@ export default function ShowCard(props) {
                       <strong>산</strong> : {card.mountain}
                     </Typography>
                     <Typography className="header-info">
-                      <strong>현재 인원</strong> : {card.currentMember.length} /{" "}
+                      <strong>현재 인원</strong> : {card.currentMember.length + 1} /{" "}
                       {card.maxMember}
                     </Typography>
                     <Typography className="header-info">
@@ -119,7 +137,8 @@ export default function ShowCard(props) {
                 <div id="btn-paper" className="side-paper">
                   {}
                   {user?.result?._id !== card.createdUser?._id ? (
-                    <Button variant="contained" className="apply-btn">
+                    !apply && user &&
+                    <Button variant="contained" className="apply-btn" onClick={handleApply}>
                       참가 신청
                     </Button>
                   ) : (

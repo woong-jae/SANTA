@@ -22,7 +22,8 @@ const CardListPage = () => {
     if (location.state.mountain === "")
       dispatch(getPosts());
     else
-      dispatch(getPostByMt(location.state.mountain));
+      dispatch(getPostByMt(location.state.mountain, location.state.date));
+      
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
