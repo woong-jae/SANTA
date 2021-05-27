@@ -38,7 +38,7 @@ export default function ShowCard(props) {
     ) {
       dispatch(deletePost(card._id));
       handleShow(false);
-      history.push("/list");
+      document.location.reload(true);
       handleShow(false);
     }
   };
@@ -59,7 +59,7 @@ export default function ShowCard(props) {
               <strong>{card.title}</strong>
             </Typography>
             <Typography id="show-name">
-              <strong>{card.createdUser}</strong> 님의 모임
+              <strong>{card.createdUser?.nickname}</strong> 님의 모임
             </Typography>
             <div className="show-flex">
               <div style={{ width: "65%" }}>
@@ -99,18 +99,26 @@ export default function ShowCard(props) {
                 </div>
                 <div id="Member-paper" className="side-paper">
                   <Typography>
-                    <strong>현재 인원:</strong> {card.currentMember.length} /{" "}
+                    <strong>현재 인원:</strong> {card.currentMember.length + 1} /{" "}
                     {card.maxMember}
                   </Typography>
                   <div className="Member-info">
                     <Typography>
-                      <span>★</span>
-                      {card.createdUser}
+                          <span>★</span>
+                          {card.createdUser?.nickname}
                     </Typography>
+                    {card.currentMember?.map((member) => {
+                      return (
+                        <Typography>
+                          {member?.nickname}
+                        </Typography>
+                      )
+                    })}
                   </div>
                 </div>
                 <div id="btn-paper" className="side-paper">
-                  {!user ? (
+                  {}
+                  {user?.result?._id !== card.createdUser?._id ? (
                     <Button variant="contained" className="apply-btn">
                       참가 신청
                     </Button>
@@ -127,7 +135,7 @@ export default function ShowCard(props) {
               </Paper>
             </div>
             <footer>
-              {user?.result?.nickname === card.createdUser && (
+              {user?.result?._id === card.createdUser?._id && (
                 <div className="footer-btn">
                   <Button
                     variant="contained"

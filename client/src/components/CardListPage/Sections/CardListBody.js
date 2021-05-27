@@ -19,6 +19,7 @@ const CardListBody = (props) => {
       date: date,
       ageLimit: ageLimit,
     });
+    console.log(card);
   };
 
   const handleUpdate = (updateCard) => {

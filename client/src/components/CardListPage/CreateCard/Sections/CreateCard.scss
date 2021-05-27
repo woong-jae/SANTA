@@ -1,104 +1,150 @@
-.input-paper {
-    position: absolute;
-    top: 15%;
-    left: 16%;
-    height: 60%;
-    width: 70%;
-    background-color: white;
-    box-shadow: 5px 5px 5px 5px;
-    padding: 16px 50px 24px;
-    overflow-x: auto;
-    overflow-y: auto;
-    .input-form {
-        display: block;
-        text-align: center;
-        #input-title {
-            width: 720px;
-            display: block;
-        }
-        #input-age {
-            // mark
-            .MuiSlider-mark {
-                width: 3px
-            }
-        }
-        header {
-            display: flex;
-            justify-content: space-around;
-            align-items: baseline;
-            margin-top: 30px;
-            border-bottom: 2px solid #10b274;
-            height: 90px;
-            .input-header {
-                width: 200px;
-            }
-            #age-info {
-                display: inline-flex;
-                position: relative;
-                flex-direction: column;
-                align-items: baseline;
-                vertical-align: top;
-                bottom: 24px;
-                #slider-label {
-                    color: rgba(0, 0, 0, 0.54);
-                    font-size: 0.8rem;
-                    margin-bottom: 0px;
+.modal-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input-paper {
+        // @media (min-width: 800px) {
+        //     max-width: 800px;
+        // }
+        // // @media (min-width: 744px) {
+        // //     max-width: 696px;
+        // // }
+        @media (max-width: 800px) {
+            width: 400px;
+            height: 500px;
+            overflow-y: scroll;
+            .input-form {
+                display: flex !important;
+                flex-direction: column !important;
+                #input-title {
+                    width: 225px !important;
+                    word-break: break-all;
                 }
-                #show-age {
-                    margin-top: 2px;
-                    margin-bottom: 5px;
-                    font-size: 0.9rem;
+                header {
+                    border-right: none !important;
+                    border-bottom: 2px solid #10b274;
+                    padding-right: 0px !important;
                 }
-                #input-age {
-                    color: black;
-                    padding-top: 0px;
-                    padding-bottom: 0px;
-                }
-                &:active {
-                    #slider-label {
-                        color: #10b274;
-                    }
-                    #input-age {
-                        color: #10b274
+                .input-body {
+                    display: inline-block !important;
+                    .input-detail {
+                        margin-left: 0px !important;
                     }
                 }
             }
         }
-        .input-body {
-            display: flex;
-            justify-content: space-around;
-            .input-detail {
-                margin-top: 28px;
-                width: 30%;
-                height: 200px;
-                padding: 10px;
-                display: inline-block;
-                border: 2px solid black;
-                resize: none;
-                &:focus {
-                    outline: none;
-                    border-color: #10b274;
-                }
-            }
-            #input-description {
-                width: 50%;
-                border-style: dashed;
-            }
-        }
-        footer {
-            border-top: none;
+        width: 800px;
+        background-color: white;
+        box-shadow: 5px 5px 5px 5px;
+        padding: 16px 50px 24px;
+        .input-form {
             display: block;
             text-align: center;
-            .form-btn {
-                margin-right: 40px;
-                color: white;
-                background-color: #10b274;
-                font-size: 1.4em;
-                width: auto;
-                height: 40px;
+            .title-box {
+                display: flex;
+                justify-content: center;
+                #input-title {
+                    display: block;
+                    width: 600px;
+                }
+            }
+            #input-mountain {
+                font-size: 1em;
+            }
+            #input-maxMember {
+                padding-top: 5px;
+            }
+            #input-age {
+                // mark
+                .MuiSlider-mark {
+                    width: 3px;
+                }
+            }
+            header {
+                display: inline-flex;
+                flex-direction: column;
                 margin-top: 30px;
-                &:hover {
-                    background-color: #059960;
+                padding-right: 30px;
+                float: left;
+                border-right: 2px solid #10b274;
+                .input-header {
+                    width: 250px;
+                    margin-bottom: 30px;
+                }
+                label+.MuiInput-formControl {
+                    width: 250px;
+                }
+                #age-info {
+                    display: inline-flex;
+                    position: relative;
+                    flex-direction: column;
+                    align-items: baseline;
+                    vertical-align: top;
+                    #slider-label {
+                        color: rgba(0, 0, 0, 0.54);
+                        font-size: 0.8rem;
+                    }
+                    #show-age {
+                        margin-top: 0px;
+                        margin-bottom: 5px;
+                        font-size: 0.9rem;
+                    }
+                    #input-age {
+                        color: black;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                    }
+                    &:active {
+                        #slider-label {
+                            color: #10b274;
+                        }
+                        #input-age {
+                            color: #10b274;
+                        }
+                    }
+                }
+            }
+            .input-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                .input-detail {
+                    margin-top: 28px;
+                    margin-left: 45px;
+                    width: 95%;
+                    padding: 10px;
+                    display: inline-block;
+                    border: 2px solid black;
+                    resize: none;
+                    &:focus {
+                        outline: none;
+                        border-color: #10b274;
+                    }
+                }
+                #input-description {
+                    border-style: dashed;
+                    height: 160px;
+                }
+                #input-contact {
+                    height: 100px;
+                }
+            }
+            footer {
+                border-top: none;
+                display: block;
+                text-align: center;
+                .form-btn {
+                    margin-right: 40px;
+                    color: white;
+                    background-color: #10b274;
+                    font-size: 1.4em;
+                    width: auto;
+                    height: 40px;
+                    margin-top: 30px;
+                    &:hover {
+                        background-color: #059960;
+                    }
                 }
             }
         }
