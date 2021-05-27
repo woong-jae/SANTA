@@ -27,7 +27,6 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
-  const [nick, setNick] = useState(props.user?.result?.nickname);
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
@@ -86,7 +85,7 @@ const CardListHeader = (props) => {
                 className="header-btn"
                 id="myPage-btn"
               >
-                {nick}
+                {props.user?.result?.nickname}
                 {/* <AiOutlineUser className="btn-icon" /> */}
               </Button>
             </Link>
