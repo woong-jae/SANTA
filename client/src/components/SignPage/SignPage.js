@@ -210,6 +210,7 @@ export default function SigninDialog() {
                 <RadioGroup
                   required
                   aria-label="sex"
+                  id="update-sex"
                   name="sex"
                   value={inputs.sex}
                   onChange={onChange}

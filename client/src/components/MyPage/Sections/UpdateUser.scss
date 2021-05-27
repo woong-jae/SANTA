@@ -1,16 +1,19 @@
 .update-userInfo {
-    margin-bottom: 30px;
-    padding: 0px;
+  margin-bottom: 30px;
+  padding: 0px;
 }
 
 #update-sex {
-    .MuiRadio-root:hover {
-        color: #10b274;
-    }
+  .MuiRadio-root:hover {
+    color: #10b274;
+  }
+  .MuiRadio-root.Mui-checked {
+    color: #10b274;
+  }
 }
 
 .update-userInfo {
-    .MuiInput-underline:after {
-        border-bottom-color: #10b274;
-    }
+  .MuiInput-underline:after {
+    border-bottom-color: #10b274;
+  }
 }

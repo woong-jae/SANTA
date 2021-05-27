@@ -22,14 +22,13 @@
     .switch-text {
       color: blue;
     }
-    .MuiRadio-root {
-      color: #81c784;
-    }
-    .MuiTouchRipple-root.Mui-checked {
-      color: #10b274;
-    }
-    .MuiFormLabel-root.Mui-focused {
-      color: #10b274;
+    #update-sex {
+      .MuiRadio-root:hover {
+        color: #10b274;
+      }
+      .MuiRadio-root.Mui-checked {
+        color: #10b274;
+      }
     }
     .MuiInput-underline:after {
       border-bottom-color: #10b274;
