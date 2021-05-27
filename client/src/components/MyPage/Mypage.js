@@ -30,6 +30,7 @@ const MyPage = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
+    document.location.replace("/");
     setUser(null);
   };
 
@@ -50,8 +51,9 @@ const MyPage = () => {
   };
 
   const handleUpdateUser = (updateState) => {
-    dispatch(updateUser);
-    setUser(updateState);
+    console.log({ ...user?.result, ...updateState });
+    dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
+    history.push('/myPage');
     setIsUpdate(false);
   };
 
@@ -63,7 +65,6 @@ const MyPage = () => {
     ) {
       dispatch(deleteUser(user?.result?._id));
       logout();
-      document.location.replace("/");
     }
   };
 

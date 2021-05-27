@@ -30,7 +30,7 @@ const CardListHeader = (props) => {
   const [nick, setNick] = useState(props.user.result.nickname);
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
-    document.location.reload(true);
+    document.location.replace("/");
   };
 
   const handleSubmit = (event) => {
