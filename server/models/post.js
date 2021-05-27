@@ -4,11 +4,16 @@ const postSchema = mongoose.Schema({
     title: String,
     description: String,
     mountain: String,
-    createdUser: String,
+    createdUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        require: true
+    },
     contact: String,
     maxMember: Number,
     currentMember: {
-        type: [String],
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User',
         default: []
     },
     ageLimit: {

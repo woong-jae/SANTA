@@ -20,7 +20,7 @@ const Cards = (props) => {
     <Card className="cards">
       <CardContent>
         <Typography className="card-info" id="card-writer">
-          <strong>{card.createdUser}</strong> 님의 게시물
+          <strong>{card.createdUser?.nickname}</strong> 님의 게시물
         </Typography>
         <hr />
         <Typography className="card-info" id="card-title">
@@ -30,7 +30,7 @@ const Cards = (props) => {
           <strong>산</strong> : {card.mountain}
         </Typography>
         <Typography className="card-info">
-          <strong>현재 인원</strong> : {card.currentMember.length} / {card.maxMember}
+          <strong>현재 인원</strong> : {card.currentMember.length + 1} / {card.maxMember}
         </Typography>
         <Typography className="card-info">
           <strong>제한 연령</strong> : {ageLimit}
