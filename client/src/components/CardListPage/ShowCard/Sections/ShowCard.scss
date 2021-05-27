@@ -9,6 +9,9 @@
         }
         @media (min-width: 744px) {
             flex-basis: 696px;
+            .header-detail {
+                margin-right: 15px !important;
+            }
         }
         text-align: left;
         padding: 30px;

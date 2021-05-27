@@ -33,7 +33,7 @@ export default function ShowCard(props) {
     updatedMember.push(user?.result?._id);
     updateCardMember.push(user?.result);
   
-    // dispatch(updatePost(card._id, { ...card, currentMember: updatedMember }));
+    dispatch(updatePost(card._id, { ...card, currentMember: updatedMember }));
     handleUpdate({...card, currentMember: updateCardMember});
     setApply(false);
   }

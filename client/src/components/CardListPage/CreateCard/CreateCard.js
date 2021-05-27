@@ -42,7 +42,9 @@ export default function CreateCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createPost({ ...cardState, createdUser: props.user?.result?._id})); // 새로운 post 생성 요청
+    dispatch(
+      createPost({ ...cardState, createdUser: props.user?.result?._id })
+    ); // 새로운 post 생성 요청
     setCardState(initialState);
     setAgeLimit([19, 70]);
     handleClose();
@@ -110,14 +112,13 @@ export default function CreateCard(props) {
                 />
               </div>
               <header>
-                <SearchMountain 
-                  name="mountain"
-                  label="산/지역명"
-                  id="input-mountain"
-                  className="input-header"
-                  id="search-mountain" 
-                  getMountainValue={getMountainValue} 
-                />
+                <div id="input-mountain" className="input-header">
+                  <SearchMountain
+                    name="mountain"
+                    label="산/지역명"
+                    getMountainValue={getMountainValue}
+                  />
+                </div>
                 <TextField
                   required
                   name="maxMember"
