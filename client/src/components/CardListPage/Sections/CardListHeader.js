@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { Button, Divider } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popover from "@material-ui/core/Popover";
@@ -20,7 +20,6 @@ import "./CardListPage.scss";
 import "../../common/Sections/Search.scss";
 
 const CardListHeader = (props) => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const currentDate = new Date();
   const initialState = {
@@ -84,7 +83,7 @@ const CardListHeader = (props) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  });
 
   const [anchorEl, setAnchorEl] = useState(null);
 

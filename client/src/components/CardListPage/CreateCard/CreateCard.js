@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../actions/post";
 
@@ -87,9 +89,14 @@ export default function CreateCard(props) {
 
   return (
     <div>
-      <Button variant="contained" className="footer-btn" onClick={handleOpen}>
-        <strong>모임 만들기</strong>
-      </Button>
+      <Fab
+        color="primary"
+        aria-label="add"
+        className="footer-btn"
+        onClick={handleOpen}
+      >
+        <AddIcon />
+      </Fab>
       <Modal
         open={open}
         onClose={handleClose}

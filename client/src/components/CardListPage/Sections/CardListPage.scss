@@ -117,15 +117,20 @@ section {
     margin-top: -50px;
     text-align: center;
     position: fixed;
-    left: 0px;
-    bottom: 40px;
-    width: 100%;
+    right: 44px;
+    bottom: 60px;
     .footer-btn {
+        width: 70px;
+        height: 70px;
         color: white;
         background-color: #10b274;
         font-size: 1.3em;
         &:hover {
             background-color: #059960;
+        }
+        .MuiSvgIcon-root {
+            width: 1.5em;
+            height: 1.5em;
         }
     }
 }
