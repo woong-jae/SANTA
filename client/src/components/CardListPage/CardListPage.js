@@ -20,7 +20,7 @@ const CardListPage = () => {
 
   useEffect(() => {
     if (location.state.mountain === "") dispatch(getPosts());
-    else dispatch(getPostByMt(location.state.mountain, location.state.date));
+    else dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
 
     const token = user?.token;
     if (token) {

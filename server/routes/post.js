@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/', auth, createPost);
 router.get('/', getPosts);
-router.get('/:mountain/:date', getPostByMt);
+router.get('/:mountain/:date/:peopleNum', getPostByMt);
 router.patch('/:_id', auth, updatePost);
 router.delete('/:_id', auth, deletePost);
 

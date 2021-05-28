@@ -40,13 +40,13 @@ const LandingPage = () => {
     if (searchState.mountain !== "") {
       history.push({
         pathname: "/list",
-        search: `?mountain=${searchState.mountain}&date=${searchState.date}`,
-        state: { mountain: searchState.mountain, date: searchState.date },
+        search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
+        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum },
       });
     } else
       history.push({
         pathname: "/list",
-        state: { mountain: searchState.mountain, date: searchState.date },
+        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum },
       });
   };
 

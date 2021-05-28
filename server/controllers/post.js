@@ -28,7 +28,9 @@ export const getPosts = async (req, res) => {
 export const getPostByMt = async (req, res) => {
     try {
         const posts = await Posts.find({mountain: req.params.mountain, 
-            date: {$gte: `${req.params.date}T00:00:00.000Z`, $lt: `${req.params.date}T23:59:59.000Z`}}).populate('createdUser').populate('currentMember');
+            date: {$gte: `${req.params.date}T00:00:00.000Z`, $lt: `${req.params.date}T23:59:59.000Z`},
+            $expr: { $lt: [{$size: "$currentMember"}, {$subtract: ['$maxMember', parseInt(req.params.peopleNum)]}]}
+        }).populate('createdUser').populate('currentMember');
             
         res.status(200).json(posts);
     } catch (error) {
