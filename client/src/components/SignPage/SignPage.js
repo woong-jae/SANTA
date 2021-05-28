@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
 
 import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
@@ -135,7 +136,8 @@ export default function SigninDialog() {
         id="signIn-btn"
         onClick={handleOpen}
       >
-        sign in/up
+        <FingerprintIcon></FingerprintIcon>
+        {/* sign in/up */}
       </Button>
       <Dialog open={open} onClose={handleClose} className="signDialog">
         <DialogTitle>

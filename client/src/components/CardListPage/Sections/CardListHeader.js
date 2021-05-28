@@ -7,8 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AiOutlineUser } from "react-icons/ai";
 import { Button, Divider } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import SigninPage from "../../SignPage/SignPage";
+import SignPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
 import InputPeople from "../../common/InputPeople";
 import SearchBtn from "../../common/SearchBtn";
@@ -110,9 +111,8 @@ const CardListHeader = (props) => {
       {props.user ? (
         <div className="header-user">
           <Link to="/myPage">
-            <Button variant="contained" className="header-btn" id="myPage-btn">
+            <Button startIcon={<AiOutlineUser />} size="small" variant="text" className="header-btn" id="myPage-btn">
               {props.user?.result?.nickname}
-              {/* <AiOutlineUser className="btn-icon" /> */}
             </Button>
           </Link>
           <Button
@@ -120,12 +120,13 @@ const CardListHeader = (props) => {
             className="header-btn"
             onClick={handleSignOut}
           >
-            sign out
+            <ExitToAppIcon></ExitToAppIcon>
+            {/* sign out */}
           </Button>
         </div>
       ) : (
         <div className="header-user">
-          <SigninPage />
+          <SignPage />
         </div>
       )}
     </header>
