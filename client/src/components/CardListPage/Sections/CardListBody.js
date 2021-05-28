@@ -43,7 +43,7 @@ const CardListBody = (props) => {
           <footer></footer>
         </section>
         <footer className="cardList-footer">
-          {props.user && <CreateCard user={props.user} />}
+          {props.user && <CreateCard user={props.user} className="cardList-footer"/>}
         </footer>
       </div>
     );
