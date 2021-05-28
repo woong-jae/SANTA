@@ -1,5 +1,6 @@
-import React from "react";
-//import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { debounce } from "lodash";
+
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -78,21 +79,59 @@ const LandingPage = () => {
     });
   };
 
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const handleResize = debounce(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }, 100);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   return (
-    <div className="landing_body">
-      <Typography className={classes.title} variant="h1" align="center">
-        Santa
-      </Typography>
-      <div className="userinput">
-        <form className="input-form" onSubmit={handleSubmit}>
-          <SearchMountain
-            id="search-mountain"
-            getMountainValue={getMountainValue}
-          />
-          <SelectDate id="search-date" getDateValue={getDateValue} />
-          <InputPeople id="search-peopleNum" handleChange={handleChange} />
-          <SearchBtn />
-        </form>
+    <div className="landing-main">
+      <div className="landing-body">
+        <Typography
+          id="landing-logo"
+          className={classes.title}
+          variant="h1"
+          align="center"
+        >
+          Santa
+        </Typography>
+        <div className="userinput">
+          {windowSize.width >= 700 ? (
+            <form className="input-form" onSubmit={handleSubmit}>
+              <SearchMountain
+                id="search-mountain"
+                getMountainValue={getMountainValue}
+              />
+              <SelectDate id="search-date" getDateValue={getDateValue} />
+              <InputPeople id="search-peopleNum" handleChange={handleChange} />
+              <SearchBtn />
+            </form>
+          ) : (
+            <form className="input-form" onSubmit={handleSubmit}>
+              <SearchMountain
+                id="search-mountain"
+                getMountainValue={getMountainValue}
+              />
+              <SelectDate id="search-date" getDateValue={getDateValue} />
+              <InputPeople id="search-peopleNum" handleChange={handleChange} />
+              <SearchBtn />
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

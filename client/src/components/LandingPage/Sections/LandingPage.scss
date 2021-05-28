@@ -1,15 +1,39 @@
-.landing_body {
-    //background-color: #81c784;
+.landing-main {
     background-image: url("../../../image/mountains_5.jpg");
     background-size: 100% 100%;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    color: white;
+    align-items: center;
+    .landing-body {
+        //background-color: #81c784;
+        flex-direction: column;
+        color: white;
+        @media (min-width: 1128px) {
+            max-width: 1080px;
+        }
+        @media (min-width: 744px) {
+            max-width: 696px;
+        }
+        @media (max-width: 700px) {
+            #landing-logo {
+                font-size: 100px !important;
+            }
+            .input-form {
+                min-width: 340px !important;
+                flex-direction: column !important;
+                height: 365px !important;
+                justify-content: space-around !important;
+                border-radius: 30px !important;
+                .search-item {
+                    width: 300px;
+                }
+            }
+        }
+    }
     .userinput {
         text-align: center;
-        form {
+        .input-form {
             display: inline-flex;
             margin: 30px;
             padding: 25px;
