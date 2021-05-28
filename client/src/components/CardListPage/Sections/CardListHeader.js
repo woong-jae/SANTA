@@ -6,7 +6,10 @@ import { useDispatch } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { Button, Divider } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Popover from "@material-ui/core/Popover";
+import SearchIcon from "@material-ui/icons/Search";
+import ExpandLess from '@material-ui/icons/ExpandLess';
 
 import SignPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -63,49 +66,121 @@ const CardListHeader = (props) => {
     });
   };
 
-  // const [windowSize, setWindowSize] = useState({
-  //   width: window.innerWidth,
-  //   height: window.innerHeight
-  // });
+  // 해상도 1000px 미만 시 반응형 적용
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
-  // const handleResize = debounce(() => {
-  //   setWindowSize({
-  //     width: window.innerWidth,
-  //     height: window.innerHeight
-  //   });
-  // }, 1000);
+  const handleResize = debounce(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }, 100);
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  //   return () => { // cleanup
-  //     window.removeEventListener('resize', handleResize);
-  //   }
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "search-popover" : undefined;
 
   return (
     <header className="cardList-header">
       <Typography variant="h3" align="center" id="header-logo">
         Santa
-      </Typography>
-      <form onSubmit={handleSubmit} className="input-form">
-        <div id="search-mountain" className="search-item">
-          <InputMountain name="mountain" handleChange={handleChange} />
+      </Typography>{" "}
+      {windowSize.width >= 1000 ? (
+        <form onSubmit={handleSubmit} className="input-form">
+          <div id="search-mountain" className="search-item">
+            <InputMountain name="mountain" handleChange={handleChange} />
+          </div>
+          <div id="search-date" className="search-item">
+            <SelectDate name="date" getDateValue={getDateValue} />
+          </div>
+          <div id="search-peopleNum" className="search-item">
+            <InputPeople name="peopleNum" handleChange={handleChange} />
+          </div>
+          <SearchBtn />
+        </form>
+      ) : (
+        <div className="input-form">
+          <Button
+            id="search-btn"
+            variant="contained"
+            startIcon={<SearchIcon />}
+            onClick={handleClick}
+          ></Button>
+          <Popover
+            className="btn-bar"
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            <form onSubmit={handleSubmit} style={{ textAlign: "center", paddingBottom: "13px"}}>
+              <Button onClick={handleClose}><ExpandLess /></Button>
+              <div className="input-form">
+                <div id="search-mountain" className="search-item">
+                  <InputMountain name="mountain" handleChange={handleChange} />
+                </div>
+                <div id="search-date" className="search-item">
+                  <SelectDate name="date" getDateValue={getDateValue} />
+                </div>
+                <div id="search-peopleNum" className="search-item">
+                  <InputPeople name="peopleNum" handleChange={handleChange} />
+                </div>
+              </div>
+              <SearchBtn className="responsive-btn" />
+            </form>
+          </Popover>
         </div>
-        <div id="search-date" className="search-item">
-          <SelectDate name="date" getDateValue={getDateValue} />
-        </div>
-        <div id="search-peopleNum" className="search-item">
-          <InputPeople name="peopleNum" handleChange={handleChange} />
-        </div>
-        <SearchBtn />
-      </form>
-
+      )}
       {props.user ? (
         <div className="header-user">
           <Link to="/myPage">
-            <Button startIcon={<AiOutlineUser />} size="small" variant="text" className="header-btn" id="myPage-btn">
-              {props.user?.result?.nickname}
-            </Button>
+            {windowSize.width >= 1000 ? (
+              <Button
+                startIcon={<AiOutlineUser />}
+                size="small"
+                variant="text"
+                className="header-btn"
+                id="myPage-btn"
+              >
+                {props.user?.result?.nickname}
+              </Button>
+            ) : (
+              <Button
+                size="small"
+                variant="text"
+                className="header-btn"
+                id="myPage-btn"
+              >
+                <AiOutlineUser />
+              </Button>
+            )}
           </Link>
           <Button
             variant="contained"

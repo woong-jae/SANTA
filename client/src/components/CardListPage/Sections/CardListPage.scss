@@ -6,7 +6,7 @@
 
 //Card-Header
 .cardList-header {
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
         #search-mountain {
             display: none !important;
         }
@@ -15,6 +15,10 @@
         }
         #search-peopleNum {
             display: none !important;
+        }
+        #myPage-btn {
+            font-size: 2em !important;
+            width: 40px !important;
         }
     }
     box-shadow: 5px 5px 5px -5px gray;
