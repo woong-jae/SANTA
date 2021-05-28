@@ -19,8 +19,8 @@ import "../../common/Sections/Search.scss";
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontFamily: 'PermanentMarker',
-    fontSize: 50
+    fontFamily: 'Pacifico',
+    fontSize: 40
   }
 }));
 
