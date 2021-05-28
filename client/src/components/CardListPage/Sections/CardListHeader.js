@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,7 +13,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
 import SignPage from "../../SignPage/SignPage";
-import InputMountain from "../../common/InputMountain";
+import SearchMountain from "../../../api/searchMountain";
 import InputPeople from "../../common/InputPeople";
 import SearchBtn from "../../common/SearchBtn";
 import SelectDate from "../../common/SelectDate";
@@ -35,13 +35,15 @@ const CardListHeader = (props) => {
     mountain: "",
     date:
       currentDate.getFullYear() +
-      "/" +
-      Number(currentDate.getMonth() + 1) +
-      "/" +
+      "-" +
+      ("00" + (currentDate.getMonth() + 1)).slice(-2) +
+      "-" +
       currentDate.getDate(),
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
+  const history = useHistory();
+
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
@@ -49,7 +51,18 @@ const CardListHeader = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchState(initialState);
+    if (searchState.mountain !== "") {
+      history.push({
+        pathname: "/list",
+        search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
+        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum },
+      });
+    } else
+      history.push({
+        pathname: "/list",
+        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum },
+      });
+    document.location.reload(true);
   };
 
   const handleChange = (event) => {
@@ -67,10 +80,17 @@ const CardListHeader = (props) => {
       ...searchState,
       date:
         value.getFullYear() +
-        "/" +
-        Number(value.getMonth() + 1) +
-        "/" +
+        "-" +
+        ("00" + (value.getMonth() + 1)).slice(-2) +
+        "-" +
         value.getDate(),
+    });
+  };
+
+  const getMountainValue = (value) => {
+    setSearchState({
+      ...searchState,
+      mountain: value,
     });
   };
 
@@ -122,7 +142,10 @@ const CardListHeader = (props) => {
       {windowSize.width >= 1000 ? (
         <form onSubmit={handleSubmit} className="input-form">
           <div id="search-mountain" className="search-item">
-            <InputMountain name="mountain" handleChange={handleChange} />
+            <SearchMountain
+              id="search-mountain"
+              getMountainValue={getMountainValue}
+            />
           </div>
           <div id="search-date" className="search-item">
             <SelectDate name="date" getDateValue={getDateValue} />
@@ -164,7 +187,10 @@ const CardListHeader = (props) => {
               </Button>
               <div className="input-form">
                 <div id="search-mountain" className="search-item">
-                  <InputMountain name="mountain" handleChange={handleChange} />
+                  <SearchMountain
+                    id="search-mountain"
+                    getMountainValue={getMountainValue}
+                  />
                 </div>
                 <div id="search-date" className="search-item">
                   <SelectDate name="date" getDateValue={getDateValue} />
