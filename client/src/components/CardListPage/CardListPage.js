@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import decode from 'jwt-decode';
+import decode from "jwt-decode";
 
-import { getPostByMt, getPosts } from '../../actions/post';
+import { getPostByMt, getPosts } from "../../actions/post";
 import CardListHeader from "./Sections/CardListHeader";
 import CardListBody from "./Sections/CardListBody";
 import "./Sections/CardListPage.scss";
@@ -11,19 +11,17 @@ import "./Sections/CardListPage.scss";
 const CardListPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     setUser(null);
-  }
+  };
 
   useEffect(() => {
-    if (location.state.mountain === "")
-      dispatch(getPosts());
-    else
-      dispatch(getPostByMt(location.state.mountain, location.state.date));
-      
+    if (location.state.mountain === "") dispatch(getPosts());
+    else dispatch(getPostByMt(location.state.mountain, location.state.date));
+
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -31,13 +29,15 @@ const CardListPage = () => {
         logout();
       }
     }
-    setUser(JSON.parse(localStorage.getItem('profile')));
+    setUser(JSON.parse(localStorage.getItem("profile")));
   }, [dispatch, location]);
 
   return (
     <div className="cardList">
-      <CardListHeader user={user}/>
-      <CardListBody user={user}/>
+      <div className="cardList-main">
+        <CardListHeader user={user} />
+        <CardListBody user={user} />
+      </div>
     </div>
   );
 };

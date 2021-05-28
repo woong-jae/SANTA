@@ -3,9 +3,13 @@
     background-size: 100% 100%;
     text-align: center;
     .mypage-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         min-height: 88vh;
         text-align: -webkit-center;
         .mypage-paper {
+            width: 100%;
             @media (min-width: 1128px) {
                 max-width: 1080px;
             }

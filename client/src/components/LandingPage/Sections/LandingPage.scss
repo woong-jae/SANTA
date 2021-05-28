@@ -1,6 +1,6 @@
 .landing-main {
-    background-image: url("../../../image/mountains_5.jpg");
-    background-size: 100% 100%;
+    background: url("../../../image/mountains_5.jpg") center center / cover no-repeat;
+    width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;

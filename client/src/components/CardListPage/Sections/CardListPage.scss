@@ -1,7 +1,14 @@
 .cardList {
     //background-color: #81c784;
-    background-image: url("../../../image/mountains_5.jpg");
-    background-size: 100% 100%;
+    background: url("../../../image/mountains_5.jpg") center center / cover no-repeat;
+    width: 100%;
+}
+
+.cardList-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 //Card-Header
@@ -29,6 +36,7 @@
     justify-content: space-around;
     padding-left: 30px;
     padding-right: 30px;
+    opacity: 0.8;
     #header-logo {
         margin-right: 30px;
     }
@@ -61,8 +69,6 @@ section {
     //min-height: 88vh;
     .cardList-body {
         //background-color: #81c784;
-        background-image: url("../../../image/mountains_5.jpg");
-        background-size: 100% 100%;
         min-height: 88vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
