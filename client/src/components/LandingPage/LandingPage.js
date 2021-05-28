@@ -14,8 +14,8 @@ import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    fontFamily: "PermanentMarker",
-    fontSize: 200,
+    fontFamily: "Pacifico",
+    fontSize: 150,
   },
 }));
 
