@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 
 const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
+  const [isCorrectName, setIsCorrectName] = useState(false);
   var ClickHandler = (text) => {
     updateField("keyword", text, false);
     updateField("results", []);
     getMountainValue(text);
+    setIsCorrectName(true);
   };
   var ChangeHandler = (e) => {
     updateField("keyword", e.target.value);
+    setIsCorrectName(false);
   };
 
   var renderResults =
@@ -35,6 +38,8 @@ const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
         value={keyword}
         onChange={ChangeHandler}
         autoComplete="off"
+        helperText={!isCorrectName && "가고 싶은 산을 선택해주세요"}
+        error={!isCorrectName && keyword != ""}
       ></TextField>
 
       {results && results.length > 0 ? (
