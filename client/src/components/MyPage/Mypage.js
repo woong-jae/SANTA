@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
@@ -87,6 +88,7 @@ const MyPage = (props) => {
           <Paper className="mypage-paper" elevation={10}>
             <section className="mypage-body">
               <header>
+                <PersonRoundedIcon fontSize="large"/>
                 <Typography variant="h4" style={{ textAlign: "center" }}>
                   <strong>My Page</strong>
                 </Typography>
