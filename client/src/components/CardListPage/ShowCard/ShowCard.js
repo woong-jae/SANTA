@@ -55,8 +55,8 @@ export default function ShowCard(props) {
     ) {
       dispatch(deletePost(card._id));
       handleShow(false);
-      document.location.reload(true);
-      handleShow(false);
+      // document.location.reload();
+      // handleShow(false);
     }
   };
 

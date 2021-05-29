@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
@@ -19,7 +19,6 @@ const MyPage = () => {
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
-  const history = useHistory();
 
   const birth =
     user?.result?.birth.substring(0, 4) +
@@ -53,7 +52,7 @@ const MyPage = () => {
   const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
     await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
-    history.push('/myPage');
+    document.location.reload('/myPage');
     setIsUpdate(false);
   };
 

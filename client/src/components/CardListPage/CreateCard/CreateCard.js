@@ -45,7 +45,7 @@ export default function CreateCard(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(
-      createPost({ ...cardState, createdUser: props.user?.result?._id })
+      createPost({ ...cardState, createdUser: props.user?.result?._id }, props.user?.result)
     ); // 새로운 post 생성 요청
     setCardState(initialState);
     setAgeLimit([19, 70]);

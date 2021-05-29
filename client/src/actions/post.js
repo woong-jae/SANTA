@@ -21,11 +21,13 @@ export const getPostByMt = (mountain, date, peopleNum) => async (dispatch) => {
     }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, user) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);
 
-        dispatch({ type: CREATE, data });
+        const newPost = {...data, createdUser: user};
+
+        dispatch({ type: CREATE, data: newPost });
     } catch (error) {
         console.error(error);
     }
