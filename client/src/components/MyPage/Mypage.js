@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
-import { getPosts } from "../../actions/post";
 import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
@@ -22,6 +21,8 @@ const MyPage = (props) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [isParty, setIsParty] = useState(false);
   const posts = useSelector((state) => state.post);
+  const { card, handleShow, handleUpdate } = props;
+  
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -36,7 +37,6 @@ const MyPage = (props) => {
   };
 
   useEffect(() => {
-    dispatch(getPosts());
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);

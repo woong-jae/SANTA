@@ -23,8 +23,7 @@ const postSchema = mongoose.Schema({
   date: {
     type: Date,
     default: new Date(),
-  },
-  dueDate: Date,
+  }
 });
 
 const Posts = mongoose.model("Posts", postSchema);

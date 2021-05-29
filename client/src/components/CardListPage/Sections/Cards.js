@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 
+import { getPostById } from "../../../actions/show";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -8,6 +10,9 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const Cards = (props) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const { card, user } = props;
   const date =
     card.date.substring(0, 4) +
@@ -16,6 +21,10 @@ const Cards = (props) => {
     "/" +
     card.date.substring(8, 10);
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
+
+  const handleClick = () => {
+    dispatch(getPostById(card._id, history));
+  }
 
   return (
     <Card className="cards">
@@ -42,21 +51,9 @@ const Cards = (props) => {
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <Link
-          to={{
-            pathname: "/list/show",
-            state: {
-              card: card,
-              date: date,
-              ageLimit: ageLimit,
-              user: user,
-            },
-          }}
-        >
-          <Button variant="contained" className="card-btn">
+          <Button variant="contained" className="card-btn" onClick={handleClick}>
             ➜
           </Button>
-        </Link>
       </CardActions>
     </Card>
   );

@@ -1,4 +1,3 @@
-
 import { CREATE, FETCH_ALL, DELETE, UPDATE } from '../constants/actionTypes';
 
 const postReducer = (posts = [], action) => {
