@@ -17,9 +17,20 @@ export const createPost = async (req, res) => {
 
 export const getPosts = async (req, res) => {
     try {
-        const posts = await Posts.find().populate('createdUser').populate('currentMember');;
-
+        const posts = await Posts.find().populate('createdUser').populate('currentMember');
+        
         res.status(200).json(posts);
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
+
+export const getPostById = async (req, res) => {
+    const { _id } = req.params;
+    try {
+        const post = await Posts.findById(_id).populate('createdUser').populate('currentMember');
+        
+        res.status(200).json(post);
     } catch (error) {
         res.status(404).json({ message: error });
     }
