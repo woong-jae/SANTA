@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { deletePost, updatePost } from "../../../actions/post";
+import { deletePost, updatePost, applyPost } from "../../../actions/post";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
@@ -32,7 +32,7 @@ export default function ShowCard(props) {
     updatedMember.push(user?.result?._id);
     updateCardMember.push(user?.result);
   
-    dispatch(updatePost(card._id, { ...card, currentMember: updatedMember }));
+    dispatch(applyPost(card._id, { ...card, currentMember: updatedMember }));
     handleUpdate({...card, currentMember: updateCardMember});
     setApply(true);
   }
@@ -133,7 +133,7 @@ export default function ShowCard(props) {
                   {}
                   {user?.result?._id !== card.createdUser?._id ? (
                     !apply &&
-                    user && (
+                    user && card.currentMember.length + 1 < card.maxMember && (
                       <Button
                         variant="contained"
                         className="apply-btn"

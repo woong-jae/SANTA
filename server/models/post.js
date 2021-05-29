@@ -27,5 +27,12 @@ const postSchema = mongoose.Schema({
     dueDate: Date
 });
 
+postSchema.pre("findOneAndUpdate", function(next) {
+    if (this.currentMember.length + 1 > this.maxMember) {
+      throw Error;
+    }
+    next();
+});
+
 const Posts = mongoose.model('Posts', postSchema);
 export default Posts;
