@@ -51,6 +51,28 @@ export const updatePost = async (req, res) => {
     res.json(newPost);
 }
 
+export const applyPost = async (req, res) => {
+    const { _id } = req.params;
+    const user = req.body;
+
+    if (!req.userId) return res.json({message: "Unathenticated"});
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that _id");
+
+    try {
+        let newPost = await Posts.findById(_id);
+
+        if (user.length < newPost.maxMember) {
+            
+            newPost = await Posts.findByIdAndUpdate(_id, {currentMember: user}, {new: true});
+        }
+
+        res.json(newPost);
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
+
 export const deletePost = async (req, res) => {
     const { _id } = req.params;
     

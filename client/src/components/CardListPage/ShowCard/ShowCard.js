@@ -27,13 +27,13 @@ export default function ShowCard(props) {
 
   const handleApply = () => {
     const updatedMember = card.currentMember.map((user) => user._id);
-    const updateCardMember = card.currentMember;
+    // const updateCardMember = card.currentMember;
 
     updatedMember.push(user?.result?._id);
-    updateCardMember.push(user?.result);
+    // updateCardMember.push(user?.result);
   
-    dispatch(applyPost(card._id, { ...card, currentMember: updatedMember }));
-    handleUpdate({...card, currentMember: updateCardMember});
+    dispatch(applyPost(card._id, updatedMember));
+    // handleUpdate({...card, currentMember: updateCardMember});
     setApply(true);
   }
 
@@ -42,7 +42,16 @@ export default function ShowCard(props) {
   };
 
   const updateCard = async (updateState) => {
-    dispatch(updatePost(card._id, updateState));
+    const updateData = {
+      title: updateState.title, 
+      maxMember: updateState.maxMember, 
+      description: updateState.description, 
+      mountain: updateState.mountain, 
+      ageLimit: updateState.ageLimit,
+      date: updateState.date,
+      contact: updateState.contact
+    };
+    dispatch(updatePost(card._id, updateData));
     handleUpdate(updateState);
     setIsUpdate(false);
   };
