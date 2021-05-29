@@ -59,6 +59,8 @@ export const updateUser = async (req, res) => {
     const user = req.body;
 
     try {
+        if (!req.userId) return res.json({message: "Unathenticated"});
+
         if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
 
         const result = await User.findByIdAndUpdate(_id, {...user, _id}, { new: true });
@@ -74,7 +76,8 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     const { _id } = req.params;
-
+    if (!req.userId) return res.json({message: "Unathenticated"});
+    
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that id");
 
     await User.findByIdAndRemove(_id);
