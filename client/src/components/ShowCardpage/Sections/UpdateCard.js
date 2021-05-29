@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -23,6 +24,8 @@ function valuetext(value) {
 }
 
 export default function UpdateCard(props) {
+  const history = useHistory();
+
   const { card, updateCard, deleteCard, handleShow } = props;
   const [updateState, setUpdateState] = useState(card);
   const [selectedDate, setSelectedDate] = useState(card.date);
@@ -70,7 +73,7 @@ export default function UpdateCard(props) {
           <Button
             variant="contained"
             className="back-btn"
-            onClick={() => handleShow(false)}
+            onClick={() => history.goBack()}
           >
             <ArrowBackIcon />
           </Button>

@@ -95,20 +95,20 @@ export default function SigninDialog() {
   const hasPwdError = (passwordEnter) =>
     isPassword(inputs.passwd) ? false : true;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignin) {
-      await dispatch(signin({ email: inputs.email, passwd: inputs.passwd }));
+      dispatch(signin({ email: inputs.email, passwd: inputs.passwd }));
       const user = JSON.parse(localStorage.getItem("profile"));
       if (user) {
         handleClose();
-        document.location.reload(true);
+        document.location.reload();
       } else {
         setInputs({ ...init, email: "Invalid user" });
       }
     } else {
       if (valid) {
-        await dispatch(signup({ ...inputs }));
+        dispatch(signup({ ...inputs }));
         document.location.reload();
         handleClose();
       } else {

@@ -29,7 +29,7 @@ const CardListPage = () => {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   return (
     <div className="cardList">
