@@ -51,8 +51,10 @@ const MyPage = () => {
 
   const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
-    await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
-    document.location.reload('/myPage');
+    await dispatch(
+      updateUser(user?.result?._id, { ...user?.result, ...updateState })
+    );
+    document.location.reload("/myPage");
     setIsUpdate(false);
   };
 
