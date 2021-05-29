@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import Paper from "@material-ui/core/Paper";
-import { Divider, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
@@ -12,7 +12,7 @@ import { getPosts } from "../../actions/post";
 import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
-import CardListBody from "../CardListPage/Sections/CardListBody";
+import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/Mypage.scss";
 
 const MyPage = (props) => {
@@ -21,8 +21,7 @@ const MyPage = (props) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
   const [isParty, setIsParty] = useState(false);
-  const { card, user, handleShow, handleUpdate } = props;
-
+  const posts = useSelector((state) => state.post);
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -80,73 +79,67 @@ const MyPage = (props) => {
     <div className="mypage">
       <CardListHeader user={user} />
       {!isUpdate && !isParty ? (
-        <>
-          <div className="mypage-main">
-            <Paper className="mypage-paper" elevation={10}>
-              <section className="mypage-body">
-                <header>
-                  <Typography variant="h4" style={{ textAlign: "center" }}>
-                    <strong>My Page</strong>
-                  </Typography>
-                </header>
-                <article>
-                  <Typography>
-                    <div>
-                      <strong>이메일</strong>
-                    </div>
-                    <div id="email">{user?.result?.email}</div>
-                  </Typography>
-                  <hr />
-                  <Typography>
-                    <div>
-                      <strong>닉네임</strong>
-                    </div>
-                    <div id="nickname">{user?.result?.nickname}</div>
-                  </Typography>
-                  <hr />
-                  <Typography>
-                    <div>
-                      <strong>성별</strong>
-                    </div>
-                    <div id="sex">
-                      {user?.result?.sex === "male" ? "남성" : "여성"}
-                    </div>
-                  </Typography>
-                  <hr />
-                  <Typography>
-                    <div>
-                      <strong>생년월일</strong>
-                    </div>
-                    <div id="birth">{birth}</div>
-                  </Typography>
-                  <hr />
-                </article>
-              </section>
-              <footer>
-                <div>
-                  <Button
-                    variant="contained"
-                    id="update-btn"
-                    onClick={isUpdateUser}
-                  >
-                    <CreateIcon />
-                  </Button>
-                </div>
-                <div>
-                  <Button
-                    variant="contained"
-                    id="delete-btn"
-                    onClick={handleDeleteUser}
-                  >
-                    회원 탈퇴
-                  </Button>
-                </div>
-              </footer>
-            </Paper>
-          </div>
-        </>
+        <div className="mypage-main">
+          <Paper className="mypage-paper" elevation={10}>
+            <section className="mypage-body">
+              <header>
+                <Typography variant="h4" style={{ textAlign: "center" }}>
+                  <strong>My Page</strong>
+                </Typography>
+              </header>
+              <article>
+                <Typography>
+                  <div>
+                    <strong>이메일</strong>
+                  </div>
+                  <div id="email">{user?.result?.email}</div>
+                </Typography>
+                <hr />
+                <Typography>
+                  <div>
+                    <strong>닉네임</strong>
+                  </div>
+                  <div id="nickname">{user?.result?.nickname}</div>
+                </Typography>
+                <hr />
+                <Typography>
+                  <div>
+                    <strong>성별</strong>
+                  </div>
+                  <div id="sex">
+                    {user?.result?.sex === "male" ? "남성" : "여성"}
+                  </div>
+                </Typography>
+                <hr />
+                <Typography>
+                  <div>
+                    <strong>생년월일</strong>
+                  </div>
+                  <div id="birth">{birth}</div>
+                </Typography>
+                <hr />
+              </article>
+            </section>
+            <footer>
+              <Button
+                variant="contained"
+                id="update-btn"
+                onClick={isUpdateUser}
+              >
+                <CreateIcon />
+              </Button>
+              <Button
+                variant="contained"
+                id="delete-btn"
+                onClick={handleDeleteUser}
+              >
+                회원 탈퇴
+              </Button>
+            </footer>
+          </Paper>
+        </div>
       ) : isUpdate ? (
-        <UpdateUser user={user} updateUser={handleUpdateUser} />
+        <UpdateUser user={user} updateUser={handleUpdateUser} update={isUpdateUser}/>
       ) : (
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10}>
@@ -157,17 +150,21 @@ const MyPage = (props) => {
                 </Typography>
               </header>
               <article>
-                <CardListBody user={props.user} />
+                <section>
+                  <div className="cardList-body">
+                    {posts.map((post) => (
+                      <Cards key={post._id} card={post} user={user?.result} />
+                    ))}
+                  </div>
+                </section>
               </article>
             </section>
           </Paper>
         </div>
       )}
-      <div>
-        <Button variant="contained" id="nextpage" onClick={toggle}>
-          {!isParty ? "내 모임 정보 보기" : "내 정보 보기"}
-        </Button>
-      </div>
+      <Button className="toggleInfo" variant="contained" id="toggleInfo" onClick={toggle}>
+        <strong>{!isParty ? "내 모임 정보" : "내 정보"}</strong>
+      </Button>
     </div>
   );
 };

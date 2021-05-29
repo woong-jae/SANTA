@@ -6,7 +6,6 @@ import { Button, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
-import { isEmail } from "../../common/check";
 import "./Mypage.scss";
 import "./UpdateUser.scss";
 
@@ -27,7 +26,7 @@ const UpdateUser = (props) => {
       [event.target.name]: event.target.value,
     });
   };
-
+  
   const dateChange = (event) => {
     const { name, value } = event.target;
     setBirthState(value);
@@ -43,9 +42,6 @@ const UpdateUser = (props) => {
       ),
     });
   };
-
-  const hasEmailError = (emailEnter) =>
-    isEmail(updateState.email) ? false : true;
 
   return (
     <div className="mypage-main">
@@ -159,9 +155,9 @@ const UpdateUser = (props) => {
           >
             <CheckCircleIcon />
           </Button>
-          {/* <Button variant="contained" id="back-btn">
+          <Button variant="contained" id="back-btn" onClick={""}>
             돌아가기
-          </Button> */}
+          </Button>
         </footer>
       </Paper>
     </div>

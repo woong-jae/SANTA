@@ -22,3 +22,14 @@
     opacity: 0.5;
   }
 }
+#back-btn {
+  float: right;
+  font-size: 1em;
+  color: white;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  background-color: rgb(247, 111, 111);
+  &:hover {
+    background-color: rgb(247, 83, 83);
+  }
+}
