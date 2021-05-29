@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -7,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const Cards = (props) => {
-  const { card } = props;
+  const { card, user } = props;
   const date =
     card.date.substring(0, 4) +
     "/" +
@@ -15,7 +16,7 @@ const Cards = (props) => {
     "/" +
     card.date.substring(8, 10);
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
- 
+
   return (
     <Card className="cards">
       <CardContent>
@@ -30,7 +31,8 @@ const Cards = (props) => {
           <strong>산</strong> : {card.mountain}
         </Typography>
         <Typography className="card-info">
-          <strong>현재 인원</strong> : {card.currentMember.length + 1} / {card.maxMember}
+          <strong>현재 인원</strong> : {card.currentMember.length + 1} /{" "}
+          {card.maxMember}
         </Typography>
         <Typography className="card-info">
           <strong>제한 연령</strong> : {ageLimit}
@@ -40,13 +42,21 @@ const Cards = (props) => {
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <Button
-          variant="contained"
-          className="card-btn"
-          onClick={() => props.handleShow(true, card, date, ageLimit)}
+        <Link
+          to={{
+            pathname: "/list/show",
+            state: {
+              card: card,
+              date: date,
+              ageLimit: ageLimit,
+              user: user,
+            },
+          }}
         >
-          ➜
-        </Button>
+          <Button variant="contained" className="card-btn">
+            ➜
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
