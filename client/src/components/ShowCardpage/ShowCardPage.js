@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {useHistory} from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 import { deletePost, updatePost, applyPost } from "../../actions/post";
 import Button from "@material-ui/core/Button";
@@ -14,14 +13,16 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import UpdateCard from "./Sections/UpdateCard";
 import "./Sections/ShowCardPage.scss";
 
-export default function ShowCard({ location }) {
-  const { card, date, ageLimit, user } = location.state;
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [apply, setApply] = useState(false);
-  const history = useHistory();
+export default function ShowCard() {
   const dispatch = useDispatch();
 
+  const card = useSelector(state => state.show.post);
+  const user = useState(JSON.parse(localStorage.getItem("profile")));
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [apply, setApply] = useState(false);
+
   useEffect(() => {
+    console.log(card);
     for (let index = 0; index < card?.currentMember?.length; index++) {
       if (card?.currentMember[index]._id === user?.result?._id) setApply(true);
     }
@@ -88,10 +89,10 @@ export default function ShowCard({ location }) {
                       {card.currentMember.length + 1} / {card.maxMember}
                     </Typography>
                     <Typography className="header-info">
-                      <strong>제한 연령</strong> : {ageLimit}
+                      <strong>제한 연령</strong> : {card.ageLimit[0] + "~" + card.ageLimit[1]}
                     </Typography>
                     <Typography className="header-info">
-                      <strong>등반 날짜</strong> : {date}
+                      <strong>등반 날짜</strong> : {card.date.substring(0, 4) + "/" + card.date.substring(5, 7) + "/" + card.date.substring(8, 10)}
                     </Typography>
                   </div>
                 </header>
