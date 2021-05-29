@@ -19,19 +19,8 @@ const CardListPage = () => {
   };
 
   useEffect(() => {
-    console.log('called');
-    async function fetchAllPosts() {
-      if (location.state.mountain === "") await dispatch(getPosts());
-      else
-        await dispatch(
-          getPostByMt(
-            location.state.mountain,
-            location.state.date,
-            location.state.peopleNum
-          )
-        );
-    }
-    fetchAllPosts();
+    if (location.state.mountain === "") dispatch(getPosts());
+    else dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -40,7 +29,7 @@ const CardListPage = () => {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch, location]);
+  }, [dispatch]);
 
   return (
     <div className="cardList">
