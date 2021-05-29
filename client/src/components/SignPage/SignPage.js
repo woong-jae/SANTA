@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import {
   Dialog,
   Button,
@@ -22,7 +21,6 @@ import "./Sections/SignPage.scss";
 
 export default function SigninDialog() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
   const [valid, setValid] = useState(false);
@@ -111,8 +109,7 @@ export default function SigninDialog() {
     } else {
       if (valid) {
         await dispatch(signup({ ...inputs }));
-        const user = JSON.parse(localStorage.getItem("profile"));
-        document.location.reload(true);
+        document.location.reload();
         handleClose();
       } else {
         setIsSignIn(false);
