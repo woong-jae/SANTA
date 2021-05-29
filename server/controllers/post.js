@@ -62,9 +62,9 @@ export const applyPost = async (req, res) => {
     try {
         let newPost = await Posts.findById(_id);
 
-        if (newPost.currentMember.length + 1 < newPost.maxMember) {
-            newPost.currentMember.push(user);
-            await newPost.save();
+        if (user.length < newPost.maxMember) {
+            
+            newPost = await Posts.findByIdAndUpdate(_id, {currentMember: user}, {new: true});
         }
 
         res.json(newPost);

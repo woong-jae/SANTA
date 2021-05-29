@@ -26,10 +26,13 @@ export default function ShowCard(props) {
   }, [apply]);
 
   const handleApply = () => {
+    const updatedMember = card.currentMember.map((user) => user._id);
     // const updateCardMember = card.currentMember;
+
+    updatedMember.push(user?.result?._id);
     // updateCardMember.push(user?.result);
   
-    dispatch(applyPost(card._id, user?.result?._id));
+    dispatch(applyPost(card._id, updatedMember));
     // handleUpdate({...card, currentMember: updateCardMember});
     setApply(true);
   }
