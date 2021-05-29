@@ -21,7 +21,14 @@ const CardListPage = () => {
   useEffect(() => {
     async function fetchAllPosts() {
       if (location.state.mountain === "") await dispatch(getPosts());
-      else await dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
+      else
+        await dispatch(
+          getPostByMt(
+            location.state.mountain,
+            location.state.date,
+            location.state.peopleNum
+          )
+        );
     }
     fetchAllPosts();
     const token = user?.token;
