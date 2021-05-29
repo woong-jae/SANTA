@@ -115,7 +115,7 @@ const MyPage = () => {
               </article>
             </section>
             <footer>
-              <div style={{ width: "86%" }}>
+              <div>
                 <Button
                   variant="contained"
                   id="update-btn"
