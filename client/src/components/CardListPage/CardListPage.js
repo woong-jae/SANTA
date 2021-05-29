@@ -19,6 +19,7 @@ const CardListPage = () => {
   };
 
   useEffect(() => {
+    console.log('called');
     async function fetchAllPosts() {
       if (location.state.mountain === "") await dispatch(getPosts());
       else

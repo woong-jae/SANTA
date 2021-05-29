@@ -7,6 +7,7 @@ const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
   const [isCorrectName, setIsCorrectName] = useState(false);
 
   var ClickHandler = (text) => {
+    console.log(text);
     updateField("keyword", text, false);
     updateField("results", []);
     getMountainValue(text);
@@ -52,7 +53,7 @@ const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
         {...defaultProps}
         PopperComponent={popperMy}
         className="header-input"
-        onChange={(event, value) => console.log(value)}
+        onChange={(event, value) => value ? ClickHandler(value.name) : ClickHandler("")}
         renderInput={(params) => (
           <TextField
             //required

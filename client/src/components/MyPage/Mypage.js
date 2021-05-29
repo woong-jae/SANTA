@@ -15,12 +15,13 @@ import UpdateUser from "./Sections/UpdateUser";
 import CardListBody from "../CardListPage/Sections/CardListBody";
 import "./Sections/Mypage.scss";
 
-const MyPage = () => {
+const MyPage = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
   const [isParty, setIsParty] = useState(false);
+  const { card, user, handleShow, handleUpdate } = props;
 
   const birth =
     user?.result?.birth.substring(0, 4) +
@@ -156,7 +157,7 @@ const MyPage = () => {
                 </Typography>
               </header>
               <article>
-                <CardListBody />
+                <CardListBody user={props.user} />
               </article>
             </section>
           </Paper>

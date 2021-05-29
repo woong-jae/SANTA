@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import {useHistory} from "react-router";
 
-import { deletePost, updatePost, applyPost } from "../../../actions/post";
+import { deletePost, updatePost, applyPost } from "../../actions/post";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
@@ -11,12 +12,13 @@ import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import UpdateCard from "./Sections/UpdateCard";
-import "./Sections/ShowCard.scss";
+import "./Sections/ShowCardPage.scss";
 
-export default function ShowCard(props) {
-  const { card, date, ageLimit, user, handleShow, handleUpdate } = props;
+export default function ShowCard({ location }) {
+  const { card, date, ageLimit, user } = location.state;
   const [isUpdate, setIsUpdate] = useState(false);
   const [apply, setApply] = useState(false);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,32 +29,21 @@ export default function ShowCard(props) {
 
   const handleApply = () => {
     const updatedMember = card.currentMember.map((user) => user._id);
-    // const updateCardMember = card.currentMember;
+    const updateCardMember = card.currentMember;
 
     updatedMember.push(user?.result?._id);
-    // updateCardMember.push(user?.result);
-  
-    dispatch(applyPost(card._id, updatedMember));
-    // handleUpdate({...card, currentMember: updateCardMember});
+    updateCardMember.push(user?.result);
+
+    dispatch(applyPost(card._id, { ...card, currentMember: updatedMember }));
     setApply(true);
-  }
+  };
 
   const isUpdateCard = () => {
     setIsUpdate(true);
   };
 
   const updateCard = async (updateState) => {
-    const updateData = {
-      title: updateState.title, 
-      maxMember: updateState.maxMember, 
-      description: updateState.description, 
-      mountain: updateState.mountain, 
-      ageLimit: updateState.ageLimit,
-      date: updateState.date,
-      contact: updateState.contact
-    };
-    dispatch(updatePost(card._id, updateData));
-    handleUpdate(updateState);
+    dispatch(updatePost(card._id, updateState));
     setIsUpdate(false);
   };
 
@@ -63,9 +54,7 @@ export default function ShowCard(props) {
       )
     ) {
       dispatch(deletePost(card._id));
-      handleShow(false);
       // document.location.reload();
-      // handleShow(false);
     }
   };
 
@@ -77,7 +66,7 @@ export default function ShowCard(props) {
             <Button
               variant="contained"
               className="back-btn"
-              onClick={() => handleShow(false)}
+              //onClick={}
             >
               <ArrowBackIcon />
             </Button>
@@ -139,10 +128,10 @@ export default function ShowCard(props) {
                   </div>
                 </div>
                 <div id="btn-paper" className="side-paper">
-                  {}
                   {user?.result?._id !== card.createdUser?._id ? (
                     !apply &&
-                    user && card.currentMember.length + 1 < card.maxMember && (
+                    user &&
+                    card.currentMember.length + 1 < card.maxMember && (
                       <Button
                         variant="contained"
                         className="apply-btn"
@@ -187,7 +176,7 @@ export default function ShowCard(props) {
       card={card}
       updateCard={updateCard}
       deleteCard={deleteCard}
-      handleShow={handleShow}
+      // handleShow={handleShow}
     />
   );
 }

@@ -15,7 +15,7 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
-import "./ShowCard.scss";
+import "./ShowCardPage.scss";
 import "./UpdateCard.scss";
 
 function valuetext(value) {
