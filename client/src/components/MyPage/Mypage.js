@@ -22,7 +22,7 @@ const MyPage = (props) => {
   const [isParty, setIsParty] = useState(false);
   const posts = useSelector((state) => state.post);
   const { card, handleShow, handleUpdate } = props;
-  
+
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -50,6 +50,10 @@ const MyPage = (props) => {
   const isUpdateUser = () => {
     setIsUpdate(true);
   };
+
+  const notUpdateUser = () => {
+    setIsUpdate(false);
+  }
 
   const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
@@ -139,7 +143,7 @@ const MyPage = (props) => {
           </Paper>
         </div>
       ) : isUpdate ? (
-        <UpdateUser user={user} updateUser={handleUpdateUser} update={isUpdateUser}/>
+        <UpdateUser user={user} updateUser={handleUpdateUser} update={notUpdateUser}/>
       ) : (
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10}>

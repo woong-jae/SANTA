@@ -26,7 +26,7 @@ const UpdateUser = (props) => {
       [event.target.name]: event.target.value,
     });
   };
-  
+  console.log();
   const dateChange = (event) => {
     const { name, value } = event.target;
     setBirthState(value);
@@ -155,7 +155,7 @@ const UpdateUser = (props) => {
           >
             <CheckCircleIcon />
           </Button>
-          <Button variant="contained" id="back-btn" onClick={""}>
+          <Button variant="contained" id="back-btn" onClick={() => props.update()}>
             돌아가기
           </Button>
         </footer>
