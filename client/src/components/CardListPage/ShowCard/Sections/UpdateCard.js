@@ -8,6 +8,7 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import TextField from "@material-ui/core/TextField";
 import Slider from "@material-ui/core/Slider";
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
@@ -169,6 +170,10 @@ export default function UpdateCard(props) {
                 className="side-paper"
                 style={{ height: "160px" }}
               >
+                <span>
+                  <ContactPhoneIcon id="contact-icon" />
+                  <strong> 연락망</strong>
+                </span>
                 <textarea
                   required
                   name="contact"

@@ -5,14 +5,22 @@
     flex-basis: auto;
     .header-input {
         margin-right: 30px;
-        margin-left: 30px;
-        height: 40px;
+    }
+    .MuiFormControl-fullWidth {
+        width: 130px;
     }
     .MuiFormLabel-root.Mui-focused {
         color: #10b274;
     }
     .MuiInput-underline:after {
         border-bottom-color: #10b274;
+    }
+    .MuiFormControl-marginNormal {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    #input-date {
+        padding-top: 9px;
     }
 }
 
@@ -30,10 +38,4 @@
     &:hover {
         background-color: #059960;
     }
-}
-
-// InputMountain
-.search-results {
-    color: black;
-    position: absolute;
 }

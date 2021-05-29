@@ -29,7 +29,7 @@
         #show-title {
             display: block;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 30px;
         }
         #show-name {
             text-align: center;
@@ -39,6 +39,7 @@
         .show-flex {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             .show-header {
                 border-bottom: 2px solid #10b274;
                 .header-detail {
