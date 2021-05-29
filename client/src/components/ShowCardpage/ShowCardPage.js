@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import decode from "jwt-decode";
 
-import { getPostById } from '../../actions/show';
+import { getPostById, setShowCard } from '../../actions/show';
 import Card from "./Sections/Card";
 import "./Sections/ShowCardPage.scss";
 
@@ -13,7 +13,7 @@ export default function ShowCard() {
   const location = useLocation();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [apply, setApply] = useState(false);
+  const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -22,6 +22,8 @@ export default function ShowCard() {
   };
 
   useEffect(() => {
+    dispatch(setShowCard(card._id));
+    setCard(JSON.parse(localStorage.getItem("card")));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -30,9 +32,9 @@ export default function ShowCard() {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch, location]);
+  }, [location]);
 
   return (
-    <Card user={user} />
+    <Card user={user} card={card} />
   )
 }

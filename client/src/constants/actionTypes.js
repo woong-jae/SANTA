@@ -8,3 +8,4 @@ export const DELETE_USER = 'DELETE_USER';
  export const UPDATE = 'UPDATE';
 
  export const FETCH_ONE = 'FETCH_ONE';
+ export const SET_CARD = 'SET_CARD';

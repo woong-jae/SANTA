@@ -13,17 +13,16 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import UpdateCard from "./UpdateCard";
 
-export default function ShowCard(props) {
+export default function ShowCard({ card, user }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const card = useSelector(state => state.show.post);
   const [isUpdate, setIsUpdate] = useState(false);
   const [apply, setApply] = useState(false);
 
   useEffect(() => {
     for (let index = 0; index < card?.currentMember?.length; index++) {
-      if (card?.currentMember[index]._id === props?.user?.result?._id) setApply(true);
+      if (card?.currentMember[index]._id === user?.result?._id) setApply(true);
     }
   }, [apply]);
 
@@ -31,8 +30,8 @@ export default function ShowCard(props) {
     const updatedMember = card.currentMember.map((user) => user._id);
     const updateCardMember = card.currentMember;
 
-    updatedMember.push(props?.user?.result?._id);
-    updateCardMember.push(props?.user?.result);
+    updatedMember.push(user?.result?._id);
+    updateCardMember.push(user?.result);
 
     dispatch(applyPost(card._id, { ...card, currentMember: updatedMember }));
     setApply(true);
@@ -128,9 +127,9 @@ export default function ShowCard(props) {
                   </div>
                 </div>
                 <div id="btn-paper" className="side-paper">
-                  {props.user?.result?._id !== card.createdUser?._id ? (
+                  {user?.result?._id !== card.createdUser?._id ? (
                     !apply &&
-                    props?.user &&
+                    user &&
                     card.currentMember.length + 1 < card.maxMember && (
                       <Button
                         variant="contained"
@@ -153,7 +152,7 @@ export default function ShowCard(props) {
               </Paper>
             </div>
             <footer>
-              {props?.user?.result?._id === card.createdUser?._id && (
+              {user?.result?._id === card.createdUser?._id && (
                 <div className="footer-btn">
                   <Button
                     variant="contained"
