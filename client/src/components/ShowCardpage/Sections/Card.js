@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { deletePost, updatePost, applyPost } from "../../../actions/post";
+import { deletePost } from "../../../actions/post";
+import { updatePost, applyPost, setShowCard } from "../../../actions/show";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
@@ -13,27 +14,28 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import UpdateCard from "./UpdateCard";
 
-export default function ShowCard({ card, user }) {
+export default function ShowCard({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [isUpdate, setIsUpdate] = useState(false);
   const [apply, setApply] = useState(false);
+  const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
 
   useEffect(() => {
+    dispatch(setShowCard(card._id));
+    setCard(JSON.parse(localStorage.getItem("card")));
     for (let index = 0; index < card?.currentMember?.length; index++) {
       if (card?.currentMember[index]._id === user?.result?._id) setApply(true);
     }
-  }, [apply]);
+  }, [isUpdate, apply]);
 
-  const handleApply = () => {
+  const handleApply = async () => {
     const updatedMember = card.currentMember.map((user) => user._id);
-    const updateCardMember = card.currentMember;
 
     updatedMember.push(user?.result?._id);
-    updateCardMember.push(user?.result);
 
-    dispatch(applyPost(card._id, { ...card, currentMember: updatedMember }));
+    await dispatch(applyPost(card._id, { currentMember: updatedMember }));
     setApply(true);
   };
 
@@ -42,7 +44,16 @@ export default function ShowCard({ card, user }) {
   };
 
   const updateCard = async (updateState) => {
-    dispatch(updatePost(card._id, updateState));
+    const updates = {
+        title: updateState.title,
+        description: updateState.description,
+        mountain: updateState.mountain,
+        contact: updateState.contact,
+        maxMember: updateState.maxMember,
+        ageLimit: updateState.ageLimit,
+        date: updateState.date
+    };
+    await dispatch(updatePost(card._id, updates));
     setIsUpdate(false);
   };
 

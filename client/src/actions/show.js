@@ -22,3 +22,23 @@ export const setShowCard = (_id) => async (dispatch) => {
         console.error(error);
     }
 }
+
+export const updatePost = (_id, post) => async (dispatch) => {
+    try {
+        const { data } = await api.updatePost(_id, post);
+
+        dispatch({ type: FETCH_ONE, data });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const applyPost = (_id, user) => async (dispatch) => {
+    try {
+        const { data } = await api.applyPost(_id, user);
+
+        dispatch({ type: FETCH_ONE, data });
+    } catch (error) {
+        console.error(error);
+    }
+}

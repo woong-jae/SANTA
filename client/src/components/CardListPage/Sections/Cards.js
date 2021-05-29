@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { getPostById } from "../../../actions/show";
 import Button from "@material-ui/core/Button";
@@ -13,7 +13,7 @@ const Cards = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { card, user } = props;
+  const { card } = props;
   const date =
     card.date.substring(0, 4) +
     "/" +
