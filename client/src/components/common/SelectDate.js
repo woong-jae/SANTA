@@ -23,6 +23,7 @@ export default function MaterialUIPickers(props) {
         margin="normal"
         minDate={new Date()}
         id="input-date"
+        className="header-input"
         label="가고 싶은 날짜"
         value={selectedDate}
         onChange={handleDateChange}
