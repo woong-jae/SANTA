@@ -1,8 +1,10 @@
 .show {
+    background: url("../../../image/mountains_5.jpg") center center / cover no-repeat;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 88vh;
     .show-paper {
         @media (min-width: 1128px) {
             flex-basis: 1080px;
@@ -11,6 +13,13 @@
             flex-basis: 696px;
             .header-detail {
                 margin-right: 15px !important;
+            }
+        }
+        @media (max-width: 700px) {
+            width: 450px;
+            #contact-paper {
+                height: 135px !important;
+                width: 153px !important;
             }
         }
         text-align: left;
@@ -60,13 +69,19 @@
                 flex-direction: column;
                 align-items: center;
                 height: fit-content;
+                margin-left: 20px;
+                margin-top: 32px;
+                width: 190px;
                 .side-paper {
-                    width: 190px;
+                    width: 100%;
                     margin-bottom: 30px;
                 }
                 #contact-paper {
                     padding: 17px;
                     padding-bottom: 0px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                     text-align: center;
                     #contact-contents {
                         display: block;
@@ -116,6 +131,7 @@
                     color: white;
                     background-color: rgb(247, 111, 111);
                     font-size: 1em;
+                    margin-top: 20px;
                     &:hover {
                         background-color: rgb(247, 83, 83);
                     }

@@ -13,6 +13,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import UpdateCard from "./UpdateCard";
+import "./ShowCardPage.scss"
 
 export default function ShowCard({ user }) {
   const dispatch = useDispatch();
@@ -177,7 +178,6 @@ export default function ShowCard({ user }) {
             </footer>
           </Paper>
         </div>
-        <footer style={{ height: "1vh" }}></footer>
       </div>
     );
   }
@@ -186,7 +186,6 @@ export default function ShowCard({ user }) {
       card={card}
       updateCard={updateCard}
       deleteCard={deleteCard}
-      // handleShow={handleShow}
     />
   );
 }

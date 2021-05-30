@@ -26,7 +26,7 @@ function valuetext(value) {
 export default function UpdateCard(props) {
   const history = useHistory();
 
-  const { card, updateCard, deleteCard, handleShow } = props;
+  const { card, updateCard } = props;
   const [updateState, setUpdateState] = useState(card);
   const [selectedDate, setSelectedDate] = useState(card.date);
   const [age, setAge] = useState([
@@ -210,16 +210,8 @@ export default function UpdateCard(props) {
               </div>
             </Paper>
           </div>
-          <footer>
-            <div className="footer-btn">
-              <Button variant="contained" id="delete-btn" onClick={deleteCard}>
-                <HighlightOffIcon />
-              </Button>
-            </div>
-          </footer>
         </Paper>
       </div>
-      <footer style={{ height: "1vh" }}></footer>
     </div>
   );
 }
