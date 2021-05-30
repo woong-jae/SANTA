@@ -13,7 +13,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import UpdateCard from "./UpdateCard";
-import "./ShowCardPage.scss"
+import "./ShowCardPage.scss";
 
 export default function ShowCard({ user }) {
   const dispatch = useDispatch();
@@ -46,13 +46,13 @@ export default function ShowCard({ user }) {
 
   const updateCard = async (updateState) => {
     const updates = {
-        title: updateState.title,
-        description: updateState.description,
-        mountain: updateState.mountain,
-        contact: updateState.contact,
-        maxMember: updateState.maxMember,
-        ageLimit: updateState.ageLimit,
-        date: updateState.date
+      title: updateState.title,
+      description: updateState.description,
+      mountain: updateState.mountain,
+      contact: updateState.contact,
+      maxMember: updateState.maxMember,
+      ageLimit: updateState.ageLimit,
+      date: updateState.date,
     };
     await dispatch(updatePost(card._id, updates));
     setIsUpdate(false);
@@ -99,17 +99,30 @@ export default function ShowCard({ user }) {
                       {card.currentMember.length + 1} / {card.maxMember}
                     </Typography>
                     <Typography className="header-info">
-                      <strong>제한 연령</strong> : {card.ageLimit[0] + "~" + card.ageLimit[1]}
+                      <strong>제한 연령</strong> :{" "}
+                      {card.ageLimit[0] + "~" + card.ageLimit[1]}
                     </Typography>
                     <Typography className="header-info">
-                      <strong>등반 날짜</strong> : {card.date.substring(0, 4) + "/" + card.date.substring(5, 7) + "/" + card.date.substring(8, 10)}
+                      <strong>등반 날짜</strong> :{" "}
+                      {card.date.substring(0, 4) +
+                        "/" +
+                        card.date.substring(5, 7) +
+                        "/" +
+                        card.date.substring(8, 10)}
                     </Typography>
                   </div>
                 </header>
                 <br />
                 <section className="show-body">
                   <Typography id="show-description">
-                    <strong>{card.description}</strong>
+                    {card.description.split("\n").map((line) => {
+                      return (
+                        <strong>
+                          {line}
+                          <br />
+                        </strong>
+                      );
+                    })}
                   </Typography>
                 </section>
               </div>
@@ -120,7 +133,16 @@ export default function ShowCard({ user }) {
                       <ContactPhoneIcon id="contact-icon" />
                       <strong> 연락망</strong>
                     </span>
-                    <span id="contact-contents">{card.contact}</span>
+                    <span id="contact-contents">
+                      {card.contact.split("\n").map((line) => {
+                        return (
+                          <span>
+                            {line}
+                            <br />
+                          </span>
+                        );
+                      })}
+                    </span>
                   </Typography>
                 </div>
                 <div id="Member-paper" className="side-paper">
@@ -182,10 +204,6 @@ export default function ShowCard({ user }) {
     );
   }
   return (
-    <UpdateCard
-      card={card}
-      updateCard={updateCard}
-      deleteCard={deleteCard}
-    />
+    <UpdateCard card={card} updateCard={updateCard} deleteCard={deleteCard} />
   );
 }
