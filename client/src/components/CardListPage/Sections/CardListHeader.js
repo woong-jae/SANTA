@@ -55,12 +55,20 @@ const CardListHeader = (props) => {
       history.push({
         pathname: "/list",
         search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
-        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum },
+        state: {
+          mountain: searchState.mountain,
+          date: searchState.date,
+          peopleNum: searchState.peopleNum,
+        },
       });
     } else
       history.push({
         pathname: "/list",
-        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum },
+        state: {
+          mountain: searchState.mountain,
+          date: searchState.date,
+          peopleNum: searchState.peopleNum,
+        },
       });
     document.location.reload(true);
   };
@@ -186,7 +194,11 @@ const CardListHeader = (props) => {
                 <ExpandLess />
               </Button>
               <div className="input-form">
-                <div id="search-mountain" className="search-item">
+                <div
+                  id="search-mountain"
+                  className="search-item"
+                  style={{ marginLeft: "30px" }}
+                >
                   <SearchMountain
                     id="search-mountain"
                     getMountainValue={getMountainValue}
