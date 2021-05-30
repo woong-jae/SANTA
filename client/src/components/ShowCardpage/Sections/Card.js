@@ -57,14 +57,14 @@ export default function ShowCard({ user }) {
     setIsUpdate(false);
   };
 
-  const deleteCard = () => {
+  const deleteCard = async () => {
     if (
       window.confirm(
         "해당 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다."
       )
     ) {
-      dispatch(deletePost(card._id));
-      // document.location.reload();
+      await dispatch(deletePost(card._id));
+      history.goBack();
     }
   };
 
