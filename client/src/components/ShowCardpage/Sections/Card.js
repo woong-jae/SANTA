@@ -26,26 +26,22 @@ export default function ShowCard({ user }) {
   useEffect(() => {
     dispatch(setShowCard(card._id));
     setCard(JSON.parse(localStorage.getItem("card")));
-    for (let index = 0; index < card?.currentMember?.length; index++) {
-      if (card?.currentMember[index]._id === user?.result?._id) setApply(true);
-    }
+    setApply(card?.currentMember.some(member => member._id === user?.result?._id));
   }, [isUpdate, apply]);
 
   const handleApply = async () => {
     const updatedMember = card.currentMember.map((user) => user._id);
-
     updatedMember.push(user?.result?._id);
-
     await dispatch(applyPost(card._id, { currentMember: updatedMember }));
     setApply(true);
   };
 
-  const handleLeave = () => {
-    if (
-      window.confirm(
-        "모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)"
-      )
-    ) {
+  const handleLeave = async () => {
+    if (window.confirm("모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)")) {
+      const updatedMember = card.currentMember.map((user) => user._id);
+      const newMember = updatedMember.filter(member => member !== user?.result?._id);
+      await dispatch(applyPost(card._id, { currentMember: newMember }));
+      setApply(false);
     }
   };
 
