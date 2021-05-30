@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Popper from "@material-ui/core/Popper";
 
-const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
+const InputMountain = ({ results, keyword, updateField, getMountainValue, getKeyword }) => {
   const [isCorrectName, setIsCorrectName] = useState(false);
 
   var ClickHandler = (text) => {
@@ -11,11 +11,13 @@ const InputMountain = ({ results, keyword, updateField, getMountainValue }) => {
     updateField("keyword", text, false);
     updateField("results", []);
     getMountainValue(text);
+    getKeyword(true);
     setIsCorrectName(true);
   };
 
   var ChangeHandler = (e) => {
     updateField("keyword", e.target.value);
+    getKeyword(false);
     setIsCorrectName(false);
   };
 

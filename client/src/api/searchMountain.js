@@ -290,6 +290,7 @@ class SearchMountain extends Component {
         keyword={keyword}
         updateField={this.updateField}
         getMountainValue={this.props.getMountainValue}
+        getKeyword={this.props.getKeyword}
       />
     );
   }
