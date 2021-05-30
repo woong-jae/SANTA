@@ -15,15 +15,28 @@
                     word-break: break-all;
                 }
                 header {
+                    width: 300px !important;
                     border-right: none !important;
                     border-bottom: 2px solid #10b274;
                     padding-right: 0px !important;
+                    padding-bottom: 30px;
+                    align-items: center !important;
+                    .header-input {
+                        margin-right: 0px !important;
+                    }
                 }
                 .input-body {
                     display: inline-block !important;
+                    text-align: center !important;
                     .input-detail {
                         margin-left: 0px !important;
                     }
+                    #input-description {
+                        margin-top: 10px !important;
+                    }
+                }
+                .form-btn {
+                    margin-right: 0px !important;
                 }
             }
         }
