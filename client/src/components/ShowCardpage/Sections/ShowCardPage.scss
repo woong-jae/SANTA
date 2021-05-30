@@ -113,6 +113,14 @@
                             background-color: #059960;
                         }
                     }
+                    .leave-btn {
+                        color: white;
+                        background-color: rgb(247, 111, 111);
+                        font-size: 1.3em;
+                        &:hover {
+                            background-color: rgb(247, 83, 83);
+                        }
+                    }
                     #update-btn {
                         color: white;
                         background-color: #10b274;
