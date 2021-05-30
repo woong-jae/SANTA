@@ -64,6 +64,7 @@ export default function ShowCard({ user }) {
       )
     ) {
       await dispatch(deletePost(card._id));
+      localStorage.removeItem('card');
       history.goBack();
     }
   };
@@ -76,7 +77,9 @@ export default function ShowCard({ user }) {
             <Button
               variant="contained"
               className="back-btn"
-              onClick={() => history.goBack()}
+              onClick={() => {
+                history.goBack();
+                localStorage.removeItem('card');}}
             >
               <ArrowBackIcon />
             </Button>

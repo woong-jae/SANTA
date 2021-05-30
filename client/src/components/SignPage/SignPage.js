@@ -34,7 +34,6 @@ export default function SigninDialog() {
     sex: "male",
     nickname: "",
   };
-
   const [inputs, setInputs] = useState(init);
   const [birthState, setBirthState] = useState(new Date());
 
@@ -109,7 +108,7 @@ export default function SigninDialog() {
       }
     } else {
       if (valid) {
-        dispatch(signup({ ...inputs }));
+        await dispatch(signup({ ...inputs }));
         document.location.reload();
         handleClose();
       } else {
