@@ -42,6 +42,7 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
   const history = useHistory();
 
   const handleSignOut = () => {
@@ -51,7 +52,7 @@ const CardListHeader = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchState.mountain !== "") {
+    if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
         search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
@@ -59,18 +60,22 @@ const CardListHeader = (props) => {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
+          correctKeyword: isCorrectKeyword
         },
       });
-    } else
+      document.location.reload(true);
+    } else if(searchState.mountain === "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
         state: {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
+          correctKeyword: isCorrectKeyword
         },
       });
-    document.location.reload(true);
+      document.location.reload(true);
+    }
   };
 
   const handleChange = (event) => {
@@ -101,6 +106,10 @@ const CardListHeader = (props) => {
       mountain: value,
     });
   };
+
+  const getKeyword = (value) => {
+    setIsCorrectKeyword(value);
+  }
 
   // 해상도 1000px 미만 시 반응형 적용
   const [windowSize, setWindowSize] = useState({
@@ -153,6 +162,7 @@ const CardListHeader = (props) => {
             <SearchMountain
               id="search-mountain"
               getMountainValue={getMountainValue}
+              getKeyword={getKeyword}
             />
           </div>
           <div id="search-date" className="search-item">
@@ -202,6 +212,7 @@ const CardListHeader = (props) => {
                   <SearchMountain
                     id="search-mountain"
                     getMountainValue={getMountainValue}
+                    getKeyword={getKeyword}
                   />
                 </div>
                 <div id="search-date" className="search-item">

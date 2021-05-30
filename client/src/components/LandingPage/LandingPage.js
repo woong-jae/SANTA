@@ -47,7 +47,7 @@ const LandingPage = () => {
     } else if(searchState.mountain === "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
-        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum, correctKeyword: true },
+        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum, correctKeyword: isCorrectKeyword },
       });
     } 
   };
@@ -132,6 +132,7 @@ const LandingPage = () => {
               <SearchMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
+                getKeyword={getKeyword}
               />
               <SelectDate id="search-date" getDateValue={getDateValue} />
               <InputPeople id="search-peopleNum" handleChange={handleChange} />
