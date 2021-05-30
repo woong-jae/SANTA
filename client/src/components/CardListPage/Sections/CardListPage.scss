@@ -28,6 +28,11 @@
             width: 40px !important;
         }
     }
+    @media (max-width: 540px) {
+        #exit-btn {
+            display: none;
+        }
+    }
     box-shadow: 5px 5px 5px -5px gray;
     background-color: #ffffff;
     min-height: 12vh;
@@ -125,7 +130,7 @@ section {
     text-align: center;
     position: fixed;
     right: 44px;
-    bottom: 60px;
+    bottom: 100px;
     .footer-btn {
         width: 70px;
         height: 70px;

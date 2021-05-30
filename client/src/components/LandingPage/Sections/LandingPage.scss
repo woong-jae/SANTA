@@ -1,13 +1,16 @@
 .landing-main {
-    background: url("../../../image/mountains_5.jpg") center center / cover no-repeat;
+    //background: url("../../../image/mountains_5.jpg") center center / cover no-repeat;
     width: 100%;
-    min-height: 100vh;
+    min-height: 110vh;
     display: flex;
     justify-content: center;
     align-items: center;
     .landing-body {
         //background-color: #81c784;
+        display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         color: white;
         @media (min-width: 1128px) {
             max-width: 1080px;

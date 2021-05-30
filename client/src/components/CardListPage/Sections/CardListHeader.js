@@ -243,6 +243,7 @@ const CardListHeader = (props) => {
           <Button
             variant="contained"
             className="header-btn"
+            id="exit-btn"
             onClick={handleSignOut}
           >
             <ExitToAppIcon></ExitToAppIcon>
