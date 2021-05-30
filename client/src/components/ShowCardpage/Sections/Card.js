@@ -40,6 +40,15 @@ export default function ShowCard({ user }) {
     setApply(true);
   };
 
+  const handleLeave = () => {
+    if (
+      window.confirm(
+        "모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)"
+      )
+    ) {
+    }
+  };
+
   const isUpdateCard = () => {
     setIsUpdate(true);
   };
@@ -165,15 +174,24 @@ export default function ShowCard({ user }) {
                 </div>
                 <div id="btn-paper" className="side-paper">
                   {user?.result?._id !== card.createdUser?._id ? (
-                    !apply &&
-                    user &&
-                    card.currentMember.length + 1 < card.maxMember && (
+                    !apply ? (
+                      user &&
+                      card.currentMember.length + 1 < card.maxMember && (
+                        <Button
+                          variant="contained"
+                          className="apply-btn"
+                          onClick={handleApply}
+                        >
+                          참가 신청
+                        </Button>
+                      )
+                    ) : (
                       <Button
                         variant="contained"
-                        className="apply-btn"
-                        onClick={handleApply}
+                        className="leave-btn"
+                        onClick={handleLeave}
                       >
-                        참가 신청
+                        모임 탈퇴
                       </Button>
                     )
                   ) : (
