@@ -73,7 +73,10 @@ export default function UpdateCard(props) {
           <Button
             variant="contained"
             className="back-btn"
-            onClick={() => history.goBack()}
+            onClick={() => {
+              history.goBack();
+              localStorage.removeItem('card');
+              }}
           >
             <ArrowBackIcon />
           </Button>
