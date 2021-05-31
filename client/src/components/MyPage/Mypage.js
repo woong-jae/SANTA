@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import CreateIcon from "@material-ui/icons/Create";
 import decode from "jwt-decode";
 
@@ -22,8 +22,7 @@ const MyPage = (props) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [isParty, setIsParty] = useState(false);
   const posts = useSelector((state) => state.post);
-  const { card, handleShow, handleUpdate } = props;
-
+  console.log(posts);
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -49,20 +48,22 @@ const MyPage = (props) => {
   }, [dispatch, location]);
 
   const isUpdateUser = () => {
+    console.log(posts);
     setIsUpdate(true);
   };
 
   const notUpdateUser = () => {
+    console.log(posts);
     setIsUpdate(false);
-  }
+  };
 
   const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
+    setIsUpdate(false);
     await dispatch(
       updateUser(user?.result?._id, { ...user?.result, ...updateState })
     );
     document.location.reload("/myPage");
-    setIsUpdate(false);
   };
 
   const handleDeleteUser = () => {
@@ -77,6 +78,7 @@ const MyPage = (props) => {
   };
 
   const toggle = () => {
+    console.log(posts);
     setIsParty((prev) => !prev);
   };
 
@@ -88,7 +90,7 @@ const MyPage = (props) => {
           <Paper className="mypage-paper" elevation={10}>
             <section className="mypage-body">
               <header>
-                <PersonRoundedIcon fontSize="large"/>
+                <PersonRoundedIcon fontSize="large" />
                 <Typography variant="h4" style={{ textAlign: "center" }}>
                   <strong>My Page</strong>
                 </Typography>
@@ -145,7 +147,11 @@ const MyPage = (props) => {
           </Paper>
         </div>
       ) : isUpdate ? (
-        <UpdateUser user={user} updateUser={handleUpdateUser} update={notUpdateUser}/>
+        <UpdateUser
+          user={user}
+          updateUser={handleUpdateUser}
+          update={notUpdateUser}
+        />
       ) : (
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10}>
@@ -158,9 +164,23 @@ const MyPage = (props) => {
               <article>
                 <section>
                   <div className="cardList-body">
-                    {posts.map((post) => (
-                      <Cards key={post._id} card={post} user={user?.result} />
-                    ))}
+                    {posts.map((post) =>
+                      post.createdUser.email === user?.result?.email ? (
+                        <Cards key={post._id} card={post} user={props.user} />
+                      ) : (
+                        post.currentMember.map((mem) =>
+                          mem.email === user?.result?.email ? (
+                            <Cards
+                              key={post._id}
+                              card={post}
+                              user={props.user}
+                            />
+                          ) : (
+                            ""
+                          )
+                        )
+                      )
+                    )}
                   </div>
                 </section>
               </article>
@@ -168,7 +188,12 @@ const MyPage = (props) => {
           </Paper>
         </div>
       )}
-      <Button className="toggleInfo" variant="contained" id="toggleInfo" onClick={toggle}>
+      <Button
+        className="toggleInfo"
+        variant="contained"
+        id="toggleInfo"
+        onClick={toggle}
+      >
         <strong>{!isParty ? "내 모임 정보" : "내 정보"}</strong>
       </Button>
     </div>

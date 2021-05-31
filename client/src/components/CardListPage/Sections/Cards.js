@@ -24,7 +24,7 @@ const Cards = (props) => {
 
   const handleClick = () => {
     dispatch(getPostById(card._id, history));
-  }
+  };
 
   return (
     <Card className="cards">
@@ -51,9 +51,9 @@ const Cards = (props) => {
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-          <Button variant="contained" className="card-btn" onClick={handleClick}>
-            ➜
-          </Button>
+        <Button variant="contained" className="card-btn" onClick={handleClick}>
+          ➜
+        </Button>
       </CardActions>
     </Card>
   );

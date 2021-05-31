@@ -59,7 +59,7 @@ const UpdateUser = (props) => {
               </div>
               <TextField
                 id="update-email"
-                class="update-userInfo"
+                className="update-userInfo"
                 name="email"
                 type="id"
                 value={updateState.email}
@@ -76,7 +76,7 @@ const UpdateUser = (props) => {
               <TextField
                 required
                 id="update-nickname"
-                class="update-userInfo"
+                className="update-userInfo"
                 name="nickname"
                 value={updateState.nickname}
                 onChange={handleChange}
@@ -101,7 +101,7 @@ const UpdateUser = (props) => {
               </div>
               <RadioGroup
                 id="update-sex"
-                class="update-userInfo"
+                className="update-userInfo"
                 aria-label="sex"
                 name="sex"
                 value={updateState.sex}
@@ -129,7 +129,7 @@ const UpdateUser = (props) => {
               <TextField
                 required
                 id="update-birth"
-                class="update-userInfo"
+                className="update-userInfo"
                 name="birth"
                 type="date"
                 value={birthState}
@@ -148,14 +148,21 @@ const UpdateUser = (props) => {
           <Button
             variant="contained"
             id="update-btn"
-            onClick={updateState.nickname.length >= 4 &&
-              updateState.nickname.length <= 7 ? () => props.updateUser(updateState) : ""}
-            disabled={updateState.nickname.length >= 4 &&
-              updateState.nickname.length <= 7 ? false : true}
+            onClick={() => props.updateUser(updateState)}
+            disabled={
+              updateState.nickname.length >= 4 &&
+              updateState.nickname.length <= 7
+                ? false
+                : true
+            }
           >
             <CheckCircleIcon />
           </Button>
-          <Button variant="contained" id="back-btn" onClick={() => props.update()}>
+          <Button
+            variant="contained"
+            id="back-btn"
+            onClick={() => props.update()}
+          >
             돌아가기
           </Button>
         </footer>
