@@ -37,6 +37,17 @@ export const getPostById = async (req, res) => {
     }
 }
 
+export const getUserPosts = async (req, res) => {
+    const { _id } = req.params;
+    try {
+        const posts = await Posts.find({ createdUser: _id }).populate('createdUser').populate('currentMember');
+        console.log(posts);
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(404).json({ message: error });
+    }
+}
+
 export const getPostByMt = async (req, res) => {
     try {
         const posts = await Posts.find({mountain: req.params.mountain, 
@@ -74,10 +85,12 @@ export const applyPost = async (req, res) => {
     try {
         const curPost = await Posts.findById(_id);
         if (curPost.currentMember.length + 2 <= curPost.maxMember && !curPost.currentMember.some(member => member.toString() === userID)) {
-            const newPost = await Posts.findByIdAndUpdate(_id, {currentMember: [ ...curPost.currentMember, userID ]}, {new: true}).populate('createdUser').populate('currentMember');
+            const newPost = await Posts.findByIdAndUpdate(_id, {$push: { currentMember: userID }}, {new: true}).populate('createdUser').populate('currentMember');
+            await User.findByIdAndUpdate(userID, {$push: { appliedPosts: _id }});
             res.json(newPost);
         } else {
-            const newPost = await Posts.findByIdAndUpdate(_id, {currentMember: curPost.currentMember.filter(member => member.toString() !== userID)}, {new: true}).populate('createdUser').populate('currentMember');
+            const newPost = await Posts.findByIdAndUpdate(_id, {$pull: { currentMember: userID }}, {new: true}).populate('createdUser').populate('currentMember');
+            await User.findByIdAndUpdate(userID, {$pull: { appliedPosts: _id }});
             res.json(newPost);
         }
     } catch (error) {
@@ -87,12 +100,17 @@ export const applyPost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     const { _id } = req.params;
-    
     if (!req.userId) return res.json({message: "Unathenticated"});
-
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that id");
+    try {
+        const post = await Posts.findById(_id).populate('currentMember');
+        post.currentMember.forEach(async (member) => {
+            await User.findByIdAndUpdate(member._id, {$pull: {appliedPosts: post._id}});
+        });
 
-    await Posts.findByIdAndRemove(_id);
-
-    res.json({message: 'Post deleted successfully'});
+        await Posts.findByIdAndRemove(_id);
+        res.json({message: 'Post deleted successfully'});
+    } catch (error) {
+        res.status(404).json({ message: error });   
+    }
 }

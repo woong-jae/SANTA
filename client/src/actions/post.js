@@ -11,6 +11,16 @@ export const getPosts = () => async (dispatch) => {
     }
 }
 
+export const getUserPosts = (userId) => async (dispatch) => {
+    try {
+        const { data } = await api.getUserPosts(userId);
+        
+        dispatch({ type: FETCH_ALL, data });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const getPostByMt = (mountain, date, peopleNum) => async (dispatch) => {
     try {
         const { data } = await api.fetchPostByMt(mountain, date, peopleNum);

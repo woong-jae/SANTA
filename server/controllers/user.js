@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 
 import User from '../models/user.js';
+import Posts from '../models/post.js';
 
 export const getUser = async (req, res) => {
     try {
@@ -19,7 +20,7 @@ export const loginUser = async (req, res) => {
     try {
         const { email, passwd } = req.body;
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).populate('appliedPosts');
         if (!user) return res.status(404).json({message: "User doesn't exist"});
 
         const compare = await bcrypt.compare(passwd, user.passwd);
@@ -63,7 +64,7 @@ export const updateUser = async (req, res) => {
 
         if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that _id");
 
-        const result = await User.findByIdAndUpdate(_id, {...user, _id}, { new: true });
+        const result = await User.findByIdAndUpdate(_id, {...user, _id}, { new: true }).populate('appliedPosts');
 
         const token = jwt.sign({ email: result.email, id: result._id }, 'test', { expiresIn: "1h"});
 
@@ -76,11 +77,23 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     const { _id } = req.params;
+
     if (!req.userId) return res.json({message: "Unathenticated"});
-    
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that id");
 
-    await User.findByIdAndRemove(_id);
+    try {
+        const posts = await Posts.find({ createdUser: _id }).populate('currentMember');
+        posts.forEach((post) => {
+            post.currentMember.forEach(async (member) => {
+                await User.findByIdAndUpdate(member._id, {$pull: {appliedPosts: post._id}});
+            });
+        });
+        await Posts.remove({ createdUser: _id });
 
-    res.json({message: 'User deleted successfully'});
+        await User.findByIdAndRemove(_id);
+        res.json({message: 'User deleted successfully'});
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong" });
+        console.log(error);
+    }
 }

@@ -22,7 +22,7 @@ const MyPage = (props) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [isParty, setIsParty] = useState(false);
   const posts = useSelector((state) => state.post);
-  console.log(posts);
+  
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -60,19 +60,13 @@ const MyPage = (props) => {
   const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
     setIsUpdate(false);
-    await dispatch(
-      updateUser(user?.result?._id, { ...user?.result, ...updateState })
-    );
+    await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
     document.location.reload("/myPage");
   };
 
-  const handleDeleteUser = () => {
-    if (
-      window.confirm(
-        "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
-      )
-    ) {
-      dispatch(deleteUser(user?.result?._id));
+  const handleDeleteUser = async () => {
+    if (window.confirm("회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다.")) {
+      await dispatch(deleteUser(user?.result?._id));
       logout();
     }
   };

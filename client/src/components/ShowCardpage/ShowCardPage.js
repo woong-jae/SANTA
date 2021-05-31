@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import decode from "jwt-decode";
 
 import Card from "./Sections/Card";
@@ -9,17 +9,19 @@ import "./Sections/ShowCardPage.scss";
 export default function ShowCard() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
+  const cardUpdated = useSelector(state => state.show.post);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     setUser(null);
-    history.push('/');
+    history.goBack();
   };
 
   useEffect(() => {
+    console.log("Called 1");
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -28,9 +30,10 @@ export default function ShowCard() {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+    setCard(JSON.parse(localStorage.getItem("card")));
+  }, [cardUpdated]);
 
   return (
-    <Card user={user} />
+    <Card user={user} card={card} />
   )
 }
