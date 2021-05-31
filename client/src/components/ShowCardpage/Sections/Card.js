@@ -33,9 +33,11 @@ export default function ShowCard({ user }) {
   const handleApply = async () => {
     const userBirth = new Date(user?.result?.birth); 
     const age = (new Date().getFullYear() - userBirth.getFullYear()) + 1;
-      if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
-        await dispatch(applyPost(card._id, {userID: user?.result?._id}));
-        setApply(true);
+    if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
+      await dispatch(applyPost(card._id, {userID: user?.result?._id}));
+      setApply(true);
+    } else {
+      window.alert("나이 제한을 확인해주세요!");
     }
   };
 
