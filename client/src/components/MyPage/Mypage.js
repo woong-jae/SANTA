@@ -161,14 +161,14 @@ const MyPage = (props) => {
       )}
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
-          <section className="mypage-body">
+          <section id="partyinfo" className="mypage-body">
             <header>
               <Typography
                 className="title"
                 variant="h4"
                 style={{ textAlign: "center" }}
               >
-                <strong id="partyinfo">{"내 모임 정보"}</strong>
+                <strong>{"내 모임 정보"}</strong>
               </Typography>
               <Tooltip title="내 정보">
                 <Fab href="#" className="toggle-fab">
