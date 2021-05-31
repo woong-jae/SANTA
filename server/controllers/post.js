@@ -65,19 +65,20 @@ export const updatePost = async (req, res) => {
 
 export const applyPost = async (req, res) => {
     const { _id } = req.params;
-    const user = req.body;
+    const { userID } = req.body;
 
     if (!req.userId) return res.json({message: "Unathenticated"});
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that _id");
 
     try {
-        const curPost = await Posts.findById(_id).populate('createdUser').populate('currentMember');
-        if (user.currentMember.length < curPost.maxMember) {
-            const newPost = await Posts.findByIdAndUpdate(_id, {currentMember: user.currentMember}, {new: true}).populate('createdUser').populate('currentMember');
+        const curPost = await Posts.findById(_id);
+        if (curPost.currentMember.length + 2 <= curPost.maxMember && !curPost.currentMember.some(member => member.toString() === userID)) {
+            const newPost = await Posts.findByIdAndUpdate(_id, {currentMember: [ ...curPost.currentMember, userID ]}, {new: true}).populate('createdUser').populate('currentMember');
             res.json(newPost);
         } else {
-            res.json(curPost);
+            const newPost = await Posts.findByIdAndUpdate(_id, {currentMember: curPost.currentMember.filter(member => member.toString() !== userID)}, {new: true}).populate('createdUser').populate('currentMember');
+            res.json(newPost);
         }
     } catch (error) {
         res.status(404).json({ message: error });

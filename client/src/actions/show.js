@@ -33,9 +33,9 @@ export const updatePost = (_id, post) => async (dispatch) => {
     }
 }
 
-export const applyPost = (_id, user) => async (dispatch) => {
+export const applyPost = (_id, userID) => async (dispatch) => {
     try {
-        const { data } = await api.applyPost(_id, user);
+        const { data } = await api.applyPost(_id, userID);
 
         dispatch({ type: FETCH_ONE, data });
     } catch (error) {

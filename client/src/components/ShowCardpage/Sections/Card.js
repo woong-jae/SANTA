@@ -19,11 +19,12 @@ export default function ShowCard({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [apply, setApply] = useState(false);
   const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [apply, setApply] = useState(card?.currentMember.some(member => member._id === user?.result?._id));
 
   useEffect(() => {
+    console.log("Called");
     dispatch(setShowCard(card._id));
     setCard(JSON.parse(localStorage.getItem("card")));
     setApply(card?.currentMember.some(member => member._id === user?.result?._id));
@@ -33,18 +34,14 @@ export default function ShowCard({ user }) {
     const userBirth = new Date(user?.result?.birth); 
     const age = (new Date().getFullYear() - userBirth.getFullYear()) + 1;
       if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
-      const updatedMember = card.currentMember.map((user) => user._id);
-      updatedMember.push(user?.result?._id);
-      await dispatch(applyPost(card._id, { currentMember: updatedMember }));
-      setApply(true);
+        await dispatch(applyPost(card._id, {userID: user?.result?._id}));
+        setApply(true);
     }
   };
 
   const handleLeave = async () => {
     if (window.confirm("모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)")) {
-      const updatedMember = card.currentMember.map((user) => user._id);
-      const newMember = updatedMember.filter(member => member !== user?.result?._id);
-      await dispatch(applyPost(card._id, { currentMember: newMember }));
+      await dispatch(applyPost(card._id, {userID: user?.result?._id}));
       setApply(false);
     }
   };

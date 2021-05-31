@@ -21,5 +21,5 @@ export const getPostById = (_id) => API.get(`/post/${_id}`);
 export const fetchPostByMt = (mountain, date, peopleNum) => API.get(`/post/search/${mountain}/${date}/${peopleNum}`);
 export const createPost = (post) => API.post("/post", post);
 export const updatePost = (_id, post) => API.patch(`/post/${_id}`, post);
-export const applyPost = (_id, user) => API.patch(`/post/apply/${_id}`, user);
+export const applyPost = (_id, userID) => API.patch(`/post/apply/${_id}`, userID);
 export const deletePost = (_id) => API.delete(`/post/${_id}`);
