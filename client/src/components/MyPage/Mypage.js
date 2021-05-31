@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import Paper from "@material-ui/core/Paper";
-import { Typography, Tooltip, Button, Fab } from "@material-ui/core";
+import { Paper, Typography, Tooltip, Button, Fab } from "@material-ui/core";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import CreateIcon from "@material-ui/icons/Create";
 import GroupIcon from "@material-ui/icons/Group";

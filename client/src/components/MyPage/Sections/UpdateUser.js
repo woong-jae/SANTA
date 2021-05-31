@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 
-import Paper from "@material-ui/core/Paper";
-import { Typography, Tooltip } from "@material-ui/core";
-import { Button, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+import {
+  Paper,
+  Typography,
+  Tooltip,
+  Button,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  TextField,
+} from "@material-ui/core";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 import "./Mypage.scss";

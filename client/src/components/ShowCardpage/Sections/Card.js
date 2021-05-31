@@ -4,10 +4,8 @@ import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
 import { updatePost, applyPost, setShowCard } from "../../../actions/show";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Paper, Button, Typography } from "@material-ui/core";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
-import Paper from "@material-ui/core/Paper";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
@@ -21,20 +19,24 @@ export default function ShowCard({ user }) {
 
   const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
   const [isUpdate, setIsUpdate] = useState(false);
-  const [apply, setApply] = useState(card?.currentMember.some(member => member._id === user?.result?._id));
+  const [apply, setApply] = useState(
+    card?.currentMember.some((member) => member._id === user?.result?._id)
+  );
 
   useEffect(() => {
     console.log("Called");
     dispatch(setShowCard(card._id));
     setCard(JSON.parse(localStorage.getItem("card")));
-    setApply(card?.currentMember.some(member => member._id === user?.result?._id));
+    setApply(
+      card?.currentMember.some((member) => member._id === user?.result?._id)
+    );
   }, [isUpdate, apply]);
 
   const handleApply = async () => {
-    const userBirth = new Date(user?.result?.birth); 
-    const age = (new Date().getFullYear() - userBirth.getFullYear()) + 1;
+    const userBirth = new Date(user?.result?.birth);
+    const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
-      await dispatch(applyPost(card._id, {userID: user?.result?._id}));
+      await dispatch(applyPost(card._id, { userID: user?.result?._id }));
       setApply(true);
     } else {
       window.alert("나이 제한을 확인해주세요!");
@@ -42,8 +44,12 @@ export default function ShowCard({ user }) {
   };
 
   const handleLeave = async () => {
-    if (window.confirm("모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)")) {
-      await dispatch(applyPost(card._id, {userID: user?.result?._id}));
+    if (
+      window.confirm(
+        "모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)"
+      )
+    ) {
+      await dispatch(applyPost(card._id, { userID: user?.result?._id }));
       setApply(false);
     }
   };
@@ -73,7 +79,7 @@ export default function ShowCard({ user }) {
       )
     ) {
       await dispatch(deletePost(card._id));
-      localStorage.removeItem('card');
+      localStorage.removeItem("card");
       history.goBack();
     }
   };
@@ -88,7 +94,8 @@ export default function ShowCard({ user }) {
               className="back-btn"
               onClick={() => {
                 history.goBack();
-                localStorage.removeItem('card');}}
+                localStorage.removeItem("card");
+              }}
             >
               <ArrowBackIcon />
             </Button>

@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import TextField from "@material-ui/core/TextField";
-import Slider from "@material-ui/core/Slider";
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
-import DateFnsUtils from "@date-io/date-fns";
+import {
+  Button,
+  Typography,
+  Paper,
+  TextField,
+  Slider,
+} from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
+import DateFnsUtils from "@date-io/date-fns";
 
 import "./ShowCardPage.scss";
 import "./UpdateCard.scss";
@@ -75,8 +76,8 @@ export default function UpdateCard(props) {
             className="back-btn"
             onClick={() => {
               history.goBack();
-              localStorage.removeItem('card');
-              }}
+              localStorage.removeItem("card");
+            }}
           >
             <ArrowBackIcon />
           </Button>
