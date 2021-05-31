@@ -30,10 +30,14 @@ export default function ShowCard({ user }) {
   }, [isUpdate, apply]);
 
   const handleApply = async () => {
-    const updatedMember = card.currentMember.map((user) => user._id);
-    updatedMember.push(user?.result?._id);
-    await dispatch(applyPost(card._id, { currentMember: updatedMember }));
-    setApply(true);
+    const userBirth = new Date(user?.result?.birth); 
+    const age = (new Date().getFullYear() - userBirth.getFullYear()) + 1;
+      if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
+      const updatedMember = card.currentMember.map((user) => user._id);
+      updatedMember.push(user?.result?._id);
+      await dispatch(applyPost(card._id, { currentMember: updatedMember }));
+      setApply(true);
+    }
   };
 
   const handleLeave = async () => {

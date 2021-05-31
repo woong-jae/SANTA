@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import decode from "jwt-decode";
 
-import { setShowCard } from '../../actions/show';
 import Card from "./Sections/Card";
 import "./Sections/ShowCardPage.scss";
 
