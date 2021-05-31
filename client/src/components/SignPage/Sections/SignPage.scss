@@ -1,5 +1,10 @@
 .signDialog {
   text-align: center;
+  .backdrop {
+    z-index: inherit;
+    position: fixed;
+    opacity: 0.5;
+  }
   .signform {
     display: grid;
     .MuiIconButton-colorSecondary:hover {

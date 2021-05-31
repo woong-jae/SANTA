@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 
-import Modal from "@material-ui/core/Modal";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Slider from "@material-ui/core/Slider";
-import Typography from "@material-ui/core/Typography";
-import Fab from "@material-ui/core/Fab";
+import {
+  Modal,
+  Tooltip,
+  Button,
+  TextField,
+  Slider,
+  Typography,
+  Fab,
+} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../actions/post";
@@ -33,6 +36,7 @@ export default function CreateCard(props) {
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
 
   const handleOpen = () => {
     setOpen(true);
@@ -45,7 +49,10 @@ export default function CreateCard(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(
-      createPost({ ...cardState, createdUser: props.user?.result?._id }, props.user?.result)
+      createPost(
+        { ...cardState, createdUser: props.user?.result?._id },
+        props.user?.result
+      )
     ); // 새로운 post 생성 요청
     setCardState(initialState);
     setAgeLimit([19, 70]);
@@ -79,6 +86,10 @@ export default function CreateCard(props) {
     });
   };
 
+  const getKeyword = (value) => {
+    setIsCorrectKeyword(value);
+  }
+
   const marks = [
     { value: 19 },
     { value: 29 },
@@ -89,14 +100,17 @@ export default function CreateCard(props) {
 
   return (
     <div>
-      <Fab
-        color="primary"
-        aria-label="add"
-        className="footer-btn"
-        onClick={handleOpen}
-      >
-        <AddIcon />
-      </Fab>
+      <Tooltip title="모임 생성">
+        <Fab
+          color="primary"
+          aria-label="add"
+          className="footer-btn"
+          onClick={handleOpen}
+        >
+          <AddIcon />
+        </Fab>
+      </Tooltip>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -124,6 +138,7 @@ export default function CreateCard(props) {
                     name="mountain"
                     label="산/지역명"
                     getMountainValue={getMountainValue}
+                    getKeyword={getKeyword}
                   />
                 </div>
                 <TextField

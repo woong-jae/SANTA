@@ -1,35 +1,35 @@
-.update-userInfo {
-  margin-bottom: 30px;
-  padding: 0px;
-}
+article {
+  .update-userInfo {
+    margin: 15px;
+    .MuiInput-underline:after {
+      border-bottom-color: #10b274;
+    }
+  }
 
-#update-sex {
-  .MuiRadio-root:hover {
-    color: #10b274;
-  }
-  .MuiRadio-root.Mui-checked {
-    color: #10b274;
-  }
-}
-
-.update-userInfo {
-  .MuiInput-underline:after {
-    border-bottom-color: #10b274;
+  #update-sex {
+    .MuiRadio-root:hover {
+      color: #10b274;
+    }
+    .MuiRadio-root.Mui-checked {
+      color: #10b274;
+    }
   }
 }
-#update-btn {
-  &:disabled {
-    opacity: 0.5;
+footer {
+  #update-btn {
+    &:disabled {
+      opacity: 0.5;
+    }
   }
-}
-#back-btn {
-  float: right;
-  font-size: 1em;
-  color: white;
-  margin-right: 30px;
-  margin-bottom: 30px;
-  background-color: rgb(247, 111, 111);
-  &:hover {
-    background-color: rgb(247, 83, 83);
+  #back-btn {
+    float: right;
+    font-size: 1em;
+    color: white;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    background-color: rgb(247, 111, 111);
+    &:hover {
+      background-color: rgb(247, 83, 83);
+    }
   }
 }

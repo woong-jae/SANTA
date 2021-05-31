@@ -10,11 +10,14 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  Tooltip,
+  Backdrop,
+  CircularProgress,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
-import HowToRegIcon from '@material-ui/icons/HowToReg';
-import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import HowToRegIcon from "@material-ui/icons/HowToReg";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
 import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
@@ -25,6 +28,7 @@ export default function SigninDialog() {
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
   const [valid, setValid] = useState(false);
+  const [backOpen, setbackOpen] = useState(false);
 
   const init = {
     email: "",
@@ -86,11 +90,13 @@ export default function SigninDialog() {
     setInputs(init);
     setValid(false);
   };
+
   const handleClose = () => {
     setInputs(init);
     setValid(false);
     setOpen(false);
   };
+
   const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
   const hasPwdError = (passwordEnter) =>
     isPassword(inputs.passwd) ? false : true;
@@ -116,6 +122,7 @@ export default function SigninDialog() {
       }
     }
     setValid(false);
+    backdropClose();
   };
 
   const toggle = () => {
@@ -125,20 +132,30 @@ export default function SigninDialog() {
     setIsSignIn((prev) => !prev);
   };
 
+  const backdropClose = () => {
+    setbackOpen(false);
+  };
+
+  const backdropOpen = () => {
+    setbackOpen(!backOpen);
+  };
+
   return (
     <div>
-      <Button
-        variant="contained"
-        className="header-btn"
-        id="signIn-btn"
-        onClick={handleOpen}
-      >
-        <FingerprintIcon></FingerprintIcon>
-        {/* sign in/up */}
-      </Button>
+      <Tooltip title="SIGN">
+        <Button
+          variant="contained"
+          className="header-btn"
+          id="signIn-btn"
+          onClick={handleOpen}
+        >
+          <FingerprintIcon></FingerprintIcon>
+        </Button>
+      </Tooltip>
+
       <Dialog open={open} onClose={handleClose} className="signDialog">
         <DialogTitle>
-          {isSignin? <LockIcon /> : <HowToRegIcon/>}
+          {isSignin ? <LockIcon /> : <HowToRegIcon />}
           <Typography variant="h3" gutterBottom>
             {isSignin ? "Sign In" : "Sign Up"}
           </Typography>
@@ -245,9 +262,17 @@ export default function SigninDialog() {
               className="sign-btn"
               fullWidth
               disabled={isSignin ? false : valid ? false : true}
+              onClick={backdropOpen}
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>
+            <Backdrop
+              open={backOpen}
+              onClick={backdropClose}
+              className="backdrop"
+            >
+              <CircularProgress color="inherit"></CircularProgress>
+            </Backdrop>
             <button type="button" className="switch-text" onClick={toggle}>
               <strong>
                 {isSignin ? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}

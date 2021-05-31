@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 
-import Paper from "@material-ui/core/Paper";
-import { Typography } from "@material-ui/core";
-import { Button, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+import {
+  Paper,
+  Typography,
+  Tooltip,
+  Button,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  TextField,
+} from "@material-ui/core";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 import "./Mypage.scss";
@@ -139,25 +145,27 @@ const UpdateUser = (props) => {
                   required: true,
                 }}
                 fullWidth
-                margin="normal"
               ></TextField>
             </Typography>
           </article>
         </section>
         <footer style={{ display: "block", textAlign: "center" }}>
-          <Button
-            variant="contained"
-            id="update-btn"
-            onClick={() => props.updateUser(updateState)}
-            disabled={
-              updateState.nickname.length >= 4 &&
-              updateState.nickname.length <= 7
-                ? false
-                : true
-            }
-          >
-            <CheckCircleIcon />
-          </Button>
+          <Tooltip title="수정 완료">
+            <Button
+              variant="contained"
+              id="update-btn"
+              onClick={() => props.updateUser(updateState)}
+              disabled={
+                updateState.nickname.length >= 4 &&
+                updateState.nickname.length <= 7
+                  ? false
+                  : true
+              }
+            >
+              <CheckCircleIcon />
+            </Button>
+          </Tooltip>
+
           <Button
             variant="contained"
             id="back-btn"

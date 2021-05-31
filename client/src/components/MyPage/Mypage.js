@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import Paper from "@material-ui/core/Paper";
-import { Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import { Paper, Typography, Tooltip, Button, Fab } from "@material-ui/core";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import CreateIcon from "@material-ui/icons/Create";
+import GroupIcon from "@material-ui/icons/Group";
 import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
@@ -20,9 +19,8 @@ const MyPage = (props) => {
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
-  const [isParty, setIsParty] = useState(false);
   const posts = useSelector((state) => state.post);
-  
+  console.log(posts); // f5하면 empty ...
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -71,23 +69,26 @@ const MyPage = (props) => {
     }
   };
 
-  const toggle = () => {
-    console.log(posts);
-    setIsParty((prev) => !prev);
-  };
-
   return (
     <div className="mypage">
       <CardListHeader user={user} />
-      {!isUpdate && !isParty ? (
+      {!isUpdate ? (
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10}>
             <section className="mypage-body">
               <header>
-                <PersonRoundedIcon fontSize="large" />
-                <Typography variant="h4" style={{ textAlign: "center" }}>
+                <Typography
+                  className="title"
+                  variant="h4"
+                  style={{ textAlign: "center" }}
+                >
                   <strong>My Page</strong>
                 </Typography>
+                <Tooltip title="내 모임 정보">
+                  <Fab href="#partyinfo" className="toggle-fab">
+                    <GroupIcon />
+                  </Fab>
+                </Tooltip>
               </header>
               <article>
                 <Typography>
@@ -123,13 +124,15 @@ const MyPage = (props) => {
               </article>
             </section>
             <footer>
-              <Button
-                variant="contained"
-                id="update-btn"
-                onClick={isUpdateUser}
-              >
-                <CreateIcon />
-              </Button>
+              <Tooltip title="정보 변경">
+                <Button
+                  variant="contained"
+                  id="update-btn"
+                  onClick={isUpdateUser}
+                >
+                  <CreateIcon />
+                </Button>
+              </Tooltip>
               <Button
                 variant="contained"
                 id="delete-btn"
@@ -147,49 +150,47 @@ const MyPage = (props) => {
           update={notUpdateUser}
         />
       ) : (
-        <div className="mypage-main">
-          <Paper className="mypage-paper" elevation={10}>
-            <section className="mypage-body">
-              <header>
-                <Typography variant="h4" style={{ textAlign: "center" }}>
-                  <strong>내 모임 정보</strong>
-                </Typography>
-              </header>
-              <article>
-                <section>
-                  <div className="cardList-body">
-                    {posts.map((post) =>
-                      post.createdUser.email === user?.result?.email ? (
-                        <Cards key={post._id} card={post} user={props.user} />
-                      ) : (
-                        post.currentMember.map((mem) =>
-                          mem.email === user?.result?.email ? (
-                            <Cards
-                              key={post._id}
-                              card={post}
-                              user={props.user}
-                            />
-                          ) : (
-                            ""
-                          )
+        ""
+      )}
+      <div className="mypage-main">
+        <Paper className="mypage-paper" elevation={10}>
+          <section id="partyinfo" className="mypage-body">
+            <header>
+              <Typography
+                className="title"
+                variant="h4"
+                style={{ textAlign: "center" }}
+              >
+                <strong>{"내 모임 정보"}</strong>
+              </Typography>
+              <Tooltip title="내 정보">
+                <Fab href="#" className="toggle-fab">
+                  <PersonRoundedIcon />
+                </Fab>
+              </Tooltip>
+            </header>
+            <article>
+              <section>
+                <div className="cardList-body">
+                  {posts.map((post) =>
+                    post.createdUser.email === user?.result?.email ? (
+                      <Cards key={post._id} card={post} user={props.user} />
+                    ) : (
+                      post.currentMember.map((mem) =>
+                        mem.email === user?.result?.email ? (
+                          <Cards key={post._id} card={post} user={props.user} />
+                        ) : (
+                          ""
                         )
                       )
-                    )}
-                  </div>
-                </section>
-              </article>
-            </section>
-          </Paper>
-        </div>
-      )}
-      <Button
-        className="toggleInfo"
-        variant="contained"
-        id="toggleInfo"
-        onClick={toggle}
-      >
-        <strong>{!isParty ? "내 모임 정보" : "내 정보"}</strong>
-      </Button>
+                    )
+                  )}
+                </div>
+              </section>
+            </article>
+          </section>
+        </Paper>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+import { TextField, Popper } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Popper from "@material-ui/core/Popper";
 
-const InputMountain = ({ results, keyword, updateField, getMountainValue, getKeyword }) => {
+const InputMountain = ({
+  results,
+  keyword,
+  updateField,
+  getMountainValue,
+  getKeyword,
+}) => {
   const [isCorrectName, setIsCorrectName] = useState(false);
 
   var ClickHandler = (text) => {
@@ -41,7 +46,9 @@ const InputMountain = ({ results, keyword, updateField, getMountainValue, getKey
         {...defaultProps}
         PopperComponent={popperMy}
         className="header-input"
-        onChange={(event, value) => value ? ClickHandler(value.name) : ClickHandler("")}
+        onChange={(event, value) =>
+          value ? ClickHandler(value.name) : ClickHandler("")
+        }
         renderInput={(params) => (
           <TextField
             //required
