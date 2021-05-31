@@ -1,65 +1,64 @@
 .mypage {
-    width: 100%;
-    text-align: center;
-    .mypage-main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 88vh;
-        text-align: -webkit-center;
-        .mypage-paper {
-            width: 100%;
-            @media (min-width: 1128px) {
-                max-width: 1080px;
-            }
-            @media (min-width: 744px) {
-                max-width: 696px;
-            }
-            .mypage-body {
-                padding: 30px;
-                text-align: left;
-                header {
-                    text-align: center;
-                    margin-bottom: 40px;
-                }
-                .mypage-title {
-                    padding: 0;
-                }
-            }
-            footer {
-                #update-btn {
-                    display: inline;
-                    color: white;
-                    background-color: #10b274;
-                    margin-left: 30px;
-                    margin-bottom: 30px;
-                    float: left;
-                    &:hover {
-                        background-color: #059960;
-                    }
-                }
-                #delete-btn {
-                    display: inline;
-                    font-size: 1em;
-                    color: white;
-                    background-color: rgb(247, 111, 111);
-                    margin-right: 30px;
-                    margin-bottom: 30px;
-                    float: right;
-                    &:hover {
-                        background-color: rgb(247, 83, 83);
-                    }
-                }
-            }
-        }
-        .toggleInfo {
-            align-items: center;
+  width: 100%;
+  text-align: center;
+  .mypage-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 88vh;
+    text-align: -webkit-center;
+    .mypage-paper {
+      width: 100%;
+      @media (min-width: 1128px) {
+        max-width: 1080px;
+      }
+      @media (min-width: 744px) {
+        max-width: 696px;
+      }
+      .mypage-body {
+        padding: 30px;
+        text-align: left;
+        header {
+          text-align: center;
+          margin-bottom: 40px;
+          .title {
             margin-bottom: 20px;
+          }
+          .toggle-fab {
+            background-color: black;
             color: white;
-            background-color: #10b274;
             &:hover {
-                background-color: #059960;
+              background-color: white;
+              color: black;
             }
+          }
         }
+      }
+      footer {
+        #update-btn {
+          display: inline;
+          color: white;
+          background-color: #10b274;
+          margin-left: 30px;
+          margin-bottom: 30px;
+          float: left;
+          &:hover {
+            background-color: #059960;
+          }
+        }
+        #delete-btn {
+          display: inline;
+          font-size: 1em;
+          color: white;
+          background-color: rgb(247, 111, 111);
+          margin-right: 30px;
+          margin-bottom: 30px;
+          float: right;
+          &:hover {
+            background-color: rgb(247, 83, 83);
+          }
+        }
+      }
     }
+  }
 }

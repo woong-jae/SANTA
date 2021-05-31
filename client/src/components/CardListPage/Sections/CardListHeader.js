@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { Button } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
+import { Button, Typography, Tooltip } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popover from "@material-ui/core/Popover";
 import SearchIcon from "@material-ui/icons/Search";
@@ -60,18 +59,18 @@ const CardListHeader = (props) => {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword
+          correctKeyword: isCorrectKeyword,
         },
       });
       document.location.reload(true);
-    } else if(searchState.mountain === "" && isCorrectKeyword) {
+    } else if (searchState.mountain === "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
         state: {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword
+          correctKeyword: isCorrectKeyword,
         },
       });
       document.location.reload(true);
@@ -109,7 +108,7 @@ const CardListHeader = (props) => {
 
   const getKeyword = (value) => {
     setIsCorrectKeyword(value);
-  }
+  };
 
   // 해상도 1000px 미만 시 반응형 적용
   const [windowSize, setWindowSize] = useState({
@@ -231,35 +230,40 @@ const CardListHeader = (props) => {
         <div className="header-user">
           <Link to="/myPage">
             {windowSize.width >= 1000 ? (
-              <Button
-                startIcon={<AiOutlineUser />}
-                size="small"
-                variant="text"
-                className="header-btn"
-                id="myPage-btn"
-              >
-                {props.user?.result?.nickname}
-              </Button>
+              <Tooltip title="My Page">
+                <Button
+                  startIcon={<AiOutlineUser />}
+                  size="small"
+                  variant="text"
+                  className="header-btn"
+                  id="myPage-btn"
+                >
+                  {props.user?.result?.nickname}
+                </Button>
+              </Tooltip>
             ) : (
-              <Button
-                size="small"
-                variant="text"
-                className="header-btn"
-                id="myPage-btn"
-              >
-                <AiOutlineUser />
-              </Button>
+              <Tooltip title="MY PAGE">
+                <Button
+                  size="small"
+                  variant="text"
+                  className="header-btn"
+                  id="myPage-btn"
+                >
+                  <AiOutlineUser />
+                </Button>
+              </Tooltip>
             )}
           </Link>
-          <Button
-            variant="contained"
-            className="header-btn"
-            id="exit-btn"
-            onClick={handleSignOut}
-          >
-            <ExitToAppIcon></ExitToAppIcon>
-            {/* sign out */}
-          </Button>
+          <Tooltip title="SIGN OUT">
+            <Button
+              variant="contained"
+              className="header-btn"
+              id="exit-btn"
+              onClick={handleSignOut}
+            >
+              <ExitToAppIcon></ExitToAppIcon>
+            </Button>
+          </Tooltip>
         </div>
       ) : (
         <div className="header-user">
