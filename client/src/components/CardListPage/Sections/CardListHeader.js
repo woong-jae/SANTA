@@ -154,121 +154,123 @@ const CardListHeader = (props) => {
           Santa
         </Typography>{" "}
       </Link>
-      {windowSize.width >= 1000 ? (
-        <form onSubmit={handleSubmit} className="input-form">
-          <div id="search-mountain" className="search-item">
-            <SearchMountain
-              id="search-mountain"
-              getMountainValue={getMountainValue}
-              getKeyword={getKeyword}
-            />
-          </div>
-          <div id="search-date" className="search-item">
-            <SelectDate name="date" getDateValue={getDateValue} />
-          </div>
-          <div id="search-peopleNum" className="search-item">
-            <InputPeople name="peopleNum" handleChange={handleChange} />
-          </div>
-          <SearchBtn />
-        </form>
-      ) : (
-        <div className="input-form">
-          <Button
-            id="search-btn"
-            variant="contained"
-            startIcon={<SearchIcon />}
-            onClick={handleClick}
-          ></Button>
-          <Popover
-            className="btn-bar"
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-          >
-            <form
-              onSubmit={handleSubmit}
-              style={{ textAlign: "center", paddingBottom: "13px" }}
-            >
-              <Button onClick={handleClose}>
-                <ExpandLess />
-              </Button>
-              <div className="input-form">
-                <div
-                  id="search-mountain"
-                  className="search-item"
-                  style={{ marginLeft: "30px" }}
-                >
-                  <SearchMountain
-                    id="search-mountain"
-                    getMountainValue={getMountainValue}
-                    getKeyword={getKeyword}
-                  />
-                </div>
-                <div id="search-date" className="search-item">
-                  <SelectDate name="date" getDateValue={getDateValue} />
-                </div>
-                <div id="search-peopleNum" className="search-item">
-                  <InputPeople name="peopleNum" handleChange={handleChange} />
-                </div>
-              </div>
-              <SearchBtn className="responsive-btn" />
-            </form>
-          </Popover>
-        </div>
-      )}
-      {props.user ? (
-        <div className="header-user">
-          <Link to="/mypage">
-            {windowSize.width >= 1000 ? (
-              <Tooltip title="MY PAGE">
-                <Button
-                  startIcon={<AiOutlineUser />}
-                  size="small"
-                  variant="text"
-                  className="header-btn"
-                  id="myPage-btn"
-                >
-                  {props.user?.result?.nickname}
-                </Button>
-              </Tooltip>
-            ) : (
-              <Tooltip title="MY PAGE">
-                <Button
-                  size="small"
-                  variant="text"
-                  className="header-btn"
-                  id="myPage-btn"
-                >
-                  <AiOutlineUser />
-                </Button>
-              </Tooltip>
-            )}
-          </Link>
-          <Tooltip title="SIGN OUT">
+      <div className="header-bar">
+        {windowSize.width >= 1150 ? (
+          <form onSubmit={handleSubmit} className="input-form">
+            <div id="search-mountain" className="search-item">
+              <SearchMountain
+                id="search-mountain"
+                getMountainValue={getMountainValue}
+                getKeyword={getKeyword}
+              />
+            </div>
+            <div id="search-date" className="search-item">
+              <SelectDate name="date" getDateValue={getDateValue} />
+            </div>
+            <div id="search-peopleNum" className="search-item">
+              <InputPeople name="peopleNum" handleChange={handleChange} />
+            </div>
+            <SearchBtn />
+          </form>
+        ) : (
+          <div className="input-form">
             <Button
+              id="search-btn"
               variant="contained"
-              className="header-btn"
-              id="exit-btn"
-              onClick={handleSignOut}
+              startIcon={<SearchIcon />}
+              onClick={handleClick}
+            ></Button>
+            <Popover
+              className="btn-bar"
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
             >
-              <ExitToAppIcon></ExitToAppIcon>
-            </Button>
-          </Tooltip>
-        </div>
-      ) : (
-        <div className="header-user">
-          <SignPage type={0}/>
-        </div>
-      )}
+              <form
+                onSubmit={handleSubmit}
+                style={{ textAlign: "center", paddingBottom: "13px" }}
+              >
+                <Button onClick={handleClose}>
+                  <ExpandLess />
+                </Button>
+                <div className="input-form">
+                  <div
+                    id="search-mountain"
+                    className="search-item"
+                    style={{ marginLeft: "30px" }}
+                  >
+                    <SearchMountain
+                      id="search-mountain"
+                      getMountainValue={getMountainValue}
+                      getKeyword={getKeyword}
+                    />
+                  </div>
+                  <div id="search-date" className="search-item">
+                    <SelectDate name="date" getDateValue={getDateValue} />
+                  </div>
+                  <div id="search-peopleNum" className="search-item">
+                    <InputPeople name="peopleNum" handleChange={handleChange} />
+                  </div>
+                </div>
+                <SearchBtn className="responsive-btn" />
+              </form>
+            </Popover>
+          </div>
+        )}
+        {props.user ? (
+          <div className="header-user">
+            <Link to="/mypage">
+              {windowSize.width >= 1150 ? (
+                <Tooltip title="MY PAGE">
+                  <Button
+                    startIcon={<AiOutlineUser />}
+                    size="small"
+                    variant="text"
+                    className="header-btn"
+                    id="myPage-btn"
+                  >
+                    {props.user?.result?.nickname}
+                  </Button>
+                </Tooltip>
+              ) : (
+                <Tooltip title="MY PAGE">
+                  <Button
+                    size="small"
+                    variant="text"
+                    className="header-btn"
+                    id="myPage-btn"
+                  >
+                    <AiOutlineUser />
+                  </Button>
+                </Tooltip>
+              )}
+            </Link>
+            <Tooltip title="SIGN OUT">
+              <Button
+                variant="contained"
+                className="header-btn"
+                id="exit-btn"
+                onClick={handleSignOut}
+              >
+                <ExitToAppIcon></ExitToAppIcon>
+              </Button>
+            </Tooltip>
+          </div>
+        ) : (
+          <div className="header-user">
+            <SignPage type={0} />
+          </div>
+        )}
+      </div>
     </header>
   );
 };
