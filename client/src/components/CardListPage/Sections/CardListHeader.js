@@ -36,7 +36,7 @@ const CardListHeader = (props) => {
       "-" +
       ("00" + (currentDate.getMonth() + 1)).slice(-2) +
       "-" +
-      ("00" + (currentDate.getDate())).slice(-2),
+      ("00" + currentDate.getDate()).slice(-2),
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
@@ -94,7 +94,7 @@ const CardListHeader = (props) => {
         "-" +
         ("00" + (value.getMonth() + 1)).slice(-2) +
         "-" +
-        ("00" + (value.getDate())).slice(-2),
+        ("00" + value.getDate()).slice(-2),
     });
   };
 

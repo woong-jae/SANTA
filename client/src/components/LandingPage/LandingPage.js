@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { debounce } from "lodash";
 
 import { Typography } from "@material-ui/core";
@@ -10,7 +11,6 @@ import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
 import "./Sections/LandingPage.scss";
 import "../common/Sections/Search.scss";
-import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -29,7 +29,7 @@ const LandingPage = () => {
       "-" +
       ("00" + (currentDate.getMonth() + 1)).slice(-2) +
       "-" +
-      ("00" + (currentDate.getDate())).slice(-2),
+      ("00" + currentDate.getDate()).slice(-2),
     peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
@@ -42,14 +42,24 @@ const LandingPage = () => {
       history.push({
         pathname: "/list",
         search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
-        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum, correctKeyword: isCorrectKeyword },
+        state: {
+          mountain: searchState.mountain,
+          date: searchState.date,
+          peopleNum: searchState.peopleNum,
+          correctKeyword: isCorrectKeyword,
+        },
       });
-    } else if(searchState.mountain === "" && isCorrectKeyword) {
+    } else if (searchState.mountain === "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
-        state: { mountain: searchState.mountain, date: searchState.date, peopleNum: searchState.peopleNum, correctKeyword: isCorrectKeyword },
+        state: {
+          mountain: searchState.mountain,
+          date: searchState.date,
+          peopleNum: searchState.peopleNum,
+          correctKeyword: isCorrectKeyword,
+        },
       });
-    } 
+    }
   };
 
   const handleChange = (event) => {
@@ -70,7 +80,7 @@ const LandingPage = () => {
         "-" +
         ("00" + (value.getMonth() + 1)).slice(-2) +
         "-" +
-        ("00" + (value.getDate())).slice(-2),
+        ("00" + value.getDate()).slice(-2),
     });
   };
 
@@ -83,7 +93,7 @@ const LandingPage = () => {
 
   const getKeyword = (value) => {
     setIsCorrectKeyword(value);
-  }
+  };
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,

@@ -82,18 +82,8 @@ export const deleteUser = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No user with that id");
 
     try {
-        const posts = await Posts.find({ createdUser: _id });
-        posts.forEach((post) => {
-            post.currentMember.forEach(async (member) => {
-                await User.findByIdAndUpdate(member, {$pull: {appliedPosts: post._id}});
-            });
-        });
+        await Posts.updateMany({ currentMember: _id }, {$pull: {curruntMember: post._id}});
         await Posts.remove({ createdUser: _id });
-
-        const user = await User.findById(_id);
-        user.appliedPosts.forEach(async (post) => {
-            await Posts.findByIdAndUpdate(post, {$pull: {currentMember: _id}});
-        });
 
         await User.findByIdAndRemove(_id);
         res.json({message: 'User deleted successfully'});

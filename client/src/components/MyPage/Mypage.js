@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Paper, Typography, Tooltip, Button, Fab } from "@material-ui/core";
+import {
+  Paper,
+  Typography,
+  Tooltip,
+  Button,
+  Fab,
+  Divider,
+  Grid,
+  Container,
+} from "@material-ui/core";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import CreateIcon from "@material-ui/icons/Create";
 import GroupIcon from "@material-ui/icons/Group";
 import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
+import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/MyPage.scss";
-import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
@@ -37,7 +46,6 @@ const MyPage = (props) => {
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [userUpdated]);
-  
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -61,7 +69,9 @@ const MyPage = (props) => {
 
   const handleUpdateUser = async (updateState) => {
     setIsUpdate(false);
-    await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
+    await dispatch(
+      updateUser(user?.result?._id, { ...user?.result, ...updateState })
+    );
   };
 
   const handleDeleteUser = async () => {
@@ -85,7 +95,7 @@ const MyPage = (props) => {
               <header>
                 <Typography
                   className="title"
-                  variant="h4"
+                  variant="h3"
                   style={{ textAlign: "center" }}
                 >
                   <strong>My Page</strong>
@@ -162,11 +172,7 @@ const MyPage = (props) => {
         <Paper className="mypage-paper" elevation={10}>
           <section id="partyinfo" className="mypage-body">
             <header>
-              <Typography
-                className="title"
-                variant="h4"
-                style={{ textAlign: "center" }}
-              >
+              <Typography className="title" variant="h3" align="center">
                 <strong>{"내 모임 정보"}</strong>
               </Typography>
               <Tooltip title="내 정보">
@@ -175,10 +181,37 @@ const MyPage = (props) => {
                 </Fab>
               </Tooltip>
             </header>
+            <Typography
+              variant="h6"
+              align="center"
+              style={{ fontWeight: "800" }}
+              paragraph
+            >
+              {"생성한 모임"}
+            </Typography>
+            <Divider />
             <article>
               <section>
                 <div className="cardList-body">
                   {userCreatedPosts.map((post) => (
+                    <Cards key={post._id} card={post} user={props.user} />
+                  ))}
+                </div>
+              </section>
+            </article>
+            <Typography
+              variant="h6"
+              align="center"
+              style={{ fontWeight: "800" }}
+              paragraph
+            >
+              {"참가 신청한 모임"}
+            </Typography>
+            <Divider />
+            <article>
+              <section>
+                <div className="cardList-body">
+                  {userAppliedPosts.map((post) => (
                     <Cards key={post._id} card={post} user={props.user} />
                   ))}
                 </div>
