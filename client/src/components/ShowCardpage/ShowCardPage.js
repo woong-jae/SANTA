@@ -13,6 +13,7 @@ export default function ShowCard() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
+  const [refreshed, setRefreshed] = useState(true);
   const cardUpdated = useSelector(state => state.show.post);
 
   const logout = () => {
@@ -22,6 +23,10 @@ export default function ShowCard() {
   };
 
   useEffect(() => {
+    if (refreshed) { 
+      dispatch(getPostById(card._id));
+      setRefreshed(false);
+    };
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
