@@ -154,9 +154,9 @@ const MyPage = (props) => {
                   <strong>My Page</strong>
                 </Typography>
                 <Tooltip title="내 모임 정보">
-                  <Fab href="#partyinfo" className="toggle-fab">
+                  {/* <Fab href="#partyinfo" className="toggle-fab">
                     <GroupIcon />
-                  </Fab>
+                  </Fab> */}
                 </Tooltip>
               </header>
               <article>
