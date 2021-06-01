@@ -1,0 +1,8 @@
+#dialog-btn {
+    color: white;
+    background-color: rgb(247, 111, 111);
+    font-size: 1.3em;
+    &:hover {
+        background-color: rgb(247, 83, 83);
+    }
+}
