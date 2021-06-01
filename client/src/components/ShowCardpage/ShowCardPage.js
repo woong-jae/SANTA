@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import decode from "jwt-decode";
 
+import { getPostById } from "../../actions/show";
 import Card from "./Sections/Card";
 import "./Sections/ShowCardPage.scss";
 
@@ -21,7 +22,6 @@ export default function ShowCard() {
   };
 
   useEffect(() => {
-    console.log("Called 1");
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
