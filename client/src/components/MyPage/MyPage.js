@@ -29,6 +29,7 @@ import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/MyPage.scss";
+import { useStaticState } from "@material-ui/pickers";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -140,88 +141,9 @@ const MyPage = (props) => {
   return (
     <div className="mypage">
       <CardListHeader user={user} />
-      {!isUpdate ? (
-        <div className="mypage-main">
-          <Paper className="mypage-paper" elevation={10}>
-            <section className="mypage-body">
-              <header>
-                <Typography
-                  className="title"
-                  variant="h3"
-                  style={{ textAlign: "center" }}
-                >
-                  <strong>My Page</strong>
-                </Typography>
-                <Tooltip title="내 모임 정보">
-                  {/* <Fab href="#partyinfo" className="toggle-fab">
-                    <GroupIcon />
-                  </Fab> */}
-                </Tooltip>
-              </header>
-              <article>
-                <Typography>
-                  <div>
-                    <strong>이메일</strong>
-                  </div>
-                  <div id="email">{user?.result?.email}</div>
-                </Typography>
-                <hr />
-                <Typography>
-                  <div>
-                    <strong>닉네임</strong>
-                  </div>
-                  <div id="nickname">{user?.result?.nickname}</div>
-                </Typography>
-                <hr />
-                <Typography>
-                  <div>
-                    <strong>성별</strong>
-                  </div>
-                  <div id="sex">
-                    {user?.result?.sex === "male" ? "남성" : "여성"}
-                  </div>
-                </Typography>
-                <hr />
-                <Typography>
-                  <div>
-                    <strong>생년월일</strong>
-                  </div>
-                  <div id="birth">{birth}</div>
-                </Typography>
-                <hr />
-              </article>
-            </section>
-            <footer>
-              <Tooltip title="정보 변경">
-                <Button
-                  variant="contained"
-                  id="update-btn"
-                  onClick={isUpdateUser}
-                >
-                  <CreateIcon />
-                </Button>
-              </Tooltip>
-              <Dialog
-                btnName="회원 탈퇴"
-                title="회원을 탈퇴하시겠습니까?"
-                description="삭제된 계정은 복구할 수 없습니다."
-                action={handleDeleteUser}
-              />
-            </footer>
-          </Paper>
-        </div>
-      ) : isUpdate ? (
-        <UpdateUser
-          user={user}
-          updateUser={handleUpdateUser}
-          update={notUpdateUser}
-        />
-      ) : (
-        ""
-      )}
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
-          <div id="back-btn" style={{display: "flex", padding: "20px"}}>
+          <div id="back-btn" style={{ display: "flex", padding: "20px" }}>
             <Button
               variant="contained"
               className="back-btn"
@@ -338,7 +260,7 @@ const MyPage = (props) => {
           </section>
         </Paper>
       </div>
-      <div>
+      {/* <div>
         <IconButton
           aria-label="more"
           aria-controls="long-menu"
@@ -363,7 +285,7 @@ const MyPage = (props) => {
             </Button>
           </MenuItem>
         </Menu>
-      </div>
+      </div> */}
     </div>
   );
 };

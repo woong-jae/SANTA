@@ -51,11 +51,6 @@ const UpdateUser = (props) => {
   return (
     <>
       <section className="mypage-body">
-        <header>
-          <Typography variant="h4" style={{ textAlign: "center" }}>
-            <strong>My Page</strong>
-          </Typography>
-        </header>
         <article>
           <Typography>
             <div>
