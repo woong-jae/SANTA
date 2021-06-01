@@ -8,11 +8,11 @@ import GroupIcon from "@material-ui/icons/Group";
 import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
+import { getUserPosts } from "../../actions/post";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/MyPage.scss";
-import { getUserPosts } from "../../actions/post";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
@@ -175,23 +175,11 @@ const MyPage = (props) => {
             <article>
               <section>
                 <div className="cardList-body">
-                  {/* {posts.map((post) =>
-                    post.createdUser.email === user?.result?.email ? (
-                      <Cards key={post._id} card={post} user={props.user} />
-                    ) : (
-                      post.currentMember.map((mem) =>
-                        mem.email === user?.result?.email ? (
-                          <Cards key={post._id} card={post} user={props.user} />
-                        ) : (
-                          ""
-                        )
-                      )
-                    )
-                  )} */}
                   {userPosts.map((post) => (
                     <Cards key={post._id} card={post} user={props.user} />
                   ))}
                 </div>
+                <div></div>
               </section>
             </article>
           </section>
