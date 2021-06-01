@@ -29,7 +29,6 @@ import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/MyPage.scss";
-import { useStaticState } from "@material-ui/pickers";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
