@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 
 import { Paper, Typography, Tooltip, Button, Fab } from "@material-ui/core";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
@@ -13,14 +12,28 @@ import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/Mypage.scss";
+import { getUserPosts } from "../../actions/post";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
-  const location = useLocation();
+
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
-  const posts = useSelector((state) => state.post);
-  console.log(posts); // f5하면 empty ...
+  const userUpdated = useSelector((state) => state.auth.authData);
+  const userPosts = useSelector((state) => state.post);
+
+  useEffect(() => {
+    if (user) dispatch(getUserPosts(user?.result?._id));
+    const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [userUpdated]);
+  
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -34,32 +47,17 @@ const MyPage = (props) => {
     setUser(null);
   };
 
-  useEffect(() => {
-    const token = user?.token;
-    if (token) {
-      const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) {
-        logout();
-      }
-    }
-    setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch, location]);
-
   const isUpdateUser = () => {
-    console.log(posts);
     setIsUpdate(true);
   };
 
   const notUpdateUser = () => {
-    console.log(posts);
     setIsUpdate(false);
   };
 
   const handleUpdateUser = async (updateState) => {
-    console.log({ ...user?.result, ...updateState });
     setIsUpdate(false);
     await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
-    document.location.reload("/myPage");
   };
 
   const handleDeleteUser = async () => {
@@ -172,7 +170,7 @@ const MyPage = (props) => {
             <article>
               <section>
                 <div className="cardList-body">
-                  {posts.map((post) =>
+                  {/* {posts.map((post) =>
                     post.createdUser.email === user?.result?.email ? (
                       <Cards key={post._id} card={post} user={props.user} />
                     ) : (
@@ -184,7 +182,10 @@ const MyPage = (props) => {
                         )
                       )
                     )
-                  )}
+                  )} */}
+                  {userPosts.map((post) => (
+                    <Cards key={post._id} card={post} user={props.user} />
+                  ))}
                 </div>
               </section>
             </article>
