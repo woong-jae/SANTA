@@ -15,21 +15,23 @@
       @media (min-width: 744px) {
         max-width: 696px;
       }
+      .back-btn {
+        color: white;
+        background-color: #10b274;
+        font-size: 1em;
+        height: 30px;
+        border-radius: 20px;
+        float:left;
+        &:hover {
+          background-color: #059960;
+        }
+      }
       .mypage-body {
-        padding: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 20px;
         text-align: left;
         display: block;
-        .back-btn {
-          color: white;
-          background-color: #10b274;
-          font-size: 1em;
-          height: 30px;
-          border-radius: 20px;
-          float: left;
-          &:hover {
-            background-color: #059960;
-          }
-        }
         .refresh-btn {
           color: black;
           background-color: grey;
