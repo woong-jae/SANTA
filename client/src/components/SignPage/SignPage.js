@@ -23,7 +23,7 @@ import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
 
-export default function SigninDialog() {
+export default function SignPage() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);

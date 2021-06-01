@@ -12,7 +12,7 @@ import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
-import "./Sections/Mypage.scss";
+import "./Sections/MyPage.scss";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
@@ -178,10 +178,17 @@ const MyPage = (props) => {
             <article>
               <section>
                 <div className="cardList-body">
-                  {posts.map((post) =>
-                    post.createdUser.email === user?.result?.email ? (
-                      <Cards key={post._id} card={post} user={props.user} />
-                    ) : (
+                  <div>
+                    {posts.map((post) =>
+                      post.createdUser.email === user?.result?.email ? (
+                        <Cards key={post._id} card={post} user={props.user} />
+                      ) : (
+                        ""
+                      )
+                    )}
+                  </div>
+                  <div>
+                    {posts.map((post) =>
                       post.currentMember.map((mem) =>
                         mem.email === user?.result?.email ? (
                           <Cards key={post._id} card={post} user={props.user} />
@@ -189,8 +196,8 @@ const MyPage = (props) => {
                           ""
                         )
                       )
-                    )
-                  )}
+                    )}
+                  </div>
                 </div>
               </section>
             </article>
