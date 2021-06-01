@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SignPage from "../../SignPage/SignPage";
 
 import {
   Modal,
@@ -88,7 +89,7 @@ export default function CreateCard(props) {
 
   const getKeyword = (value) => {
     setIsCorrectKeyword(value);
-  }
+  };
 
   const marks = [
     { value: 19 },
@@ -101,16 +102,19 @@ export default function CreateCard(props) {
   return (
     <div>
       <Tooltip title="모임 생성">
-        <Fab
-          color="primary"
-          aria-label="add"
-          className="footer-btn"
-          onClick={handleOpen}
-        >
-          <AddIcon />
-        </Fab>
+        {props.user ? (
+          <Fab
+            color="primary"
+            aria-label="add"
+            className="footer-btn"
+            onClick={handleOpen}
+          >
+            <AddIcon />
+          </Fab>
+        ) : (
+          <SignPage isChangeBtn={true}/>
+        )}
       </Tooltip>
-
       <Modal
         open={open}
         onClose={handleClose}

@@ -50,132 +50,130 @@ const UpdateUser = (props) => {
   };
 
   return (
-    <div className="mypage-main">
-      <Paper className="mypage-paper" elevation={10}>
-        <section className="mypage-body">
-          <header>
-            <Typography variant="h4" style={{ textAlign: "center" }}>
-              <strong>My Page</strong>
-            </Typography>
-          </header>
-          <article>
-            <Typography>
-              <div>
-                <strong>이메일</strong>
-              </div>
-              <TextField
-                id="update-email"
-                className="update-userInfo"
-                name="email"
-                type="id"
-                value={updateState.email}
-                onChange={handleChange}
-                autoFocus
-                fullWidth
-                disabled
-              ></TextField>
-            </Typography>
-            <Typography>
-              <div>
-                <strong>닉네임</strong>
-              </div>
-              <TextField
-                required
-                id="update-nickname"
-                className="update-userInfo"
-                name="nickname"
-                value={updateState.nickname}
-                onChange={handleChange}
-                fullWidth
-                error={
-                  updateState.nickname.length < 4 ||
-                  updateState.nickname.length > 7
-                    ? true
-                    : false
-                }
-                helperText={
-                  updateState.nickname.length < 4 ||
-                  updateState.nickname.length > 7
-                    ? "4 ~ 7자여야 합니다"
-                    : ""
-                }
-              />
-            </Typography>
-            <Typography>
-              <div>
-                <strong>성별</strong>
-              </div>
-              <RadioGroup
-                id="update-sex"
-                className="update-userInfo"
-                aria-label="sex"
-                name="sex"
-                value={updateState.sex}
-                onChange={handleChange}
-                row
-              >
-                <FormControlLabel
-                  value="male"
-                  control={<Radio color="default" />}
-                  label="남성"
-                  labelPlacement="start"
-                ></FormControlLabel>
-                <FormControlLabel
-                  value="female"
-                  control={<Radio color="default" />}
-                  label="여성"
-                  labelPlacement="start"
-                ></FormControlLabel>
-              </RadioGroup>
-            </Typography>
-            <Typography>
-              <div>
-                <strong>생년월일</strong>
-              </div>
-              <TextField
-                required
-                id="update-birth"
-                className="update-userInfo"
-                name="birth"
-                type="date"
-                value={birthState}
-                onChange={dateChange}
-                InputLabelProps={{
-                  shrink: true,
-                  required: true,
-                }}
-                fullWidth
-              ></TextField>
-            </Typography>
-          </article>
-        </section>
-        <footer style={{ display: "block", textAlign: "center" }}>
-          <Tooltip title="수정 완료">
-            <Button
-              variant="contained"
-              id="update-btn"
-              onClick={() => props.updateUser(updateState)}
-              disabled={
-                updateState.nickname.length >= 4 &&
-                updateState.nickname.length <= 7
-                  ? false
-                  : true
+    <>
+      <section className="mypage-body">
+        <header>
+          <Typography variant="h4" style={{ textAlign: "center" }}>
+            <strong>My Page</strong>
+          </Typography>
+        </header>
+        <article>
+          <Typography>
+            <div>
+              <strong>이메일</strong>
+            </div>
+            <TextField
+              id="update-email"
+              className="update-userInfo"
+              name="email"
+              type="id"
+              value={updateState.email}
+              onChange={handleChange}
+              autoFocus
+              fullWidth
+              disabled
+            ></TextField>
+          </Typography>
+          <Typography>
+            <div>
+              <strong>닉네임</strong>
+            </div>
+            <TextField
+              required
+              id="update-nickname"
+              className="update-userInfo"
+              name="nickname"
+              value={updateState.nickname}
+              onChange={handleChange}
+              fullWidth
+              error={
+                updateState.nickname.length < 4 ||
+                updateState.nickname.length > 7
+                  ? true
+                  : false
               }
+              helperText={
+                updateState.nickname.length < 4 ||
+                updateState.nickname.length > 7
+                  ? "4 ~ 7자여야 합니다"
+                  : ""
+              }
+            />
+          </Typography>
+          <Typography>
+            <div>
+              <strong>성별</strong>
+            </div>
+            <RadioGroup
+              id="update-sex"
+              className="update-userInfo"
+              aria-label="sex"
+              name="sex"
+              value={updateState.sex}
+              onChange={handleChange}
+              row
             >
-              <CheckCircleIcon />
-            </Button>
-          </Tooltip>
-
+              <FormControlLabel
+                value="male"
+                control={<Radio color="default" />}
+                label="남성"
+                labelPlacement="start"
+              ></FormControlLabel>
+              <FormControlLabel
+                value="female"
+                control={<Radio color="default" />}
+                label="여성"
+                labelPlacement="start"
+              ></FormControlLabel>
+            </RadioGroup>
+          </Typography>
+          <Typography>
+            <div>
+              <strong>생년월일</strong>
+            </div>
+            <TextField
+              required
+              id="update-birth"
+              className="update-userInfo"
+              name="birth"
+              type="date"
+              value={birthState}
+              onChange={dateChange}
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+              }}
+              fullWidth
+            ></TextField>
+          </Typography>
+        </article>
+      </section>
+      <footer style={{ display: "block", textAlign: "center" }}>
+        <Tooltip title="수정 완료">
           <Button
             variant="contained"
-            id="back-btn"
-            onClick={() => props.update()}
+            id="update-btn"
+            onClick={() => props.updateUser(updateState)}
+            disabled={
+              updateState.nickname.length >= 4 &&
+              updateState.nickname.length <= 7
+                ? false
+                : true
+            }
           >
-            돌아가기
+            <CheckCircleIcon />
           </Button>
-        </footer>
-      </Paper>
-    </div>
+        </Tooltip>
+
+        <Button
+          variant="contained"
+          id="back-btn"
+          onClick={() => props.update()}
+        >
+          돌아가기
+        </Button>
+      </footer>
+    </>
   );
 };
 

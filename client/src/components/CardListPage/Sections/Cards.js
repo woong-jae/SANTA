@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -16,6 +16,7 @@ const Cards = (props) => {
   const history = useHistory();
 
   const { card } = props;
+  let isExpired = false;
   const date =
     card.date.substring(0, 4) +
     "/" +
@@ -28,8 +29,18 @@ const Cards = (props) => {
     dispatch(getPostById(card._id, history));
   };
 
+  if (
+    new Date(
+      card.date.substring(0, 4),
+      card.date.substring(5, 7),
+      card.date.substring(8, 10)
+    ) <= new Date() ||
+    card.currentMember.length >= card.maxMember
+  )
+    isExpired = true;
+
   return (
-    <Card className="cards">
+    <Card className="cards" id={isExpired ? "disable-card" : "enable-card"}>
       <CardContent>
         <Typography className="card-info" id="card-writer">
           <strong>{card.createdUser?.nickname}</strong> 님의 게시물

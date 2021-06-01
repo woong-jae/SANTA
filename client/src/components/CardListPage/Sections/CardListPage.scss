@@ -40,11 +40,6 @@
             width: 40px !important;
         }
     }
-    @media (max-width: 540px) {
-        #exit-btn {
-            display: none;
-        }
-    }
     box-shadow: 5px 5px 5px -5px gray;
     background-color: #ffffff;
     min-height: 12vh;
@@ -124,6 +119,15 @@ section {
                         background-color: #10b274;
                     }
                 }
+            }
+        }
+        #disable-card {
+            pointer-events: none;
+            background-color: rgb(221, 219, 219);
+            color: #555;
+            opacity: 1;
+            .card-btn {
+                background-color: gray;
             }
         }
     }
