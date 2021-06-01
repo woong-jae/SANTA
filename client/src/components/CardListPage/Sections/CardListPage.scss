@@ -135,6 +135,20 @@ section {
         text-align: center;
         background-color: #81c784;
     }
+    #body-nocard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        font-size: 1.4em;
+        opacity: 0.9;
+        strong {
+            padding: 12px;
+            background-color: white;
+            color: #555;
+            border-radius: 30px;
+        }
+    }
 }
 
 //Card-Footer
