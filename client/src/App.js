@@ -5,11 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 import LandingPage from "./components/LandingPage/LandingPage";
 import CardListPage from "./components/CardListPage/CardListPage";
 import ShowCardPage from "./components/ShowCardpage/ShowCardPage";
-<<<<<<< Updated upstream
 import MyPage from "./components/MyPage/MyPage";
-=======
-import MyPage from "./components/MyPage/Mypage";
->>>>>>> Stashed changes
 
 class App extends Component {
   render() {
