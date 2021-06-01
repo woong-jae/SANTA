@@ -260,7 +260,7 @@ const MyPage = (props) => {
           </section>
         </Paper>
       </div>
-      {/* <div>
+      <div>
         <IconButton
           aria-label="more"
           aria-controls="long-menu"
@@ -285,7 +285,7 @@ const MyPage = (props) => {
             </Button>
           </MenuItem>
         </Menu>
-      </div> */}
+      </div>
     </div>
   );
 };
