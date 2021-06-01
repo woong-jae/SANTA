@@ -9,6 +9,20 @@
     justify-content: center;
 }
 
+@media (max-width: 540px) {
+    .input-form {
+        flex-direction: column !important;
+        margin: 20px !important;
+        .header-input {
+            margin: 0px !important;
+            margin-bottom: 20px !important;
+        }
+        #search-mountain {
+            margin: 0px !important;
+        }
+    }
+}
+
 //Card-Header
 .cardList-header {
     @media (max-width: 1000px) {
