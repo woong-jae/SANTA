@@ -17,6 +17,8 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import DateFnsUtils from "@date-io/date-fns";
 
+import SearchMountain from "../../../api/searchMountain"
+
 import "./ShowCardPage.scss";
 import "./UpdateCard.scss";
 
@@ -34,6 +36,8 @@ export default function UpdateCard(props) {
     updateState.ageLimit[0],
     updateState.ageLimit[1],
   ]);
+
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
 
   const handleChange = (event) => {
     setUpdateState({
@@ -57,6 +61,17 @@ export default function UpdateCard(props) {
       ...updateState,
       date: date,
     });
+  };
+
+  const getMountainValue = (value) => {
+    setUpdateState({
+      ...updateState,
+      mountain: value,
+    });
+  };
+
+  const getKeyword = (value) => {
+    setIsCorrectKeyword(value);
   };
 
   const marks = [
@@ -102,12 +117,10 @@ export default function UpdateCard(props) {
               <header className="show-header">
                 <div className="header-detail">
                   <div className="header-info-update">
-                    <TextField
-                      name="mountain"
-                      label="산/지역명"
-                      value={updateState.mountain}
-                      id="update-mountain"
-                      onChange={handleChange}
+                    <SearchMountain
+                      id="search-mountain"
+                      getMountainValue={getMountainValue}
+                      getKeyword={getKeyword}
                     />
                   </div>
                   <div className="header-info-update">
