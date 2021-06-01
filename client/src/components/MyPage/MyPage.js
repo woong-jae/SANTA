@@ -11,11 +11,15 @@ import {
   Tabs,
   Box,
   AppBar,
+  Menu,
+  MenuItem,
+  IconButton,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import CreateIcon from "@material-ui/icons/Create";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import RefreshIcon from "@material-ui/icons/Refresh";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
@@ -25,6 +29,7 @@ import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
 import "./Sections/MyPage.scss";
+import { useStaticState } from "@material-ui/pickers";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,6 +70,8 @@ const MyPage = (props) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
+  const [menu, setMenu] = useState(null);
+  const open = Boolean(menu);
   const [value, setValue] = useState("one");
   const userUpdated = useSelector((state) => state.auth.authData);
   const userCreatedPosts = useSelector((state) => state.mypage.created);
@@ -113,9 +120,7 @@ const MyPage = (props) => {
   };
 
   const handleDeleteUser = async (isDelete) => {
-    if (
-      isDelete
-    ) {
+    if (isDelete) {
       await dispatch(deleteUser(user?.result?._id));
       logout();
     }
@@ -123,6 +128,14 @@ const MyPage = (props) => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const menuOpen = (event) => {
+    setMenu(event.currentTarget);
+  };
+
+  const menuClose = (event) => {
+    setMenu(null);
   };
 
   return (
@@ -209,20 +222,19 @@ const MyPage = (props) => {
       )}
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
+          <div id="back-btn" style={{display: "flex", padding: "20px"}}>
+            <Button
+              variant="contained"
+              className="back-btn"
+              onClick={() => {
+                history.goBack();
+              }}
+            >
+              <ArrowBackIcon />
+            </Button>
+          </div>
           <section className="mypage-body">
             <header>
-              <Button
-                variant="contained"
-                className="back-btn"
-                onClick={() => {
-                  history.goBack();
-                }}
-              >
-                <ArrowBackIcon />
-              </Button>
-              <Button variant="contained" className="refresh-btn">
-                <RefreshIcon />
-              </Button>
               <Typography className="title" variant="h3" align="center">
                 <strong>{"MY PAGE"}</strong>
               </Typography>
@@ -326,6 +338,32 @@ const MyPage = (props) => {
             </TabPanel>
           </section>
         </Paper>
+      </div>
+      <div>
+        <IconButton
+          aria-label="more"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={menuOpen}
+        >
+          <MoreVertIcon />
+        </IconButton>
+        <Menu
+          id="long-menu"
+          menu={menu}
+          keepMounted
+          open={open}
+          onClose={menuClose}
+          PaperProps={{
+            style: { maxHeight: 40 * 4.5, width: "20ch" },
+          }}
+        >
+          <MenuItem onClick={menuClose}>
+            <Button variant="contained" className="refresh-btn">
+              <RefreshIcon />
+            </Button>
+          </MenuItem>
+        </Menu>
       </div>
     </div>
   );

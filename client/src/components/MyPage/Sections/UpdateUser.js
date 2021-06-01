@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import {
-  Paper,
   Typography,
   Tooltip,
   Button,
@@ -87,15 +86,15 @@ const UpdateUser = (props) => {
               onChange={handleChange}
               fullWidth
               error={
-                updateState.nickname.length < 4 ||
+                updateState.nickname.length < 3 ||
                 updateState.nickname.length > 7
                   ? true
                   : false
               }
               helperText={
-                updateState.nickname.length < 4 ||
+                updateState.nickname.length < 3 ||
                 updateState.nickname.length > 7
-                  ? "4 ~ 7자여야 합니다"
+                  ? "3 ~ 7자여야 합니다"
                   : ""
               }
             />
