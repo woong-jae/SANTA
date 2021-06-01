@@ -103,9 +103,9 @@ export const deletePost = async (req, res) => {
     if (!req.userId) return res.json({message: "Unathenticated"});
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that id");
     try {
-        const post = await Posts.findById(_id).populate('currentMember');
+        const post = await Posts.findById(_id);
         post.currentMember.forEach(async (member) => {
-            await User.findByIdAndUpdate(member._id, {$pull: {appliedPosts: post._id}});
+            await User.findByIdAndUpdate(member, {$pull: {appliedPosts: post._id}});
         });
 
         await Posts.findByIdAndRemove(_id);

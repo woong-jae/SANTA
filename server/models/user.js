@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     },
     appliedPosts: {
         type: [String],
-        defaulte: []
+        default: []
     }
 });
 

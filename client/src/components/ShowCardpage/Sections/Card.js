@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
-import { updatePost, applyPost, setShowCard } from "../../../actions/show";
+import { updatePost, applyPost } from "../../../actions/show";
 import { Paper, Button, Typography } from "@material-ui/core";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -22,18 +22,6 @@ export default function ShowCard({ user, card }) {
     card?.currentMember.some((member) => member._id === user?.result?._id)
   );
 
-<<<<<<< HEAD
-=======
-  useEffect(() => {
-    console.log("Called");
-    dispatch(setShowCard(card._id));
-    setCard(JSON.parse(localStorage.getItem("card")));
-    setApply(
-      card?.currentMember.some((member) => member._id === user?.result?._id)
-    );
-  }, [isUpdate, apply]);
-
->>>>>>> eaf0803bbe6839c9b7f2c69ccabea58a0aa30ff0
   const handleApply = async () => {
     const userBirth = new Date(user?.result?.birth);
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
