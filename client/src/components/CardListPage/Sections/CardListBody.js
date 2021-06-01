@@ -8,27 +8,6 @@ import CreateCard from "../CreateCard/CreateCard";
 
 const CardListBody = (props) => {
   const posts = useSelector((state) => state.post);
-  // const [isShowCard, setIsShowCard] = React.useState({ isShow: false });
-
-  // const handleShow = (isShow, card, date, ageLimit) => {
-  //   setIsShowCard({
-  //     ...isShowCard,
-  //     isShow: isShow,
-  //     card: card,
-  //     date: date,
-  //     ageLimit: ageLimit,
-  //   });
-  //   console.log(card);
-  // };
-
-  // const handleUpdate = (updateCard) => {
-  //   setIsShowCard({
-  //     ...isShowCard,
-  //     card: updateCard,
-  //   });
-  // };
-
-  // useEffect(() => {}, [isShowCard]);
 
   return (
     <div>

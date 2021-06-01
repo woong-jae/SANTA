@@ -227,7 +227,7 @@ const CardListHeader = (props) => {
       )}
       {props.user ? (
         <div className="header-user">
-          <Link to="/myPage">
+          <Link to="/mypage">
             {windowSize.width >= 1000 ? (
               <Tooltip title="MY PAGE">
                 <Button

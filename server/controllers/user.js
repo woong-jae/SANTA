@@ -20,7 +20,7 @@ export const loginUser = async (req, res) => {
     try {
         const { email, passwd } = req.body;
 
-        const user = await User.findOne({ email }).populate('appliedPosts');
+        const user = await User.findOne({ email });
         if (!user) return res.status(404).json({message: "User doesn't exist"});
 
         const compare = await bcrypt.compare(passwd, user.passwd);

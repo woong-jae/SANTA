@@ -11,8 +11,8 @@ import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
-import "./Sections/Mypage.scss";
-import { getUserPosts } from "../../actions/post";
+import "./Sections/MyPage.scss";
+import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
@@ -20,10 +20,14 @@ const MyPage = (props) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
   const userUpdated = useSelector((state) => state.auth.authData);
-  const userPosts = useSelector((state) => state.post);
+  const userCreatedPosts = useSelector((state) => state.mypage.created);
+  const userAppliedPosts = useSelector((state) => state.mypage.applied);
 
   useEffect(() => {
-    if (user) dispatch(getUserPosts(user?.result?._id));
+    if (user) { 
+      dispatch(getUserPosts(user?.result?._id));
+      dispatch(getUserAppliedPosts(user?.result?._id));
+    }
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -174,20 +178,7 @@ const MyPage = (props) => {
             <article>
               <section>
                 <div className="cardList-body">
-                  {/* {posts.map((post) =>
-                    post.createdUser.email === user?.result?.email ? (
-                      <Cards key={post._id} card={post} user={props.user} />
-                    ) : (
-                      post.currentMember.map((mem) =>
-                        mem.email === user?.result?.email ? (
-                          <Cards key={post._id} card={post} user={props.user} />
-                        ) : (
-                          ""
-                        )
-                      )
-                    )
-                  )} */}
-                  {userPosts.map((post) => (
+                  {userCreatedPosts.map((post) => (
                     <Cards key={post._id} card={post} user={props.user} />
                   ))}
                 </div>
