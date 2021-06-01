@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { Paper, Typography, Tooltip, Button, Fab } from "@material-ui/core";
+import {
+  Paper,
+  Typography,
+  Tooltip,
+  Button,
+  Fab,
+  Divider,
+} from "@material-ui/core";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import CreateIcon from "@material-ui/icons/Create";
 import GroupIcon from "@material-ui/icons/Group";
@@ -178,7 +185,17 @@ const MyPage = (props) => {
             <article>
               <section>
                 <div className="cardList-body">
-                  <div>
+                  {posts.map((post) => (
+                    <Cards key={post._id} card={post} user={props.user} />
+                  ))}
+                  {/* <div>
+                    <Typography
+                      variant="h6"
+                      style={{ textAlign: "center", fontWeight: "800" }}
+                    >
+                      {"내가 생성한 모임"}
+                    </Typography>
+                    <Divider />
                     {posts.map((post) =>
                       post.createdUser.email === user?.result?.email ? (
                         <Cards key={post._id} card={post} user={props.user} />
@@ -188,6 +205,13 @@ const MyPage = (props) => {
                     )}
                   </div>
                   <div>
+                    <Typography
+                      variant="h6"
+                      style={{ textAlign: "center", fontWeight: "800" }}
+                    >
+                      {"참가 신청한 모임"}
+                    </Typography>
+                    <Divider />
                     {posts.map((post) =>
                       post.currentMember.map((mem) =>
                         mem.email === user?.result?.email ? (
@@ -197,7 +221,7 @@ const MyPage = (props) => {
                         )
                       )
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </section>
             </article>
