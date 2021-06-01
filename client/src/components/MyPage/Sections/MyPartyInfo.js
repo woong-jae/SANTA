@@ -15,6 +15,7 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
+    fontSize: 15,
   },
   body: {
     fontSize: 14,
@@ -52,28 +53,26 @@ const MyPartyInfo = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(props.type === "create"
-            ? userCreatedPosts
-            : userAppliedPosts).map((post) => (
-                <StyledTableRow key={post.title}>
-                  <StyledTableCell component="th" scope="row">
-                    {post.title}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {post.mountain}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {post.currentMember.length + 1 + "/" + post.maxMember}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    {post.date.substring(0, 4) +
-                      "/" +
-                      post.date.substring(5, 7) +
-                      "/" +
-                      post.date.substring(8, 10)}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+          {(props.type === "create" ? userCreatedPosts : userAppliedPosts).map(
+            (post) => (
+              <StyledTableRow key={post.title}>
+                <StyledTableCell component="th" scope="row">
+                  {post.title}
+                </StyledTableCell>
+                <StyledTableCell align="right">{post.mountain}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {post.currentMember.length + 1 + "/" + post.maxMember}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {post.date.substring(0, 4) +
+                    "/" +
+                    post.date.substring(5, 7) +
+                    "/" +
+                    post.date.substring(8, 10)}
+                </StyledTableCell>
+              </StyledTableRow>
+            )
+          )}
         </TableBody>
       </Table>
     </TableContainer>

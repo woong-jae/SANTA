@@ -50,9 +50,13 @@
             margin-bottom: 20px;
           }
         }
+        .MuiTab-textColorInherit.Mui-selected {
+          font-size: 15px;
+          font-weight: 800;
+        }
         .MuiTabs-centered {
-          color: black;
-          background-color: white;
+          color: white;
+          background-color: #10b274;
         }
         section .cardList-body {
           grid-template-columns: 1fr;

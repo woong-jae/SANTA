@@ -30,7 +30,6 @@ import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
 import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
-import Cards from "../CardListPage/Sections/Cards";
 import MyPartyInfo from "./Sections/MyPartyInfo";
 import "./Sections/MyPage.scss";
 
@@ -77,8 +76,6 @@ const MyPage = (props) => {
   const open = Boolean(anchorEl);
   const [value, setValue] = useState("one");
   const userUpdated = useSelector((state) => state.auth.authData);
-  const userCreatedPosts = useSelector((state) => state.mypage.created);
-  const userAppliedPosts = useSelector((state) => state.mypage.applied);
 
   useEffect(() => {
     if (user) {
