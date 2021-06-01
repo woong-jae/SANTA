@@ -152,13 +152,6 @@ const MyPage = (props) => {
                 description="삭제된 계정은 복구할 수 없습니다."
                 action={handleDeleteUser}
               />
-              {/* <Button
-                variant="contained"
-                id="delete-btn"
-                onClick={handleDeleteUser}
-              >
-                회원 탈퇴
-              </Button> */}
             </footer>
           </Paper>
         </div>

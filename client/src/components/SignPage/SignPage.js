@@ -14,7 +14,9 @@ import {
   Tooltip,
   Backdrop,
   CircularProgress,
+  Fab,
 } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
@@ -23,7 +25,7 @@ import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
 
-export default function SignPage() {
+export default function SignPage(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
@@ -143,14 +145,25 @@ export default function SignPage() {
   return (
     <div>
       <Tooltip title="SIGN">
-        <Button
-          variant="contained"
-          className="header-btn"
-          id="signIn-btn"
-          onClick={handleOpen}
-        >
-          <FingerprintIcon></FingerprintIcon>
-        </Button>
+        {props.isChangeBtn ? (
+          <Fab
+            color="primary"
+            aria-label="add"
+            className="footer-btn"
+            onClick={handleOpen}
+          >
+            <AddIcon />
+          </Fab>
+        ) : (
+          <Button
+            variant="contained"
+            className="header-btn"
+            id="signIn-btn"
+            onClick={handleOpen}
+          >
+            <FingerprintIcon></FingerprintIcon>
+          </Button>
+        )}
       </Tooltip>
 
       <Dialog open={open} onClose={handleClose} className="signDialog">

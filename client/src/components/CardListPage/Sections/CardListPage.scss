@@ -123,9 +123,12 @@ section {
         }
         #disable-card {
             pointer-events: none;
-            background-color: #eee;
+            background-color: rgb(221, 219, 219);
             color: #555;
             opacity: 1;
+            .card-btn {
+                background-color: gray;
+            }
         }
     }
     footer {
