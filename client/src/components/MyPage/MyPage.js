@@ -13,7 +13,10 @@ import {
   AppBar,
   Menu,
   MenuItem,
+  MenuList,
   IconButton,
+  ListItemIcon,
+  Fab,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import CreateIcon from "@material-ui/icons/Create";
@@ -28,8 +31,8 @@ import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
+import MyPartyInfo from "./Sections/MyPartyInfo";
 import "./Sections/MyPage.scss";
-import { useStaticState } from "@material-ui/pickers";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -70,8 +73,8 @@ const MyPage = (props) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
-  const [menu, setMenu] = useState(null);
-  const open = Boolean(menu);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const [value, setValue] = useState("one");
   const userUpdated = useSelector((state) => state.auth.authData);
   const userCreatedPosts = useSelector((state) => state.mypage.created);
@@ -131,11 +134,11 @@ const MyPage = (props) => {
   };
 
   const menuOpen = (event) => {
-    setMenu(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
-  const menuClose = (event) => {
-    setMenu(null);
+  const menuClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -143,7 +146,7 @@ const MyPage = (props) => {
       <CardListHeader user={user} />
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
-          <div id="back-btn" style={{ display: "flex", padding: "20px" }}>
+          <div style={{ display: "flex", padding: "20px" }}>
             <Button
               variant="contained"
               className="back-btn"
@@ -153,6 +156,30 @@ const MyPage = (props) => {
             >
               <ArrowBackIcon />
             </Button>
+            {/* <IconButton
+              aria-label="more"
+              aria-controls="long-menu"
+              aria-haspopup="true"
+              onClick={menuOpen}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="long-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={open}
+              onClose={menuClose}
+              PaperProps={{
+                style: { maxHeight: 48 * 4.5, width: "20ch" },
+              }}
+            >
+              <MenuList onClick={menuClose}>
+                <Fab>
+                  <RefreshIcon fontSize="small"></RefreshIcon>
+                </Fab>
+              </MenuList>
+            </Menu> */}
           </div>
           <section className="mypage-body">
             <header>
@@ -242,50 +269,20 @@ const MyPage = (props) => {
             <TabPanel value={value} index="two">
               <section>
                 <div className="cardList-body">
-                  {userCreatedPosts.map((post) => (
-                    <Cards key={post._id} card={post} user={props.user} />
-                  ))}
+                  <MyPartyInfo type="create" />
                 </div>
               </section>
             </TabPanel>
             <TabPanel value={value} index="three">
               <section>
                 <div className="cardList-body">
-                  {userAppliedPosts.map((post) => (
-                    <Cards key={post._id} card={post} user={props.user} />
-                  ))}
+                  <MyPartyInfo type="apply" />
                 </div>
               </section>
             </TabPanel>
           </section>
         </Paper>
       </div>
-      {/* <div>
-        <IconButton
-          aria-label="more"
-          aria-controls="long-menu"
-          aria-haspopup="true"
-          onClick={menuOpen}
-        >
-          <MoreVertIcon />
-        </IconButton>
-        <Menu
-          id="long-menu"
-          menu={menu}
-          keepMounted
-          open={open}
-          onClose={menuClose}
-          PaperProps={{
-            style: { maxHeight: 40 * 4.5, width: "20ch" },
-          }}
-        >
-          <MenuItem onClick={menuClose}>
-            <Button variant="contained" className="refresh-btn">
-              <RefreshIcon />
-            </Button>
-          </MenuItem>
-        </Menu>
-      </div> */}
     </div>
   );
 };

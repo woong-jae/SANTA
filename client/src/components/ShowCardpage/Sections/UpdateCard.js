@@ -207,13 +207,16 @@ export default function UpdateCard(props) {
               </div>
               <div id="Member-paper" className="side-paper">
                 <Typography>
-                  <strong>현재 인원:</strong> {card.currentMember.length} /{" "}
+                  <strong>현재 인원:</strong> {card.currentMember.length + 1} /{" "}
                   {card.maxMember}
                 </Typography>
                 <div className="Member-info">
                   <Typography>
                     <span>★</span>
                     {card.createdUser?.nickname}
+                    {card.currentMember?.map((member) => {
+                      return <Typography>{member?.nickname}</Typography>;
+                    })}
                   </Typography>
                 </div>
               </div>
