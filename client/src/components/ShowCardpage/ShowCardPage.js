@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import decode from "jwt-decode";
 
+import { getPostById } from "../../actions/show";
 import Card from "./Sections/Card";
 import "./Sections/ShowCardPage.scss";
 
@@ -12,6 +13,7 @@ export default function ShowCard() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
+  const [refreshed, setRefreshed] = useState(true);
   const cardUpdated = useSelector(state => state.show.post);
 
   const logout = () => {
@@ -21,7 +23,10 @@ export default function ShowCard() {
   };
 
   useEffect(() => {
-    console.log("Called 1");
+    if (refreshed) { 
+      dispatch(getPostById(card._id));
+      setRefreshed(false);
+    };
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
