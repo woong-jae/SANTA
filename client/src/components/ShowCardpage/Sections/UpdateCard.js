@@ -167,6 +167,7 @@ export default function UpdateCard(props) {
                         KeyboardButtonProps={{
                           "aria-label": "change date",
                         }}
+                        autoOk={true}
                       />
                     </MuiPickersUtilsProvider>
                   </div>

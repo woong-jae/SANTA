@@ -31,6 +31,7 @@ export default function MaterialUIPickers(props) {
         KeyboardButtonProps={{
           "aria-label": "change date",
         }}
+        autoOk={true}
       />
     </MuiPickersUtilsProvider>
   );
