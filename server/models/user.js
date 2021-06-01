@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
     nickname: {
         type: String,
         unique: true,
+    },
+    appliedPosts: {
+        type: [String],
+        default: []
     }
 });
 

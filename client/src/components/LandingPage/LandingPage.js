@@ -29,7 +29,7 @@ const LandingPage = () => {
       "-" +
       ("00" + (currentDate.getMonth() + 1)).slice(-2) +
       "-" +
-      currentDate.getDate(),
+      ("00" + (currentDate.getDate())).slice(-2),
     peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
@@ -70,7 +70,7 @@ const LandingPage = () => {
         "-" +
         ("00" + (value.getMonth() + 1)).slice(-2) +
         "-" +
-        value.getDate(),
+        ("00" + (value.getDate())).slice(-2),
     });
   };
 

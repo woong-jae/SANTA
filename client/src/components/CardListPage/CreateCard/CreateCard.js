@@ -36,6 +36,7 @@ export default function CreateCard(props) {
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
 
   const handleOpen = () => {
     setOpen(true);
@@ -85,6 +86,10 @@ export default function CreateCard(props) {
     });
   };
 
+  const getKeyword = (value) => {
+    setIsCorrectKeyword(value);
+  }
+
   const marks = [
     { value: 19 },
     { value: 29 },
@@ -133,6 +138,7 @@ export default function CreateCard(props) {
                     name="mountain"
                     label="산/지역명"
                     getMountainValue={getMountainValue}
+                    getKeyword={getKeyword}
                   />
                 </div>
                 <TextField

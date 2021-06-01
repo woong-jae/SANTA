@@ -12,12 +12,12 @@ API.interceptors.request.use((req) => {
 export const getUser = (_id) => API.get(`/user/${_id}`);
 export const loginUser = (formData) => API.post("/user/signin", formData);
 export const createUser = (formData) => API.post("/user/signup", formData);
-export const updateUser = (_id, userData) =>
-  API.patch(`/user/${_id}`, userData);
+export const updateUser = (_id, userData) => API.patch(`/user/${_id}`, userData);
 export const deleteUser = (_id) => API.delete(`/user/${_id}`);
 
 export const fetchPosts = () => API.get(`/post`);
 export const getPostById = (_id) => API.get(`/post/${_id}`);
+export const getUserPosts = (userId) => API.get(`/post/created/${userId}`);
 export const fetchPostByMt = (mountain, date, peopleNum) => API.get(`/post/search/${mountain}/${date}/${peopleNum}`);
 export const createPost = (post) => API.post("/post", post);
 export const updatePost = (_id, post) => API.patch(`/post/${_id}`, post);

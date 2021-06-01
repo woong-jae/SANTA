@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
-import { updatePost, applyPost, setShowCard } from "../../../actions/show";
+import { updatePost, applyPost } from "../../../actions/show";
 import { Paper, Button, Typography } from "@material-ui/core";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -13,24 +13,14 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import UpdateCard from "./UpdateCard";
 import "./ShowCardPage.scss";
 
-export default function ShowCard({ user }) {
+export default function ShowCard({ user, card }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
   const [isUpdate, setIsUpdate] = useState(false);
   const [apply, setApply] = useState(
     card?.currentMember.some((member) => member._id === user?.result?._id)
   );
-
-  useEffect(() => {
-    console.log("Called");
-    dispatch(setShowCard(card._id));
-    setCard(JSON.parse(localStorage.getItem("card")));
-    setApply(
-      card?.currentMember.some((member) => member._id === user?.result?._id)
-    );
-  }, [isUpdate, apply]);
 
   const handleApply = async () => {
     const userBirth = new Date(user?.result?.birth);
