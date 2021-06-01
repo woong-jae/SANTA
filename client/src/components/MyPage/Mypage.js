@@ -33,7 +33,6 @@ const MyPage = (props) => {
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [userUpdated]);
-
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
