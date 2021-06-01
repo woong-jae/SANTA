@@ -128,7 +128,6 @@ const MyPage = (props) => {
   return (
     <div className="mypage">
       <CardListHeader user={user} />
-<<<<<<< HEAD
       {!isUpdate ? (
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10}>
@@ -208,8 +207,6 @@ const MyPage = (props) => {
       ) : (
         ""
       )}
-=======
->>>>>>> 74462312310fd41997df16f1697a0c716e0e9b86
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
           <section className="mypage-body">
