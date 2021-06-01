@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -27,18 +27,21 @@ const Cards = (props) => {
 
   const handleClick = async () => {
     await dispatch(getPostById(card._id));
-    history.push('/list/show');
+    history.push("/list/show");
   };
 
   if (
     new Date(
       card.date.substring(0, 4),
-      card.date.substring(5, 7),
-      card.date.substring(8, 10)
-    ) <= new Date() ||
-    card.currentMember.length >= card.maxMember
-  )
+      card.date.substring(5, 7) - 1,
+      card.date.substring(8, 10),
+      23,
+      59,
+      59
+    ) <= new Date()
+  ) {
     isExpired = true;
+  }
 
   return (
     <Card className="cards" id={isExpired ? "disable-card" : "enable-card"}>
