@@ -266,7 +266,7 @@ const CardListHeader = (props) => {
         </div>
       ) : (
         <div className="header-user">
-          <SignPage isChangeBtn={false}/>
+          <SignPage type={0}/>
         </div>
       )}
     </header>
