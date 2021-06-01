@@ -11,6 +11,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import UpdateCard from "./UpdateCard";
+import Dialog from "../../common/Dialog";
 import "./ShowCardPage.scss";
 
 export default function ShowCard({ user, card }) {
@@ -33,12 +34,8 @@ export default function ShowCard({ user, card }) {
     }
   };
 
-  const handleLeave = async () => {
-    if (
-      window.confirm(
-        "모임에서 탈퇴하시겠습니까?\n(등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다.)"
-      )
-    ) {
+  const handleLeave = async (isLeave) => {
+    if (isLeave) {
       await dispatch(applyPost(card._id, { userID: user?.result?._id }));
       setApply(false);
     }
@@ -62,12 +59,8 @@ export default function ShowCard({ user, card }) {
     setIsUpdate(false);
   };
 
-  const deleteCard = async () => {
-    if (
-      window.confirm(
-        "해당 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다."
-      )
-    ) {
+  const deleteCard = async (isDelete) => {
+    if (isDelete) {
       await dispatch(deletePost(card._id));
       localStorage.removeItem("card");
       history.goBack();
@@ -182,13 +175,12 @@ export default function ShowCard({ user, card }) {
                         </Button>
                       )
                     ) : (
-                      <Button
-                        variant="contained"
-                        className="leave-btn"
-                        onClick={handleLeave}
-                      >
-                        모임 탈퇴
-                      </Button>
+                      <Dialog
+                        btnName="모임 탈퇴"
+                        title="모임에서 탈퇴하시겠습니까?"
+                        description="등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다."
+                        action={handleLeave}
+                      />
                     )
                   ) : (
                     <Button
@@ -205,13 +197,12 @@ export default function ShowCard({ user, card }) {
             <footer>
               {user?.result?._id === card.createdUser?._id && (
                 <div className="footer-btn">
-                  <Button
-                    variant="contained"
-                    id="delete-btn"
-                    onClick={deleteCard}
-                  >
-                    <HighlightOffIcon />
-                  </Button>
+                  <Dialog
+                    btnName={<HighlightOffIcon />}
+                    title="해당 게시물을 삭제하시겠습니까?"
+                    description="삭제된 데이터는 복구할 수 없습니다."
+                    action={deleteCard}
+                  />
                 </div>
               )}
             </footer>
