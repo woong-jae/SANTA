@@ -57,14 +57,7 @@ const MyPage = (props) => {
 
   const handleUpdateUser = async (updateState) => {
     setIsUpdate(false);
-<<<<<<< HEAD
     await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
-=======
-    await dispatch(
-      updateUser(user?.result?._id, { ...user?.result, ...updateState })
-    );
-    document.location.reload("/myPage");
->>>>>>> b2ac7d9aadf759ca0ee6fdf4a1df684cbc724e29
   };
 
   const handleDeleteUser = async () => {
@@ -181,24 +174,10 @@ const MyPage = (props) => {
             <article>
               <section>
                 <div className="cardList-body">
-<<<<<<< HEAD
                   {/* {posts.map((post) =>
                     post.createdUser.email === user?.result?.email ? (
                       <Cards key={post._id} card={post} user={props.user} />
                     ) : (
-=======
-                  <div>
-                    {posts.map((post) =>
-                      post.createdUser.email === user?.result?.email ? (
-                        <Cards key={post._id} card={post} user={props.user} />
-                      ) : (
-                        ""
-                      )
-                    )}
-                  </div>
-                  <div>
-                    {posts.map((post) =>
->>>>>>> b2ac7d9aadf759ca0ee6fdf4a1df684cbc724e29
                       post.currentMember.map((mem) =>
                         mem.email === user?.result?.email ? (
                           <Cards key={post._id} card={post} user={props.user} />
@@ -206,16 +185,11 @@ const MyPage = (props) => {
                           ""
                         )
                       )
-<<<<<<< HEAD
                     )
                   )} */}
                   {userPosts.map((post) => (
                     <Cards key={post._id} card={post} user={props.user} />
                   ))}
-=======
-                    )}
-                  </div>
->>>>>>> b2ac7d9aadf759ca0ee6fdf4a1df684cbc724e29
                 </div>
               </section>
             </article>
