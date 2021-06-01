@@ -36,7 +36,7 @@ const CardListHeader = (props) => {
       "-" +
       ("00" + (currentDate.getMonth() + 1)).slice(-2) +
       "-" +
-      ("00" + (currentDate.getDate())).slice(-2),
+      ("00" + currentDate.getDate()).slice(-2),
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
@@ -94,7 +94,7 @@ const CardListHeader = (props) => {
         "-" +
         ("00" + (value.getMonth() + 1)).slice(-2) +
         "-" +
-        ("00" + (value.getDate())).slice(-2),
+        ("00" + value.getDate()).slice(-2),
     });
   };
 
@@ -227,7 +227,7 @@ const CardListHeader = (props) => {
       )}
       {props.user ? (
         <div className="header-user">
-          <Link to="/myPage">
+          <Link to="/mypage">
             {windowSize.width >= 1000 ? (
               <Tooltip title="MY PAGE">
                 <Button

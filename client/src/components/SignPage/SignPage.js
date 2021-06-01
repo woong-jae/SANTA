@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   Dialog,
   Button,
@@ -14,7 +15,6 @@ import {
   Backdrop,
   CircularProgress,
 } from "@material-ui/core";
-import { useDispatch } from "react-redux";
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
