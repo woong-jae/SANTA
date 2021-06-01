@@ -20,6 +20,7 @@ import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
 import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
+import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
@@ -111,11 +112,9 @@ const MyPage = (props) => {
     );
   };
 
-  const handleDeleteUser = async () => {
+  const handleDeleteUser = async (isDelete) => {
     if (
-      window.confirm(
-        "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
-      )
+      isDelete
     ) {
       await dispatch(deleteUser(user?.result?._id));
       logout();
@@ -210,13 +209,12 @@ const MyPage = (props) => {
                         <CreateIcon />
                       </Button>
                     </Tooltip>
-                    <Button
-                      variant="contained"
-                      id="delete-btn"
-                      onClick={handleDeleteUser}
-                    >
-                      회원 탈퇴
-                    </Button>
+                    <Dialog
+                      btnName="회원 탈퇴"
+                      title="회원을 탈퇴하시겠습니까?"
+                      description="삭제된 계정은 복구할 수 없습니다."
+                      action={handleDeleteUser}
+                    />
                   </footer>
                 </section>
               ) : isUpdate ? (

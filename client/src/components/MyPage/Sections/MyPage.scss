@@ -69,13 +69,13 @@
             background-color: #059960;
           }
         }
-        #delete-btn {
+        #dialog-btn {
           display: inline;
           font-size: 1em;
           color: white;
           background-color: rgb(247, 111, 111);
-          float: right;
           margin-bottom: 20px;
+          float: right;
           &:hover {
             background-color: rgb(247, 83, 83);
           }
