@@ -142,30 +142,41 @@ export default function SignPage(props) {
     setbackOpen(!backOpen);
   };
 
+  const btnType = () => {
+    if (props.type === 0) {
+      return (
+        <Button
+          variant="contained"
+          className="header-btn"
+          id="signIn-btn"
+          onClick={handleOpen}
+        >
+          <FingerprintIcon></FingerprintIcon>
+        </Button>
+      );
+    } else if (props.type === 1) {
+      return (
+        <Fab
+          color="primary"
+          aria-label="add"
+          className="footer-btn"
+          onClick={handleOpen}
+        >
+          <AddIcon />
+        </Fab>
+      );
+    } else if (props.type === 2) {
+      return (
+        <Button variant="contained" className="apply-btn" onClick={handleOpen}>
+          참가 신청
+        </Button>
+      );
+    }
+  };
+
   return (
     <div>
-      <Tooltip title="SIGN">
-        {props.isChangeBtn ? (
-          <Fab
-            color="primary"
-            aria-label="add"
-            className="footer-btn"
-            onClick={handleOpen}
-          >
-            <AddIcon />
-          </Fab>
-        ) : (
-          <Button
-            variant="contained"
-            className="header-btn"
-            id="signIn-btn"
-            onClick={handleOpen}
-          >
-            <FingerprintIcon></FingerprintIcon>
-          </Button>
-        )}
-      </Tooltip>
-
+      {btnType()}
       <Dialog open={open} onClose={handleClose} className="signDialog">
         <DialogTitle>
           {isSignin ? <LockIcon /> : <HowToRegIcon />}

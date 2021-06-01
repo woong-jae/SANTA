@@ -112,7 +112,7 @@ export default function CreateCard(props) {
             <AddIcon />
           </Fab>
         ) : (
-          <SignPage isChangeBtn={true}/>
+          <SignPage type={1}/>
         )}
       </Tooltip>
       <Modal

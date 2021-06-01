@@ -13,6 +13,7 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import UpdateCard from "./UpdateCard";
 import Dialog from "../../common/Dialog";
 import "./ShowCardPage.scss";
+import SignPage from "../../SignPage/SignPage";
 
 export default function ShowCard({ user, card }) {
   const dispatch = useDispatch();
@@ -164,8 +165,8 @@ export default function ShowCard({ user, card }) {
                 <div id="btn-paper" className="side-paper">
                   {user?.result?._id !== card.createdUser?._id ? (
                     !apply ? (
-                      user &&
-                      card.currentMember.length + 1 < card.maxMember && (
+                      card.currentMember.length + 1 < card.maxMember &&
+                      (user ? (
                         <Button
                           variant="contained"
                           className="apply-btn"
@@ -173,7 +174,9 @@ export default function ShowCard({ user, card }) {
                         >
                           참가 신청
                         </Button>
-                      )
+                      ) : (
+                        <SignPage type={2} />
+                      ))
                     ) : (
                       <Dialog
                         btnName="모임 탈퇴"
