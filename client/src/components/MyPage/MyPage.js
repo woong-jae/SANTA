@@ -21,6 +21,7 @@ import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
+import Dialog from "../common/Dialog";
 import "./Sections/MyPage.scss";
 
 const MyPage = (props) => {
@@ -33,7 +34,7 @@ const MyPage = (props) => {
   const userAppliedPosts = useSelector((state) => state.mypage.applied);
 
   useEffect(() => {
-    if (user) { 
+    if (user) {
       dispatch(getUserPosts(user?.result?._id));
       dispatch(getUserAppliedPosts(user?.result?._id));
     }
@@ -74,12 +75,8 @@ const MyPage = (props) => {
     );
   };
 
-  const handleDeleteUser = async () => {
-    if (
-      window.confirm(
-        "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
-      )
-    ) {
+  const handleDeleteUser = async (isDelete) => {
+    if (isDelete) {
       await dispatch(deleteUser(user?.result?._id));
       logout();
     }
@@ -149,13 +146,19 @@ const MyPage = (props) => {
                   <CreateIcon />
                 </Button>
               </Tooltip>
-              <Button
+              <Dialog
+                btnName="회원 탈퇴"
+                title="회원을 탈퇴하시겠습니까?"
+                description="삭제된 계정은 복구할 수 없습니다."
+                action={handleDeleteUser}
+              />
+              {/* <Button
                 variant="contained"
                 id="delete-btn"
                 onClick={handleDeleteUser}
               >
                 회원 탈퇴
-              </Button>
+              </Button> */}
             </footer>
           </Paper>
         </div>
