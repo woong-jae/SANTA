@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
-import "./MyPage.scss";
+import "./Mypage.scss";
 import "./UpdateUser.scss";
 
 const UpdateUser = (props) => {

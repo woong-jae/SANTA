@@ -12,7 +12,7 @@ import { deleteUser, updateUser } from "../../actions/auth";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import Cards from "../CardListPage/Sections/Cards";
-import "./Sections/MyPage.scss";
+import "./Sections/Mypage.scss";
 
 const MyPage = (props) => {
   const dispatch = useDispatch();
@@ -58,12 +58,18 @@ const MyPage = (props) => {
   const handleUpdateUser = async (updateState) => {
     console.log({ ...user?.result, ...updateState });
     setIsUpdate(false);
-    await dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
+    await dispatch(
+      updateUser(user?.result?._id, { ...user?.result, ...updateState })
+    );
     document.location.reload("/myPage");
   };
 
   const handleDeleteUser = async () => {
-    if (window.confirm("회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다.")) {
+    if (
+      window.confirm(
+        "회원을 탈퇴하시겠습니까?\n삭제된 계정은 복구할 수 없습니다."
+      )
+    ) {
       await dispatch(deleteUser(user?.result?._id));
       logout();
     }
