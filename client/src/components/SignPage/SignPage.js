@@ -11,7 +11,6 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
-  Tooltip,
   Backdrop,
   CircularProgress,
   Fab,

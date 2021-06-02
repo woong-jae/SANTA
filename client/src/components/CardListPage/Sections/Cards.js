@@ -9,6 +9,7 @@ import {
   CardActions,
   CardContent,
   Typography,
+  Tooltip,
 } from "@material-ui/core";
 
 const Cards = (props) => {
@@ -47,7 +48,7 @@ const Cards = (props) => {
     <Card className="cards" id={isExpired ? "disable-card" : "enable-card"}>
       <CardContent>
         <Typography className="card-info" id="card-writer">
-          <strong>{card.createdUser?.nickname}</strong> 님의 게시물
+          <strong>{card.createdUser?.nickname}</strong> 님의 모임
         </Typography>
         <hr />
         <Typography className="card-info" id="card-title">
@@ -68,9 +69,11 @@ const Cards = (props) => {
         </Typography>
       </CardContent>
       <CardActions className="card-action">
-        <Button variant="contained" className="card-btn" onClick={handleClick}>
-          ➜
-        </Button>
+        <Tooltip title="모임 정보 더 보기">
+          <Button variant="contained" className="card-btn" onClick={handleClick}>
+            ➜
+          </Button>
+        </Tooltip>
       </CardActions>
     </Card>
   );

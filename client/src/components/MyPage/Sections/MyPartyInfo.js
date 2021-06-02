@@ -9,11 +9,12 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Button,
 } from "@material-ui/core";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.success.light,
     color: theme.palette.common.white,
     fontSize: 15,
   },
@@ -49,7 +50,7 @@ const MyPartyInfo = (props) => {
             <StyledTableCell>모임 제목</StyledTableCell>
             <StyledTableCell align="right">산 이름</StyledTableCell>
             <StyledTableCell align="right">현재 인원</StyledTableCell>
-            <StyledTableCell align="right">날짜</StyledTableCell>
+            <StyledTableCell align="right">등산 날짜</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -57,7 +58,9 @@ const MyPartyInfo = (props) => {
             (post) => (
               <StyledTableRow key={post.title}>
                 <StyledTableCell component="th" scope="row">
-                  {post.title}
+                  <Button variant="outlined">
+                    {post.title}
+                  </Button>
                 </StyledTableCell>
                 <StyledTableCell align="right">{post.mountain}</StyledTableCell>
                 <StyledTableCell align="right">

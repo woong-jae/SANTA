@@ -144,15 +144,17 @@ const MyPage = (props) => {
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
           <div style={{ display: "flex", padding: "20px" }}>
-            <Button
-              variant="contained"
-              className="back-btn"
-              onClick={() => {
-                history.goBack();
-              }}
-            >
-              <ArrowBackIcon />
-            </Button>
+            <Tooltip title="뒤로 가기">
+              <Button
+                variant="contained"
+                className="back-btn"
+                onClick={() => {
+                  history.goBack();
+                }}
+              >
+                <ArrowBackIcon />
+              </Button>
+            </Tooltip>
             {/* <IconButton
               aria-label="more"
               aria-controls="long-menu"

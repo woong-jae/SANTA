@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
 import { updatePost, applyPost } from "../../../actions/show";
-import { Paper, Button, Typography } from "@material-ui/core";
+import { Paper, Button, Typography, Tooltip } from "@material-ui/core";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CreateIcon from "@material-ui/icons/Create";
@@ -73,16 +73,18 @@ export default function ShowCard({ user, card }) {
       <div>
         <div className="show">
           <Paper className="show-paper" elevation={10}>
-            <Button
-              variant="contained"
-              className="back-btn"
-              onClick={() => {
-                history.goBack();
-                localStorage.removeItem("card");
-              }}
-            >
-              <ArrowBackIcon />
-            </Button>
+            <Tooltip title="뒤로 가기">
+              <Button
+                variant="contained"
+                className="back-btn"
+                onClick={() => {
+                  history.goBack();
+                  localStorage.removeItem("card");
+                }}
+              >
+                <ArrowBackIcon />
+              </Button>
+            </Tooltip>
             <Typography variant="h6" id="show-title">
               <strong>{card.title}</strong>
             </Typography>
