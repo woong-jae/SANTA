@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import decode from "jwt-decode";
 
@@ -12,6 +12,7 @@ const CardListPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const userUpdate = useSelector(state => state.auth.authData);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -29,7 +30,7 @@ const CardListPage = () => {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch, location]);
+  }, [dispatch, location, userUpdate]);
 
   return (
     <div className="cardList">

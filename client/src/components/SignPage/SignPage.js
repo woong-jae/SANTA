@@ -109,14 +109,12 @@ export default function SignPage(props) {
       const user = JSON.parse(localStorage.getItem("profile"));
       if (user) {
         handleClose();
-        document.location.reload();
       } else {
         setInputs({ ...init, email: "Invalid user" });
       }
     } else {
       if (valid) {
         await dispatch(signup({ ...inputs }));
-        document.location.reload();
         handleClose();
       } else {
         setIsSignIn(false);

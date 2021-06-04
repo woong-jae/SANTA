@@ -19,7 +19,7 @@ export default function ShowCard() {
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     setUser(null);
-    history.goBack();
+    history.push('/');
   };
 
   useEffect(() => {
