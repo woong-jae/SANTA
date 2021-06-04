@@ -38,7 +38,6 @@ export default function ShowCard() {
     setCard(JSON.parse(localStorage.getItem("card")));
   }, [cardUpdated]);
 
-  return (
-    <Card user={user} card={card} />
-  )
+  if (card) return (<Card user={user} card={card} />);
+  else return <h1>No Card Selected</h1>
 }
