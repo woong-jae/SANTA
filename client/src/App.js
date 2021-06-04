@@ -25,7 +25,8 @@ class App extends Component {
               component={(props) => <CardListPage {...props} />}
             />
             <Route
-              path="/list/show"
+              exact
+              path="/list/:id"
               component={(props) => <ShowCardPage {...props} />}
             />
             <Route

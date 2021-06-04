@@ -27,8 +27,8 @@ const Cards = (props) => {
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
 
   const handleClick = async () => {
-    await dispatch(getPostById(card._id));
-    history.push("/list/show");
+    // await dispatch(getPostById(card._id));
+    history.push("/list/" + card._id);
   };
 
   if (

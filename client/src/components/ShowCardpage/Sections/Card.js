@@ -15,21 +15,17 @@ import Dialog from "../../common/Dialog";
 import "./ShowCardPage.scss";
 import SignPage from "../../SignPage/SignPage";
 
-export default function ShowCard({ user, card }) {
+export default function ShowCard({ user, card, apply }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [isUpdate, setIsUpdate] = useState(false);
-  const [apply, setApply] = useState(
-    card?.currentMember.some((member) => member._id === user?.result?._id)
-  );
 
   const handleApply = async () => {
     const userBirth = new Date(user?.result?.birth);
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
       await dispatch(applyPost(card._id, { userID: user?.result?._id }));
-      setApply(true);
     } else {
       window.alert("나이 제한을 확인해주세요!");
     }
@@ -38,7 +34,6 @@ export default function ShowCard({ user, card }) {
   const handleLeave = async (isLeave) => {
     if (isLeave) {
       await dispatch(applyPost(card._id, { userID: user?.result?._id }));
-      setApply(false);
     }
   };
 

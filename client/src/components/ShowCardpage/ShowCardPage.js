@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import decode from "jwt-decode";
 
 import { getPostById } from "../../actions/show";
@@ -8,13 +8,13 @@ import Card from "./Sections/Card";
 import "./Sections/ShowCardPage.scss";
 
 export default function ShowCard() {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [card, setCard] = useState(JSON.parse(localStorage.getItem("card")));
-  const [refreshed, setRefreshed] = useState(true);
-  const cardUpdated = useSelector(state => state.show.post);
+  const card = useSelector(state => state.show.post);
+  const [apply, setApply] = useState(card?.currentMember.some((member) => member?._id === user?.result?._id));
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -23,10 +23,7 @@ export default function ShowCard() {
   };
 
   useEffect(() => {
-    if (refreshed) { 
-      dispatch(getPostById(card._id));
-      setRefreshed(false);
-    };
+    dispatch(getPostById(id));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -35,9 +32,9 @@ export default function ShowCard() {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-    setCard(JSON.parse(localStorage.getItem("card")));
-  }, [cardUpdated]);
+    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
+  }, [card]);
 
-  if (card) return (<Card user={user} card={card} />);
-  else return <h1>No Card Selected</h1>
+  if (card) return (<Card user={user} card={card} apply={apply} />);
+  else return <div></div>
 }
