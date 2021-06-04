@@ -149,7 +149,7 @@ const UpdateUser = (props) => {
             id="update-btn"
             onClick={() => props.updateUser(updateState)}
             disabled={
-              updateState.nickname.length >= 4 &&
+              updateState.nickname.length >= 3 &&
               updateState.nickname.length <= 7
                 ? false
                 : true
