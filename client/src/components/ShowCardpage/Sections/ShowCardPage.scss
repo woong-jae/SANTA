@@ -22,6 +22,7 @@
                 width: 153px !important;
             }
         }
+        animation: fadein 0.5s;
         text-align: left;
         padding: 30px;
         background-color: white;
@@ -146,5 +147,14 @@
                 }
             }
         }
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

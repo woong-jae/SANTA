@@ -35,6 +35,6 @@ export default function ShowCard() {
     setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
   }, [card]);
 
-  if (card) return (<Card user={user} card={card} apply={apply} />);
+  if (card && card._id === id) return (<Card user={user} card={card} apply={apply} />);
   else return <div></div>
 }

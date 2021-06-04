@@ -155,7 +155,7 @@ export default function ShowCard({ user, card, apply }) {
                       {card.createdUser?.nickname}
                     </Typography>
                     {card.currentMember?.map((member) => {
-                      return <Typography>{member?.nickname}</Typography>;
+                      return <Typography key={member?._id }>{member?.nickname}</Typography>;
                     })}
                   </div>
                 </div>
