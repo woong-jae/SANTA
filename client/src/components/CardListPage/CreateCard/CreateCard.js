@@ -9,8 +9,10 @@ import {
   Slider,
   Typography,
   Fab,
+  Zoom,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import RefreshIcon from "@material-ui/icons/Refresh";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../actions/post";
 
@@ -101,20 +103,35 @@ export default function CreateCard(props) {
 
   return (
     <div>
-      <Tooltip title="모임 생성">
-        {props.user ? (
-          <Fab
-            color="primary"
-            aria-label="add"
-            className="footer-btn"
-            onClick={handleOpen}
+      {props.user ? (
+        <div className="footer-btn" style={{ display: "grid" }}>
+          <Tooltip
+            title={"새로 고침"}
+            placement="left"
+            TransitionComponent={Zoom}
           >
-            <AddIcon />
-          </Fab>
-        ) : (
-          <SignPage type={1}/>
-        )}
-      </Tooltip>
+            <Fab color="primary" aria-label="refresh" className="refresh-btn">
+              <RefreshIcon />
+            </Fab>
+          </Tooltip>
+          <Tooltip
+            title={"모임 생성"}
+            placement="left"
+            TransitionComponent={Zoom}
+          >
+            <Fab
+              color="primary"
+              aria-label="add"
+              className="add-btn"
+              onClick={handleOpen}
+            >
+              <AddIcon />
+            </Fab>
+          </Tooltip>
+        </div>
+      ) : (
+        <SignPage type={1} />
+      )}
       <Modal
         open={open}
         onClose={handleClose}

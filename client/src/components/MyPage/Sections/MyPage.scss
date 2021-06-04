@@ -33,6 +33,7 @@
         padding-bottom: 20px;
         text-align: left;
         display: block;
+        height: 600px;
         .refresh-btn {
           color: black;
           background-color: grey;
@@ -60,7 +61,6 @@
         }
         section .cardList-body {
           grid-template-columns: 1fr;
-          height: 500px;
         }
         .MuiTableContainer-root {
           height: 350px;
@@ -90,6 +90,24 @@
           }
         }
       }
+    }
+  }
+  .refresh-btn {
+    position: fixed;
+    right: 44px;
+    bottom: 100px;
+    width: 70px;
+    height: 70px;
+    bottom: 40px;
+    color: white;
+    background-color: #10b274;
+    font-size: 1.3em;
+    &:hover {
+      background-color: #059960;
+    }
+    .MuiSvgIcon-root {
+      width: 1.5em;
+      height: 1.5em;
     }
   }
 }

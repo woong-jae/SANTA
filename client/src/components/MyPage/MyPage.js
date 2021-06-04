@@ -11,6 +11,7 @@ import {
   Tabs,
   Box,
   AppBar,
+  Zoom,
   Menu,
   MenuItem,
   MenuList,
@@ -144,7 +145,7 @@ const MyPage = (props) => {
       <div className="mypage-main">
         <Paper className="mypage-paper" elevation={10}>
           <div style={{ display: "flex", padding: "20px" }}>
-            <Tooltip title="뒤로 가기">
+            <Tooltip title="뒤로 가기" TransitionComponent={Zoom}>
               <Button
                 variant="contained"
                 className="back-btn"
@@ -238,7 +239,7 @@ const MyPage = (props) => {
                     <hr />
                   </article>
                   <footer>
-                    <Tooltip title="정보 변경">
+                    <Tooltip title="정보 변경" TransitionComponent={Zoom}>
                       <Button
                         variant="contained"
                         id="update-btn"
@@ -282,6 +283,11 @@ const MyPage = (props) => {
           </section>
         </Paper>
       </div>
+      <Tooltip title={"새로 고침"} placement="left" TransitionComponent={Zoom}>
+        <Fab color="primary" aria-label="refresh" className="refresh-btn">
+          <RefreshIcon />
+        </Fab>
+      </Tooltip>
     </div>
   );
 };

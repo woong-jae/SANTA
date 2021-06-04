@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { Button, Typography, Tooltip, Popover } from "@material-ui/core";
+import { Button, Typography, Tooltip, Popover, Zoom } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandLess from "@material-ui/icons/ExpandLess";
@@ -230,7 +230,7 @@ const CardListHeader = (props) => {
           <div className="header-user">
             <Link to="/mypage">
               {windowSize.width >= 1150 ? (
-                <Tooltip title="MY PAGE">
+                <Tooltip title="MY PAGE" TransitionComponent={Zoom}>
                   <Button
                     startIcon={<AiOutlineUser />}
                     size="small"
@@ -254,7 +254,7 @@ const CardListHeader = (props) => {
                 </Tooltip>
               )}
             </Link>
-            <Tooltip title="SIGN OUT">
+            <Tooltip title="SIGN OUT" TransitionComponent={Zoom}>
               <Button
                 variant="contained"
                 className="header-btn"
