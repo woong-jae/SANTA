@@ -135,13 +135,13 @@ export default function UpdateCard(props) {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="header-info-update">
-                    <Typography id="slider-label" gutterBottom>
+                  <div className="header-info-update" id="update-age">
+                    <Typography id="update-slider-label" gutterBottom>
                       제한 연령
                     </Typography>
                     <Slider
                       name="ageLimit"
-                      id="update-age"
+                      id="update-age-slider"
                       max={70}
                       min={19}
                       marks={marks}
@@ -181,6 +181,7 @@ export default function UpdateCard(props) {
                   value={updateState.description}
                   placeholder="내용을 입력하세요. *"
                   id="update-description"
+                  className="update-textarea"
                   onChange={handleChange}
                 />
               </section>
@@ -202,6 +203,7 @@ export default function UpdateCard(props) {
                   placeholder="연락망을 입력하세요. *
                    (ex. 연락처, 카카오톡 오픈채팅 등)"
                   id="update-contact"
+                  className="update-textarea"
                   onChange={handleChange}
                 />
               </div>

@@ -121,8 +121,11 @@
                     width: 95%;
                     padding: 10px;
                     display: inline-block;
-                    border: 2px solid black;
                     resize: none;
+                    &:hover {
+                        border-width: 2px;
+                        border-color: black;
+                    }
                     &:focus {
                         outline: none;
                         border-color: #10b274;
@@ -131,6 +134,7 @@
                 #input-description {
                     border-style: dashed;
                     height: 160px;
+                    margin-top: 10px;
                 }
                 #input-contact {
                     height: 100px;
