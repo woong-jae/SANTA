@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -15,11 +15,16 @@ import Dialog from "../../common/Dialog";
 import "./ShowCardPage.scss";
 import SignPage from "../../SignPage/SignPage";
 
-export default function ShowCard({ user, card, apply }) {
+export default function ShowCard({ user, card }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [isUpdate, setIsUpdate] = useState(false);
+
+  const [apply, setApply] = useState(card?.currentMember.some((member) => member?._id === user?.result?._id));
+  useEffect(() => {
+    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
+  });
 
   const handleApply = async () => {
     const userBirth = new Date(user?.result?.birth);
