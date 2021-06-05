@@ -156,7 +156,7 @@ export default function SignPage(props) {
         <Fab
           color="primary"
           aria-label="add"
-          className="footer-btn"
+          className="add-btn"
           onClick={handleOpen}
         >
           <AddIcon />
