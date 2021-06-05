@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { getPostById } from "../../../actions/show";
 import {
   Button,
   Card,
@@ -10,10 +8,10 @@ import {
   CardContent,
   Typography,
   Tooltip,
+  Fade
 } from "@material-ui/core";
 
 const Cards = (props) => {
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const { card } = props;
@@ -27,7 +25,6 @@ const Cards = (props) => {
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
 
   const handleClick = async () => {
-    // await dispatch(getPostById(card._id));
     history.push("/list/" + card._id);
   };
 
@@ -45,37 +42,39 @@ const Cards = (props) => {
   }
 
   return (
-    <Card className="cards" id={isExpired ? "disable-card" : "enable-card"}>
-      <CardContent>
-        <Typography className="card-info" id="card-writer">
-          <strong>{card.createdUser?.nickname}</strong> 님의 모임
-        </Typography>
-        <hr />
-        <Typography className="card-info" id="card-title">
-          <strong>{card.title}</strong>
-        </Typography>
-        <Typography className="card-info">
-          <strong>산</strong> : {card.mountain}
-        </Typography>
-        <Typography className="card-info">
-          <strong>현재 인원</strong> : {card.currentMember.length + 1} /{" "}
-          {card.maxMember}
-        </Typography>
-        <Typography className="card-info">
-          <strong>제한 연령</strong> : {ageLimit}
-        </Typography>
-        <Typography className="card-info">
-          <strong>날짜</strong> : {date}
-        </Typography>
-      </CardContent>
-      <CardActions className="card-action">
-        <Tooltip title="모임 정보 더 보기">
-          <Button variant="contained" className="card-btn" onClick={handleClick}>
-            ➜
-          </Button>
-        </Tooltip>
-      </CardActions>
-    </Card>
+    <Fade in={true} style={{ transitionDelay: `${props.index * 100}ms`}}>
+      <Card className="cards" id={isExpired ? "disable-card" : "enable-card"} >
+        <CardContent>
+          <Typography className="card-info" id="card-writer">
+            <strong>{card.createdUser?.nickname}</strong> 님의 모임
+          </Typography>
+          <hr />
+          <Typography className="card-info" id="card-title">
+            <strong>{card.title}</strong>
+          </Typography>
+          <Typography className="card-info">
+            <strong>산</strong> : {card.mountain}
+          </Typography>
+          <Typography className="card-info">
+            <strong>현재 인원</strong> : {card.currentMember.length + 1} /{" "}
+            {card.maxMember}
+          </Typography>
+          <Typography className="card-info">
+            <strong>제한 연령</strong> : {ageLimit}
+          </Typography>
+          <Typography className="card-info">
+            <strong>날짜</strong> : {date}
+          </Typography>
+        </CardContent>
+        <CardActions className="card-action">
+          <Tooltip title="모임 정보 더 보기">
+            <Button variant="contained" className="card-btn" onClick={handleClick}>
+              ➜
+            </Button>
+          </Tooltip>
+        </CardActions>
+      </Card>
+    </Fade>
   );
 };
 

@@ -15,8 +15,8 @@ const CardListBody = (props) => {
       <section>
         {posts.length > 0 ? (
           <div className="cardList-body">
-            {posts.map((post) => (
-              <Cards key={post._id} card={post} user={props.user} />
+            {posts.map((post, index) => (
+              <Cards key={post._id} card={post} user={props.user} index={index} />
             ))}
           </div>
         ) : (
