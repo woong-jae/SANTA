@@ -137,13 +137,13 @@ export default function CreateCard(props) {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-        class="modal-main"
+        className="modal-main"
       >
         <div className="input-paper">
           <div style={{ width: "100%" }}>
             <form onSubmit={handleSubmit} className="input-form">
               <br />
-              <div class="title-box">
+              <div className="title-box">
                 <TextField
                   required
                   name="title"
@@ -153,7 +153,7 @@ export default function CreateCard(props) {
                   onChange={handleChange}
                 />
               </div>
-              <header>
+              <header className="create-header">
                 <div id="input-mountain" className="input-header">
                   <SearchMountain
                     name="mountain"

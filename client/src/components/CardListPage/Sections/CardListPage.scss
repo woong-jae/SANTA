@@ -215,14 +215,19 @@ section {
 // responsive header search
 .search-item {
     width: 100% !important;
-    margin-right: 30px !important;
     .MuiFormControl-root {
         width: 100% !important;
     }
 }
 
+#search-date,
+#search-peopleNum {
+    margin-right: 30px !important;
+}
+
 @media (max-width: 550px) {
-    .search-item {
+    #search-date,
+    #search-peopleNum {
         margin-right: 0px !important;
     }
 }
