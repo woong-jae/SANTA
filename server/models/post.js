@@ -16,6 +16,11 @@ const postSchema = mongoose.Schema({
     ref: "User",
     default: [],
   },
+  currentMemberLength: {
+    type: Number,
+    default: 1
+  }
+  ,
   ageLimit: {
     type: [Number],
     default: [1, 100],

@@ -14,7 +14,6 @@ export default function ShowCard() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const card = useSelector(state => state.show.post);
-  const [apply, setApply] = useState(card?.currentMember.some((member) => member?._id === user?.result?._id));
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -32,9 +31,8 @@ export default function ShowCard() {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
-  }, [card]);
+  }, [dispatch]);
 
-  if (card && card._id === id) return (<Card user={user} card={card} apply={apply} />);
+  if (card && card._id === id) return (<Card user={user} card={card} />);
   else return <div></div>
 }

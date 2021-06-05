@@ -27,7 +27,6 @@ const CardListBody = (props) => {
             </strong>
           </div>
         )}
-        <footer></footer>
       </section>
       <footer className="cardList-footer">
         <CreateCard user={props.user} className="cardList-footer" />

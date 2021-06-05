@@ -101,10 +101,10 @@ export const applyPost = async (req, res) => {
   try {
     const curPost = await Posts.findById(_id);
     if (curPost.currentMember.length + 2 <= curPost.maxMember && !curPost.currentMember.some((member) => member.toString() === userID)) {
-      const newPost = await Posts.findByIdAndUpdate(_id, { $push: { currentMember: userID } }, { new: true }).populate("createdUser").populate("currentMember");
+      const newPost = await Posts.findOneAndUpdate({ _id: _id, $expr: { $lt : ["$currentMemberLength", "$maxMember"]}}, { $push: { currentMember: userID }, $inc: { currentMemberLength: 1 } }, { new: true }).populate("createdUser").populate("currentMember");
       res.json(newPost);
     } else {
-      const newPost = await Posts.findByIdAndUpdate(_id, { $pull: { currentMember: userID } }, { new: true }).populate("createdUser").populate("currentMember");
+      const newPost = await Posts.findByIdAndUpdate(_id, { $pull: { currentMember: userID }, $inc: { currentMemberLength: -1 } }, { new: true }).populate("createdUser").populate("currentMember");
       res.json(newPost);
     }
   } catch (error) {
