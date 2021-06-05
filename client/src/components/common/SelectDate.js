@@ -7,6 +7,8 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
+import "./Sections/SelectDate.scss"
+
 export default function MaterialUIPickers(props) {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 

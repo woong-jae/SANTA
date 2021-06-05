@@ -1,7 +1,4 @@
 .show-paper {
-    // @media (max-width: 750px) {
-    //     min-width: 100px
-    // }
     .MuiInput-underline:after {
         border-bottom: 2px solid #10b274;
     }
@@ -21,6 +18,9 @@
     }
     .header-info-update {
         margin-top: 28px;
+        .MuiFormControl-root {
+            width: 100%;
+        }
     }
     #update-age {
         #update-age-slider {

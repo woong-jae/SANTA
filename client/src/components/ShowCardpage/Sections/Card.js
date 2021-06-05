@@ -87,7 +87,7 @@ export default function ShowCard({ user, card, apply }) {
               <strong>{card.createdUser?.nickname}</strong> 님의 모임
             </Typography>
             <div className="show-flex">
-              <div style={{ width: "65%" }}>
+              <div className="show-box" style={{ width: "65%" }}>
                 <header className="show-header">
                   <div className="header-detail">
                     <Typography className="header-info">

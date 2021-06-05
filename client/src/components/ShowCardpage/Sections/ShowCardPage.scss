@@ -16,10 +16,37 @@
             }
         }
         @media (max-width: 700px) {
-            width: 450px;
-            #contact-paper {
-                height: 135px !important;
-                width: 153px !important;
+            //width: 400px;
+            & {
+                width: 100% !important;
+            }
+            .show-flex {
+                flex-direction: column;
+                .show-box {
+                    width: 100% !important;
+                    .show-header {
+                        padding-bottom: 30px !important;
+                        .header-detail {
+                            width: 100% !important;
+                        }
+                    }
+                }
+                .side {
+                    margin-left: 0px !important;
+                    width: 100% !important;
+                    #contact-paper {
+                        width: 100% !important;
+                    }
+                    #Member-paper {
+                        padding: 17px !important;
+                    }
+                }
+            }
+            #update-title {
+                width: 320px !important;
+            }
+            footer {
+                margin-top: 25px !important;
             }
         }
         animation: fadein 0.5s;
