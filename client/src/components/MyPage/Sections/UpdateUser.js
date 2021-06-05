@@ -8,6 +8,7 @@ import {
   RadioGroup,
   FormControlLabel,
   TextField,
+  Zoom,
 } from "@material-ui/core";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
@@ -143,7 +144,7 @@ const UpdateUser = (props) => {
         </article>
       </section>
       <footer style={{ display: "block", textAlign: "center" }}>
-        <Tooltip title="수정 완료">
+        <Tooltip title="수정 완료" TransitionComponent={Zoom}>
           <Button
             variant="contained"
             id="update-btn"

@@ -12,18 +12,12 @@ import {
   Box,
   AppBar,
   Zoom,
-  Menu,
-  MenuItem,
-  MenuList,
-  IconButton,
-  ListItemIcon,
   Fab,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import CreateIcon from "@material-ui/icons/Create";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import RefreshIcon from "@material-ui/icons/Refresh";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
@@ -73,8 +67,6 @@ const MyPage = (props) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   const [value, setValue] = useState("one");
   const userUpdated = useSelector((state) => state.auth.authData);
 
@@ -131,14 +123,6 @@ const MyPage = (props) => {
     setValue(newValue);
   };
 
-  const menuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const menuClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <div className="mypage">
       <CardListHeader user={user} />
@@ -156,30 +140,6 @@ const MyPage = (props) => {
                 <ArrowBackIcon />
               </Button>
             </Tooltip>
-            {/* <IconButton
-              aria-label="more"
-              aria-controls="long-menu"
-              aria-haspopup="true"
-              onClick={menuOpen}
-            >
-              <MoreVertIcon />
-            </IconButton>
-            <Menu
-              id="long-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={open}
-              onClose={menuClose}
-              PaperProps={{
-                style: { maxHeight: 48 * 4.5, width: "20ch" },
-              }}
-            >
-              <MenuList onClick={menuClose}>
-                <Fab>
-                  <RefreshIcon fontSize="small"></RefreshIcon>
-                </Fab>
-              </MenuList>
-            </Menu> */}
           </div>
           <section className="mypage-body">
             <header>
@@ -267,18 +227,10 @@ const MyPage = (props) => {
               )}
             </TabPanel>
             <TabPanel value={value} index="two">
-              <section>
-                <div className="cardList-body">
-                  <MyPartyInfo type="create" />
-                </div>
-              </section>
+              <MyPartyInfo type="create" />
             </TabPanel>
             <TabPanel value={value} index="three">
-              <section>
-                <div className="cardList-body">
-                  <MyPartyInfo type="apply" />
-                </div>
-              </section>
+              <MyPartyInfo type="apply" />
             </TabPanel>
           </section>
         </Paper>

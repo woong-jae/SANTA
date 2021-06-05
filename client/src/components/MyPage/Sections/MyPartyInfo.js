@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
@@ -44,7 +44,11 @@ const MyPartyInfo = (props) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="customized table">
+      <Table
+        stickyHeader
+        className={classes.table}
+        aria-label="customized table"
+      >
         <TableHead>
           <TableRow>
             <StyledTableCell>모임 제목</StyledTableCell>
@@ -58,9 +62,7 @@ const MyPartyInfo = (props) => {
             (post) => (
               <StyledTableRow key={post.title}>
                 <StyledTableCell component="th" scope="row">
-                  <Button variant="outlined">
-                    {post.title}
-                  </Button>
+                  <Button variant="outlined">{post.title}</Button>
                 </StyledTableCell>
                 <StyledTableCell align="right">{post.mountain}</StyledTableCell>
                 <StyledTableCell align="right">
