@@ -113,7 +113,7 @@ export default function UpdateCard(props) {
             <strong>{card.createdUser?.nickname}</strong> 님의 모임
           </Typography>
           <div className="show-flex">
-            <div style={{ width: "65%" }}>
+            <div className="show-box" style={{ width: "65%" }}>
               <header className="show-header">
                 <div className="header-detail">
                   <div className="header-info-update">
@@ -126,7 +126,7 @@ export default function UpdateCard(props) {
                   <div className="header-info-update">
                     <TextField
                       name="maxMember"
-                      id="input-maxMember"
+                      id="update-maxMember"
                       label="제한 인원"
                       type="number"
                       defaultValue={updateState.maxMember}
