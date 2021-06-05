@@ -42,12 +42,17 @@
     }
     @media (max-width: 550px) {
         flex-direction: column;
+        padding-right: 30px !important;
         .header-bar {
             padding-top: 5px !important;
             padding-bottom: 7px !important;
+            padding-right: 25px !important;
         }
         #header-logo {
             margin-top: 20px !important;
+        }
+        .header-btn {
+            margin-right: 20px !important;
         }
     }
     box-shadow: 5px 5px 5px -5px gray;
