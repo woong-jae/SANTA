@@ -1,0 +1,9 @@
+.MuiPickersCalendar-week {
+    .MuiPickersDay-daySelected {
+        color: #fff !important;
+        background-color: #81c784 !important;
+    }
+    .MuiPickersDay-current {
+        color: #81c784;
+    }
+}
