@@ -93,6 +93,10 @@ export default function CreateCard(props) {
     setIsCorrectKeyword(value);
   };
 
+  const refresh = () => {
+    window.location.reload(false);
+  }
+
   const marks = [
     { value: 19 },
     { value: 29 },
@@ -110,7 +114,7 @@ export default function CreateCard(props) {
             placement="left"
             TransitionComponent={Zoom}
           >
-            <Fab color="primary" aria-label="refresh" className="refresh-btn">
+            <Fab color="primary" aria-label="refresh" className="refresh-btn" onClick={refresh}>
               <RefreshIcon />
             </Fab>
           </Tooltip>

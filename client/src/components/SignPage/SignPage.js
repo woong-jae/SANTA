@@ -112,6 +112,7 @@ export default function SignPage(props) {
       } else {
         setInputs({ ...init, email: "Invalid user" });
       }
+      backdropClose();
     } else {
       if (valid) {
         await dispatch(signup({ ...inputs }));
@@ -119,9 +120,9 @@ export default function SignPage(props) {
       } else {
         setIsSignIn(false);
       }
+      backdropClose();
     }
     setValid(false);
-    backdropClose();
   };
 
   const toggle = () => {
@@ -283,7 +284,7 @@ export default function SignPage(props) {
               className="sign-btn"
               fullWidth
               disabled={isSignin ? false : valid ? false : true}
-              onClick={backdropOpen}
+              onClick={valid && birthState !== "" && inputs.nickname !== "" ? backdropOpen : ""}
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>

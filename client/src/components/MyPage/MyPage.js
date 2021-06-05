@@ -123,6 +123,9 @@ const MyPage = (props) => {
     setValue(newValue);
   };
 
+  const refresh = () => {
+    window.location.reload(false);
+  }
   return (
     <div className="mypage">
       <CardListHeader user={user} />
@@ -236,7 +239,7 @@ const MyPage = (props) => {
         </Paper>
       </div>
       <Tooltip title={"새로 고침"} placement="left" TransitionComponent={Zoom}>
-        <Fab color="primary" aria-label="refresh" className="refresh-btn">
+        <Fab color="primary" aria-label="refresh" className="refresh-btn" onClick={refresh}>
           <RefreshIcon />
         </Fab>
       </Tooltip>
