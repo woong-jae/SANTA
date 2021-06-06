@@ -25,7 +25,7 @@ const Cards = (props) => {
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
 
   const handleClick = async () => {
-    history.push("/list/" + card._id);
+    history.push("/post/" + card._id);
   };
 
   if (

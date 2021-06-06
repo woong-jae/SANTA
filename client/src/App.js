@@ -26,7 +26,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/list/:id"
+              path="/post/:id"
               component={(props) => <ShowCardPage {...props} />}
             />
             <Route
