@@ -1,25 +1,25 @@
-import React from 'react';
+import React from "react";
 import { useSelector } from "react-redux";
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 const useRowStyles = makeStyles({
   root: {
-    '& > *': {
-      borderBottom: 'unset',
+    "& > *": {
+      borderBottom: "unset",
     },
   },
 });
@@ -28,13 +28,19 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-  console.log(row);
+  // if (row.currentMember[0].nickname !== undefined) {
+  //   console.log(row.currentMember[0].nickname);
+  // }
 
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -42,12 +48,16 @@ function Row(props) {
           {row.title}
         </TableCell>
         <TableCell align="right">{row.mountain}</TableCell>
-        <TableCell align="right">{row.currentMember.length + 1 + "/" + row.maxMember}</TableCell>
-        <TableCell align="right">{row.date.substring(0, 4) +
-                    "/" +
-                    row.date.substring(5, 7) +
-                    "/" +
-                    row.date.substring(8, 10)}</TableCell>
+        <TableCell align="right">
+          {row.currentMember.length + 1 + "/" + row.maxMember}
+        </TableCell>
+        <TableCell align="right">
+          {row.date.substring(0, 4) +
+            "/" +
+            row.date.substring(5, 7) +
+            "/" +
+            row.date.substring(8, 10)}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -68,15 +78,16 @@ function Row(props) {
                 <TableBody>
                   <TableRow>
                     <TableCell component="th" scope="row">
-                    {row.description}
+                      {row.description}
                     </TableCell>
                     <TableCell>
-                      {row.ageLimit[0] + "~" + row.ageLimit[1]}</TableCell>
+                      {row.ageLimit[0] + "~" + row.ageLimit[1]}
+                    </TableCell>
                     <TableCell align="right">{row.contact}</TableCell>
                     <TableCell align="right">
-                      {row.currentMember.map((cm) => (
+                      {/* {row.currentMember.map((cm) => (
                         cm
-                      ))}
+                      ))} */}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -115,6 +126,6 @@ const MyPartyInfo = (props) => {
       </Table>
     </TableContainer>
   );
-}
+};
 
 export default MyPartyInfo;
