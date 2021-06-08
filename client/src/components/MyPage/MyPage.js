@@ -12,8 +12,10 @@ import {
   Box,
   AppBar,
   Zoom,
+  Fab,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
+import RefreshIcon from "@material-ui/icons/Refresh";
 import CreateIcon from "@material-ui/icons/Create";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import decode from "jwt-decode";
@@ -24,7 +26,6 @@ import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
-import Menus from "../common/Menus";
 import "./Sections/MyPage.scss";
 
 function TabPanel(props) {
@@ -238,7 +239,20 @@ const MyPage = (props) => {
         </Paper>
       </div>
       <div className="mypage-footer">
-        <Menus />
+        <Tooltip
+          title={"새로 고침"}
+          placement="left"
+          TransitionComponent={Zoom}
+        >
+          <Fab
+            color="primary"
+            aria-label="refresh"
+            className="refresh-btn"
+            onClick={refresh}
+          >
+            <RefreshIcon />
+          </Fab>
+        </Tooltip>
       </div>
     </div>
   );
