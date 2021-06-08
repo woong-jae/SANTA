@@ -22,6 +22,7 @@
             }
             .show-flex {
                 flex-direction: column;
+                align-items: center;
                 .show-box {
                     width: 100% !important;
                     .show-header {
@@ -33,10 +34,6 @@
                 }
                 .side {
                     margin-left: 0px !important;
-                    width: 100% !important;
-                    #contact-paper {
-                        width: 100% !important;
-                    }
                     #Member-paper {
                         padding: 17px !important;
                     }
@@ -97,7 +94,8 @@
                 align-items: center;
                 height: fit-content;
                 margin-left: 20px;
-                width: 190px;
+                width: 330px;
+                margin-top: 20px;
                 .side-paper {
                     width: 100%;
                     margin-bottom: 30px;
@@ -120,12 +118,24 @@
                     }
                 }
                 #Member-paper {
+                    width: auto;
                     padding: 10px;
                     text-align: center;
                     .Member-info {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: baseline;
                         margin-top: 3px;
                         border: 2px solid #10b274;
                         padding: 10px;
+                        .member {
+                            display: flex;
+                            align-items: center;
+                            .MuiSvgIcon-root {
+                                font-size: 1rem;
+                                margin-right: 5px;
+                            }
+                        }
                     }
                 }
                 #btn-paper {
