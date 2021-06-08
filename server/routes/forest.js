@@ -1,9 +1,10 @@
 import express from 'express';
 
-import { getMountainInfo } from "../controllers/forest.js";
+import { getTrailInfo, getForestStory } from "../controllers/forest.js";
 
 const router = express.Router();
 
-router.get('/:userQuery', getMountainInfo);
+router.get('/:userQuery', getTrailInfo);
+router.get('/detail/:userQuery', getForestStory);
 
 export default router;
