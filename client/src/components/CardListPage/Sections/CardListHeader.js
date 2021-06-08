@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
 import SignPage from "../../SignPage/SignPage";
-import SearchMountain from "../../../api/searchMountain";
+import InputMountain from "../../common/InputMountain";
 import InputPeople from "../../common/InputPeople";
 import SearchBtn from "../../common/SearchBtn";
 import SelectDate from "../../common/SelectDate";
@@ -158,10 +158,9 @@ const CardListHeader = (props) => {
         {windowSize.width >= 1150 ? (
           <form onSubmit={handleSubmit} className="input-form">
             <div id="search-mountain" className="search-item">
-              <SearchMountain
+              <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
-                getKeyword={getKeyword}
               />
             </div>
             <div id="search-date" className="search-item">
@@ -208,10 +207,9 @@ const CardListHeader = (props) => {
                     className="search-item"
                     style={{ marginLeft: "30px" }}
                   >
-                    <SearchMountain
+                    <InputMountain
                       id="search-mountain"
                       getMountainValue={getMountainValue}
-                      getKeyword={getKeyword}
                     />
                   </div>
                   <div id="search-date" className="search-item">
