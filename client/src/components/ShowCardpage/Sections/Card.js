@@ -9,6 +9,8 @@ import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import StarIcon from "@material-ui/icons/Star";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import UpdateCard from "./UpdateCard";
 import Dialog from "../../common/Dialog";
@@ -21,9 +23,13 @@ export default function ShowCard({ user, card }) {
 
   const [isUpdate, setIsUpdate] = useState(false);
 
-  const [apply, setApply] = useState(card?.currentMember.some((member) => member?._id === user?.result?._id));
+  const [apply, setApply] = useState(
+    card?.currentMember.some((member) => member?._id === user?.result?._id)
+  );
   useEffect(() => {
-    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
+    setApply(
+      card?.currentMember.some((member) => member?._id === user?.result?._id)
+    );
   });
 
   const handleApply = async () => {
@@ -66,6 +72,17 @@ export default function ShowCard({ user, card }) {
       localStorage.removeItem("card");
       history.goBack();
     }
+  };
+
+  const birthToAge = (birth) => {
+    const birthYear = birth.substring(0, 4);
+    const age = new Date().getFullYear() - Number(birthYear) + 1;
+    return age + "세";
+  };
+
+  const sexInKorean = (sex) => {
+    if (sex === "male") return "남성";
+    else return "여성";
   };
 
   if (!isUpdate) {
@@ -155,12 +172,23 @@ export default function ShowCard({ user, card }) {
                     / {card.maxMember}
                   </Typography>
                   <div className="Member-info">
-                    <Typography>
-                      <span>★</span>
-                      {card.createdUser?.nickname}
+                    <Typography className="member">
+                      <StarIcon />
+                      {card.createdUser?.nickname +
+                        ` (${birthToAge(
+                          card.createdUser?.birth
+                        )}, ${sexInKorean(card.createdUser?.sex)})`}
                     </Typography>
                     {card.currentMember?.map((member) => {
-                      return <Typography key={member?._id }>{member?.nickname}</Typography>;
+                      return (
+                        <Typography key={member?._id} className="member">
+                          <AccountCircleIcon />
+                          {member?.nickname +
+                            ` (${birthToAge(member?.birth)}, ${sexInKorean(
+                              member?.sex
+                            )})`}
+                        </Typography>
+                      );
                     })}
                   </div>
                 </div>
