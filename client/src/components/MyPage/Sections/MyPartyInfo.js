@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   Table,
@@ -11,8 +12,6 @@ import {
   Paper,
   Button,
 } from "@material-ui/core";
-
-import Card from "../../ShowCardpage/Sections/Card";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -41,9 +40,15 @@ const useStyles = makeStyles({
 
 const MyPartyInfo = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
   const userCreatedPosts = useSelector((state) => state.mypage.created);
   const userAppliedPosts = useSelector((state) => state.mypage.applied);
 
+  const handleClick = (e, _id) => {
+    history.push("/post/" + _id);
+  };
+  
   return (
     <TableContainer component={Paper}>
       <Table
@@ -64,7 +69,9 @@ const MyPartyInfo = (props) => {
             (post) => (
               <StyledTableRow key={post.title}>
                 <StyledTableCell component="th" scope="row">
-                  <Button variant="outlined">{post.title}</Button>
+                  <Button variant="outlined" onClick={(e) => {handleClick(e, post._id)}}>
+                    {post.title}
+                  </Button>
                 </StyledTableCell>
                 <StyledTableCell align="right">{post.mountain}</StyledTableCell>
                 <StyledTableCell align="right">
