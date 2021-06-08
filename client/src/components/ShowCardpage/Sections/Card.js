@@ -28,16 +28,9 @@ export default function ShowCard({ user, card }) {
   );
 
   useEffect(() => {
-<<<<<<< HEAD
     console.log(1);
     setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
   }, [card?.currentMember, user?.result?._id]);
-=======
-    setApply(
-      card?.currentMember.some((member) => member?._id === user?.result?._id)
-    );
-  });
->>>>>>> f14f979228c36f1952004b38cfbb6245fe65423a
 
   const handleLeave = async (isLeave) => {
     if (isLeave) {
