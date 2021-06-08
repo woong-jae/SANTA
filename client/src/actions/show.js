@@ -30,3 +30,13 @@ export const applyPost = (_id, userID) => async (dispatch) => {
         console.error(error);
     }
 }
+
+export const unApplyPost = (_id, userID) => async (dispatch) => {
+    try {
+        const { data } = await api.unApplyPost(_id, userID);
+
+        dispatch({ type: FETCH_ONE, data });
+    } catch (error) {
+        console.error(error);
+    }
+}
