@@ -21,8 +21,8 @@ const CardListPage = () => {
   };
 
   useEffect(() => {
-    if (location.search === "") history.replace("/");
-    else if (location.state.mountain === "") dispatch(getPosts());
+    //if (location.search === "") history.replace("/");
+    /*else*/ if (location.state.mountain === "") dispatch(getPosts());
     else dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
     const token = user?.token;
     if (token) {
