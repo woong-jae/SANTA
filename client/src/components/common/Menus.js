@@ -33,7 +33,7 @@ export default function CreateCard(props) {
     description: "",
     contact: "",
   };
-
+  
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);

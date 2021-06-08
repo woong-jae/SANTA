@@ -11,7 +11,7 @@ export const getTrailInfo = async (req, res) => {
     try {
         const { data } = await axios.get(url + queryParams);
 
-        res.send(data.response.body);
+        res.send(data.response.body.items);
     } catch (err) {
         console.log(err);
     }
@@ -31,7 +31,7 @@ export const getForestStory = async (req, res) => {
     try {
         const { data } = await axios.get(url + queryParams);
 
-        res.send(data);
+        res.send(data.response.body.items);
     } catch (err) {
         console.log(err);
     }

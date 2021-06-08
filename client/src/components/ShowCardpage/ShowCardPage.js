@@ -23,7 +23,6 @@ export default function ShowCard() {
 
   useEffect(() => {
     dispatch(getPostById(id));
-    console.log("Here");
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
