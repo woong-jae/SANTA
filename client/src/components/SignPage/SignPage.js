@@ -14,7 +14,9 @@ import {
   Backdrop,
   CircularProgress,
   Fab,
+  Snackbar,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
@@ -30,6 +32,7 @@ export default function SignPage(props) {
   const [isSignin, setIsSignIn] = useState(true);
   const [valid, setValid] = useState(false);
   const [backOpen, setbackOpen] = useState(false);
+  const [snack, setSnack] = useState(false);
 
   const init = {
     email: "",
@@ -98,6 +101,10 @@ export default function SignPage(props) {
     setOpen(false);
   };
 
+  const snackClose = ()=> {
+    setSnack(false);
+  };
+
   const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
   const hasPwdError = (passwordEnter) =>
     isPassword(inputs.passwd) ? false : true;
@@ -110,7 +117,8 @@ export default function SignPage(props) {
       if (user) {
         handleClose();
       } else {
-        setInputs({ ...init, email: "Invalid user" });
+        setInputs(init);
+        setSnack(true);
       }
       backdropClose();
     } else {
@@ -284,7 +292,11 @@ export default function SignPage(props) {
               className="sign-btn"
               fullWidth
               disabled={isSignin ? false : valid ? false : true}
-              onClick={valid && birthState !== "" && inputs.nickname !== "" ? backdropOpen : ""}
+              onClick={
+                valid && birthState !== "" && inputs.nickname !== ""
+                  ? backdropOpen
+                  : ""
+              }
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>
@@ -302,6 +314,11 @@ export default function SignPage(props) {
             </button>
           </DialogActions>
         </form>
+        <Snackbar open={snack} autoHideDuration={1000} onClose={snackClose}>
+          <Alert onClose={snackClose} severity="error">
+            Invalid user!
+          </Alert>
+        </Snackbar>
       </Dialog>
     </div>
   );
