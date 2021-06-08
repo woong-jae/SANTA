@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import userRoutes from "./routes/user.js";
 import postsRoutes from "./routes/post.js";
+import forestRoutes from "./routes/forest.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use("/user", userRoutes);
 app.use("/post", postsRoutes);
+app.use("/forest", forestRoutes);
 
 app.use("/", (req, res) => {
   res.send("Server running...");

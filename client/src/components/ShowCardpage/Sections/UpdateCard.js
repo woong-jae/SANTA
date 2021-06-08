@@ -17,7 +17,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import DateFnsUtils from "@date-io/date-fns";
 
-import SearchMountain from "../../../api/searchMountain"
+import InputMountain from "../../common/InputMountain"
 
 import "./ShowCardPage.scss";
 import "./UpdateCard.scss";
@@ -117,10 +117,9 @@ export default function UpdateCard(props) {
               <header className="show-header">
                 <div className="header-detail">
                   <div className="header-info-update">
-                    <SearchMountain
+                    <InputMountain
                       id="search-mountain"
                       getMountainValue={getMountainValue}
-                      getKeyword={getKeyword}
                     />
                   </div>
                   <div className="header-info-update">

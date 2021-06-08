@@ -16,7 +16,7 @@ import { createPost } from "../../actions/post";
 
 import "../CardListPage/CardMenu/Sections/CardMenu.scss";
 import SelectDate from "./SelectDate";
-import SearchMountain from "../../api/searchMountain";
+import InputMountain from "../common/InputMountain";
 
 function valuetext(value) {
   return `${value}`;
@@ -153,9 +153,8 @@ export default function CreateCard(props) {
               </div>
               <header className="create-header">
                 <div id="input-mountain" className="input-header">
-                  <SearchMountain
-                    name="mountain"
-                    label="산/지역명"
+                  <InputMountain
+                    id="search-mountain"
                     getMountainValue={getMountainValue}
                   />
                 </div>
