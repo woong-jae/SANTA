@@ -37,13 +37,14 @@ export default function InputMountain(props) {
       renderInput={(params) => 
         <TextField 
         {...params}
-        required 
+        //required 
         label="산/지역명" 
         id="input=mountain"
         name="mountain"
         InputLabelProps={{ shrink: true }} 
         onChange={ChangeHandler}
-        error={!isCorrectName} />}
+        error={!isCorrectName} 
+        />}
     />
   );
 }

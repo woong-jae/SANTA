@@ -34,7 +34,7 @@ const LandingPage = () => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
-  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
   const [snack, setSnack] = useState(false);
   const history = useHistory();
 
