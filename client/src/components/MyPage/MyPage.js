@@ -25,7 +25,7 @@ import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
 import Refresh from "../common/Refresh";
-import CreateCard from "../CardListPage/CreateCard/CreateCard";
+// import CreatePost from "../common/CreatePost";
 import "./Sections/MyPage.scss";
 
 function TabPanel(props) {
@@ -238,6 +238,7 @@ const MyPage = (props) => {
         </div>
         <div className="mypage-footer">
           <Refresh />
+          {/* <CreatePost /> */}
           {/* <CreateCard user={user} /> */}
         </div>
       </div>

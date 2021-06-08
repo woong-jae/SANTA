@@ -22,7 +22,7 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function CreateCard(props) {
+export default function CreatePost(props) {
   const dispatch = useDispatch();
   const initialState = {
     title: "",
@@ -214,11 +214,6 @@ export default function CreateCard(props) {
                 description="가고 싶은 산을 선택해주세요!"
               />
             )}
-            {/* <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
-              <Alert onClose={snackClose} severity="error" variant="filled">
-                가고 싶은 산을 선택해주세요!
-              </Alert>
-            </Snackbar> */}
           </div>
         </div>
       </Modal>

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import SignPage from "../../SignPage/SignPage";
-
 import {
   Modal,
   Tooltip,
@@ -10,15 +8,14 @@ import {
   Typography,
   Fab,
   Zoom,
-  Snackbar
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
-import RefreshIcon from "@material-ui/icons/Refresh";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../actions/post";
 
 import "./Sections/CreateCard.scss";
+import SignPage from "../../SignPage/SignPage";
+import Snackbar from "../../common/Refresh";
 import SelectDate from "../../common/SelectDate";
 import InputMountain from "../../common/InputMountain";
 import Refresh from "../../common/Refresh";
@@ -43,7 +40,7 @@ export default function CreateCard(props) {
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
-  const [snack, setSnack] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,14 +50,10 @@ export default function CreateCard(props) {
     setOpen(false);
   };
 
-  const snackClose = () => {
-    setSnack(false);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!isCorrectKeyword) {
-      setSnack(true);
+      setIsError(true);
     }
     if (isCorrectKeyword) {
       dispatch(
@@ -104,10 +97,6 @@ export default function CreateCard(props) {
 
   const getKeyword = (value) => {
     setIsCorrectKeyword(value);
-  };
-
-  const refresh = () => {
-    window.location.reload(false);
   };
 
   const marks = [
@@ -239,11 +228,13 @@ export default function CreateCard(props) {
                 </Button>
               </footer>
             </form>
-            <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
-              <Alert onClose={snackClose} severity="error" variant="filled">
-                가고 싶은 산을 선택해주세요!
-              </Alert>
-            </Snackbar>
+            {isError && (
+              <Snackbar
+                setState={setIsError}
+                type="error"
+                description="가고 싶은 산을 선택해주세요!"
+              />
+            )}
           </div>
         </div>
       </Modal>
