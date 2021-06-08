@@ -9,6 +9,7 @@ import { Button, Typography, Tooltip, Popover, Zoom } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandLess from "@material-ui/icons/ExpandLess";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
 import SignPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -161,6 +162,7 @@ const CardListHeader = (props) => {
               <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
+                getKeyword={getKeyword}
               />
             </div>
             <div id="search-date" className="search-item">
@@ -210,6 +212,7 @@ const CardListHeader = (props) => {
                     <InputMountain
                       id="search-mountain"
                       getMountainValue={getMountainValue}
+                      getKeyword={getKeyword}
                     />
                   </div>
                   <div id="search-date" className="search-item">
@@ -265,7 +268,17 @@ const CardListHeader = (props) => {
           </div>
         ) : (
           <div className="header-user">
-            <SignPage type={0} />
+            <SignPage
+              btn={
+                <Button
+                  variant="contained"
+                  className="header-btn"
+                  id="signIn-btn"
+                >
+                  <FingerprintIcon></FingerprintIcon>
+                </Button>
+              }
+            />
           </div>
         )}
       </div>

@@ -14,6 +14,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import UpdateCard from "./UpdateCard";
 import Dialog from "../../common/Dialog";
+import Snackbar from "../../common/Snackbar";
 import "./ShowCardPage.scss";
 import SignPage from "../../SignPage/SignPage";
 
@@ -26,10 +27,12 @@ export default function ShowCard({ user, card }) {
   const [apply, setApply] = useState(
     card?.currentMember.some((member) => member?._id === user?.result?._id)
   );
+  const [isAgeOver, setIsAgeOver] = useState(false);
 
   useEffect(() => {
+    console.log(1);
     setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
-  });
+  }, [card?.currentMember, user?.result?._id]);
 
   const handleLeave = async (isLeave) => {
     if (isLeave) {
@@ -42,9 +45,7 @@ export default function ShowCard({ user, card }) {
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
       await dispatch(applyPost(card._id, { userID: user?.result?._id }));
-    } else {
-      window.alert("나이 제한을 확인해주세요!");
-    }
+    } else setIsAgeOver(true);
   };
 
   const isUpdateCard = () => {
@@ -76,12 +77,7 @@ export default function ShowCard({ user, card }) {
   const birthToAge = (birth) => {
     const birthYear = birth.substring(0, 4);
     const age = new Date().getFullYear() - Number(birthYear) + 1;
-    return age + "세";
-  };
-
-  const sexInKorean = (sex) => {
-    if (sex === "male") return "남성";
-    else return "여성";
+    return age;
   };
 
   if (!isUpdate) {
@@ -172,20 +168,26 @@ export default function ShowCard({ user, card }) {
                   </Typography>
                   <div className="Member-info">
                     <Typography className="member">
-                      <StarIcon />
+                      {card.createdUser?.sex === "male" ? (
+                        <StarIcon style={{ color: "#0d6efd" }} />
+                      ) : (
+                        <StarIcon style={{ color: "hotpink" }} />
+                      )}
                       {card.createdUser?.nickname +
                         ` (${birthToAge(
                           card.createdUser?.birth
-                        )}, ${sexInKorean(card.createdUser?.sex)})`}
+                        )})`}
                     </Typography>
                     {card.currentMember?.map((member) => {
                       return (
                         <Typography key={member?._id} className="member">
-                          <AccountCircleIcon />
+                          {member?.sex === "male" ? (
+                            <AccountCircleIcon style={{ color: "#0d6efd" }} />
+                          ) : (
+                            <AccountCircleIcon style={{ color: "hotpink" }} />
+                          )}
                           {member?.nickname +
-                            ` (${birthToAge(member?.birth)}, ${sexInKorean(
-                              member?.sex
-                            )})`}
+                            ` (${birthToAge(member?.birth)})`}
                         </Typography>
                       );
                     })}
@@ -204,7 +206,13 @@ export default function ShowCard({ user, card }) {
                           참가 신청
                         </Button>
                       ) : (
-                        <SignPage type={2} />
+                        <SignPage
+                          btn={
+                            <Button variant="contained" className="apply-btn">
+                              참가 신청
+                            </Button>
+                          }
+                        />
                       ))
                     ) : (
                       <Dialog
@@ -240,6 +248,7 @@ export default function ShowCard({ user, card }) {
             </footer>
           </Paper>
         </div>
+        {isAgeOver && <Snackbar setState={setIsAgeOver} description="제한 연령을 확인해주세요!"/>}
       </div>
     );
   }
