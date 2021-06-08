@@ -25,7 +25,6 @@ import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
 import CreateCard from "../CardListPage/CreateCard/CreateCard";
-// import Menubtn from "../common/Menubtn";
 import "./Sections/MyPage.scss";
 
 function TabPanel(props) {
@@ -122,10 +121,6 @@ const MyPage = (props) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const refresh = () => {
-    window.location.reload(false);
-  }
 
   return (
     <div className="mypage">
@@ -241,8 +236,6 @@ const MyPage = (props) => {
       </div>
       <div className="mypage-footer">
         <CreateCard user={user} />
-        {/* <Menubtn btnName="refresh" title="새로 고침" />
-        <Menubtn btnName="add" title="모임 생성" /> */}
       </div>
     </div>
   );
