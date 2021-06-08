@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import "./CardListPage.scss";
 import Cards from "./Cards";
-import CardMenu from "../CardMenu/CardMenu";
+import CreateCard from "../CreateCard/CreateCard";
 import InfoIcon from "@material-ui/icons/Info";
 //import Paging from "./Pagination";
 
@@ -34,7 +34,7 @@ const CardListBody = (props) => {
         )}
       </section>
       <footer className="cardList-footer">
-        <CardMenu user={props.user} className="cardList-footer" />
+        <CreateCard user={props.user} className="cardList-footer" />
       </footer>
     </div>
   );
