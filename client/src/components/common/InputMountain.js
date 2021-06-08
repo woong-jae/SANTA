@@ -4,10 +4,16 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default function InputMountain(props) {
   const [isCorrectName, setIsCorrectName] = React.useState(true);
-  var ClickHandler = (text) => {
-    console.log(text);
+  
+  const ClickHandler = (text) => {
     props.getMountainValue(text);
+    props.getKeyword(true);
     setIsCorrectName(true);
+  };
+
+  const ChangeHandler = (e) => {
+    props.getKeyword(false);
+    setIsCorrectName(false);
   };
 
   const styles = (theme) => ({
@@ -31,12 +37,12 @@ export default function InputMountain(props) {
       renderInput={(params) => 
         <TextField 
         {...params}
-        //required 
+        required 
         label="산/지역명" 
         id="input=mountain"
         name="mountain"
         InputLabelProps={{ shrink: true }} 
-        onChange={(e)=>setIsCorrectName(false)}
+        onChange={ChangeHandler}
         error={!isCorrectName} />}
     />
   );

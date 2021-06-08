@@ -33,11 +33,12 @@ const LandingPage = () => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchState.mountain !== "") {
+    if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
         search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
@@ -45,15 +46,17 @@ const LandingPage = () => {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
+          correctKeyword: isCorrectKeyword,
         },
       });
-    } else {
+    } else if (searchState.mountain === "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
         state: {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
+          correctKeyword: isCorrectKeyword,
         },
       });
     }
@@ -86,6 +89,10 @@ const LandingPage = () => {
       ...searchState,
       mountain: value,
     });
+  };
+
+  const getKeyword = (value) => {
+    setIsCorrectKeyword(value);
   };
 
   const [windowSize, setWindowSize] = useState({
@@ -124,6 +131,7 @@ const LandingPage = () => {
               <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
+                getKeyword={getKeyword}
               />
               <SelectDate id="search-date" getDateValue={getDateValue} />
               <InputPeople id="search-peopleNum" handleChange={handleChange} />
@@ -134,6 +142,7 @@ const LandingPage = () => {
               <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
+                getKeyword={getKeyword}
               />
               <SelectDate id="search-date" getDateValue={getDateValue} />
               <InputPeople id="search-peopleNum" handleChange={handleChange} />
