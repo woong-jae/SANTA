@@ -24,7 +24,7 @@ const Cards = (props) => {
     card.date.substring(8, 10);
   const ageLimit = card.ageLimit[0] + "~" + card.ageLimit[1];
 
-  const handleClick = async () => {
+  const handleClick = () => {
     history.push("/post/" + card._id);
   };
 

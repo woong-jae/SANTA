@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
@@ -17,20 +17,17 @@ import Dialog from "../../common/Dialog";
 import "./ShowCardPage.scss";
 import SignPage from "../../SignPage/SignPage";
 
-export default function ShowCard({ user, card }) {
+export default function ShowCard({ card }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [isUpdate, setIsUpdate] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const userUpdated = useSelector(state => state.auth.authData);
 
   const [apply, setApply] = useState(
     card?.currentMember.some((member) => member?._id === user?.result?._id)
   );
-  useEffect(() => {
-    setApply(
-      card?.currentMember.some((member) => member?._id === user?.result?._id)
-    );
-  });
 
   const handleApply = async () => {
     const userBirth = new Date(user?.result?.birth);
@@ -39,12 +36,6 @@ export default function ShowCard({ user, card }) {
       await dispatch(applyPost(card._id, { userID: user?.result?._id }));
     } else {
       window.alert("나이 제한을 확인해주세요!");
-    }
-  };
-
-  const handleLeave = async (isLeave) => {
-    if (isLeave) {
-      await dispatch(applyPost(card._id, { userID: user?.result?._id }));
     }
   };
 
@@ -83,6 +74,17 @@ export default function ShowCard({ user, card }) {
   const sexInKorean = (sex) => {
     if (sex === "male") return "남성";
     else return "여성";
+  };
+
+  useEffect(() => {
+    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [userUpdated, handleApply]);
+  
+  const handleLeave = async (isLeave) => {
+    if (isLeave) {
+      await dispatch(applyPost(card._id, { userID: user?.result?._id }));
+    }
   };
 
   if (!isUpdate) {
