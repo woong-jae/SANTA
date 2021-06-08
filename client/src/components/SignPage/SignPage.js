@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   Dialog,
   Button,
@@ -30,6 +31,7 @@ export default function SignPage(props) {
   const [valid, setValid] = useState(false);
   const [backOpen, setbackOpen] = useState(false);
   const [isError, setIsError] = useState(false);
+  const history = useHistory();
 
   const init = {
     email: "",
@@ -96,6 +98,7 @@ export default function SignPage(props) {
     setInputs(init);
     setValid(false);
     setOpen(false);
+    history.goBack();
   };
 
   const snackClose = () => {
