@@ -10,7 +10,9 @@ import {
   Typography,
   Fab,
   Zoom,
+  Snackbar
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { useDispatch } from "react-redux";
@@ -39,7 +41,8 @@ export default function CreateCard(props) {
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
-  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
+  const [snack, setSnack] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,8 +52,15 @@ export default function CreateCard(props) {
     setOpen(false);
   };
 
+  const snackClose = () => {
+    setSnack(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!isCorrectKeyword) {
+      setSnack(true);
+    }
     if (isCorrectKeyword) {
       dispatch(
         createPost(
@@ -236,6 +246,11 @@ export default function CreateCard(props) {
                 </Button>
               </footer>
             </form>
+            <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+              <Alert onClose={snackClose} severity="error" variant="filled">
+                가고 싶은 산을 선택해주세요!
+              </Alert>
+            </Snackbar>
           </div>
         </div>
       </Modal>

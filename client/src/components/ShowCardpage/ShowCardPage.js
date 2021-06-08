@@ -14,6 +14,7 @@ export default function ShowCard() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const card = useSelector(state => state.show.post);
+  const userUpdate = useSelector(state => state.auth.authData);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -31,7 +32,7 @@ export default function ShowCard() {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch]);
+  }, [dispatch, userUpdate]);
 
   if (card && card._id === id) return (<Card user={user} card={card} />);
   else return <div></div>
