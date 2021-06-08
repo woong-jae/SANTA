@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import SignPage from "../../SignPage/SignPage";
-
 import {
   Modal,
   Tooltip,
@@ -10,18 +8,15 @@ import {
   Typography,
   Fab,
   Zoom,
-  Snackbar
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
-import RefreshIcon from "@material-ui/icons/Refresh";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../../actions/post";
+import { createPost } from "../../actions/post";
 
-import "./Sections/CreateCard.scss";
-import SelectDate from "../../common/SelectDate";
-import InputMountain from "../../common/InputMountain";
-import Refresh from "../../common/Refresh";
+import "./Sections/CreatePost.scss";
+import Snackbar from "./Snackbar";
+import SelectDate from "./SelectDate";
+import InputMountain from "./InputMountain";
 
 function valuetext(value) {
   return `${value}`;
@@ -43,7 +38,7 @@ export default function CreateCard(props) {
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
-  const [snack, setSnack] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,14 +48,10 @@ export default function CreateCard(props) {
     setOpen(false);
   };
 
-  const snackClose = () => {
-    setSnack(false);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!isCorrectKeyword) {
-      setSnack(true);
+      setIsError(true);
     }
     if (isCorrectKeyword) {
       dispatch(
@@ -106,10 +97,6 @@ export default function CreateCard(props) {
     setIsCorrectKeyword(value);
   };
 
-  const refresh = () => {
-    window.location.reload(false);
-  };
-
   const marks = [
     { value: 19 },
     { value: 29 },
@@ -120,30 +107,11 @@ export default function CreateCard(props) {
 
   return (
     <div>
-      <div className="footer-btn" style={{ display: "grid" }}>
-        <Refresh />
-        {props.user ? (
-          <Tooltip
-            title={"모임 생성"}
-            placement="left"
-            TransitionComponent={Zoom}
-          >
-            <Fab aria-label="add" className="add-btn" onClick={handleOpen}>
-              <AddIcon />
-            </Fab>
-          </Tooltip>
-        ) : (
-          <SignPage
-            btn={
-              <Fab color="primary" aria-label="add" className="add-btn">
-                <AddIcon />
-              </Fab>
-            }
-            isGoback={false}
-          />
-        )}
-      </div>
-
+      <Tooltip title={"모임 생성"} placement="left" TransitionComponent={Zoom}>
+        <Fab aria-label="add" className="add-btn" onClick={handleOpen}>
+          <AddIcon />
+        </Fab>
+      </Tooltip>
       <Modal
         open={open}
         onClose={handleClose}
@@ -239,11 +207,18 @@ export default function CreateCard(props) {
                 </Button>
               </footer>
             </form>
-            <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+            {isError && (
+              <Snackbar
+                setState={setIsError}
+                type="error"
+                description="가고 싶은 산을 선택해주세요!"
+              />
+            )}
+            {/* <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
               <Alert onClose={snackClose} severity="error" variant="filled">
                 가고 싶은 산을 선택해주세요!
               </Alert>
-            </Snackbar>
+            </Snackbar> */}
           </div>
         </div>
       </Modal>

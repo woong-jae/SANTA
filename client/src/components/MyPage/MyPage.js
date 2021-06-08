@@ -24,6 +24,7 @@ import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
+import Refresh from "../common/Refresh";
 import CreateCard from "../CardListPage/CreateCard/CreateCard";
 import "./Sections/MyPage.scss";
 
@@ -236,7 +237,8 @@ const MyPage = (props) => {
           </Paper>
         </div>
         <div className="mypage-footer">
-          <CreateCard user={user} />
+          <Refresh />
+          {/* <CreateCard user={user} /> */}
         </div>
       </div>
     );

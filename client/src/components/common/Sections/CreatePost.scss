@@ -1,0 +1,168 @@
+.modal-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input-paper {
+        @media (max-width: 800px) {
+            width: 400px;
+            height: 500px;
+            overflow-y: scroll;
+            .input-form {
+                display: flex !important;
+                flex-direction: column !important;
+                #input-title {
+                    width: 225px !important;
+                    word-break: break-all;
+                }
+                header {
+                    width: 300px !important;
+                    border-right: none !important;
+                    border-bottom: 2px solid #10b274;
+                    padding-right: 0px !important;
+                    padding-bottom: 30px;
+                    align-items: center !important;
+                    .header-input {
+                        margin-right: 0px !important;
+                    }
+                }
+                .input-body {
+                    display: inline-block !important;
+                    text-align: center !important;
+                    padding-left: 0px !important;
+                    .input-detail {
+                        margin-left: 0px !important;
+                    }
+                    #input-description {
+                        margin-top: 10px !important;
+                    }
+                }
+                .form-btn {
+                    margin-right: 0px !important;
+                }
+            }
+        }
+        width: 800px;
+        background-color: white;
+        box-shadow: 5px 5px 5px 5px;
+        padding: 16px 50px 24px;
+        .input-form {
+            display: block;
+            .title-box {
+                display: flex;
+                justify-content: center;
+                #input-title {
+                    display: block;
+                    width: 600px;
+                }
+            }
+            #input-mountain {
+                font-size: 1em;
+            }
+            #input-maxMember {
+                padding-top: 5px;
+            }
+            #input-age {
+                // mark
+                .MuiSlider-mark {
+                    width: 3px;
+                }
+            }
+            .create-header {
+                display: inline-flex;
+                flex-direction: column;
+                margin-top: 30px;
+                padding-right: 50px;
+                float: left;
+                border-right: 2px solid #10b274;
+                // Search.scss
+                .header-input {
+                    margin-right: 0px !important;
+                }
+                .MuiFormControl-fullWidth {
+                    width: 100% !important;
+                }
+                //
+                .input-header {
+                    width: 100%;
+                    margin-bottom: 30px;
+                }
+                #age-info {
+                    display: inline-flex;
+                    position: relative;
+                    flex-direction: column;
+                    align-items: baseline;
+                    vertical-align: top;
+                    #slider-label {
+                        color: rgba(0, 0, 0, 0.54);
+                        font-size: 0.8rem;
+                    }
+                    #show-age {
+                        margin-top: 0px;
+                        margin-bottom: 5px;
+                        font-size: 0.9rem;
+                    }
+                    #input-age {
+                        color: black;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                    }
+                    &:active {
+                        #slider-label {
+                            color: #10b274;
+                        }
+                        #input-age {
+                            color: #10b274;
+                        }
+                    }
+                }
+            }
+            .input-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                padding-left: 38px;
+                .input-detail {
+                    margin-top: 28px;
+                    width: 95%;
+                    padding: 10px;
+                    display: inline-block;
+                    resize: none;
+                    &:hover {
+                        border-width: 2px;
+                        border-color: black;
+                    }
+                    &:focus {
+                        outline: none;
+                        border-color: #10b274;
+                    }
+                }
+                #input-description {
+                    border-style: dashed;
+                    height: 160px;
+                    margin-top: 10px;
+                }
+                #input-contact {
+                    height: 100px;
+                }
+            }
+            footer {
+                border-top: none;
+                display: block;
+                text-align: center;
+                .form-btn {
+                    margin-right: 40px;
+                    color: white;
+                    background-color: #10b274;
+                    font-size: 1.4em;
+                    width: auto;
+                    height: 40px;
+                    margin-top: 30px;
+                    &:hover {
+                        background-color: #059960;
+                    }
+                }
+            }
+        }
+    }
+}
