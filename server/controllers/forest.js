@@ -1,9 +1,12 @@
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const getTrailInfo = async (req, res) => {
     const { userQuery } = req.params;
     var url = 'http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI';
-    var queryParams = '?' + encodeURIComponent('ServiceKey') + '=OYcCLCoVVtICqlF7ojMBJxNb02JQOn%2B0nlOpzzfkz1q8cK6ubmFPrZpASFbIGac71y5ZLsuQaNm%2Bye6MPH%2FF%2Fg%3D%3D'; /* Service Key*/
+    var queryParams = '?' + encodeURIComponent('ServiceKey') + `=${process.env.CULTURE_INFO_KEY}`; /* Service Key*/
     queryParams += '&' + encodeURIComponent('searchMtNm') + '=' + encodeURIComponent(`${userQuery}`); /* */
     queryParams += '&' + encodeURIComponent('searchArNm') + '=' + encodeURIComponent(''); /* */
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* */
@@ -21,7 +24,7 @@ export const getForestStory = async (req, res) => {
     const { userQuery } = req.params;
 
     var url = 'http://openapi.forest.go.kr/openapi/service/trailInfoService/getforeststoryservice';
-    var queryParams = '?' + encodeURIComponent('ServiceKey') + '=QDOEkLSuHieIDUh4qU%2FCFERTioohERXoKRPElZFjjqoBUTxZW2vOojZkY%2FqJafGKLJcrsS1CZ7ghdHktUFW%2BkQ%3D%3D'; /* Service Key*/
+    var queryParams = '?' + encodeURIComponent('ServiceKey') + `=${process.env.TRAIL_INFO_KEY}`; /* Service Key*/
     queryParams += '&' + encodeURIComponent('mntnNm') + '=' + encodeURIComponent(`${userQuery}`); /* */
     queryParams += '&' + encodeURIComponent('mntnHght') + '=' + encodeURIComponent(''); /* */
     queryParams += '&' + encodeURIComponent('mntnAdd') + '=' + encodeURIComponent(''); /* */

@@ -161,6 +161,7 @@ const CardListHeader = (props) => {
               <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
+                getKeyword={getKeyword}
               />
             </div>
             <div id="search-date" className="search-item">
@@ -210,6 +211,7 @@ const CardListHeader = (props) => {
                     <InputMountain
                       id="search-mountain"
                       getMountainValue={getMountainValue}
+                      getKeyword={getKeyword}
                     />
                   </div>
                   <div id="search-date" className="search-item">

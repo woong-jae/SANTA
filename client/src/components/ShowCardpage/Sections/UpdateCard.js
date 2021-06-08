@@ -120,6 +120,7 @@ export default function UpdateCard(props) {
                     <InputMountain
                       id="search-mountain"
                       getMountainValue={getMountainValue}
+                      getKeyword={getKeyword}
                     />
                   </div>
                   <div className="header-info-update">
@@ -225,7 +226,7 @@ export default function UpdateCard(props) {
                 <Button
                   variant="contained"
                   id="update-btn"
-                  onClick={() => updateCard(updateState)}
+                  onClick={() => isCorrectKeyword ? updateCard(updateState):""}
                 >
                   <CheckCircleIcon />
                 </Button>
