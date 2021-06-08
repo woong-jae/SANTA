@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import InfoIcon from "@material-ui/icons/Info";
 
 import "./CardListPage.scss";
 import Cards from "./Cards";
 import CreateCard from "../CreateCard/CreateCard";
-import InfoIcon from "@material-ui/icons/Info";
 //import Paging from "./Pagination";
 
 const CardListBody = (props) => {

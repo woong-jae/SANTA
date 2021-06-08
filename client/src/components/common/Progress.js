@@ -1,50 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import React from "react";
+import { render } from "react-dom";
+import { CircularProgress, Button } from "@material-ui/core";
+import ColoredLinearProgress from "./LineProgress";
 
-function CircularProgressWithLabel(props) {
+function ButtonComponent(props) {
+  const { onClick, loading } = props;
   return (
-    <Box position="relative" display="inline-flex">
-      <CircularProgress variant="determinate" {...props} />
-      <Box
-        top={0}
-        left={0}
-        bottom={0}
-        right={0}
-        position="absolute"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Typography variant="caption" component="div" color="textSecondary">{`${Math.round(
-          props.value,
-        )}%`}</Typography>
-      </Box>
-    </Box>
+    <Button variant="contained" onClick={onClick} disabled={loading}>
+      {loading && <CircularProgress size={14} />}
+      {!loading && "Click Me"}
+    </Button>
   );
 }
 
-CircularProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate variant.
-   * Value between 0 and 100.
-   */
-  value: PropTypes.number.isRequired,
-};
+class LoadingButton extends React.Component {
+  constructor() {
+    super();
+    this.state = { loading: false };
+  }
 
-export default function CircularStatic() {
-  const [progress, setProgress] = React.useState(10);
+  onClick = () => {
+    this.setState({ loading: true });
+    setTimeout(() => this.setState({ loading: false }), 3000); //3 seconds
+  };
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-    }, 800);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  render() {
+    return (
+      <React.Fragment>
+        {this.state.loading && <ColoredLinearProgress />}
+        <br />
+        <ButtonComponent onClick={this.onClick} loading={this.state.loading} />
+      </React.Fragment>
+    );
+  }
+}
 
-  return <CircularProgressWithLabel value={progress} />;
+const rootElement = document.querySelector("#root");
+if (rootElement) {
+  render(<LoadingButton />, rootElement);
 }
