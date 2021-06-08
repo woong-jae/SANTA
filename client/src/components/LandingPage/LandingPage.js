@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { debounce } from "lodash";
 
-import { Typography } from "@material-ui/core";
+import { Typography, Snackbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Alert } from "@material-ui/lab";
 
 import InputMountain from "../common/InputMountain";
 import InputPeople from "../common/InputPeople";
@@ -34,10 +35,18 @@ const LandingPage = () => {
   };
   const [searchState, setSearchState] = React.useState(initialState);
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
+  const [snack, setSnack] = useState(false);
   const history = useHistory();
+
+  const snackClose = () => {
+    setSnack(false);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!isCorrectKeyword) {
+      setSnack(true);
+    }
     if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
@@ -127,27 +136,41 @@ const LandingPage = () => {
         </Typography>
         <div className="userinput">
           {windowSize.width >= 700 ? (
-            <form className="input-form" onSubmit={handleSubmit}>
-              <InputMountain
-                id="search-mountain"
-                getMountainValue={getMountainValue}
-                getKeyword={getKeyword}
-              />
-              <SelectDate id="search-date" getDateValue={getDateValue} />
-              <InputPeople id="search-peopleNum" handleChange={handleChange} />
-              <SearchBtn />
-            </form>
+            <div>
+              <form className="input-form" onSubmit={handleSubmit}>
+                <InputMountain
+                  id="search-mountain"
+                  getMountainValue={getMountainValue}
+                  getKeyword={getKeyword}
+                />
+                <SelectDate id="search-date" getDateValue={getDateValue} />
+                <InputPeople id="search-peopleNum" handleChange={handleChange} />
+                <SearchBtn />
+              </form>
+              <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+                <Alert onClose={snackClose} severity="error" variant="filled">
+                  가고 싶은 산을 선택해주세요!
+                </Alert>
+              </Snackbar>
+            </div>
           ) : (
-            <form className="input-form" onSubmit={handleSubmit}>
-              <InputMountain
-                id="search-mountain"
-                getMountainValue={getMountainValue}
-                getKeyword={getKeyword}
-              />
-              <SelectDate id="search-date" getDateValue={getDateValue} />
-              <InputPeople id="search-peopleNum" handleChange={handleChange} />
-              <SearchBtn />
-            </form>
+            <div>
+              <form className="input-form" onSubmit={handleSubmit}>
+                <InputMountain
+                  id="search-mountain"
+                  getMountainValue={getMountainValue}
+                  getKeyword={getKeyword}
+                />
+                <SelectDate id="search-date" getDateValue={getDateValue} />
+                <InputPeople id="search-peopleNum" handleChange={handleChange} />
+                <SearchBtn />
+              </form>
+              <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+                <Alert onClose={snackClose} severity="error" variant="filled">
+                  가고 싶은 산을 선택해주세요!
+                </Alert>
+              </Snackbar>
+            </div>
           )}
         </div>
       </div>
