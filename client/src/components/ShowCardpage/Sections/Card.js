@@ -31,7 +31,9 @@ export default function ShowCard({ user, card }) {
 
   useEffect(() => {
     console.log(1);
-    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
+    setApply(
+      card?.currentMember.some((member) => member?._id === user?.result?._id)
+    );
   }, [card?.currentMember, user?.result?._id]);
 
   const handleLeave = async (isLeave) => {
@@ -40,11 +42,12 @@ export default function ShowCard({ user, card }) {
     }
   };
 
-  const handleApply = async () => {
+  const handleApply = async (isApply) => {
     const userBirth = new Date(user?.result?.birth);
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
-      await dispatch(applyPost(card._id, { userID: user?.result?._id }));
+      if (isApply)
+        await dispatch(applyPost(card._id, { userID: user?.result?._id }));
     } else setIsAgeOver(true);
   };
 
@@ -174,9 +177,7 @@ export default function ShowCard({ user, card }) {
                         <StarIcon style={{ color: "hotpink" }} />
                       )}
                       {card.createdUser?.nickname +
-                        ` (${birthToAge(
-                          card.createdUser?.birth
-                        )})`}
+                        ` (${birthToAge(card.createdUser?.birth)})`}
                     </Typography>
                     {card.currentMember?.map((member) => {
                       return (
@@ -186,8 +187,7 @@ export default function ShowCard({ user, card }) {
                           ) : (
                             <AccountCircleIcon style={{ color: "hotpink" }} />
                           )}
-                          {member?.nickname +
-                            ` (${birthToAge(member?.birth)})`}
+                          {member?.nickname + ` (${birthToAge(member?.birth)})`}
                         </Typography>
                       );
                     })}
@@ -198,13 +198,13 @@ export default function ShowCard({ user, card }) {
                     !apply ? (
                       card.currentMember.length + 1 < card.maxMember &&
                       (user ? (
-                        <Button
-                          variant="contained"
-                          className="apply-btn"
-                          onClick={handleApply}
-                        >
-                          참가 신청
-                        </Button>
+                        <Dialog
+                          classes="apply-btn"
+                          btnName="참가 신청"
+                          title={`[${card.createdUser?.nickname}] 님의 모임에 참가하시겠습니까?`}
+                          description="확인을 누르면 신청이 완료됩니다."
+                          action={handleApply}
+                        />
                       ) : (
                         <SignPage
                           btn={
@@ -217,6 +217,7 @@ export default function ShowCard({ user, card }) {
                       ))
                     ) : (
                       <Dialog
+                        classes="leave-btn"
                         btnName="모임 탈퇴"
                         title="모임에서 탈퇴하시겠습니까?"
                         description="등반 날짜가 임박한 경우 모임원들에게 해가 될 수 있습니다."
@@ -239,6 +240,7 @@ export default function ShowCard({ user, card }) {
               {user?.result?._id === card.createdUser?._id && (
                 <div className="footer-btn">
                   <Dialog
+                    classes="delete-btn"
                     btnName={<HighlightOffIcon />}
                     title="해당 게시물을 삭제하시겠습니까?"
                     description="삭제된 데이터는 복구할 수 없습니다."
@@ -249,7 +251,13 @@ export default function ShowCard({ user, card }) {
             </footer>
           </Paper>
         </div>
-        {isAgeOver && <Snackbar setState={setIsAgeOver} type="info" description="제한 연령을 확인해주세요!"/>}
+        {isAgeOver && (
+          <Snackbar
+            setState={setIsAgeOver}
+            type="info"
+            description="제한 연령을 확인해주세요!"
+          />
+        )}
       </div>
     );
   }

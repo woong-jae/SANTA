@@ -52,10 +52,10 @@
 }
 
 @media (max-width: 700px) {
-    .auto {
-        width: 100%;
-    }
     .MuiFormControl-root {
+        width: 100% !important;
+    }
+    .header-input {
         width: 100% !important;
     }
 }
