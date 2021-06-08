@@ -13,15 +13,15 @@ import {
   RadioGroup,
   Backdrop,
   CircularProgress,
-  Snackbar,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
+// import { Alert } from "@material-ui/lab";
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 
 import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
+import Snackbar from "../common/Snackbar";
 
 export default function SignPage(props) {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function SignPage(props) {
   const [isSignin, setIsSignIn] = useState(true);
   const [valid, setValid] = useState(false);
   const [backOpen, setbackOpen] = useState(false);
-  const [snack, setSnack] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const init = {
     email: "",
@@ -99,7 +99,7 @@ export default function SignPage(props) {
   };
 
   const snackClose = () => {
-    setSnack(false);
+    setIsError(false);
   };
 
   const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
@@ -115,7 +115,7 @@ export default function SignPage(props) {
         handleClose();
       } else {
         setInputs(init);
-        setSnack(true);
+        setIsError(true);
       }
       backdropClose();
     } else {
@@ -287,11 +287,18 @@ export default function SignPage(props) {
             </button>
           </DialogActions>
         </form>
-        <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+        {isError && (
+          <Snackbar
+            setState={setIsError}
+            type="error"
+            description="이메일이나 비밀번호가 일치하지 않습니다!"
+          />
+        )}
+        {/* <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
           <Alert onClose={snackClose} severity="error" variant="filled">
             이메일이나 비밀번호가 일치하지 않습니다!
           </Alert>
-        </Snackbar>
+        </Snackbar> */}
       </Dialog>
     </div>
   );

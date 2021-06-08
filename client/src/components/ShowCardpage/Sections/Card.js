@@ -248,7 +248,7 @@ export default function ShowCard({ user, card }) {
             </footer>
           </Paper>
         </div>
-        {isAgeOver && <Snackbar setState={setIsAgeOver} description="제한 연령을 확인해주세요!"/>}
+        {isAgeOver && <Snackbar setState={setIsAgeOver} type="info" description="제한 연령을 확인해주세요!"/>}
       </div>
     );
   }
