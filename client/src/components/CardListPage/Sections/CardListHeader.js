@@ -5,11 +5,12 @@ import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { Button, Typography, Tooltip, Popover, Zoom } from "@material-ui/core";
+import { Button, Typography, Tooltip, Popover, Zoom, Snackbar } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import { Alert } from "@material-ui/lab";
 
 import SignPage from "../../SignPage/SignPage";
 import InputMountain from "../../common/InputMountain";
@@ -41,7 +42,8 @@ const CardListHeader = (props) => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = useState(initialState);
-  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
+  const [snack, setSnack] = useState(false);
   const history = useHistory();
 
   const handleSignOut = () => {
@@ -49,8 +51,15 @@ const CardListHeader = (props) => {
     document.location.replace("/");
   };
 
+  const snackClose = () => {
+    setSnack(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!isCorrectKeyword) {
+      setSnack(true);
+    }
     if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
@@ -157,22 +166,29 @@ const CardListHeader = (props) => {
       </Link>
       <div className="header-bar">
         {windowSize.width >= 1150 ? (
-          <form onSubmit={handleSubmit} className="input-form">
-            <div id="search-mountain" className="search-item">
-              <InputMountain
-                id="search-mountain"
-                getMountainValue={getMountainValue}
-                getKeyword={getKeyword}
-              />
-            </div>
-            <div id="search-date" className="search-item">
-              <SelectDate name="date" getDateValue={getDateValue} />
-            </div>
-            <div id="search-peopleNum" className="search-item">
-              <InputPeople name="peopleNum" handleChange={handleChange} />
-            </div>
-            <SearchBtn />
-          </form>
+          <div>
+            <form onSubmit={handleSubmit} className="input-form">
+              <div id="search-mountain" className="search-item">
+                <InputMountain
+                  id="search-mountain"
+                  getMountainValue={getMountainValue}
+                  getKeyword={getKeyword}
+                />
+              </div>
+              <div id="search-date" className="search-item">
+                <SelectDate name="date" getDateValue={getDateValue} />
+              </div>
+              <div id="search-peopleNum" className="search-item">
+                <InputPeople name="peopleNum" handleChange={handleChange} />
+              </div>
+              <SearchBtn />
+            </form>
+            <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+              <Alert onClose={snackClose} severity="error" variant="filled">
+                가고 싶은 산을 선택해주세요!
+              </Alert>
+            </Snackbar>
+          </div>
         ) : (
           <div className="input-form">
             <Button
@@ -224,6 +240,11 @@ const CardListHeader = (props) => {
                 </div>
                 <SearchBtn className="responsive-btn" />
               </form>
+              <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+                <Alert onClose={snackClose} severity="error" variant="filled">
+                  가고 싶은 산을 선택해주세요!
+                </Alert>
+              </Snackbar>
             </Popover>
           </div>
         )}
