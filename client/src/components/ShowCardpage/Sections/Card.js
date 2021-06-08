@@ -209,7 +209,6 @@ export default function ShowCard({ user, card }) {
                               참가 신청
                             </Button>
                           }
-                          isGoback={true}
                         />
                       ))
                     ) : (

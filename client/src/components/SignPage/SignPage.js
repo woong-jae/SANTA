@@ -98,7 +98,6 @@ export default function SignPage(props) {
     setInputs(init);
     setValid(false);
     setOpen(false);
-    if(props.isGoback) history.goBack();
   };
 
   const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
