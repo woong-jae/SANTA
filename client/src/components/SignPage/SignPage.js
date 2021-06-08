@@ -13,14 +13,11 @@ import {
   RadioGroup,
   Backdrop,
   CircularProgress,
-  Fab,
   Snackbar,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import AddIcon from "@material-ui/icons/Add";
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
-import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
 import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
@@ -101,7 +98,7 @@ export default function SignPage(props) {
     setOpen(false);
   };
 
-  const snackClose = ()=> {
+  const snackClose = () => {
     setSnack(false);
   };
 
@@ -148,41 +145,9 @@ export default function SignPage(props) {
     setbackOpen(!backOpen);
   };
 
-  const btnType = () => {
-    if (props.type === 0) {
-      return (
-        <Button
-          variant="contained"
-          className="header-btn"
-          id="signIn-btn"
-          onClick={handleOpen}
-        >
-          <FingerprintIcon></FingerprintIcon>
-        </Button>
-      );
-    } else if (props.type === 1) {
-      return (
-        <Fab
-          color="primary"
-          aria-label="add"
-          className="add-btn"
-          onClick={handleOpen}
-        >
-          <AddIcon />
-        </Fab>
-      );
-    } else if (props.type === 2) {
-      return (
-        <Button variant="contained" className="apply-btn" onClick={handleOpen}>
-          참가 신청
-        </Button>
-      );
-    }
-  };
-
   return (
     <div>
-      {btnType()}
+      <div onClick={handleOpen}>{props.btn}</div>
       <Dialog open={open} onClose={handleClose} className="signDialog">
         <DialogTitle>
           {isSignin ? <LockIcon /> : <HowToRegIcon />}

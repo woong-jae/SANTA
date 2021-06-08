@@ -35,7 +35,7 @@ export default function CreateCard(props) {
     description: "",
     contact: "",
   };
-  
+
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
@@ -97,7 +97,7 @@ export default function CreateCard(props) {
 
   const refresh = () => {
     window.location.reload(false);
-  }
+  };
 
   const marks = [
     { value: 19 },
@@ -141,7 +141,13 @@ export default function CreateCard(props) {
           </Tooltip>
         </div>
       ) : (
-        <SignPage type={1} />
+        <SignPage
+          btn={
+            <Fab color="primary" aria-label="add" className="add-btn">
+              <AddIcon />
+            </Fab>
+          }
+        />
       )}
       <Modal
         open={open}
