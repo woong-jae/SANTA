@@ -76,7 +76,6 @@
         .show-flex {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             .show-header {
                 border-bottom: 2px solid #10b274;
                 .header-detail {
@@ -98,7 +97,6 @@
                 align-items: center;
                 height: fit-content;
                 margin-left: 20px;
-                margin-top: 32px;
                 width: 190px;
                 .side-paper {
                     width: 100%;
