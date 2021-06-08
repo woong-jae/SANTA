@@ -12,10 +12,8 @@ import {
   Box,
   AppBar,
   Zoom,
-  Fab,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
-import RefreshIcon from "@material-ui/icons/Refresh";
 import CreateIcon from "@material-ui/icons/Create";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import decode from "jwt-decode";
@@ -26,6 +24,8 @@ import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
+import CreateCard from "../CardListPage/CreateCard/CreateCard";
+// import Menubtn from "../common/Menubtn";
 import "./Sections/MyPage.scss";
 
 function TabPanel(props) {
@@ -126,6 +126,7 @@ const MyPage = (props) => {
   const refresh = () => {
     window.location.reload(false);
   }
+
   return (
     <div className="mypage">
       <CardListHeader user={user} />
@@ -239,20 +240,9 @@ const MyPage = (props) => {
         </Paper>
       </div>
       <div className="mypage-footer">
-        <Tooltip
-          title={"새로 고침"}
-          placement="left"
-          TransitionComponent={Zoom}
-        >
-          <Fab
-            color="primary"
-            aria-label="refresh"
-            className="refresh-btn"
-            onClick={refresh}
-          >
-            <RefreshIcon />
-          </Fab>
-        </Tooltip>
+        <CreateCard user={user} />
+        {/* <Menubtn btnName="refresh" title="새로 고침" />
+        <Menubtn btnName="add" title="모임 생성" /> */}
       </div>
     </div>
   );

@@ -101,7 +101,7 @@ export default function SignPage(props) {
     setOpen(false);
   };
 
-  const snackClose = ()=> {
+  const snackClose = () => {
     setSnack(false);
   };
 
@@ -281,6 +281,14 @@ export default function SignPage(props) {
                   value={inputs.nickname}
                   onChange={onChange}
                   fullWidth
+                  error={
+                    (inputs.nickname.length !== 0 &&
+                      inputs.nickname.length < 3) ||
+                    inputs.nickname.length > 7
+                      ? true
+                      : false
+                  }
+                  helperText={"3 ~ 7자여야 합니다"}
                 ></TextField>
               </>
             )}
@@ -314,9 +322,9 @@ export default function SignPage(props) {
             </button>
           </DialogActions>
         </form>
-        <Snackbar open={snack} autoHideDuration={1000} onClose={snackClose}>
-          <Alert onClose={snackClose} severity="error">
-            Invalid user!
+        <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+          <Alert onClose={snackClose} severity="error" variant="filled">
+            이메일이나 비밀번호가 일치하지 않습니다!
           </Alert>
         </Snackbar>
       </Dialog>

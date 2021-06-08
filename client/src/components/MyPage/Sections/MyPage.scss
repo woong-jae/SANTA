@@ -117,20 +117,20 @@
         height: 1.5em;
       }
     }
-    // .add-btn {
-    //   width: 70px;
-    //   height: 70px;
-    //   bottom: 10px;
-    //   color: white;
-    //   background-color: #10b274;
-    //   font-size: 1.3em;
-    //   &:hover {
-    //     background-color: #059960;
-    //   }
-    //   .MuiSvgIcon-root {
-    //     width: 1.5em;
-    //     height: 1.5em;
-    //   }
-    // }
+    .add-btn {
+      width: 70px;
+      height: 70px;
+      bottom: 10px;
+      color: white;
+      background-color: #10b274;
+      font-size: 1.3em;
+      &:hover {
+        background-color: #059960;
+      }
+      .MuiSvgIcon-root {
+        width: 1.5em;
+        height: 1.5em;
+      }
+    }
   }
 }
