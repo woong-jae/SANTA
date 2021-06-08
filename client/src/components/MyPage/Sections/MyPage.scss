@@ -109,18 +109,14 @@
       color: white;
       background-color: #10b274;
       font-size: 1.3em;
+      transition: transform 0.5s;
       &:hover {
-        animation: refresh_rotate 0.5s;
+        transform: rotate(90deg);
         background-color: #059960;
       }
       .MuiSvgIcon-root {
         width: 1.5em;
         height: 1.5em;
-      }
-      @keyframes refresh_rotate {
-        100% {
-          transform: rotate(100deg);
-        }
       }
     }
     .add-btn {
