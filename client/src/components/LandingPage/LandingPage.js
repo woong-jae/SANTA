@@ -33,7 +33,6 @@ const LandingPage = () => {
     peopleNum: 1,
   };
   const [searchState, setSearchState] = React.useState(initialState);
-  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
   const history = useHistory();
 
   const handleSubmit = (event) => {
@@ -87,10 +86,6 @@ const LandingPage = () => {
       ...searchState,
       mountain: value,
     });
-  };
-
-  const getKeyword = (value) => {
-    setIsCorrectKeyword(value);
   };
 
   const [windowSize, setWindowSize] = useState({

@@ -28,8 +28,9 @@ export default function ShowCard({ user, card }) {
   );
 
   useEffect(() => {
+    console.log(1);
     setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
-  });
+  }, [card?.currentMember, user?.result?._id]);
 
   const handleLeave = async (isLeave) => {
     if (isLeave) {

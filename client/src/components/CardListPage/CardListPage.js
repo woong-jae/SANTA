@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import decode from "jwt-decode";
 
 import { getPostByMt, getPosts } from "../../actions/post";
@@ -11,7 +11,6 @@ import "./Sections/CardListPage.scss";
 const CardListPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useHistory();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const userUpdate = useSelector(state => state.auth.authData);
 
