@@ -98,7 +98,7 @@ export default function SignPage(props) {
     setInputs(init);
     setValid(false);
     setOpen(false);
-    history.goBack();
+    if(props.isGoback) history.goBack();
   };
 
   const snackClose = () => {

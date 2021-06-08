@@ -278,6 +278,7 @@ const CardListHeader = (props) => {
                   <FingerprintIcon></FingerprintIcon>
                 </Button>
               }
+              isGoback={false}
             />
           </div>
         )}

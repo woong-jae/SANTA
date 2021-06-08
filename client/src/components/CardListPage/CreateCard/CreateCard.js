@@ -109,44 +109,38 @@ export default function CreateCard(props) {
 
   return (
     <div>
-      {props.user ? (
-        <div className="footer-btn" style={{ display: "grid" }}>
-          <Tooltip
-            title={"새로 고침"}
-            placement="left"
-            TransitionComponent={Zoom}
-          >
-            <Fab
-              aria-label="refresh"
-              className="refresh-btn"
-              onClick={refresh}
-            >
-              <RefreshIcon />
-            </Fab>
-          </Tooltip>
+      <div className="footer-btn" style={{ display: "grid" }}>
+        <Tooltip
+          title={"새로 고침"}
+          placement="left"
+          TransitionComponent={Zoom}
+        >
+          <Fab aria-label="refresh" className="refresh-btn" onClick={refresh}>
+            <RefreshIcon />
+          </Fab>
+        </Tooltip>
+        {props.user ? (
           <Tooltip
             title={"모임 생성"}
             placement="left"
             TransitionComponent={Zoom}
           >
-            <Fab
-              aria-label="add"
-              className="add-btn"
-              onClick={handleOpen}
-            >
+            <Fab aria-label="add" className="add-btn" onClick={handleOpen}>
               <AddIcon />
             </Fab>
           </Tooltip>
-        </div>
-      ) : (
-        <SignPage
-          btn={
-            <Fab color="primary" aria-label="add" className="add-btn">
-              <AddIcon />
-            </Fab>
-          }
-        />
-      )}
+        ) : (
+          <SignPage
+            btn={
+              <Fab color="primary" aria-label="add" className="add-btn">
+                <AddIcon />
+              </Fab>
+            }
+            isGoback={false}
+          />
+        )}
+      </div>
+
       <Modal
         open={open}
         onClose={handleClose}
