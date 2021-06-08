@@ -28,9 +28,16 @@ export default function ShowCard({ user, card }) {
   );
 
   useEffect(() => {
+<<<<<<< HEAD
     console.log(1);
     setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
   }, [card?.currentMember, user?.result?._id]);
+=======
+    setApply(
+      card?.currentMember.some((member) => member?._id === user?.result?._id)
+    );
+  });
+>>>>>>> f14f979228c36f1952004b38cfbb6245fe65423a
 
   const handleLeave = async (isLeave) => {
     if (isLeave) {
@@ -173,7 +180,11 @@ export default function ShowCard({ user, card }) {
                   </Typography>
                   <div className="Member-info">
                     <Typography className="member">
-                      <StarIcon />
+                      {card.createdUser?.sex === "male" ? (
+                        <StarIcon style={{ color: "#0d6efd" }} />
+                      ) : (
+                        <StarIcon style={{ color: "hotpink" }} />
+                      )}
                       {card.createdUser?.nickname +
                         ` (${birthToAge(
                           card.createdUser?.birth
@@ -182,7 +193,11 @@ export default function ShowCard({ user, card }) {
                     {card.currentMember?.map((member) => {
                       return (
                         <Typography key={member?._id} className="member">
-                          <AccountCircleIcon />
+                          {member?.sex === "male" ? (
+                            <AccountCircleIcon style={{ color: "#0d6efd" }} />
+                          ) : (
+                            <AccountCircleIcon style={{ color: "hotpink" }} />
+                          )}
                           {member?.nickname +
                             ` (${birthToAge(member?.birth)}, ${sexInKorean(
                               member?.sex

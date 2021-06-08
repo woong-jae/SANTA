@@ -185,7 +185,7 @@ export default function UpdateCard(props) {
                 />
               </section>
             </div>
-            <Paper className="side" elevation={5}>
+            <Paper className="side" elevation={5} style={{marginTop: "65px"}}>
               <div
                 id="contact-paper"
                 className="side-paper"
