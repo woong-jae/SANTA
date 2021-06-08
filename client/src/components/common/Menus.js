@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import SignPage from "../../SignPage/SignPage";
-
 import {
   Modal,
   Tooltip,
@@ -14,11 +12,11 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { useDispatch } from "react-redux";
-import { createPost } from "../../../actions/post";
+import { createPost } from "../../actions/post";
 
-import "./Sections/CreateCard.scss";
-import SelectDate from "../../common/SelectDate";
-import SearchMountain from "../../../api/searchMountain";
+import "../CardListPage/CardMenu/Sections/CardMenu.scss";
+import SelectDate from "./SelectDate";
+import SearchMountain from "../../api/searchMountain";
 
 function valuetext(value) {
   return `${value}`;
@@ -39,7 +37,6 @@ export default function CreateCard(props) {
   const [cardState, setCardState] = useState(initialState);
   const [open, setOpen] = useState(false);
   const [ageLimit, setAgeLimit] = useState([19, 70]);
-  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
 
   const handleOpen = () => {
     setOpen(true);
@@ -89,13 +86,9 @@ export default function CreateCard(props) {
     });
   };
 
-  const getKeyword = (value) => {
-    setIsCorrectKeyword(value);
-  };
-
   const refresh = () => {
     window.location.reload(false);
-  }
+  };
 
   const marks = [
     { value: 19 },
@@ -107,35 +100,36 @@ export default function CreateCard(props) {
 
   return (
     <div>
-      {props.user ? (
-        <div className="footer-btn" style={{ display: "grid" }}>
-          <Tooltip
-            title={"새로 고침"}
-            placement="left"
-            TransitionComponent={Zoom}
+      <div className="footer-btn" style={{ display: "grid" }}>
+        <Tooltip
+          title={"새로 고침"}
+          placement="left"
+          TransitionComponent={Zoom}
+        >
+          <Fab
+            color="primary"
+            aria-label="refresh"
+            className="refresh-btn"
+            onClick={refresh}
           >
-            <Fab color="primary" aria-label="refresh" className="refresh-btn" onClick={refresh}>
-              <RefreshIcon />
-            </Fab>
-          </Tooltip>
-          <Tooltip
-            title={"모임 생성"}
-            placement="left"
-            TransitionComponent={Zoom}
+            <RefreshIcon />
+          </Fab>
+        </Tooltip>
+        <Tooltip
+          title={"모임 생성"}
+          placement="left"
+          TransitionComponent={Zoom}
+        >
+          <Fab
+            color="primary"
+            aria-label="add"
+            className="add-btn"
+            onClick={handleOpen}
           >
-            <Fab
-              color="primary"
-              aria-label="add"
-              className="add-btn"
-              onClick={handleOpen}
-            >
-              <AddIcon />
-            </Fab>
-          </Tooltip>
-        </div>
-      ) : (
-        <SignPage type={1} />
-      )}
+            <AddIcon />
+          </Fab>
+        </Tooltip>
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
@@ -163,7 +157,6 @@ export default function CreateCard(props) {
                     name="mountain"
                     label="산/지역명"
                     getMountainValue={getMountainValue}
-                    getKeyword={getKeyword}
                   />
                 </div>
                 <TextField

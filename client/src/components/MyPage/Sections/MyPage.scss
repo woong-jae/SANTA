@@ -95,22 +95,42 @@
       }
     }
   }
-  .refresh-btn {
+  .mypage-footer {
+    height: 50px;
+    margin-top: -50px;
+    text-align: center;
     position: fixed;
     right: 44px;
     bottom: 100px;
-    width: 70px;
-    height: 70px;
-    bottom: 40px;
-    color: white;
-    background-color: #10b274;
-    font-size: 1.3em;
-    &:hover {
-      background-color: #059960;
+    .refresh-btn {
+      width: 70px;
+      height: 70px;
+      bottom: 30px;
+      color: white;
+      background-color: #10b274;
+      font-size: 1.3em;
+      &:hover {
+        background-color: #059960;
+      }
+      .MuiSvgIcon-root {
+        width: 1.5em;
+        height: 1.5em;
+      }
     }
-    .MuiSvgIcon-root {
-      width: 1.5em;
-      height: 1.5em;
+    .add-btn {
+      width: 70px;
+      height: 70px;
+      bottom: 10px;
+      color: white;
+      background-color: #10b274;
+      font-size: 1.3em;
+      &:hover {
+        background-color: #059960;
+      }
+      .MuiSvgIcon-root {
+        width: 1.5em;
+        height: 1.5em;
+      }
     }
   }
 }

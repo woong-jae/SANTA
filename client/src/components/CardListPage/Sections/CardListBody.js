@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import "./CardListPage.scss";
 import Cards from "./Cards";
-import CreateCard from "../CreateCard/CreateCard";
+import CardMenu from "../CardMenu/CardMenu";
 import InfoIcon from "@material-ui/icons/Info";
 //import Paging from "./Pagination";
 
@@ -16,7 +16,12 @@ const CardListBody = (props) => {
         {posts.length > 0 ? (
           <div className="cardList-body">
             {posts.map((post, index) => (
-              <Cards key={post._id} card={post} user={props.user} index={index} />
+              <Cards
+                key={post._id}
+                card={post}
+                user={props.user}
+                index={index}
+              />
             ))}
           </div>
         ) : (
@@ -29,7 +34,7 @@ const CardListBody = (props) => {
         )}
       </section>
       <footer className="cardList-footer">
-        <CreateCard user={props.user} className="cardList-footer" />
+        <CardMenu user={props.user} className="cardList-footer" />
       </footer>
     </div>
   );
