@@ -101,10 +101,6 @@ export default function SignPage(props) {
     if(props.isGoback) history.goBack();
   };
 
-  const snackClose = () => {
-    setIsError(false);
-  };
-
   const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
   const hasPwdError = (passwordEnter) =>
     isPassword(inputs.passwd) ? false : true;
@@ -297,11 +293,6 @@ export default function SignPage(props) {
             description="이메일이나 비밀번호가 일치하지 않습니다!"
           />
         )}
-        {/* <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
-          <Alert onClose={snackClose} severity="error" variant="filled">
-            이메일이나 비밀번호가 일치하지 않습니다!
-          </Alert>
-        </Snackbar> */}
       </Dialog>
     </div>
   );
