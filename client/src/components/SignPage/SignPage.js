@@ -15,6 +15,7 @@ import {
   Backdrop,
   CircularProgress,
 } from "@material-ui/core";
+
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 
@@ -296,6 +297,11 @@ export default function SignPage(props) {
             description="이메일이나 비밀번호가 일치하지 않습니다!"
           />
         )}
+        {/* <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+          <Alert onClose={snackClose} severity="error" variant="filled">
+            이메일이나 비밀번호가 일치하지 않습니다!
+          </Alert>
+        </Snackbar> */}
       </Dialog>
     </div>
   );
