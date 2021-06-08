@@ -7,6 +7,7 @@ import {
   Paper,
   TextField,
   Slider,
+  Snackbar
 } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
@@ -16,6 +17,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import DateFnsUtils from "@date-io/date-fns";
+import { Alert } from "@material-ui/lab";
 
 import InputMountain from "../../common/InputMountain"
 
@@ -36,8 +38,21 @@ export default function UpdateCard(props) {
     updateState.ageLimit[0],
     updateState.ageLimit[1],
   ]);
+  const [snack, setSnack] = useState(false);
+  const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
 
-  const [isCorrectKeyword, setIsCorrectKeyword] = useState(true);
+  const snackClose = () => {
+    setSnack(false);
+  };
+
+  const handleSubmit = () => {
+    if (!isCorrectKeyword) {
+      setSnack(true);
+    }
+    if (isCorrectKeyword) {
+      updateCard(updateState);
+    }
+  }
 
   const handleChange = (event) => {
     setUpdateState({
@@ -226,10 +241,15 @@ export default function UpdateCard(props) {
                 <Button
                   variant="contained"
                   id="update-btn"
-                  onClick={() => isCorrectKeyword ? updateCard(updateState):""}
+                  onClick={handleSubmit}
                 >
                   <CheckCircleIcon />
                 </Button>
+                <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+                  <Alert onClose={snackClose} severity="error" variant="filled">
+                    가고 싶은 산을 선택해주세요!
+                  </Alert>
+              </Snackbar>
               </div>
             </Paper>
           </div>
