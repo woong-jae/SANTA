@@ -5,7 +5,7 @@ import { debounce } from "lodash";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import SearchMountain from "../../api/searchMountain";
+import InputMountain from "../common/InputMountain";
 import InputPeople from "../common/InputPeople";
 import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
@@ -38,7 +38,7 @@ const LandingPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchState.mountain !== "" && isCorrectKeyword) {
+    if (searchState.mountain !== "") {
       history.push({
         pathname: "/list",
         search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
@@ -46,17 +46,15 @@ const LandingPage = () => {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword,
         },
       });
-    } else if (searchState.mountain === "" && isCorrectKeyword) {
+    } else {
       history.push({
         pathname: "/list",
         state: {
           mountain: searchState.mountain,
           date: searchState.date,
           peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword,
         },
       });
     }
@@ -128,10 +126,9 @@ const LandingPage = () => {
         <div className="userinput">
           {windowSize.width >= 700 ? (
             <form className="input-form" onSubmit={handleSubmit}>
-              <SearchMountain
+              <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
-                getKeyword={getKeyword}
               />
               <SelectDate id="search-date" getDateValue={getDateValue} />
               <InputPeople id="search-peopleNum" handleChange={handleChange} />
@@ -139,10 +136,9 @@ const LandingPage = () => {
             </form>
           ) : (
             <form className="input-form" onSubmit={handleSubmit}>
-              <SearchMountain
+              <InputMountain
                 id="search-mountain"
                 getMountainValue={getMountainValue}
-                getKeyword={getKeyword}
               />
               <SelectDate id="search-date" getDateValue={getDateValue} />
               <InputPeople id="search-peopleNum" handleChange={handleChange} />

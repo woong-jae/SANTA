@@ -20,8 +20,8 @@ const CardListPage = () => {
   };
 
   useEffect(() => {
-    if (location.state.mountain === "" && location.state.correctKeyword === true) dispatch(getPosts());
-    else if (location.state.correctKeyword === true) dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
+    if (location.state.mountain === "") dispatch(getPosts());
+    else dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
