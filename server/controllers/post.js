@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 import Posts from "../models/post.js";
-import User from "../models/user.js";
 
 export const createPost = async (req, res) => {
   const postInfo = req.body;
@@ -99,7 +98,7 @@ export const applyPost = async (req, res) => {
   if (!req.userId) return res.json({ message: "Unathenticated" });
   if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that _id");
   try {
-    const newPost = await Posts.findOneAndUpdate({ _id: _id, $expr: { $lt : ["$currentMemberLength", "$maxMember"]}, currentMember: { $nin: _id }}, { $push: { currentMember: userID }, $inc: { currentMemberLength: 1 } }, { new: true }).populate("createdUser").populate("currentMember");
+    const newPost = await Posts.findOneAndUpdate({ _id: _id, $expr: { $lt : ["$currentMemberLength", "$maxMember"]}, currentMember: { $nin: userID }}, { $push: { currentMember: userID }, $inc: { currentMemberLength: 1 } }, { new: true }).populate("createdUser").populate("currentMember");
     res.json(newPost);
   } catch (error) {
     res.status(404).json({ message: error });

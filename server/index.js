@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/user.js";
 import postsRoutes from "./routes/post.js";
 import forestRoutes from "./routes/forest.js";
+import notiRoutes from "./routes/notification.js";
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors());
 app.use("/user", userRoutes);
 app.use("/post", postsRoutes);
 app.use("/forest", forestRoutes);
+app.use("/noti", notiRoutes);
 
 app.use("/", (req, res) => {
   res.send("Server running...");
