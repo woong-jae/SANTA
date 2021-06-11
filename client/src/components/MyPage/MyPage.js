@@ -69,7 +69,6 @@ const MyPage = (props) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
   const [value, setValue] = useState("one");
-  const userUpdated = useSelector((state) => state.auth.authData);
 
   useEffect(() => {
     if (user) {
@@ -84,7 +83,7 @@ const MyPage = (props) => {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [userUpdated]);
+  }, [dispatch]);
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +

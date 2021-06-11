@@ -12,6 +12,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../actions/post";
+import { getUserPosts } from "../../actions/mypage";
 
 import "./Sections/CreatePost.scss";
 import Snackbar from "./Snackbar";
@@ -60,6 +61,7 @@ export default function CreatePost(props) {
           props.user?.result
         )
       ); // 새로운 post 생성 요청
+      dispatch(getUserPosts(props.user?.result?._id));
       setCardState(initialState);
       setAgeLimit([19, 70]);
       handleClose();
