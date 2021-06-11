@@ -24,9 +24,10 @@ import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
-import Refresh from "../common/Refresh";
-// import CreatePost from "../common/CreatePost";
+// import CreateCard from "../CardListPage/CreateCard/CreateCard";
 import "./Sections/MyPage.scss";
+import Refresh from "../common/Refresh";
+import CreatePost from "../common/CreatePost";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -238,8 +239,7 @@ const MyPage = (props) => {
         </div>
         <div className="mypage-footer">
           <Refresh />
-          {/* <CreatePost /> */}
-          {/* <CreateCard user={user} /> */}
+          <CreatePost user={user}/>
         </div>
       </div>
     );

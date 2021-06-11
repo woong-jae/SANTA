@@ -15,10 +15,11 @@ import { createPost } from "../../../actions/post";
 
 import "./Sections/CreateCard.scss";
 import SignPage from "../../SignPage/SignPage";
-import Snackbar from "../../common/Refresh";
+import Snackbar from "../../common/Snackbar";
 import SelectDate from "../../common/SelectDate";
 import InputMountain from "../../common/InputMountain";
 import Refresh from "../../common/Refresh";
+import CreatePost from "../../common/CreatePost";
 
 function valuetext(value) {
   return `${value}`;
@@ -48,6 +49,8 @@ export default function CreateCard(props) {
 
   const handleClose = () => {
     setOpen(false);
+    setCardState(initialState);
+    setAgeLimit([19, 70]);
   };
 
   const handleSubmit = (event) => {
@@ -112,15 +115,7 @@ export default function CreateCard(props) {
       <div className="footer-btn" style={{ display: "grid" }}>
         <Refresh />
         {props.user ? (
-          <Tooltip
-            title={"모임 생성"}
-            placement="left"
-            TransitionComponent={Zoom}
-          >
-            <Fab aria-label="add" className="add-btn" onClick={handleOpen}>
-              <AddIcon />
-            </Fab>
-          </Tooltip>
+          <CreatePost user={props.user}/>
         ) : (
           <SignPage
             btn={
@@ -132,112 +127,6 @@ export default function CreateCard(props) {
           />
         )}
       </div>
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        className="modal-main"
-      >
-        <div className="input-paper">
-          <div style={{ width: "100%" }}>
-            <form onSubmit={handleSubmit} className="input-form">
-              <br />
-              <div className="title-box">
-                <TextField
-                  required
-                  name="title"
-                  id="input-title"
-                  label="제목"
-                  inputProps={{ maxLength: 20 }}
-                  onChange={handleChange}
-                />
-              </div>
-              <header className="create-header">
-                <div id="input-mountain" className="input-header">
-                  <InputMountain
-                    name="mountain"
-                    label="산/지역명"
-                    getMountainValue={getMountainValue}
-                    getKeyword={getKeyword}
-                  />
-                </div>
-                <TextField
-                  required
-                  name="maxMember"
-                  id="input-maxMember"
-                  className="input-header"
-                  label="제한 인원"
-                  type="number"
-                  defaultValue=""
-                  inputProps={{ min: 1 }}
-                  InputLabelProps={{ shrink: true }}
-                  onChange={handleChange}
-                />
-                <div className="input-header" id="age-info">
-                  <Typography id="slider-label" gutterBottom>
-                    제한 연령
-                  </Typography>
-                  <Typography id="show-age">
-                    {ageLimit[0] + "~" + ageLimit[1]}
-                  </Typography>
-                  <Slider
-                    name="ageLimit"
-                    id="input-age"
-                    max={70}
-                    min={19}
-                    marks={marks}
-                    value={ageLimit}
-                    onChange={handleAgeChange}
-                    valueLabelDisplay="auto"
-                    aria-labelledby="range-slider"
-                    getAriaValueText={valuetext}
-                  />
-                </div>
-                <SelectDate
-                  name="date"
-                  id="input-date"
-                  className="input-header"
-                  getDateValue={getDateValue}
-                />
-              </header>
-              <br />
-              <section className="input-body">
-                <textarea
-                  required
-                  name="description"
-                  placeholder="내용을 입력하세요. *"
-                  className="input-detail"
-                  id="input-description"
-                  onChange={handleChange}
-                />
-                <textarea
-                  required
-                  name="contact"
-                  placeholder="연락망을 입력하세요. *
-                   (ex. 연락처, 카카오톡 오픈채팅 등)"
-                  className="input-detail"
-                  id="input-contact"
-                  onChange={handleChange}
-                />
-              </section>
-              <footer>
-                <Button variant="contained" className="form-btn" type="submit">
-                  모임 생성
-                </Button>
-              </footer>
-            </form>
-            {isError && (
-              <Snackbar
-                setState={setIsError}
-                type="error"
-                description="가고 싶은 산을 선택해주세요!"
-              />
-            )}
-          </div>
-        </div>
-      </Modal>
     </div>
   );
 }
