@@ -16,9 +16,9 @@ export default function AlertDialog(props) {
     setOpen(true);
   };
 
-  const handleClose = (isConfirm) => {
+  const handleClose = (isCancel) => {
     setOpen(false);
-    if (isConfirm) action(true);
+    if (!isCancel) action(true);
   };
 
   return (
@@ -44,8 +44,8 @@ export default function AlertDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClose(false)}>취소</Button>
-          <Button onClick={() => handleClose(true)} color="secondary" autoFocus>
+          <Button onClick={() => handleClose(true)}>취소</Button>
+          <Button onClick={() => handleClose(false)} color="secondary" autoFocus>
             확인
           </Button>
         </DialogActions>
