@@ -12,7 +12,6 @@ const Loading = () => {
       open={backOpen}
       onClick={backdropClose}
       className="backdrop"
-      transitionDuration="1000"
     >
       <CircularProgress color="inherit"></CircularProgress>
     </Backdrop>
