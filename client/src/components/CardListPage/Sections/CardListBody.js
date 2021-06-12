@@ -25,7 +25,7 @@ const CardListBody = (props) => {
           </div>
         ) : (
           <div id="body-nocard">
-            <strong>
+            <strong id="empty-massage">
               <InfoIcon style={{ marginBottom: "4px" }} /> 검색 조건에 해당하는
               모임이 없습니다.. 직접 모임을 생성해 보세요!
             </strong>
