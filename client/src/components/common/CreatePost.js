@@ -59,7 +59,7 @@ export default function CreatePost(props) {
     if (isCorrectKeyword) {
       setCardState({
         ...cardState,
-        date: cardState.date.setHours(cardState.date.getHours() + 6),
+        date: cardState.date.setHours(cardState.date.getHours() + 9),
       });
       dispatch(
         createPost(
