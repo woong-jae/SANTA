@@ -22,7 +22,7 @@ export default function AlertDialog(props) {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: "white"}}>
       <Button
         id="dialog-btn"
         className={classes}

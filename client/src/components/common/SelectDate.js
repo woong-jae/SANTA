@@ -28,7 +28,7 @@ export default function MaterialUIPickers(props) {
         id="input-date"
         className="header-input"
         label="가고 싶은 날짜"
-        value={selectedDate}
+        value={props.value ? props.value : selectedDate}
         onChange={handleDateChange}
         KeyboardButtonProps={{
           "aria-label": "change date",

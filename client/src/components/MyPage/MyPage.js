@@ -213,6 +213,7 @@ const MyPage = (props) => {
                         btnName="회원 탈퇴"
                         title="회원을 탈퇴하시겠습니까?"
                         description="삭제된 계정은 복구할 수 없습니다."
+                        classes={"delete-user"}
                         action={handleDeleteUser}
                       />
                     </footer>
