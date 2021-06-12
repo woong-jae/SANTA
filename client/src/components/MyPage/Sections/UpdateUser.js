@@ -32,7 +32,7 @@ const UpdateUser = (props) => {
       [event.target.name]: event.target.value,
     });
   };
-  console.log();
+
   const dateChange = (event) => {
     const { name, value } = event.target;
     setBirthState(value);
