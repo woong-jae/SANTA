@@ -35,7 +35,7 @@ export default function InputMountain(props) {
   return (
     <Autocomplete
       freeSolo
-      //defaultValue={() => props.value ? {name: props.value, location: getDefault()} : null}
+      defaultValue={() => props.value ? {name: props.value, location: getDefault()} : null}
       options={mountainInfo}
       getOptionLabel={(option) => `${option.name} (${option.location})`}
       PopperComponent={popperMy}

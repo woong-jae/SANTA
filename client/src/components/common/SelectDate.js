@@ -10,7 +10,7 @@ import {
 import "./Sections/SelectDate.scss"
 
 export default function MaterialUIPickers(props) {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = React.useState(props.value);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
