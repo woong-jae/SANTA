@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import {
   Dialog,
   Button,
@@ -12,8 +11,6 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
-  Backdrop,
-  CircularProgress,
 } from "@material-ui/core";
 
 import LockIcon from "@material-ui/icons/Lock";
@@ -23,15 +20,15 @@ import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
 import "./Sections/SignPage.scss";
 import Snackbar from "../common/Snackbar";
+import Loading from "../common/Loading";
 
 export default function SignPage(props) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [isSignin, setIsSignIn] = useState(true);
   const [valid, setValid] = useState(false);
-  const [backOpen, setbackOpen] = useState(false);
   const [isError, setIsError] = useState(false);
-  const history = useHistory();
+  const [load, setLoad] = useState(false);
 
   const init = {
     email: "",
@@ -105,6 +102,7 @@ export default function SignPage(props) {
     isPassword(inputs.passwd) ? false : true;
 
   const handleSubmit = async (e) => {
+    setLoad(true);
     e.preventDefault();
     if (isSignin) {
       await dispatch(signin({ email: inputs.email, passwd: inputs.passwd }));
@@ -113,9 +111,9 @@ export default function SignPage(props) {
         handleClose();
       } else {
         setInputs(init);
+        setLoad(false);
         setIsError(true);
       }
-      backdropClose();
     } else {
       if (valid) {
         await dispatch(signup({ ...inputs }));
@@ -123,7 +121,6 @@ export default function SignPage(props) {
       } else {
         setIsSignIn(false);
       }
-      backdropClose();
     }
     setValid(false);
   };
@@ -133,14 +130,6 @@ export default function SignPage(props) {
     setValid(false);
     setBirthState(new Date());
     setIsSignIn((prev) => !prev);
-  };
-
-  const backdropClose = () => {
-    setbackOpen(false);
-  };
-
-  const backdropOpen = () => {
-    setbackOpen(!backOpen);
   };
 
   return (
@@ -263,21 +252,15 @@ export default function SignPage(props) {
               className="sign-btn"
               fullWidth
               disabled={isSignin ? false : valid ? false : true}
-              onClick={
-                valid && birthState !== "" && inputs.nickname !== ""
-                  ? backdropOpen
-                  : ""
-              }
+              // onClick={
+              //   valid && birthState !== "" && inputs.nickname !== ""
+              //     ? setLoad(true)
+              //     : ""
+              // }
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>
-            <Backdrop
-              open={backOpen}
-              onClick={backdropClose}
-              className="backdrop"
-            >
-              <CircularProgress color="inherit"></CircularProgress>
-            </Backdrop>
+            {load && <Loading />}
             <button type="button" className="switch-text" onClick={toggle}>
               <strong>
                 {isSignin ? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}

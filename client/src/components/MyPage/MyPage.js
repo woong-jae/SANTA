@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import {
@@ -24,10 +24,9 @@ import Dialog from "../common/Dialog";
 import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
-// import CreateCard from "../CardListPage/CreateCard/CreateCard";
-import "./Sections/MyPage.scss";
 import Refresh from "../common/Refresh";
 import CreatePost from "../common/CreatePost";
+import "./Sections/MyPage.scss";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -94,7 +93,7 @@ const MyPage = (props) => {
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
-    setUser(null);
+    // /setUser(null);
   };
 
   const isUpdateUser = () => {
@@ -238,7 +237,7 @@ const MyPage = (props) => {
         </div>
         <div className="mypage-footer">
           <Refresh />
-          <CreatePost user={user}/>
+          <CreatePost user={user} />
         </div>
       </div>
     );
