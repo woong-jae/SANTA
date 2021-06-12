@@ -112,7 +112,7 @@ export const unApplyPost = async (req, res) => {
   if (!req.userId) return res.json({ message: "Unathenticated" });
   if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No post with that _id");
   try {
-    const newPost = await Posts.findByIdAndUpdate(_id, { $pull: { currentMember: userID }, $inc: { currentMemberLength: -1 } }, { new: true }).populate("createdUser").populate("currentMember");
+    const newPost = await Posts.findOneAndUpdate({ _id: _id, currentMember: { $in: userID }}, { $pull: { currentMember: userID }, $inc: { currentMemberLength: -1 } }, { new: true }).populate("createdUser").populate("currentMember");
     res.json(newPost);
   } catch (error) {
     res.status(404).json({ message: error });

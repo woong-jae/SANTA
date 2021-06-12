@@ -24,9 +24,15 @@ export default function InputMountain(props) {
     return <Popper {...props} style={styles.popper} placement="bottom-start" />;
   };
 
+  const getDefault = () => {
+    const mountain = mountainInfo.filter(item => item.name.indexOf(props.value) > -1);
+    return mountain[0].location;
+  }
+
   return (
     <Autocomplete
       freeSolo
+      defaultValue={props.value ? {name: props.value, location: getDefault()} : null}
       options={mountainInfo}
       getOptionLabel={(option) => `${option.name} (${option.location})`}
       PopperComponent={popperMy}
@@ -48,6 +54,8 @@ export default function InputMountain(props) {
     />
   );
 }
+
+
 
 const mountainInfo = [
   {

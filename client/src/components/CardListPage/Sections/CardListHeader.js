@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const CardListHeader = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const location = useLocation();
   const currentDate = new Date();
   const initialState = {
     mountain: "",
@@ -173,13 +174,14 @@ const CardListHeader = (props) => {
                   id="search-mountain"
                   getMountainValue={getMountainValue}
                   getKeyword={getKeyword}
+                  value={location.state.mountain}
                 />
               </div>
               <div id="search-date" className="search-item">
-                <SelectDate name="date" getDateValue={getDateValue} />
+                <SelectDate name="date" getDateValue={getDateValue} value={location.state.date} />
               </div>
               <div id="search-peopleNum" className="search-item">
-                <InputPeople name="peopleNum" handleChange={handleChange} />
+                <InputPeople name="peopleNum" handleChange={handleChange} value={location.state.peopleNum} />
               </div>
               <SearchBtn />
             </form>
@@ -229,13 +231,14 @@ const CardListHeader = (props) => {
                       id="search-mountain"
                       getMountainValue={getMountainValue}
                       getKeyword={getKeyword}
+                      value={location.state.mountain}
                     />
                   </div>
                   <div id="search-date" className="search-item">
-                    <SelectDate name="date" getDateValue={getDateValue} />
+                    <SelectDate name="date" getDateValue={getDateValue} value={location.state.date} />
                   </div>
                   <div id="search-peopleNum" className="search-item">
-                    <InputPeople name="peopleNum" handleChange={handleChange} />
+                    <InputPeople name="peopleNum" handleChange={handleChange} value={location.state.peopleNum}/>
                   </div>
                 </div>
                 <SearchBtn className="responsive-btn" />
