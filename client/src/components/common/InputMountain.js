@@ -4,7 +4,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default function InputMountain(props) {
   const [isCorrectName, setIsCorrectName] = React.useState(true);
-  
+
   const ClickHandler = (text) => {
     props.getMountainValue(text);
     props.getKeyword(true);
@@ -26,13 +26,16 @@ export default function InputMountain(props) {
 
   const getDefault = () => {
     const mountain = mountainInfo.filter(item => item.name.indexOf(props.value) > -1);
+
+    props.getMountainValue(props.value);
+    props.getKeyword(true);
     return mountain[0].location;
   }
-
+  
   return (
     <Autocomplete
       freeSolo
-      defaultValue={props.value ? {name: props.value, location: getDefault()} : null}
+      defaultValue={() => props.value ? {name: props.value, location: getDefault()} : null}
       options={mountainInfo}
       getOptionLabel={(option) => `${option.name} (${option.location})`}
       PopperComponent={popperMy}
