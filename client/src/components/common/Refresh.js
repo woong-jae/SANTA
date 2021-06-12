@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Tooltip, Fab, Zoom } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { getUserAppliedPosts, getUserPosts } from "../../actions/mypage";
+import { getPostByMt, getPosts } from "../../actions/post";
 
 export default function Refresh(props) {
   const location = useLocation();
@@ -15,7 +16,9 @@ export default function Refresh(props) {
       dispatch(getUserAppliedPosts(props.user?.result?._id));
     }
     if (location.pathname === "/list") {
-      console.log("파라미터 넘겨서 dispatch 호출해야 함"); // 나중에 구현
+      if (location.search === "") dispatch(getPosts());
+      else if (location.state.mountain === "") dispatch(getPosts());
+      else dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
     }
   };
 
