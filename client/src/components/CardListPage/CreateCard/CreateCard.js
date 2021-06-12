@@ -11,7 +11,7 @@ export default function CreateCard(props) {
   return (
     <div>
       <div className="footer-btn" style={{ display: "grid" }}>
-        <Refresh />
+        <Refresh user={props.user}/>
         {props.user ? (
           <CreatePost user={props.user}/>
         ) : (
