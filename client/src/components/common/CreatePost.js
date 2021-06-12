@@ -175,7 +175,7 @@ export default function CreatePost(props) {
                   label="제한 인원"
                   type="number"
                   defaultValue=""
-                  inputProps={{ min: 1 }}
+                  inputProps={{ min: 1, max: 4 }}
                   InputLabelProps={{ shrink: true }}
                   onChange={handleChange}
                 />
