@@ -38,6 +38,7 @@ export const getPostById = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
   const { _id } = req.params;
+  if (!req.userId) return res.json({ message: "Unathenticated" });
   try {
     const posts = await Posts.find({ createdUser: _id }).populate("createdUser").populate("currentMember");
     res.status(200).json(posts);
@@ -48,6 +49,7 @@ export const getUserPosts = async (req, res) => {
 
 export const getUserAppliedPosts = async (req, res) => {
     const { _id } = req.params;
+    if (!req.userId) return res.json({ message: "Unathenticated" });
     try {
         const posts = await Posts.find({ currentMember: _id }).populate('createdUser').populate('currentMember');
         res.status(200).json(posts);

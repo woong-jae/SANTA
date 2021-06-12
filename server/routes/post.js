@@ -8,8 +8,8 @@ const router = express.Router();
 // GET
 router.get('/', getPosts);
 router.get('/:_id', getPostById);
-router.get('/created/:_id', getUserPosts);
-router.get('/applied/:_id', getUserAppliedPosts);
+router.get('/created/:_id', auth, getUserPosts);
+router.get('/applied/:_id', auth, getUserAppliedPosts);
 router.get('/search/:mountain/:date/:peopleNum', getPostByMt);
 
 // POST
