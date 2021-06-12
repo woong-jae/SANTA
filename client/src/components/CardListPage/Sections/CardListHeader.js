@@ -157,15 +157,18 @@ const CardListHeader = (props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
-  const { date } = location.state;
-  const defaultDate = new Date(
-    date.substring(0, 4),
-    date.substring(5, 7) - 1,
-    date.substring(8, 10),
-    23,
-    59,
-    59
-  );
+  const date = location.state ? location.state.date : null;
+  let defaultDate = new Date();
+  if (date) {
+    defaultDate = new Date(
+      date.substring(0, 4),
+      date.substring(5, 7) - 1,
+      date.substring(8, 10),
+      23,
+      59,
+      59
+    );
+  }
 
   return (
     <header className="cardList-header">
@@ -195,7 +198,7 @@ const CardListHeader = (props) => {
                 <SelectDate
                   name="date"
                   getDateValue={getDateValue}
-                  value={location.state ? defaultDate : ""}
+                  value={defaultDate}
                 />
               </div>
               <div id="search-peopleNum" className="search-item">
@@ -260,7 +263,7 @@ const CardListHeader = (props) => {
                     <SelectDate
                       name="date"
                       getDateValue={getDateValue}
-                      value={location.state ? defaultDate : ""}
+                      value={defaultDate}
                     />
                   </div>
                   <div id="search-peopleNum" className="search-item">
