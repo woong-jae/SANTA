@@ -93,7 +93,7 @@ const MyPage = (props) => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    document.location.replace("/");
+    history.push('/');
   };
 
   const isUpdateUser = () => {
@@ -104,11 +104,9 @@ const MyPage = (props) => {
     setIsUpdate(false);
   };
 
-  const handleUpdateUser = async (updateState) => {
+  const handleUpdateUser = (updateState) => {
     setIsUpdate(false);
-    await dispatch(
-      updateUser(user?.result?._id, { ...user?.result, ...updateState })
-    );
+    dispatch(updateUser(user?.result?._id, { ...user?.result, ...updateState }));
   };
 
   const handleDeleteUser = async (isDelete) => {

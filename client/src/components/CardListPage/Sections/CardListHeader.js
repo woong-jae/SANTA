@@ -56,7 +56,7 @@ const CardListHeader = (props) => {
 
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
-    document.location.replace("/");
+    history.push("/");
   };
 
   const snackClose = () => {
@@ -79,7 +79,6 @@ const CardListHeader = (props) => {
           correctKeyword: isCorrectKeyword,
         },
       });
-      document.location.reload(true);
     } else if (searchState.mountain === "" && isCorrectKeyword) {
       history.push({
         pathname: "/list",
@@ -90,7 +89,6 @@ const CardListHeader = (props) => {
           correctKeyword: isCorrectKeyword,
         },
       });
-      document.location.reload(true);
     }
   };
 
