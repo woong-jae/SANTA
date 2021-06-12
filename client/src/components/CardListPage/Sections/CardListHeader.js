@@ -174,14 +174,14 @@ const CardListHeader = (props) => {
                   id="search-mountain"
                   getMountainValue={getMountainValue}
                   getKeyword={getKeyword}
-                  value={location.state.mountain}
+                  value={location.state ? location.state.mountain : ""}
                 />
               </div>
               <div id="search-date" className="search-item">
-                <SelectDate name="date" getDateValue={getDateValue} value={location.state.date} />
+                <SelectDate name="date" getDateValue={getDateValue} value={location.state ? location.state.date : ""} />
               </div>
               <div id="search-peopleNum" className="search-item">
-                <InputPeople name="peopleNum" handleChange={handleChange} value={location.state.peopleNum} />
+                <InputPeople name="peopleNum" handleChange={handleChange} value={location.state ? location.state.peopleNum : ""} />
               </div>
               <SearchBtn />
             </form>
@@ -231,14 +231,14 @@ const CardListHeader = (props) => {
                       id="search-mountain"
                       getMountainValue={getMountainValue}
                       getKeyword={getKeyword}
-                      value={location.state.mountain}
+                      value={location.state ? location.state.mountain : ""}
                     />
                   </div>
                   <div id="search-date" className="search-item">
-                    <SelectDate name="date" getDateValue={getDateValue} value={location.state.date} />
+                    <SelectDate name="date" getDateValue={getDateValue} value={location.state ? location.state.date : ""} />
                   </div>
                   <div id="search-peopleNum" className="search-item">
-                    <InputPeople name="peopleNum" handleChange={handleChange} value={location.state.peopleNum}/>
+                    <InputPeople name="peopleNum" handleChange={handleChange} value={location.state ? location.state.peopleNum : ""}/>
                   </div>
                 </div>
                 <SearchBtn className="responsive-btn" />
