@@ -53,7 +53,7 @@ const UpdateUser = (props) => {
     <>
       <section className="mypage-body">
         <article>
-          <Typography>
+          <Typography component="div">
             <div>
               <strong>이메일</strong>
             </div>
@@ -69,7 +69,7 @@ const UpdateUser = (props) => {
               disabled
             ></TextField>
           </Typography>
-          <Typography>
+          <Typography component="div">
             <div>
               <strong>닉네임</strong>
             </div>
@@ -95,7 +95,7 @@ const UpdateUser = (props) => {
               }
             />
           </Typography>
-          <Typography>
+          <Typography component="div">
             <div>
               <strong>성별</strong>
             </div>
@@ -122,7 +122,7 @@ const UpdateUser = (props) => {
               ></FormControlLabel>
             </RadioGroup>
           </Typography>
-          <Typography>
+          <Typography component="div">
             <div>
               <strong>생년월일</strong>
             </div>
