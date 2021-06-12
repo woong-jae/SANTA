@@ -149,7 +149,7 @@ export default function SignPage(props) {
       <Dialog open={open} onClose={handleClose} className="signDialog">
         <DialogTitle>
           {isSignin ? <LockIcon /> : <HowToRegIcon />}
-          <Typography variant="h3" gutterBottom>
+          <Typography gutterBottom className="sign-title">
             {isSignin ? "Sign In" : "Sign Up"}
           </Typography>
         </DialogTitle>
