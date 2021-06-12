@@ -5,7 +5,14 @@ import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { AiOutlineUser } from "react-icons/ai";
-import { Button, Typography, Tooltip, Popover, Zoom, Snackbar } from "@material-ui/core";
+import {
+  Button,
+  Typography,
+  Tooltip,
+  Popover,
+  Zoom,
+  Snackbar,
+} from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandLess from "@material-ui/icons/ExpandLess";
@@ -152,6 +159,15 @@ const CardListHeader = (props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
+  const { date } = location.state;
+  const defaultDate = new Date(
+    date.substring(0, 4),
+    date.substring(5, 7) - 1,
+    date.substring(8, 10),
+    23,
+    59,
+    59
+  );
 
   return (
     <header className="cardList-header">
@@ -178,10 +194,18 @@ const CardListHeader = (props) => {
                 />
               </div>
               <div id="search-date" className="search-item">
-                <SelectDate name="date" getDateValue={getDateValue} value={location.state ? location.state.date : ""} />
+                <SelectDate
+                  name="date"
+                  getDateValue={getDateValue}
+                  value={location.state ? defaultDate : ""}
+                />
               </div>
               <div id="search-peopleNum" className="search-item">
-                <InputPeople name="peopleNum" handleChange={handleChange} value={location.state ? location.state.peopleNum : ""} />
+                <InputPeople
+                  name="peopleNum"
+                  handleChange={handleChange}
+                  value={location.state ? location.state.peopleNum : 1}
+                />
               </div>
               <SearchBtn />
             </form>
@@ -235,15 +259,27 @@ const CardListHeader = (props) => {
                     />
                   </div>
                   <div id="search-date" className="search-item">
-                    <SelectDate name="date" getDateValue={getDateValue} value={location.state ? location.state.date : ""} />
+                    <SelectDate
+                      name="date"
+                      getDateValue={getDateValue}
+                      value={location.state ? defaultDate : ""}
+                    />
                   </div>
                   <div id="search-peopleNum" className="search-item">
-                    <InputPeople name="peopleNum" handleChange={handleChange} value={location.state ? location.state.peopleNum : ""}/>
+                    <InputPeople
+                      name="peopleNum"
+                      handleChange={handleChange}
+                      value={location.state ? location.state.peopleNum : 1}
+                    />
                   </div>
                 </div>
                 <SearchBtn className="responsive-btn" />
               </form>
-              <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+              <Snackbar
+                open={snack}
+                autoHideDuration={6000}
+                onClose={snackClose}
+              >
                 <Alert onClose={snackClose} severity="error" variant="filled">
                   가고 싶은 산을 선택해주세요!
                 </Alert>

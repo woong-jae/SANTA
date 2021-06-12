@@ -143,11 +143,22 @@ const LandingPage = () => {
                   getMountainValue={getMountainValue}
                   getKeyword={getKeyword}
                 />
-                <SelectDate id="search-date" getDateValue={getDateValue} />
-                <InputPeople id="search-peopleNum" handleChange={handleChange} />
+                <SelectDate
+                  id="search-date"
+                  getDateValue={getDateValue}
+                  value={new Date()}
+                />
+                <InputPeople
+                  id="search-peopleNum"
+                  handleChange={handleChange}
+                />
                 <SearchBtn />
               </form>
-              <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+              <Snackbar
+                open={snack}
+                autoHideDuration={6000}
+                onClose={snackClose}
+              >
                 <Alert onClose={snackClose} severity="error" variant="filled">
                   가고 싶은 산을 선택해주세요!
                 </Alert>
@@ -161,11 +172,22 @@ const LandingPage = () => {
                   getMountainValue={getMountainValue}
                   getKeyword={getKeyword}
                 />
-                <SelectDate id="search-date" getDateValue={getDateValue} />
-                <InputPeople id="search-peopleNum" handleChange={handleChange} />
+                <SelectDate
+                  id="search-date"
+                  getDateValue={getDateValue}
+                  value={new Date()}
+                />
+                <InputPeople
+                  id="search-peopleNum"
+                  handleChange={handleChange}
+                />
                 <SearchBtn />
               </form>
-              <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+              <Snackbar
+                open={snack}
+                autoHideDuration={6000}
+                onClose={snackClose}
+              >
                 <Alert onClose={snackClose} severity="error" variant="filled">
                   가고 싶은 산을 선택해주세요!
                 </Alert>

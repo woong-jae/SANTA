@@ -8,7 +8,7 @@ const InputPeople = (props) => {
       name="peopleNum"
       label="현재 인원"
       type="number"
-      defaultValue="1"
+      defaultValue={props.value ? props.value : 1}
       inputProps={{ min: 1 }}
       InputLabelProps={{ shrink: true }}
       onChange={props.handleChange}
