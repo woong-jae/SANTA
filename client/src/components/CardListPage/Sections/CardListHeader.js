@@ -41,13 +41,13 @@ const CardListHeader = (props) => {
   const currentDate = new Date();
   const initialState = {
     mountain: "",
-    date:
+    date: location.state ? location.state.date : 
       currentDate.getFullYear() +
       "-" +
       ("00" + (currentDate.getMonth() + 1)).slice(-2) +
       "-" +
       ("00" + currentDate.getDate()).slice(-2),
-    peopleNum: 1,
+    peopleNum:  location.state ? location.state.peopleNum : 1,
   };
   const [searchState, setSearchState] = useState(initialState);
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
@@ -160,6 +160,7 @@ const CardListHeader = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
   const date = location.state ? location.state.date : null;
+
   let defaultDate = new Date();
   if (date) {
     defaultDate = new Date(
