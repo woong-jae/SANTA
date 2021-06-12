@@ -15,7 +15,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: url("./image/mountains_5.jpg") center center / cover no-repeat;
-    background-attachment: fixed
+    background-attachment: fixed;
 }
 
 #root {
