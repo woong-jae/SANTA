@@ -17,6 +17,12 @@ export default function MaterialUIPickers(props) {
     props.getDateValue(date);
   };
 
+  const handleDefaultDate = () => {
+    setSelectedDate(props.value);
+    props.getDateValue(props.value);
+    return selectedDate;
+  }
+
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
@@ -28,7 +34,7 @@ export default function MaterialUIPickers(props) {
         id="input-date"
         className="header-input"
         label="가고 싶은 날짜"
-        value={props.value ? props.value : selectedDate}
+        value={selectedDate}
         onChange={handleDateChange}
         KeyboardButtonProps={{
           "aria-label": "change date",

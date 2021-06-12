@@ -31,3 +31,7 @@ export const applyPost = (_id, userID) => API.patch(`/post/apply/${_id}`, userID
 export const unApplyPost = (_id, userID) => API.patch(`/post/unapply/${_id}`, userID);
 // DELETE
 export const deletePost = (_id) => API.delete(`/post/${_id}`);
+
+// 산림청 공공데이터 //
+export const getMountainInfo = (mountain) => API.get(`/forest/${mountain}`);
+export const getMountainDetailInfo = (mountain) => API.get(`/forest/detail/${mountain}`);
