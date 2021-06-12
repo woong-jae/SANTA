@@ -156,7 +156,7 @@ const MyPage = (props) => {
                 <Tabs
                   value={value}
                   onChange={handleChange}
-                  aria-label="wrapped label tabs example"
+                  aria-label="wrapped label tabs"
                   centered
                 >
                   <Tab value="one" label="내 정보" {...a11yProps("one")}></Tab>
