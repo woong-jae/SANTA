@@ -14,9 +14,10 @@ import {
 } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
+import validator from "validator";
 
 import { signin, signup } from "../../actions/auth";
-import { isEmail, isPassword } from "../common/check";
+import { isPassword } from "../common/check";
 import Snackbar from "../common/Snackbar";
 import Loading from "../common/Loading";
 import "./Sections/SignPage.scss";
@@ -68,7 +69,7 @@ export default function SignPage(props) {
   };
 
   useEffect(() => {
-    if (isEmail(inputs.email)) {
+    if (validator.isEmail(inputs.email)) {
       if (isPassword(inputs.passwd)) {
         if (inputs.passwd === inputs.passwdConfirm) {
           setValid(true);
@@ -96,7 +97,7 @@ export default function SignPage(props) {
     setOpen(false);
   };
 
-  const hasEmailError = (emailEnter) => (isEmail(inputs.email) ? false : true);
+  const hasEmailError = (emailEnter) => (validator.isEmail(inputs.email) ? false : true);
   const hasPwdError = (passwordEnter) =>
     isPassword(inputs.passwd) ? false : true;
 
