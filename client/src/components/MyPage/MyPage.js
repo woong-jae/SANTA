@@ -41,7 +41,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={2}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -94,7 +94,6 @@ const MyPage = (props) => {
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     document.location.replace("/");
-    // /setUser(null);
   };
 
   const isUpdateUser = () => {
@@ -128,7 +127,7 @@ const MyPage = (props) => {
       <div className="mypage">
         <CardListHeader user={user} />
         <div className="mypage-main">
-          <Paper className="mypage-paper" elevation={10}>
+          <Paper className="mypage-paper" elevation={10} component="div">
             <div style={{ display: "flex", padding: "20px" }}>
               <Tooltip title="뒤로 가기" TransitionComponent={Zoom}>
                 <Button
@@ -144,7 +143,12 @@ const MyPage = (props) => {
             </div>
             <section className="mypage-body">
               <header>
-                <Typography className="title" variant="h3" align="center">
+                <Typography
+                  className="title"
+                  component="div"
+                  variant="h3"
+                  align="center"
+                >
                   <strong>{"MY PAGE"}</strong>
                 </Typography>
               </header>
@@ -168,21 +172,21 @@ const MyPage = (props) => {
                 {!isUpdate ? (
                   <section className="mypage-body">
                     <article>
-                      <Typography>
+                      <Typography component="div">
                         <div>
                           <strong>이메일</strong>
                         </div>
                         <div id="email">{user?.result?.email}</div>
                       </Typography>
                       <hr />
-                      <Typography>
+                      <Typography component="div">
                         <div>
                           <strong>닉네임</strong>
                         </div>
                         <div id="nickname">{user?.result?.nickname}</div>
                       </Typography>
                       <hr />
-                      <Typography>
+                      <Typography component="div">
                         <div>
                           <strong>성별</strong>
                         </div>
@@ -191,7 +195,7 @@ const MyPage = (props) => {
                         </div>
                       </Typography>
                       <hr />
-                      <Typography>
+                      <Typography component="div">
                         <div>
                           <strong>생년월일</strong>
                         </div>
@@ -238,8 +242,8 @@ const MyPage = (props) => {
           </Paper>
         </div>
         <div className="mypage-footer">
-          <Refresh user={user}/>
-          <CreatePost user={user}/>
+          <Refresh user={user} />
+          <CreatePost user={user} />
         </div>
       </div>
     );

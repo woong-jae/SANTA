@@ -12,15 +12,14 @@ import {
   Radio,
   RadioGroup,
 } from "@material-ui/core";
-
 import LockIcon from "@material-ui/icons/Lock";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 
 import { signin, signup } from "../../actions/auth";
 import { isEmail, isPassword } from "../common/check";
-import "./Sections/SignPage.scss";
 import Snackbar from "../common/Snackbar";
 import Loading from "../common/Loading";
+import "./Sections/SignPage.scss";
 
 export default function SignPage(props) {
   const dispatch = useDispatch();
@@ -252,11 +251,6 @@ export default function SignPage(props) {
               className="sign-btn"
               fullWidth
               disabled={isSignin ? false : valid ? false : true}
-              // onClick={
-              //   valid && birthState !== "" && inputs.nickname !== ""
-              //     ? setLoad(true)
-              //     : ""
-              // }
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>
