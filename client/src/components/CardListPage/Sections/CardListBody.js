@@ -5,7 +5,6 @@ import InfoIcon from "@material-ui/icons/Info";
 import "./CardListPage.scss";
 import Cards from "./Cards";
 import CreateCard from "../CreateCard/CreateCard";
-//import Paging from "./Pagination";
 
 const CardListBody = (props) => {
   const posts = useSelector((state) => state.post);
