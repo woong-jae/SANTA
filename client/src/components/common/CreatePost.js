@@ -57,6 +57,10 @@ export default function CreatePost(props) {
       setIsError(true);
     }
     if (isCorrectKeyword) {
+      setCardState({
+        ...cardState,
+        date: cardState.date.setHours(cardState.date.getHours() + 6),
+      });
       dispatch(
         createPost(
           { ...cardState, createdUser: props.user?.result?._id },
@@ -97,6 +101,7 @@ export default function CreatePost(props) {
       date: value,
     });
   };
+
   const handleAgeChange = (event, newAge) => {
     setAgeLimit(newAge);
 
