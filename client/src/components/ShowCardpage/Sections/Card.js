@@ -85,7 +85,7 @@ export default function ShowCard({ user, card }) {
     return (
       <div>
         <div className="show">
-          <Paper className="show-paper" elevation={10}>
+          <Paper className="show-paper" elevation={10} component="div">
             <Tooltip title="뒤로 가기">
               <Button
                 variant="contained"
@@ -108,9 +108,13 @@ export default function ShowCard({ user, card }) {
               <div className="show-box" style={{ width: "65%" }}>
                 <header className="show-header">
                   <div className="header-detail">
-                    <Typography className="header-info" id="mountain-info">
+                    <Typography
+                      className="header-info"
+                      id="mountain-info"
+                      component="div"
+                    >
                       <strong>산</strong> : {card.mountain}
-                      <MountainDetail mountain={card.mountain}/>
+                      <MountainDetail mountain={card.mountain} />
                     </Typography>
                     <Typography className="header-info">
                       <strong>현재 인원</strong> :{" "}
@@ -132,7 +136,7 @@ export default function ShowCard({ user, card }) {
                 </header>
                 <br />
                 <section className="show-body">
-                  <Typography id="show-description">
+                  <Typography id="show-description" component="div">
                     {card.description.split("\n").map((line) => {
                       return (
                         <strong>
@@ -144,9 +148,9 @@ export default function ShowCard({ user, card }) {
                   </Typography>
                 </section>
               </div>
-              <Paper className="side" elevation={5}>
+              <Paper className="side" elevation={5} component="div">
                 <div id="contact-paper" className="side-paper">
-                  <Typography>
+                  <Typography component="div">
                     <span>
                       <ContactPhoneIcon id="contact-icon" />
                       <strong> 연락망</strong>
@@ -164,12 +168,12 @@ export default function ShowCard({ user, card }) {
                   </Typography>
                 </div>
                 <div id="Member-paper" className="side-paper">
-                  <Typography>
+                  <Typography component="div">
                     <strong>현재 인원:</strong> {card.currentMember.length + 1}{" "}
                     / {card.maxMember}
                   </Typography>
                   <div className="Member-info">
-                    <Typography className="member">
+                    <Typography className="member" component="div">
                       {card.createdUser?.sex === "male" ? (
                         <StarIcon style={{ color: "#0d6efd" }} />
                       ) : (
@@ -180,7 +184,11 @@ export default function ShowCard({ user, card }) {
                     </Typography>
                     {card.currentMember?.map((member) => {
                       return (
-                        <Typography key={member?._id} className="member">
+                        <Typography
+                          key={member?._id}
+                          className="member"
+                          component="div"
+                        >
                           {member?.sex === "male" ? (
                             <AccountCircleIcon style={{ color: "#0d6efd" }} />
                           ) : (
