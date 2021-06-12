@@ -50,6 +50,18 @@
         text-align: left;
         padding: 30px;
         background-color: white;
+        #mountain-info {
+            display: flex;
+            align-items: center;
+            .mountain-detail {
+                margin-left: 20px;
+                button {
+                    padding: 0px;
+                    color: #10b274;
+                    border-color: #10b274;
+                }
+            }
+        }
         .back-btn {
             color: white;
             background-color: #10b274;

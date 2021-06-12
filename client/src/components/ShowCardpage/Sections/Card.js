@@ -17,6 +17,7 @@ import Dialog from "../../common/Dialog";
 import Snackbar from "../../common/Snackbar";
 import "./ShowCardPage.scss";
 import SignPage from "../../SignPage/SignPage";
+import MountainDetail from '../Sections/MountainDetail'
 
 export default function ShowCard({ user, card }) {
   const dispatch = useDispatch();
@@ -107,8 +108,9 @@ export default function ShowCard({ user, card }) {
               <div className="show-box" style={{ width: "65%" }}>
                 <header className="show-header">
                   <div className="header-detail">
-                    <Typography className="header-info">
+                    <Typography className="header-info" id="mountain-info">
                       <strong>산</strong> : {card.mountain}
+                      <MountainDetail mountain={card.mountain}/>
                     </Typography>
                     <Typography className="header-info">
                       <strong>현재 인원</strong> :{" "}
