@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import {
   Modal,
   Tooltip,
@@ -40,6 +41,7 @@ export default function CreatePost(props) {
   const [ageLimit, setAgeLimit] = useState([19, 70]);
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
   const [isError, setIsError] = useState(false);
+  const history = useHistory();
 
   const handleOpen = () => {
     setOpen(true);
@@ -65,7 +67,28 @@ export default function CreatePost(props) {
       setCardState(initialState);
       setAgeLimit([19, 70]);
       handleClose();
+      history.push({
+        pathname: "/list",
+        search: `?mountain=${
+          cardState.mountain
+        }&date=${dateToString()}&peopleNum=${1}`,
+        state: {
+          mountain: cardState.mountain,
+          date: dateToString(),
+          peopleNum: 1,
+        },
+      });
     }
+  };
+
+  const dateToString = () => {
+    return (
+      cardState.date.getFullYear() +
+      "-" +
+      ("00" + (cardState.date.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("00" + cardState.date.getDate()).slice(-2)
+    );
   };
 
   const getDateValue = (value) => {
