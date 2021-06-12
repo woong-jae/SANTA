@@ -69,6 +69,7 @@ const MyPage = (props) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isUpdate, setIsUpdate] = useState(false);
   const [value, setValue] = useState("one");
+  const userUpdate = useSelector(state => state.auth.authData);
 
   useEffect(() => {
     if (user) {
@@ -83,7 +84,7 @@ const MyPage = (props) => {
       }
     }
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [dispatch]);
+  }, [userUpdate]);
   const birth =
     user?.result?.birth.substring(0, 4) +
     "/" +
@@ -237,7 +238,7 @@ const MyPage = (props) => {
           </Paper>
         </div>
         <div className="mypage-footer">
-          <Refresh />
+          <Refresh user={user}/>
           <CreatePost user={user}/>
         </div>
       </div>
