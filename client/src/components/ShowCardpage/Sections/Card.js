@@ -53,7 +53,7 @@ export default function ShowCard({ user, card }) {
     setIsUpdate(true);
   };
 
-  const updateCard = async (updateState) => {
+  const updateCard = (updateState) => {
     const updates = {
       title: updateState.title,
       description: updateState.description,
@@ -63,7 +63,7 @@ export default function ShowCard({ user, card }) {
       ageLimit: updateState.ageLimit,
       date: updateState.date,
     };
-    await dispatch(updatePost(card._id, updates));
+    dispatch(updatePost(card._id, updates));
     setIsUpdate(false);
   };
 
