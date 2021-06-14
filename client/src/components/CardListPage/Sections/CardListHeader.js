@@ -59,6 +59,18 @@ const CardListHeader = (props) => {
     history.push("/");
   };
 
+  const handleMyPage = () => {
+    history.push({
+      pathname: "/mypage",
+      state: {
+        mountain: searchState.mountain,
+        date: searchState.date,
+        peopleNum: searchState.peopleNum,
+        correctKeyword: isCorrectKeyword,
+      },
+    });
+  };
+
   const snackClose = () => {
     setSnack(false);
   };
@@ -291,7 +303,7 @@ const CardListHeader = (props) => {
         )}
         {props.user ? (
           <div className="header-user">
-            <Link to="/mypage">
+            <div>
               {windowSize.width >= 1150 ? (
                 <Tooltip title="MY PAGE" TransitionComponent={Zoom}>
                   <Button
@@ -300,6 +312,7 @@ const CardListHeader = (props) => {
                     variant="text"
                     className="header-btn"
                     id="myPage-btn"
+                    onClick={handleMyPage}
                   >
                     {props.user?.result?.nickname}
                   </Button>
@@ -311,12 +324,13 @@ const CardListHeader = (props) => {
                     variant="text"
                     className="header-btn"
                     id="myPage-btn"
+                    onClick={handleMyPage}
                   >
                     <AiOutlineUser />
                   </Button>
                 </Tooltip>
               )}
-            </Link>
+            </div>
             <Tooltip title="SIGN OUT" TransitionComponent={Zoom}>
               <Button
                 variant="contained"
