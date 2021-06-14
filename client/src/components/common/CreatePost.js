@@ -57,10 +57,6 @@ export default function CreatePost(props) {
       setIsError(true);
     }
     if (isCorrectKeyword) {
-      setCardState({
-        ...cardState,
-        date: cardState.date.setHours(cardState.date.getHours() + 9),
-      });
       dispatch(
         createPost(
           { ...cardState, createdUser: props.user?.result?._id },
