@@ -28,6 +28,9 @@ const postSchema = mongoose.Schema({
   date: {
     type: Date,
     default: new Date(),
+  },
+  dateOffset: {
+    type: Number
   }
 });
 
