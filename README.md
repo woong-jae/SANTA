@@ -16,7 +16,7 @@ https://san-ta.netlify.app
 ## 👨‍👨‍👦‍👦 Contributor
 > [고재철](https://github.com/Go-Jaecheol) (Back-end)
 > 
-> [김동규](https://github.com/e70e6916) (Front-end)
+> [김동규](https://github.com/KingDonggyu) (Front-end)
 > 
 > [백성욱](https://github.com/SeongukBaek) (Front-end)
 > 
