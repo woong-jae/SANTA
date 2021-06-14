@@ -34,7 +34,6 @@ export default function CreatePost(props) {
     date: new Date(),
     description: "",
     contact: "",
-    dateOffset: new Date().getTimezoneOffset()
   };
 
   const [cardState, setCardState] = useState(initialState);

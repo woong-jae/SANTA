@@ -23,7 +23,8 @@ export const getPostByMt = (mountain, date, peopleNum) => async (dispatch) => {
 
 export const createPost = (post, user) => async (dispatch) => {
     try {
-        const { data } = await api.createPost(post);
+        const newPostData = { ...post, date: post.date.getTime()+(3600000*9)};
+        const { data } = await api.createPost(newPostData);
 
         const newPost = {...data, createdUser: user};
 
