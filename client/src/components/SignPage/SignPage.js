@@ -255,7 +255,7 @@ export default function SignPage(props) {
             >
               {isSignin ? "Sign In" : "Sign Up"}
             </Button>
-            {load && <Loading />}
+            {load && <Loading load={load} />}
             <button type="button" className="switch-text" onClick={toggle}>
               <strong>
                 {isSignin ? "계정이 없으신가요?" : "이미 계정이 있으신가요?"}

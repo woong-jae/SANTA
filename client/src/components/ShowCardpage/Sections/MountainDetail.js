@@ -10,6 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import { getMountainInfo } from "../../../api/index";
+import Loading from "../../common/Loading";
 
 const styles = (theme) => ({
   root: {
@@ -54,9 +55,9 @@ export default function MountainDetail(props) {
   const [detailState, setDetailState] = React.useState(null);
 
   const handleClickOpen = async () => {
+    setOpen(true);
     const data = await getMountainInfo(mountain);
     setDetailState(data.data.item);
-    setOpen(true);
   };
 
   React.useEffect(() => {}, [detailState]);
@@ -70,7 +71,7 @@ export default function MountainDetail(props) {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         산 정보
       </Button>
-      <Dialog
+      {open && detailState ? <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
@@ -103,7 +104,10 @@ export default function MountainDetail(props) {
               })}
           </Typography>
         </DialogContent>
-      </Dialog>
+      </Dialog> :
+      <Loading load={open} />
+      }
+      
     </div>
   );
 }

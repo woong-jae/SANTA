@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Backdrop, CircularProgress } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
-const Loading = () => {
-  const [backOpen, setbackOpen] = useState(true);
-  const backdropClose = () => {
-    setbackOpen(false);
-  };
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
+
+const Loading = (props) => {
+  const classes = useStyles();
 
   return (
-    <Backdrop
-      open={backOpen}
-      onClick={backdropClose}
-      className="backdrop"
-    >
+    <Backdrop className={classes.backdrop} open={props.load}>
       <CircularProgress color="inherit"></CircularProgress>
     </Backdrop>
   );
