@@ -16,11 +16,6 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/"
-              component={(props) => <LandingPage {...props} />}
-            />
-            <Route
-              exact
               path="/list"
               component={(props) => <CardListPage {...props} />}
             />
@@ -33,6 +28,10 @@ class App extends Component {
               exact
               path="/mypage"
               component={(props) => <MyPage {...props} />}
+            />
+            <Route
+              path="/"
+              component={(props) => <LandingPage {...props} />}
             />
           </Switch>
         </Router>

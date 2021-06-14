@@ -83,7 +83,7 @@ export const deleteUser = async (req, res) => {
 
     try {
         await Posts.deleteMany({ createdUser: _id });
-        await Posts.updateMany({ currentMember: _id}, {$pull: {curruntMember: _id}});
+        await Posts.updateMany({ currentMember: { $in: _id }}, { $pull: {currentMember: _id }, $inc: { currentMemberLength: -1 }});
 
         await User.findByIdAndRemove(_id);
         res.json({message: 'User deleted successfully'});
