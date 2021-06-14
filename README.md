@@ -7,7 +7,7 @@
 ## 🔗 URL
 https://san-ta.netlify.app
 
-<img src="https://user-images.githubusercontent.com/33208246/121897044-ef469e00-cd5c-11eb-97dd-c800f0901eec.png" width="180" />
+<img src="https://user-images.githubusercontent.com/33208246/121897044-ef469e00-cd5c-11eb-97dd-c800f0901eec.png" width="200" />
 
 ## 🔍 기능  
 - 가고 싶은 산, 날짜, 동행인원 수 입력을 통해 모임 검색  
