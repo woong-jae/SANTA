@@ -154,7 +154,6 @@ section {
     }
     footer {
         text-align: center;
-        background-color: #81c784;
     }
     #body-nocard {
         @media (max-width: 675px) {
@@ -183,7 +182,7 @@ section {
     margin-top: -50px;
     text-align: center;
     position: fixed;
-    right: 44px;
+    right: 20px;
     bottom: 100px;
     .refresh-btn {
         width: 70px;
