@@ -24,14 +24,6 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
 const useStyles = makeStyles({
   table: {
     minWidth: 500,
@@ -67,7 +59,7 @@ const MyPartyInfo = (props) => {
         <TableBody>
           {(props.type === "create" ? userCreatedPosts : userAppliedPosts).map(
             (post) => (
-              <StyledTableRow key={post.title}>
+              <TableRow key={post.title}>
                 <StyledTableCell component="th" scope="row">
                   <Button variant="outlined" onClick={(e) => {handleClick(e, post._id)}}>
                     {post.title}
@@ -84,7 +76,7 @@ const MyPartyInfo = (props) => {
                     "/" +
                     post.date.substring(8, 10)}
                 </StyledTableCell>
-              </StyledTableRow>
+              </TableRow>
             )
           )}
         </TableBody>
