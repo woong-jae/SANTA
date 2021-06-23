@@ -40,3 +40,23 @@ export const unApplyPost = (_id, userID) => async (dispatch) => {
         console.error(error);
     }
 }
+
+export const acceptMember = (_id, userID) => async (dispatch) => {
+    try {
+        const { data } = await api.acceptMember(_id, userID);
+
+        dispatch({ type: FETCH_ONE, data });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const leavePost = (_id, userID) => async (dispatch) => {
+    try {
+        const { data } = await api.leavePost(_id, userID);
+
+        dispatch({ type: FETCH_ONE, data });
+    } catch (error) {
+        console.error(error);
+    }
+}

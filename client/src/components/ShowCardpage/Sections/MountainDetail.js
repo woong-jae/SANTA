@@ -71,43 +71,40 @@ export default function MountainDetail(props) {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         산 정보
       </Button>
-      {open && detailState ? <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <DialogTitle
-          id="customized-dialog-title"
+      {open && detailState ? (
+        <Dialog
           onClose={handleClose}
-          style={{ textAlign: "center" }}
+          aria-labelledby="customized-dialog-title"
+          open={open}
         >
-          {mountain}
-        </DialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            ● 높이: 약 {detailState?.mntheight}m
-          </Typography>
-          <br />
-          <Typography gutterBottom>
-            ● {detailState && detailState.aeatreason.replaceAll("<BR>", " ")}
-          </Typography>
-          <br />
-          <Typography gutterBottom>
-            {detailState &&
-              detailState.tourisminf.split("<BR>").map((line) => {
-                return (
-                  <div>
-                    {line}
-                    <br />
-                  </div>
-                );
-              })}
-          </Typography>
-        </DialogContent>
-      </Dialog> :
-      <Loading load={open} />
-      }
-      
+          <DialogTitle
+            id="customized-dialog-title"
+            onClose={handleClose}
+            style={{ textAlign: "center" }}
+          >
+            {mountain}
+          </DialogTitle>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              높이: 약 {detailState?.mntheight}m
+            </Typography>
+            <br />
+            <Typography
+              gutterBottom
+              dangerouslySetInnerHTML={{__html: detailState && detailState.aeatreason,}}
+            ></Typography>
+            <br />
+            <Typography
+              gutterBottom
+              dangerouslySetInnerHTML={{
+                __html: detailState && detailState.tourisminf,
+              }}
+            ></Typography>
+          </DialogContent>
+        </Dialog>
+      ) : (
+        <Loading load={open} />
+      )}
     </div>
   );
 }
