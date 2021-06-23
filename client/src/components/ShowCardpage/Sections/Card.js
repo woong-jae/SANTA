@@ -40,12 +40,12 @@ export default function ShowCard({ user, card }) {
     }
   };
 
-  const handleApply = async (isApply) => {
+  const handleApply = (isApply) => {
     const userBirth = new Date(user?.result?.birth);
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
       if (isApply)
-        await dispatch(applyPost(card._id, { userID: user?.result?._id }));
+        dispatch(applyPost(card._id, { userID: user?.result?._id }));
     } else setIsAgeOver(true);
   };
 

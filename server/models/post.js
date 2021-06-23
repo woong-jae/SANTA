@@ -19,8 +19,12 @@ const postSchema = mongoose.Schema({
   currentMemberLength: {
     type: Number,
     default: 1
-  }
-  ,
+  },
+  appliedMember: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "User",
+    default: [],
+  },
   ageLimit: {
     type: [Number],
     default: [1, 100],

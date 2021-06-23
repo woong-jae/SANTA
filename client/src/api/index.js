@@ -29,6 +29,8 @@ export const createPost = (post) => API.post("/post", post);
 export const updatePost = (_id, post) => API.patch(`/post/${_id}`, post);
 export const applyPost = (_id, userID) => API.patch(`/post/apply/${_id}`, userID);
 export const unApplyPost = (_id, userID) => API.patch(`/post/unapply/${_id}`, userID);
+export const acceptMember = (_id, userID) => API.patch(`/post/accept/${_id}`, userID);
+export const leavePost = (_id, userID) => API.patch(`/post/leave/${_id}`, userID);
 // DELETE
 export const deletePost = (_id) => API.delete(`/post/${_id}`);
 
