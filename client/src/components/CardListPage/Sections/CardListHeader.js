@@ -38,18 +38,12 @@ const CardListHeader = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const location = useLocation();
-  const currentDate = new Date();
-  const initialState = {
-    mountain: "",
-    date: location.state ? location.state.date : 
-      currentDate.getFullYear() +
-      "-" +
-      ("00" + (currentDate.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("00" + currentDate.getDate()).slice(-2),
-    peopleNum:  location.state ? location.state.peopleNum : 1,
-  };
-  const [searchState, setSearchState] = useState(initialState);
+  const splitedPath = location.pathname.split("/");
+  const [searchState, setSearchState] = useState({
+    mountain: splitedPath[2],
+    date: splitedPath[3],
+    peopleNum: splitedPath[4],
+  });
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
   const [snack, setSnack] = useState(false);
   const history = useHistory();
@@ -82,24 +76,7 @@ const CardListHeader = (props) => {
     }
     if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
-        pathname: "/list",
-        search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
-        state: {
-          mountain: searchState.mountain,
-          date: searchState.date,
-          peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword,
-        },
-      });
-    } else if (searchState.mountain === "" && isCorrectKeyword) {
-      history.push({
-        pathname: "/list",
-        state: {
-          mountain: searchState.mountain,
-          date: searchState.date,
-          peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword,
-        },
+        pathname: "/list/" + searchState.mountain + "/" + searchState.date + "/" + searchState.peopleNum,
       });
     }
   };
@@ -169,8 +146,7 @@ const CardListHeader = (props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
-  const date = location.state ? location.state.date : null;
-
+  const date = searchState.date;
   let defaultDate = new Date();
   if (date) {
     defaultDate = new Date(
@@ -204,7 +180,7 @@ const CardListHeader = (props) => {
                   id="search-mountain"
                   getMountainValue={getMountainValue}
                   getKeyword={getKeyword}
-                  value={location.state ? location.state.mountain : ""}
+                  value={searchState.mountain}
                 />
               </div>
               <div id="search-date" className="search-item">
@@ -218,7 +194,7 @@ const CardListHeader = (props) => {
                 <InputPeople
                   name="peopleNum"
                   handleChange={handleChange}
-                  value={location.state ? location.state.peopleNum : 1}
+                  value={searchState.peopleNum}
                 />
               </div>
               <SearchBtn />
@@ -269,7 +245,7 @@ const CardListHeader = (props) => {
                       id="search-mountain"
                       getMountainValue={getMountainValue}
                       getKeyword={getKeyword}
-                      value={location.state ? location.state.mountain : ""}
+                      value={searchState.mountain}
                     />
                   </div>
                   <div id="search-date" className="search-item">
@@ -283,7 +259,7 @@ const CardListHeader = (props) => {
                     <InputPeople
                       name="peopleNum"
                       handleChange={handleChange}
-                      value={location.state ? location.state.peopleNum : 1}
+                      value={searchState.peopleNum}
                     />
                   </div>
                 </div>

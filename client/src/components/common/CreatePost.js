@@ -68,15 +68,7 @@ export default function CreatePost(props) {
       setAgeLimit([19, 70]);
       handleClose();
       history.push({
-        pathname: "/list",
-        search: `?mountain=${
-          cardState.mountain
-        }&date=${dateToString()}&peopleNum=${1}`,
-        state: {
-          mountain: cardState.mountain,
-          date: dateToString(),
-          peopleNum: 1,
-        },
+        pathname: "/list/" + cardState.mountain + "/" + dateToString() + "/1",
       });
     }
   };
