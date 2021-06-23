@@ -49,24 +49,7 @@ const LandingPage = () => {
     }
     if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
-        pathname: "/list",
-        search: `?mountain=${searchState.mountain}&date=${searchState.date}&peopleNum=${searchState.peopleNum}`,
-        state: {
-          mountain: searchState.mountain,
-          date: searchState.date,
-          peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword,
-        },
-      });
-    } else if (searchState.mountain === "" && isCorrectKeyword) {
-      history.push({
-        pathname: "/list",
-        state: {
-          mountain: searchState.mountain,
-          date: searchState.date,
-          peopleNum: searchState.peopleNum,
-          correctKeyword: isCorrectKeyword,
-        },
+        pathname: "/list/" + searchState.mountain + "/" + searchState.date + "/" + searchState.peopleNum,
       });
     }
   };

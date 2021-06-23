@@ -16,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/list"
+              path="/list/:mountain/:date/:peopleNum"
               component={(props) => <CardListPage {...props} />}
             />
             <Route

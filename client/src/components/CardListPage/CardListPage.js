@@ -14,15 +14,17 @@ const CardListPage = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const userUpdate = useSelector(state => state.auth.authData);
 
+  const splitedPath = location.pathname.split("/");
+
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     setUser(null);
   };
 
   useEffect(() => {
-    if (location.search === "") dispatch(getPosts());
-    else if (location.state.mountain === "") dispatch(getPosts());
-    else dispatch(getPostByMt(location.state.mountain, location.state.date, location.state.peopleNum));
+    //if (location.search === "") dispatch(getPosts());
+    //else if (location.state.mountain === "") dispatch(getPosts());
+    dispatch(getPostByMt(splitedPath[2], splitedPath[3], splitedPath[4]));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
