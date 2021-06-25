@@ -1,19 +1,29 @@
 import React from "react";
-import { TextField, Popper } from '@material-ui/core';
+import { TextField, Popper, Snackbar } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Alert } from "@material-ui/lab";
 
 export default function InputMountain(props) {
   const [isCorrectName, setIsCorrectName] = React.useState(true);
+  const [snack, setSnack] = React.useState(false);
 
   const ClickHandler = (text) => {
-    props.getMountainValue(text);
-    props.getKeyword(true);
-    setIsCorrectName(true);
+    if (text !== undefined) {
+      props.getMountainValue(text);
+      props.getKeyword(true);
+      setIsCorrectName(true);
+    }
+    else
+      setSnack(true);
   };
 
   const ChangeHandler = (e) => {
     props.getKeyword(false);
     setIsCorrectName(false);
+  };
+
+  const snackClose = () => {
+    setSnack(false);
   };
 
   const styles = (theme) => ({
@@ -33,28 +43,35 @@ export default function InputMountain(props) {
   }
   
   return (
-    <Autocomplete
-      freeSolo
-      defaultValue={() => props.value ? {name: props.value, location: getDefault()} : null}
-      options={mountainInfo}
-      getOptionLabel={(option) => `${option.name} (${option.location})`}
-      PopperComponent={popperMy}
-      className="header-input"
-      onChange={(event, value) =>
-        value ? ClickHandler(value.name) : ClickHandler("")
-      }
-      renderInput={(params) => 
-        <TextField 
-        {...params}
-        //required 
-        label="산/지역명" 
-        id="input=mountain"
-        name="mountain"
-        InputLabelProps={{ shrink: true }} 
-        onChange={ChangeHandler}
-        error={!isCorrectName} 
-        />}
-    />
+    <div>
+      <Autocomplete
+        freeSolo
+        defaultValue={() => props.value ? {name: props.value, location: getDefault()} : null}
+        options={mountainInfo}
+        getOptionLabel={(option) => option.name ? `${option.name} (${option.location})` : ""}
+        PopperComponent={popperMy}
+        className="header-input"
+        onChange={(event, value) =>
+          value ? ClickHandler(value.name) : ClickHandler("")
+        }
+        renderInput={(params) => 
+          <TextField 
+          {...params}
+          //required 
+          label="산/지역명" 
+          id="input=mountain"
+          name="mountain"
+          InputLabelProps={{ shrink: true }} 
+          onChange={ChangeHandler}
+          error={!isCorrectName} 
+          />}
+      />
+      <Snackbar open={snack} autoHideDuration={6000} onClose={snackClose}>
+        <Alert onClose={snackClose} severity="error" variant="filled">
+          가고 싶은 산을 선택해주세요!
+        </Alert>
+      </Snackbar>
+    </div>
   );
 }
 

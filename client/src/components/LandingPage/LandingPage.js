@@ -99,6 +99,12 @@ const LandingPage = () => {
     });
   }, 100);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && event.shiftKey === false) {
+      event.preventDefault();
+    }
+  }
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
@@ -120,7 +126,7 @@ const LandingPage = () => {
         <div className="userinput">
           {windowSize.width >= 700 ? (
             <div>
-              <form className="input-form" onSubmit={handleSubmit}>
+              <form className="input-form" onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
                 <InputMountain
                   id="search-mountain"
                   getMountainValue={getMountainValue}
@@ -149,7 +155,7 @@ const LandingPage = () => {
             </div>
           ) : (
             <div>
-              <form className="input-form" onSubmit={handleSubmit}>
+              <form className="input-form" onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
                 <InputMountain
                   id="search-mountain"
                   getMountainValue={getMountainValue}
