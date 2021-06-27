@@ -143,7 +143,7 @@ const UpdateUser = (props) => {
           </Typography>
         </article>
       </section>
-      <footer style={{ display: "block", textAlign: "center" }}>
+      <footer className="update_footer" style={{ display: "block", textAlign: "center" }}>
         <Tooltip title="수정 완료" TransitionComponent={Zoom}>
           <Button
             variant="contained"
@@ -165,7 +165,7 @@ const UpdateUser = (props) => {
           id="back-btn"
           onClick={() => props.update()}
         >
-          돌아가기
+          {"취소"}
         </Button>
       </footer>
     </>

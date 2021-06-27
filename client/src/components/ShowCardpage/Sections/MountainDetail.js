@@ -1,13 +1,23 @@
 import React from "react";
 
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import {
+  Button,
+  Dialog,
+  IconButton,
+  Typography,
+  Divider,
+  Avatar,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+} from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
+import FilterHdrIcon from "@material-ui/icons/FilterHdr";
+import HelpIcon from "@material-ui/icons/Help";
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 
 import { getMountainInfo } from "../../../api/index";
 import Loading from "../../common/Loading";
@@ -53,7 +63,7 @@ export default function MountainDetail(props) {
   const [open, setOpen] = React.useState(false);
   const { mountain } = props;
   const [detailState, setDetailState] = React.useState(null);
-
+  console.log(detailState);
   const handleClickOpen = async () => {
     setOpen(true);
     const data = await getMountainInfo(mountain);
@@ -82,26 +92,48 @@ export default function MountainDetail(props) {
             onClose={handleClose}
             style={{ textAlign: "center" }}
           >
-            {mountain}
+            <strong>{mountain}</strong>
           </DialogTitle>
           <DialogContent dividers>
-            <Typography gutterBottom>
-              높이: 약 {detailState?.mntheight}m
-            </Typography>
-            <br />
-            <Typography
-              gutterBottom
-              dangerouslySetInnerHTML={{
-                __html: detailState && detailState.aeatreason,
-              }}
-            ></Typography>
-            <br />
-            <Typography
-              gutterBottom
-              dangerouslySetInnerHTML={{
-                __html: detailState && detailState.tourisminf,
-              }}
-            ></Typography>
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <FilterHdrIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary="높이"
+                secondary={"약 " + detailState?.mntheight + "m"}
+              />
+            </ListItem>
+            <Divider variant="inset" />
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <HelpIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <Typography
+                gutterBottom
+                dangerouslySetInnerHTML={{
+                  __html: detailState && detailState.aeatreason,
+                }}
+              ></Typography>
+            </ListItem>
+            <Divider variant="inset" />
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <ContactPhoneIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <Typography
+                gutterBottom
+                dangerouslySetInnerHTML={{
+                  __html: detailState && detailState.tourisminf,
+                }}
+              ></Typography>
+            </ListItem>
           </DialogContent>
         </Dialog>
       ) : (
