@@ -91,7 +91,9 @@ export default function MountainDetail(props) {
             <br />
             <Typography
               gutterBottom
-              dangerouslySetInnerHTML={{__html: detailState && detailState.aeatreason,}}
+              dangerouslySetInnerHTML={{
+                __html: detailState && detailState.aeatreason,
+              }}
             ></Typography>
             <br />
             <Typography

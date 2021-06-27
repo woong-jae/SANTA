@@ -76,6 +76,7 @@
             display: block;
             text-align: center;
             margin-top: 30px;
+            font-size: 1.3em;
         }
         #show-name {
             text-align: center;
@@ -151,7 +152,7 @@
                     }
                 }
                 #btn-paper {
-                    width: 119px;
+                    width: 100%;
                     text-align: center;
                     .apply-btn {
                         color: white;
@@ -169,12 +170,17 @@
                             background-color: rgb(247, 83, 83);
                         }
                     }
-                    #update-btn {
-                        color: white;
-                        background-color: #10b274;
-                        font-size: 1.4em;
-                        &:hover {
-                            background-color: #059960;
+                    .leader-btn {
+                        display: flex;
+                        justify-content: space-evenly;
+                        #update-btn,
+                        #apply-list-btn {
+                            color: white;
+                            background-color: #10b274;
+                            font-size: 1.4em;
+                            &:hover {
+                                background-color: #059960;
+                            }
                         }
                     }
                 }

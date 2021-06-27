@@ -17,7 +17,8 @@ import Dialog from "../../common/Dialog";
 import Snackbar from "../../common/Snackbar";
 import "./ShowCardPage.scss";
 import SignPage from "../../SignPage/SignPage";
-import MountainDetail from '../Sections/MountainDetail'
+import MountainDetail from "../Sections/MountainDetail";
+import ApplyList from "../Sections/ApplyList";
 
 export default function ShowCard({ user, card }) {
   const dispatch = useDispatch();
@@ -31,12 +32,14 @@ export default function ShowCard({ user, card }) {
   const [isAgeOver, setIsAgeOver] = useState(false);
 
   useEffect(() => {
-    setApply(card?.currentMember.some((member) => member?._id === user?.result?._id));
+    setApply(
+      card?.currentMember.some((member) => member?._id === user?.result?._id)
+    );
   }, [card?.currentMember, user?.result?._id]);
 
   const handleLeave = (isLeave) => {
     if (isLeave) {
-     dispatch(unApplyPost(card._id, { userID: user?.result?._id }));
+      dispatch(unApplyPost(card._id, { userID: user?.result?._id }));
     }
   };
 
@@ -44,8 +47,7 @@ export default function ShowCard({ user, card }) {
     const userBirth = new Date(user?.result?.birth);
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
-      if (isApply)
-        dispatch(applyPost(card._id, { userID: user?.result?._id }));
+      if (isApply) dispatch(applyPost(card._id, { userID: user?.result?._id }));
     } else setIsAgeOver(true);
   };
 
@@ -231,13 +233,16 @@ export default function ShowCard({ user, card }) {
                       />
                     )
                   ) : (
-                    <Button
-                      variant="contained"
-                      id="update-btn"
-                      onClick={isUpdateCard}
-                    >
-                      <CreateIcon />
-                    </Button>
+                    <div className="leader-btn">
+                      <Button
+                        variant="contained"
+                        id="update-btn"
+                        onClick={isUpdateCard}
+                      >
+                        <CreateIcon />
+                      </Button>
+                      <ApplyList card={card} birthToAge={birthToAge}/>
+                    </div>
                   )}
                 </div>
               </Paper>
