@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Tooltip, Fab, Zoom } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
-import { getUserAppliedPosts, getUserPosts } from "../../actions/mypage";
+import { getUserAcceptedPosts, getUserAppliedPosts, getUserPosts } from "../../actions/mypage";
 import { getPostByMt, getPosts } from "../../actions/post";
 
 export default function Refresh(props) {
@@ -14,6 +14,7 @@ export default function Refresh(props) {
     if (location.pathname === "/mypage") {
       dispatch(getUserPosts(props.user?.result?._id));
       dispatch(getUserAppliedPosts(props.user?.result?._id));
+      dispatch(getUserAcceptedPosts(props.user?.result?._id));
     }
     if (location.pathname === "/list") {
       if (location.search === "") dispatch(getPosts());
