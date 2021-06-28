@@ -20,7 +20,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import decode from "jwt-decode";
 
 import { deleteUser, updateUser } from "../../actions/auth";
-import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
+import { getUserPosts, getUserAppliedPosts, getUserAcceptedPosts } from "../../actions/mypage";
 import Dialog from "../common/Dialog";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
@@ -74,6 +74,7 @@ const MyPage = (props) => {
     if (user) {
       dispatch(getUserPosts(user?.result?._id));
       dispatch(getUserAppliedPosts(user?.result?._id));
+      dispatch(getUserAcceptedPosts(user?.result?._id));
     }
     const token = user?.token;
     if (token) {
@@ -162,8 +163,13 @@ const MyPage = (props) => {
                   <Tab value="two" label="생성한 모임" {...a11yProps("two")} />
                   <Tab
                     value="three"
-                    label="참가 신청한 모임"
+                    label="신청한 모임"
                     {...a11yProps("three")}
+                  />
+                  <Tab
+                    value="four"
+                    label="참가한 모임"
+                    {...a11yProps("four")}
                   />
                 </Tabs>
               </AppBar>
@@ -236,6 +242,9 @@ const MyPage = (props) => {
               </TabPanel>
               <TabPanel value={value} index="three">
                 <MyPartyInfo type="apply" />
+              </TabPanel>
+              <TabPanel value={value} index="four">
+                <MyPartyInfo type="accept" />
               </TabPanel>
             </section>
           </Paper>

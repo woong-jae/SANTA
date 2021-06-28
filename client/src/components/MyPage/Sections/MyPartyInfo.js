@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -36,6 +36,7 @@ const MyPartyInfo = (props) => {
 
   const userCreatedPosts = useSelector((state) => state.mypage.created);
   const userAppliedPosts = useSelector((state) => state.mypage.applied);
+  const userAcceptedPosts = useSelector((state) => state.mypage.accepted);
 
   const handleClick = (e, _id) => {
     history.push("/post/" + _id);
@@ -57,7 +58,7 @@ const MyPartyInfo = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(props.type === "create" ? userCreatedPosts : userAppliedPosts).map(
+          {(props.type === "create" ? userCreatedPosts : (props.type === "apply" ? userAppliedPosts : userAcceptedPosts)).map(
             (post) => (
               <TableRow key={post.title}>
                 <StyledTableCell component="th" scope="row">
