@@ -156,6 +156,7 @@
                                     background-color: rgb(247, 83, 83);
                                 }
                                 svg {
+                                    font-size: 0.8rem;
                                     margin-right: 0px;
                                 }
                             }
@@ -200,6 +201,14 @@
                             &:hover {
                                 background-color: #059960;
                             }
+                        }
+                    }
+                    #update-btn {
+                        color: white;
+                        background-color: #10b274;
+                        font-size: 1.4em;
+                        &:hover {
+                            background-color: #059960;
                         }
                     }
                 }

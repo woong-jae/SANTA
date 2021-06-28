@@ -12,6 +12,7 @@ const InputPeople = (props) => {
       inputProps={{ min: 1 }}
       InputLabelProps={{ shrink: true }}
       onChange={props.handleChange}
+      style={{ width: "70%" }}
     ></TextField>
   );
 };

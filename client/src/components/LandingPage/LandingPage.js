@@ -52,7 +52,13 @@ const LandingPage = () => {
     }
     if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
-        pathname: "/list/" + searchState.mountain + "/" + searchState.date + "/" + searchState.peopleNum,
+        pathname:
+          "/list/" +
+          searchState.mountain +
+          "/" +
+          searchState.date +
+          "/" +
+          searchState.peopleNum,
       });
     }
   };
@@ -103,10 +109,10 @@ const LandingPage = () => {
   }, 100);
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && event.shiftKey === false) {
+    if (event.key === "Enter" && event.shiftKey === false) {
       event.preventDefault();
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -129,7 +135,11 @@ const LandingPage = () => {
         <div className="userinput">
           {windowSize.width >= 700 ? (
             <div>
-              <form className="input-form" onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+              <form
+                className="input-form"
+                onSubmit={handleSubmit}
+                onKeyDown={handleKeyDown}
+              >
                 <InputMountain
                   id="search-mountain"
                   getMountainValue={getMountainValue}
@@ -158,7 +168,11 @@ const LandingPage = () => {
             </div>
           ) : (
             <div>
-              <form className="input-form" onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+              <form
+                className="input-form"
+                onSubmit={handleSubmit}
+                onKeyDown={handleKeyDown}
+              >
                 <InputMountain
                   id="search-mountain"
                   getMountainValue={getMountainValue}
