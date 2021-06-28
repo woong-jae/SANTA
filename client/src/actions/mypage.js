@@ -20,3 +20,13 @@ export const getUserAppliedPosts = (userId) => async (dispatch) => {
         console.error(error);
     }
 }
+
+// export const getUserAcceptedPosts = (userId) => async (dispatch) => {
+//     try {
+//         const { data } = await api.getUserAcceptedPosts(userId);
+        
+//         dispatch({ type: FETCH_ACCEPTED, data });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
