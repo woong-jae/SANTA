@@ -122,7 +122,6 @@ export default function SignPage(props) {
         setIsSignIn(false);
       }
     }
-    setValid(false);
   };
 
   const toggle = () => {

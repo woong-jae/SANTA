@@ -67,9 +67,7 @@ export default function CreatePost(props) {
       setCardState(initialState);
       setAgeLimit([19, 70]);
       handleClose();
-      history.push({
-        pathname: "/list/" + cardState.mountain + "/" + dateToString() + "/1",
-      });
+      history.push("/list/" + cardState.mountain + "/" + dateToString() + "/1");
     }
   };
 

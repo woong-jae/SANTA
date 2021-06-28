@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { debounce } from "lodash";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -36,17 +36,32 @@ const useStyles = makeStyles((theme) => ({
 
 const CardListHeader = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
-  const location = useLocation();
-  const splitedPath = location.pathname.split("/");
-  const [searchState, setSearchState] = useState({
-    mountain: splitedPath[2],
-    date: splitedPath[3],
-    peopleNum: splitedPath[4],
-  });
+  const { mountain, date, peopleNum } = useParams();
+  const [searchState, setSearchState] = useState({ mountain, date, peopleNum });
   const [isCorrectKeyword, setIsCorrectKeyword] = useState(false);
   const [snack, setSnack] = useState(false);
-  const history = useHistory();
+  const [anchorEl, setAnchorEl] = useState(null);
+  // 해상도 1000px 미만 시 반응형 적용
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }, 100);
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
 
   const handleSignOut = () => {
     dispatch({ type: "LOGOUT" });
@@ -114,28 +129,6 @@ const CardListHeader = (props) => {
     setIsCorrectKeyword(value);
   };
 
-  // 해상도 1000px 미만 시 반응형 적용
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const handleResize = debounce(() => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  }, 100);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
-
-  const [anchorEl, setAnchorEl] = useState(null);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -146,13 +139,13 @@ const CardListHeader = (props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
-  const date = searchState.date;
+  const m_date = searchState.date;
   let defaultDate = new Date();
-  if (date) {
+  if (m_date) {
     defaultDate = new Date(
-      date.substring(0, 4),
-      date.substring(5, 7) - 1,
-      date.substring(8, 10),
+      m_date.substring(0, 4),
+      m_date.substring(5, 7) - 1,
+      m_date.substring(8, 10),
       23,
       59,
       59

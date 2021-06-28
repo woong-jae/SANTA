@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { debounce } from "lodash";
+import { useDispatch } from "react-redux";
 
 import { Typography, Snackbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,6 +11,7 @@ import InputMountain from "../common/InputMountain";
 import InputPeople from "../common/InputPeople";
 import SearchBtn from "../common/SearchBtn";
 import SelectDate from "../common/SelectDate";
+import { SET_SEARCHSTATE } from "../../constants/actionTypes";
 import "./Sections/LandingPage.scss";
 import "../common/Sections/Search.scss";
 
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LandingPage = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const currentDate = new Date();
   const initialState = {
