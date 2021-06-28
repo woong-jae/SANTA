@@ -242,7 +242,7 @@ export default function ShowCard({ user, card }) {
                     !apply ? (
                       card.currentMember.length + 1 < card.maxMember &&
                       (user ? (
-                        isApply ? (
+                        isApply() ? (
                           <Dialog
                             classes="apply-cancel-btn"
                             btnName="신청 취소"
