@@ -21,7 +21,6 @@ import decode from "jwt-decode";
 import { deleteUser, updateUser } from "../../actions/auth";
 import { getUserPosts, getUserAppliedPosts } from "../../actions/mypage";
 import Dialog from "../common/Dialog";
-import CardListHeader from "../CardListPage/Sections/CardListHeader";
 import UpdateUser from "./Sections/UpdateUser";
 import MyPartyInfo from "./Sections/MyPartyInfo";
 import Refresh from "../common/Refresh";
@@ -124,7 +123,6 @@ const MyPage = (props) => {
   if (user) {
     return (
       <div className="mypage">
-        <CardListHeader user={user} />
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10} component="div">
             <div style={{ display: "flex", padding: "20px" }}>
