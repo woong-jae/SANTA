@@ -137,6 +137,12 @@ const CardListHeader = (props) => {
     setAnchorEl(null);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && event.shiftKey === false) {
+      event.preventDefault();
+    }
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
   const m_date = searchState.date;
@@ -167,7 +173,7 @@ const CardListHeader = (props) => {
       <div className="header-bar">
         {windowSize.width >= 1150 ? (
           <div>
-            <form onSubmit={handleSubmit} className="input-form">
+            <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="input-form">
               <div id="search-mountain" className="search-item">
                 <InputMountain
                   id="search-mountain"
@@ -223,6 +229,7 @@ const CardListHeader = (props) => {
             >
               <form
                 onSubmit={handleSubmit}
+                onKeyDown={handleKeyDown}
                 style={{ textAlign: "center", paddingBottom: "13px" }}
               >
                 <Button onClick={handleClose}>
