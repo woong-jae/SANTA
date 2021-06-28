@@ -21,7 +21,7 @@
             #landing-logo {
                 font-size: 80px !important;
             }
-            .input-form {
+            .input-form{
                 min-width: 340px !important;
                 flex-direction: column !important;
                 height: 365px !important;
@@ -30,6 +30,12 @@
                 .search-item {
                     width: 300px;
                 }
+                .header-input {
+                    margin-right: 0px !important;
+                }
+            }
+            .mountain {
+                width: 100% !important;
             }
         }
     }

@@ -91,7 +91,13 @@ const CardListHeader = (props) => {
     }
     if (searchState.mountain !== "" && isCorrectKeyword) {
       history.push({
-        pathname: "/list/" + searchState.mountain + "/" + searchState.date + "/" + searchState.peopleNum,
+        pathname:
+          "/list/" +
+          searchState.mountain +
+          "/" +
+          searchState.date +
+          "/" +
+          searchState.peopleNum,
       });
     }
   };
@@ -138,10 +144,10 @@ const CardListHeader = (props) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && event.shiftKey === false) {
+    if (event.key === "Enter" && event.shiftKey === false) {
       event.preventDefault();
     }
-  }
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? "search-popover" : undefined;
@@ -173,7 +179,11 @@ const CardListHeader = (props) => {
       <div className="header-bar">
         {windowSize.width >= 1150 ? (
           <div>
-            <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="input-form">
+            <form
+              onSubmit={handleSubmit}
+              onKeyDown={handleKeyDown}
+              className="input-form"
+            >
               <div id="search-mountain" className="search-item">
                 <InputMountain
                   id="search-mountain"

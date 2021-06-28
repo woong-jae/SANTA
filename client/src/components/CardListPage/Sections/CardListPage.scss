@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 700px) {
     .input-form {
         flex-direction: column !important;
         margin: 20px !important;
@@ -40,7 +40,7 @@
             width: 40px !important;
         }
     }
-    @media (max-width: 550px) {
+    @media (max-width: 700px) {
         flex-direction: column;
         padding-right: 30px !important;
         .header-bar {
@@ -231,7 +231,7 @@ section {
     margin-right: 30px !important;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 700px) {
     #search-date,
     #search-peopleNum {
         margin-right: 0px !important;

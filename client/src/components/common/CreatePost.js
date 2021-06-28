@@ -163,10 +163,11 @@ export default function CreatePost(props) {
                   name="maxMember"
                   id="input-maxMember"
                   className="input-header"
+                  placeholder="최대 인원은 8명입니다."
                   label="제한 인원"
                   type="number"
                   defaultValue=""
-                  inputProps={{ min: 1, max: 4 }}
+                  inputProps={{ min: 1, max: 8 }}
                   InputLabelProps={{ shrink: true }}
                   onChange={handleChange}
                 />

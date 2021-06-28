@@ -25,10 +25,14 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-  avatar: {
+  male: {
     backgroundColor: blue[100],
     color: blue[600],
   },
+  female: {
+    color: "hotpink",
+    backgroundColor: "pink",
+  }
 }));
 
 function SimpleDialog(props) {
@@ -62,7 +66,7 @@ function SimpleDialog(props) {
         {appliedMember?.map((member) => (
           <ListItem key={member?._id} className="apply-list-item">
             <ListItemAvatar>
-              <Avatar className={classes.avatar}>
+              <Avatar className={member?.sex === "male" ? classes.male : classes.female}>
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>

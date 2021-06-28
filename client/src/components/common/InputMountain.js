@@ -43,7 +43,7 @@ export default function InputMountain(props) {
   }
   
   return (
-    <div>
+    <div className="mountain">
       <Autocomplete
         freeSolo
         defaultValue={() => props.value ? {name: props.value, location: getDefault()} : null}
@@ -59,7 +59,7 @@ export default function InputMountain(props) {
           {...params}
           //required 
           label="산/지역명" 
-          id="input=mountain"
+          id="input-mountain"
           name="mountain"
           InputLabelProps={{ shrink: true }} 
           onChange={ChangeHandler}
