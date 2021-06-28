@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createPost, getPosts, getPostById, getPostByMt, updatePost, deletePost, applyPost, unApplyPost, getUserPosts, getUserAppliedPosts, acceptMember, leavePost } from '../controllers/post.js';
+import { createPost, getPosts, getPostById, getPostByMt, updatePost, deletePost, applyPost, unApplyPost, getUserPosts, getUserAppliedPosts, acceptMember, leavePost, getUserAcceptedPosts } from '../controllers/post.js';
 import auth from '../middleware/auth.js';
 
 const router = express.Router();
@@ -10,6 +10,7 @@ router.get('/', getPosts);
 router.get('/:_id', getPostById);
 router.get('/created/:_id', auth, getUserPosts);
 router.get('/applied/:_id', auth, getUserAppliedPosts);
+router.get('/accepted/:_id', auth, getUserAcceptedPosts);
 router.get('/search/:mountain/:date/:peopleNum', getPostByMt);
 
 // POST
