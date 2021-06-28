@@ -11,6 +11,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import StarIcon from "@material-ui/icons/Star";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 
 import UpdateCard from "./UpdateCard";
 import Dialog from "../../common/Dialog";
@@ -49,6 +50,10 @@ export default function ShowCard({ user, card }) {
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
       if (isApply) dispatch(applyPost(card._id, { userID: user?.result?._id }));
     } else setIsAgeOver(true);
+  };
+
+  const handleExpel = (isExpel) => {
+    if (isExpel) dispatch()
   };
 
   const isUpdateCard = () => {
@@ -197,6 +202,15 @@ export default function ShowCard({ user, card }) {
                             <AccountCircleIcon style={{ color: "hotpink" }} />
                           )}
                           {member?.nickname + ` (${birthToAge(member?.birth)})`}
+                          {user?.result?._id === card.createdUser?._id && (
+                            <Dialog
+                              classes="expel-btn"
+                              btnName={<RemoveCircleOutlineIcon />}
+                              title="모임에서 제외하시겠습니까?"
+                              description="확인을 누르면 모임에서 제외됩니다."
+                              action={handleExpel}
+                            />
+                          )}
                         </Typography>
                       );
                     })}
@@ -241,7 +255,7 @@ export default function ShowCard({ user, card }) {
                       >
                         <CreateIcon />
                       </Button>
-                      <ApplyList card={card} birthToAge={birthToAge}/>
+                      <ApplyList card={card} birthToAge={birthToAge} />
                     </div>
                   )}
                 </div>

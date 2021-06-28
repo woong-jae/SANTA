@@ -148,6 +148,14 @@
                                 font-size: 1rem;
                                 margin-right: 5px;
                             }
+                            .expel-btn {
+                                color: white;
+                                left: 3px;
+                                background-color: rgb(247, 111, 111);
+                                &:hover {
+                                    background-color: rgb(247, 83, 83);
+                                }
+                            }
                         }
                     }
                 }
