@@ -46,6 +46,7 @@ function SimpleDialog(props) {
   };
 
   const handleReject = (member) => {
+    dispatch(unApplyPost(card._id, { userID: member?._id }));
     onClose();
   };
 

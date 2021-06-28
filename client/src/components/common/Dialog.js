@@ -19,7 +19,10 @@ export default function AlertDialog(props) {
 
   const handleClose = (isCancel) => {
     setOpen(false);
-    if (!isCancel) action(true);
+
+    if (!isCancel)
+      if (classes === "expel-btn") action(true, props.memberID);
+      else action(true);
   };
 
   return (

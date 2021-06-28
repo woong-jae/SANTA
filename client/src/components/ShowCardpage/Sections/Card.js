@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
-import { updatePost, applyPost, unApplyPost, leavePost } from "../../../actions/show";
+import {
+  updatePost,
+  applyPost,
+  unApplyPost,
+  leavePost,
+} from "../../../actions/show";
 import { Paper, Button, Typography, Tooltip } from "@material-ui/core";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -26,7 +31,6 @@ export default function ShowCard({ user, card }) {
   const history = useHistory();
 
   const [isUpdate, setIsUpdate] = useState(false);
-
   const [apply, setApply] = useState(
     card?.currentMember.some((member) => member?._id === user?.result?._id)
   );
@@ -44,16 +48,24 @@ export default function ShowCard({ user, card }) {
     }
   };
 
+  const handleExpel = (isExpel, targetID) => {
+    if (isExpel) {
+      dispatch(leavePost(card._id, { userID: targetID }));
+    }
+  };
+
+  const handleApplyCancel = (isApplyCancel) => {
+    if (isApplyCancel) {
+      dispatch(unApplyPost(card._id, { userID: user?.result?._id }));
+    }
+  };
+
   const handleApply = (isApply) => {
     const userBirth = new Date(user?.result?.birth);
     const age = new Date().getFullYear() - userBirth.getFullYear() + 1;
     if (card?.ageLimit[0] <= age && age <= card?.ageLimit[1]) {
       if (isApply) dispatch(applyPost(card._id, { userID: user?.result?._id }));
     } else setIsAgeOver(true);
-  };
-
-  const handleExpel = (isExpel) => {
-    if (isExpel) dispatch()
   };
 
   const isUpdateCard = () => {
@@ -86,6 +98,14 @@ export default function ShowCard({ user, card }) {
     const birthYear = birth.substring(0, 4);
     const age = new Date().getFullYear() - Number(birthYear) + 1;
     return age;
+  };
+
+  const isApply = () => {
+    const { appliedMember } = card;
+    for (let i = 0; i < appliedMember.length; i++) {
+      if (appliedMember[i]._id === user?.result?._id) return true;
+      else return false;
+    }
   };
 
   if (!isUpdate) {
@@ -209,6 +229,7 @@ export default function ShowCard({ user, card }) {
                               title="모임에서 제외하시겠습니까?"
                               description="확인을 누르면 모임에서 제외됩니다."
                               action={handleExpel}
+                              memberID={member?._id}
                             />
                           )}
                         </Typography>
@@ -221,13 +242,23 @@ export default function ShowCard({ user, card }) {
                     !apply ? (
                       card.currentMember.length + 1 < card.maxMember &&
                       (user ? (
-                        <Dialog
-                          classes="apply-btn"
-                          btnName="참가 신청"
-                          title={`[${card.createdUser?.nickname}] 님의 모임에 참가하시겠습니까?`}
-                          description="확인을 누르면 신청이 완료됩니다."
-                          action={handleApply}
-                        />
+                        isApply ? (
+                          <Dialog
+                            classes="apply-cancel-btn"
+                            btnName="신청 취소"
+                            title="모임 신청을 취소하시겠습니까?"
+                            description="현재 신청 승인 대기 중입니다. 정말로 신청을 취소하시겠습니까?"
+                            action={handleApplyCancel}
+                          />
+                        ) : (
+                          <Dialog
+                            classes="apply-btn"
+                            btnName="참가 신청"
+                            title={`[${card.createdUser?.nickname}] 님의 모임에 참가하시겠습니까?`}
+                            description="확인을 누르면 신청이 완료됩니다."
+                            action={handleApply}
+                          />
+                        )
                       ) : (
                         <SignPage
                           btn={
