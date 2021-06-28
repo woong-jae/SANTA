@@ -13,7 +13,8 @@ export const getPostById = (_id) => async (dispatch) => {
 
 export const updatePost = (_id, post) => async (dispatch) => {
     try {
-        const { data } = await api.updatePost(_id, post);
+        const newPostData = { ...post, date: post.date.getTime()+(3600000*9)};
+        const { data } = await api.updatePost(_id, newPostData);
 
         dispatch({ type: FETCH_ONE, data });
     } catch (error) {

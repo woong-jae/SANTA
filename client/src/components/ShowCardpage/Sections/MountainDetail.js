@@ -63,7 +63,6 @@ export default function MountainDetail(props) {
   const [open, setOpen] = React.useState(false);
   const { mountain } = props;
   const [detailState, setDetailState] = React.useState(null);
-  console.log(detailState);
   const handleClickOpen = async () => {
     setOpen(true);
     const data = await getMountainInfo(mountain);
