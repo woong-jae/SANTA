@@ -51,13 +51,13 @@ export default function CreatePost(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!isCorrectKeyword) {
       setIsError(true);
     }
     if (isCorrectKeyword) {
-      dispatch(
+      await dispatch(
         createPost(
           { ...cardState, createdUser: props.user?.result?._id },
           props.user?.result
@@ -67,7 +67,7 @@ export default function CreatePost(props) {
       setCardState(initialState);
       setAgeLimit([19, 70]);
       handleClose();
-      history.push("/list/" + cardState.mountain + "/" + dateToString() + "/1");
+      window.location.replace("/list/" + cardState.mountain + "/" + dateToString() + "/1");
     }
   };
 
