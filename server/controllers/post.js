@@ -51,11 +51,22 @@ export const getUserAppliedPosts = async (req, res) => {
     const { _id } = req.params;
     if (!req.userId) return res.json({ message: "Unathenticated" });
     try {
-        const posts = await Posts.find({ currentMember: _id }).populate('createdUser').populate('currentMember');
+        const posts = await Posts.find({ appliedMember: _id }).populate('createdUser').populate('currentMember');
         res.status(200).json(posts);
     } catch (error) {
         res.status(404).json({ message: error });
     }
+}
+
+export const getUserAcceptedPosts = async (req, res) => {
+  const { _id } = req.params;
+  if (!req.userId) return res.json({ message: "Unathenticated" });
+  try {
+      const posts = await Posts.find({ currentMember: _id }).populate('createdUser').populate('currentMember');
+      res.status(200).json(posts);
+  } catch (error) {
+      res.status(404).json({ message: error });
+  }
 }
 
 export const getPostByMt = async (req, res) => {

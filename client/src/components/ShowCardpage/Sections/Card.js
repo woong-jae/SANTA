@@ -100,13 +100,13 @@ export default function ShowCard({ user, card }) {
     return age;
   };
 
-  const isApply = () => {
-    const { appliedMember } = card;
-    for (let i = 0; i < appliedMember.length; i++) {
-      if (appliedMember[i]._id === user?.result?._id) return true;
-      else return false;
-    }
-  };
+  // const isApply = () => {
+  //   const { appliedMember } = card;
+  //   for (let i = 0; i < appliedMember.length; i++) {
+  //     if (appliedMember[i]._id === user?.result?._id) return true;
+  //     else return false;
+  //   }
+  // };
 
   if (!isUpdate) {
     return (
@@ -242,7 +242,7 @@ export default function ShowCard({ user, card }) {
                     !apply ? (
                       card.currentMember.length + 1 < card.maxMember &&
                       (user ? (
-                        isApply() ? (
+                        card.appliedMember.some(member => member?._id === user?.result?._id) ? (
                           <Dialog
                             classes="apply-cancel-btn"
                             btnName="신청 취소"
