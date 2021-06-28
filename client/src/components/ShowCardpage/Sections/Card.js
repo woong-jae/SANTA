@@ -100,14 +100,6 @@ export default function ShowCard({ user, card }) {
     return age;
   };
 
-  // const isApply = () => {
-  //   const { appliedMember } = card;
-  //   for (let i = 0; i < appliedMember.length; i++) {
-  //     if (appliedMember[i]._id === user?.result?._id) return true;
-  //     else return false;
-  //   }
-  // };
-
   if (!isUpdate) {
     return (
       <div>
