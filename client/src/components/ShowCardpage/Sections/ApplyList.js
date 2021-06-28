@@ -50,7 +50,6 @@ function SimpleDialog(props) {
     onClose();
   };
 
-  console.log(appliedMember);
   return (
     <Dialog
       className="apply-list-paper"
