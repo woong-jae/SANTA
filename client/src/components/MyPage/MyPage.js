@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import CardListHeader from "../CardListPage/Sections/CardListHeader";
 
 import {
   Paper,
@@ -123,6 +124,7 @@ const MyPage = (props) => {
   if (user) {
     return (
       <div className="mypage">
+        <CardListHeader user={user} />
         <div className="mypage-main">
           <Paper className="mypage-paper" elevation={10} component="div">
             <div style={{ display: "flex", padding: "20px" }}>
