@@ -12,3 +12,4 @@ export const DELETE_USER = 'DELETE_USER';
 
  export const FETCH_CREATED = 'FETCH_CREATED';
  export const FETCH_APPLIED = 'FETCH_APPLIED';
+ export const FETCH_ACCEPTED = 'FETCH_ACCEPTED';

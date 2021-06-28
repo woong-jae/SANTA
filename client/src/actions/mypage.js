@@ -1,4 +1,4 @@
-import { FETCH_APPLIED, FETCH_CREATED } from "../constants/actionTypes";
+import { FETCH_ACCEPTED, FETCH_APPLIED, FETCH_CREATED } from "../constants/actionTypes";
 import * as api from "../api/index.js";
 
 export const getUserPosts = (userId) => async (dispatch) => {
@@ -21,12 +21,12 @@ export const getUserAppliedPosts = (userId) => async (dispatch) => {
     }
 }
 
-// export const getUserAcceptedPosts = (userId) => async (dispatch) => {
-//     try {
-//         const { data } = await api.getUserAcceptedPosts(userId);
+export const getUserAcceptedPosts = (userId) => async (dispatch) => {
+    try {
+        const { data } = await api.getUserAcceptedPosts(userId);
         
-//         dispatch({ type: FETCH_ACCEPTED, data });
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+        dispatch({ type: FETCH_ACCEPTED, data });
+    } catch (error) {
+        console.error(error);
+    }
+}

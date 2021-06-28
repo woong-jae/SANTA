@@ -22,6 +22,7 @@ export const fetchPosts = () => API.get(`/post`);
 export const getPostById = (_id) => API.get(`/post/${_id}`);
 export const getUserPosts = (userId) => API.get(`/post/created/${userId}`);
 export const getUserAppliedPosts = (userId) => API.get(`/post/applied/${userId}`);
+export const getUserAcceptedPosts = (userId) => API.get(`/post/accepted/${userId}`);
 export const fetchPostByMt = (mountain, date, peopleNum) => API.get(`/post/search/${mountain}/${date}/${peopleNum}`);
 // POST
 export const createPost = (post) => API.post("/post", post);
