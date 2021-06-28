@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { deletePost } from "../../../actions/post";
-import { updatePost, applyPost, unApplyPost } from "../../../actions/show";
+import { updatePost, applyPost, unApplyPost, leavePost } from "../../../actions/show";
 import { Paper, Button, Typography, Tooltip } from "@material-ui/core";
 import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -39,7 +39,7 @@ export default function ShowCard({ user, card }) {
 
   const handleLeave = (isLeave) => {
     if (isLeave) {
-      dispatch(unApplyPost(card._id, { userID: user?.result?._id }));
+      dispatch(leavePost(card._id, { userID: user?.result?._id }));
     }
   };
 
