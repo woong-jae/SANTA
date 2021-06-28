@@ -105,7 +105,7 @@ export default function MountainDetail(props) {
                 secondary={"약 " + detailState?.mntheight + "m"}
               />
             </ListItem>
-            <Divider variant="inset" />
+            <Divider variant="inset" style={{ backgroundColor: "black" }} />
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
@@ -119,7 +119,7 @@ export default function MountainDetail(props) {
                 }}
               ></Typography>
             </ListItem>
-            <Divider variant="inset" />
+            <Divider variant="inset" style={{ backgroundColor: "black" }} />
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
