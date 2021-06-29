@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -60,16 +60,16 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 export default function MountainDetail(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const { mountain } = props;
-  const [detailState, setDetailState] = React.useState(null);
+  const [detailState, setDetailState] = useState(null);
   const handleClickOpen = async () => {
     setOpen(true);
     const data = await getMountainInfo(mountain);
     setDetailState(data.data.item);
   };
 
-  React.useEffect(() => {}, [detailState]);
+  useEffect(() => {}, [detailState]);
 
   const handleClose = () => {
     setOpen(false);
