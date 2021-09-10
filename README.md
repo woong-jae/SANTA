@@ -6,9 +6,7 @@
 산타는 100대 명산을 등산하고 싶은 사람들이 모임을 만들어 동행을 할 수 있게 해줍니다.
 
 ## 🔗 URL
-https://san-ta.netlify.app
-
-<img src="https://user-images.githubusercontent.com/33208246/121897044-ef469e00-cd5c-11eb-97dd-c800f0901eec.png" width="200" />
+~~https://san-ta.netlify.app~~
 
 ## 🔍 기능  
 - 가고 싶은 산, 날짜, 동행인원 수 입력을 통해 모임 검색  
